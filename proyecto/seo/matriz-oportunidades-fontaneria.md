@@ -1,627 +1,568 @@
-MATRIZ DE OPORTUNIDADES — FONTANERÍA
+# MATRIZ DE OPORTUNIDADES — FONTANERÍA
 
-1. FUNCIÓN
+## 1. FUNCIÓN
 
-Esta matriz constituye la capa intermedia entre:
+Esta matriz identifica y estructura oportunidades SEO potenciales de fontanería.
 
-EVIDENCIAS
-
-y:
-
-MOTOR DE DECISIÓN
-
-Su función es identificar y estructurar las combinaciones potencialmente evaluables de:
-
-SERVICIO × LOCALIDAD
-
-y:
-
-SERVICIO × SUBSERVICIO × LOCALIDAD
-
-No decide si una página debe crearse.
-
-La decisión corresponde exclusivamente al:
-
-"proyecto/seo/motor-decision.md"
-
----
-
-2. POSICIÓN EN EL SISTEMA
-
-El flujo es:
-
-INVESTIGACIÓN
-
-↓
+Actúa entre:
 
 EVIDENCIAS
-
 ↓
-
-MATRICES BASE
-
-↓
-
 MATRIZ DE OPORTUNIDADES
-
 ↓
-
 MOTOR DE DECISIÓN
 
-↓
+No decide por sí misma si debe crearse una landing.
 
-REGISTRO DE DECISIONES
-
-↓
-
-ARQUITECTURA DE URL
-
-↓
-
-LANDING
-
-↓
-
-BLOQUES
-
-↓
-
-CONTENIDO
-
-↓
-
-VALIDACIÓN
-
-↓
-
-PUBLICACIÓN
-
-↓
-
-MEDICIÓN
+La decisión corresponde al motor.
 
 ---
 
-3. MATRICES DE ORIGEN
+## 2. ESTRUCTURA DE OPORTUNIDAD
 
-Las combinaciones pueden proceder de:
-
-"matriz-servicios-fontaneria.md"
-
-"matriz-localidades.md"
-
-y:
-
-"evidencias-fontaneria.md"
-
-También pueden incorporarse nuevas combinaciones detectadas durante la investigación.
-
----
-
-4. PRINCIPIO FUNDAMENTAL
-
-La existencia de una combinación:
-
-servicio + localidad
-
-no significa automáticamente que exista una oportunidad SEO.
-
-La matriz únicamente identifica combinaciones que merecen ser evaluadas.
-
-La evaluación final la realiza el motor.
-
----
-
-5. TIPOS DE OPORTUNIDAD
-
-Cada registro podrá clasificarse inicialmente como:
+Cada oportunidad representa una combinación potencial de:
 
 SERVICIO × LOCALIDAD
 
-Ejemplo:
-
-"fontanero × Marbella"
+o:
 
 SERVICIO × SUBSERVICIO × LOCALIDAD
 
-Ejemplo:
-
-"fontanero × desatascos × Marbella"
-
-OTRA COMBINACIÓN
-
-Solo cuando la investigación demuestre una estructura distinta que pueda ser relevante.
-
----
-
-6. CAMPOS DE CADA REGISTRO
-
-Cada oportunidad deberá contener, cuando exista:
-
-ID:
-
-Sector:
-Servicio:
-Subservicio:
-
-Localidad:
-Provincia:
-
-Evidencias relacionadas:
-
-Intención:
-Demanda:
-Potencial comercial:
-Relevancia territorial:
-Competencia:
-Diferenciación:
-Información disponible:
-Riesgo de duplicación:
-
-Estado de investigación:
-
-Estado de decisión:
-
-Decisión del motor:
-
-URL propuesta:
-
-Observaciones:
-
----
-
-7. ESTADOS DE INVESTIGACIÓN
-
-Una oportunidad puede encontrarse en:
-
-DETECTADA
-
-La combinación ha sido identificada.
-
-EN INVESTIGACIÓN
-
-Se están recopilando evidencias.
-
-EVIDENCIA SUFICIENTE
-
-Existe información suficiente para aplicar el motor.
-
-EVIDENCIA INSUFICIENTE
-
-Faltan datos.
-
-VALIDADA
-
-La combinación ya ha sido evaluada.
-
----
-
-8. ESTADOS DE DECISIÓN
-
-Una vez aplicado el motor:
-
-CREAR
-
-AGRUPAR
-
-INVESTIGAR
-
-NO CREAR
-
-Antes de aplicar el motor:
-
-PENDIENTE
-
----
-
-9. REGLA SOBRE DATOS
-
-No se deben inventar valores.
-
-Si una variable no tiene evidencia suficiente:
-
-"DESCONOCIDA"
-
-Ejemplo:
-
-Demanda:
-DESCONOCIDA
-
-Esto puede provocar que el motor determine:
-
-INVESTIGAR
-
----
-
-10. EVIDENCIAS
-
-Las evidencias se referencian mediante sus identificadores.
-
-Ejemplo:
-
-Evidencias relacionadas:
-EVID-001
-EVID-007
-EVID-014
-
-No se copia aquí todo el contenido de las evidencias.
-
----
-
-11. EJEMPLO DE REGISTRO
-
-OPORTUNIDAD #001
-
-Sector:
-Fontanería
-
-Servicio:
-Fontanero
-
-Subservicio:
-Desatascos
-
-Localidad:
-Marbella
-
-Provincia:
-Málaga
-
-Evidencias relacionadas:
-EVID-001
-EVID-007
-
-Intención:
-ALTA
-
-Demanda:
-DESCONOCIDA
-
-Potencial comercial:
-ALTO
-
-Relevancia territorial:
-ALTA
-
-Competencia:
-EXISTENTE
-
-Diferenciación:
-PENDIENTE DE VALIDACIÓN
-
-Información disponible:
-MEDIA
-
-Riesgo de duplicación:
-PENDIENTE
-
-Estado de investigación:
-EN INVESTIGACIÓN
-
-Estado de decisión:
-PENDIENTE
-
-Decisión del motor:
-PENDIENTE
-
-URL propuesta:
-PENDIENTE
-
-Observaciones:
-Debe comprobarse si existe suficiente diferenciación para justificar una landing independiente.
-
-Este ejemplo es estructural.
-
-No constituye una decisión real.
-
----
-
-12. RELACIÓN SERVICIO / SUBSERVICIO
-
-La matriz debe permitir que un mismo servicio tenga:
-
-- página general por localidad;
-- páginas específicas de determinados subservicios;
-- o ninguna página específica.
-
-No se presupone que todos los subservicios deban tener una URL propia.
-
----
-
-13. REGLA DE PRIORIDAD
-
-Las oportunidades se priorizarán posteriormente utilizando las evidencias disponibles.
-
-No se priorizará únicamente por:
-
-- tamaño de ciudad;
-- volumen supuesto;
-- número de keywords;
-- facilidad de generación.
-
-La prioridad deberá considerar la oportunidad real y la capacidad de crear una página útil.
-
----
-
-14. PRIORIZACIÓN
-
-Inicialmente se utilizarán tres estados:
-
-ALTA
-
-Existen señales fuertes y suficientes para estudiar la oportunidad.
-
-MEDIA
-
-Existen señales interesantes pero falta información.
-
-BAJA
-
-La oportunidad presenta señales débiles.
-
-La prioridad no sustituye a la decisión del motor.
-
----
-
-15. RIESGO DE DUPLICACIÓN
-
-Se deberá estudiar especialmente cuando existan:
-
-- mismo servicio;
-- mismo subservicio;
-- varias localidades;
-- páginas con contenido muy parecido;
-- intención prácticamente idéntica.
-
-La matriz deberá permitir detectar patrones de duplicación antes de crear las páginas.
-
----
-
-16. RELACIÓN CON ARQUITECTURA DE URL
-
-La URL se determina únicamente después de que el motor determine:
-
-CREAR
-
-La arquitectura actual contempla principalmente:
-
-"/servicio/localidad/"
-
-y:
-
-"/servicio/subservicio/localidad/"
-
-La matriz puede contener una URL propuesta, pero debe considerarse:
-
-PENDIENTE
-
-hasta que el motor haya validado la oportunidad.
-
----
-
-17. RELACIÓN CON LANDINGS
-
-Una oportunidad:
-
-CREAR
-
-puede convertirse posteriormente en una landing.
-
-Una oportunidad:
-
-AGRUPAR
-
-no genera necesariamente una landing independiente.
-
-Una oportunidad:
-
-INVESTIGAR
-
-queda pendiente.
-
-Una oportunidad:
-
-NO CREAR
-
-no debe generar una landing.
-
----
-
-18. RELACIÓN CON IA
-
-La IA puede ayudar a:
-
-- identificar oportunidades;
-- clasificar evidencias;
-- detectar relaciones;
-- proponer hipótesis;
-- completar campos a partir de fuentes.
-
-Pero la IA no puede inventar:
-
-- demanda;
-- competencia;
-- diferenciación;
-- datos locales;
-- intención.
-
-Todo dato generado sin evidencia debe marcarse como:
-
-HIPÓTESIS
-
----
-
-19. RELACIÓN CON N8N
-
-En la fase futura, N8N podrá utilizar esta matriz como entrada para:
-
-1. detectar oportunidades nuevas;
-2. comprobar si ya existen;
-3. enviar datos al motor;
-4. registrar decisiones;
-5. generar estructuras;
-6. preparar landings;
-7. solicitar validación;
-8. publicar únicamente cuando corresponda.
-
-La automatización no sustituirá las reglas.
-
----
-
-20. ESCALABILIDAD
-
-Aunque este archivo se dedica inicialmente a fontanería, su estructura debe poder replicarse para otros sectores.
-
-Ejemplo futuro:
-
-"matriz-oportunidades-abogados.md"
-
-"matriz-oportunidades-electricistas.md"
-
-etc.
-
-La metodología y estructura general deben permanecer estables.
-
----
-
-21. IDENTIFICADORES
-
-Cada oportunidad debe tener un identificador único.
+Cada oportunidad debe disponer de un identificador único.
 
 Formato:
 
-"OPP-001"
+OPP-001
+OPP-002
+OPP-003
 
-"OPP-002"
-
-"OPP-003"
-
-Los identificadores no deben reutilizarse.
-
-Si una oportunidad se descarta y posteriormente vuelve a investigarse, conserva su identificador.
+Los identificadores no se reutilizan.
 
 ---
 
-22. HISTORIAL
+## 3. CAMPOS
 
-Cuando una oportunidad cambie de estado se conservará el historial.
+Cada oportunidad debe contener, cuando corresponda:
 
-Ejemplo:
+- opportunity_id
+- sector
+- servicio
+- subservicio
+- tipo_pagina
+- país
+- comunidad_autonoma
+- provincia
+- municipio
+- localidad
+- evidencias
+- intención
+- demanda
+- potencial_comercial
+- relevancia_territorial
+- competencia
+- diferenciación
+- información_disponible
+- riesgo_duplicacion
+- estado_investigacion
+- decision_seo
+- url
+- observaciones
+- historial
 
-OPP-001
+Los datos desconocidos no se inventan.
 
-2026-08-23:
+---
+
+## 4. ESTADOS DE INVESTIGACIÓN
+
+Valores:
+
 DETECTADA
 
-2026-08-24:
-EN INVESTIGACIÓN
+EN_INVESTIGACION
 
-2026-08-25:
-EVIDENCIA SUFICIENTE
+EVIDENCIA_SUFICIENTE
 
-2026-08-26:
+EVIDENCIA_INSUFICIENTE
+
 VALIDADA
 
-DECISIÓN:
+---
+
+## 5. DECISIÓN SEO
+
+Valores oficiales:
+
 CREAR
 
-No se deben borrar estados anteriores.
+AGRUPAR
+
+INVESTIGAR
+
+NO CREAR
+
+Mientras no exista una decisión:
+
+PENDIENTE
 
 ---
 
-23. CONTROL DE DUPLICADOS
+## 6. REGLA FUNDAMENTAL
 
-Antes de crear una nueva oportunidad se comprobará si ya existe:
+La existencia de:
 
-- misma combinación;
-- misma intención;
-- misma localidad;
-- mismo servicio;
-- mismo subservicio.
+servicio + localidad
 
-Si existe, se reutilizará el identificador existente.
+no implica automáticamente:
 
----
+CREAR
 
-24. REGLA DE CONSISTENCIA
+La decisión debe considerar:
 
-La matriz de oportunidades debe ser coherente con:
-
-- matriz de servicios;
-- matriz de localidades;
-- evidencias;
-- motor;
-- arquitectura de URLs;
-- registro de decisiones.
-
-Si existe contradicción, debe revisarse el origen del dato.
-
-No se debe corregir silenciosamente una contradicción.
+- intención;
+- demanda;
+- potencial comercial;
+- relevancia territorial;
+- competencia;
+- diferenciación;
+- información disponible;
+- riesgo de duplicación.
 
 ---
 
-25. DATOS ACTUALES
+# 7. OPORTUNIDAD OPP-001
 
-Esta sección se irá completando con las combinaciones reales obtenidas durante la investigación.
+## Identificación
 
-No se deben introducir combinaciones únicamente para rellenar la matriz.
-
-Cada oportunidad debe tener una justificación mínima.
-
----
-
-26. PRIMERAS OPORTUNIDADES
+ID:
 
 OPP-001
+
+Sector:
+
+Fontanería
+
+Servicio:
+
+Fontanero
+
+Subservicio:
+
+null
+
+Tipo:
+
+servicio_localidad
+
+---
+
+## Localización
+
+País:
+
+España
+
+Comunidad autónoma:
+
+Andalucía
+
+Provincia:
+
+Málaga
+
+Municipio:
+
+Marbella
+
+Localidad:
+
+null
+
+---
+
+## Evaluación
+
+Intención:
+
+ALTA
+
+Demanda:
+
+DESCONOCIDA
+
+Potencial comercial:
+
+ALTO
+
+Relevancia territorial:
+
+ALTA
+
+Competencia:
+
+ALTA
+
+Diferenciación:
+
+INSUFICIENTEMENTE DOCUMENTADA
+
+Información disponible:
+
+MEDIA
+
+Riesgo de duplicación:
+
+MEDIO_ALTO
+
+---
+
+## Estado
+
+Estado de investigación:
+
+EVIDENCIA_INSUFICIENTE
+
+Decisión SEO:
+
+INVESTIGAR
+
+---
+
+## URL
+
+URL propuesta:
+
+`/fontanero/marbella/`
 
 Estado:
 
-PENDIENTE DE CARGA
+PENDIENTE_DE_APROBACION
 
-La primera oportunidad real se incorporará después de consolidar las evidencias concretas de la investigación.
+La URL no debe considerarse definitiva hasta que la decisión sea:
 
----
-
-27. REGLA DE ACTUALIZACIÓN
-
-Las nuevas oportunidades se añaden.
-
-Las oportunidades existentes no se eliminan para ocultar decisiones anteriores.
-
-Si una oportunidad cambia:
-
-- se actualiza su estado;
-- se conserva el historial;
-- se registran nuevas evidencias;
-- se mantiene la trazabilidad.
+CREAR
 
 ---
 
-28. SEPARACIÓN DE RESPONSABILIDADES
+## Motivo de INVESTIGAR
 
-Este documento responde:
+Existe una intención local comercial clara y una oferta local confirmada.
 
-¿QUÉ COMBINACIONES MERECE LA PENA EVALUAR?
+Sin embargo, todavía no existe suficiente evidencia sobre:
+
+- demanda cuantitativa;
+- diferenciación real;
+- información local propia;
+- capacidad de crear una landing suficientemente específica;
+- riesgo real de duplicación frente a otras localidades.
+
+Por tanto, no se autoriza todavía la creación de una landing publicable.
+
+---
+
+# 8. PRUEBA TÉCNICA
+
+OPP-001 puede utilizarse como caso de prueba técnica del sistema de generación.
+
+Esta prueba debe estar marcada como:
+
+TEST
+
+y no debe modificar:
+
+decision_seo = INVESTIGAR
+
+La generación técnica no constituye aprobación SEO.
+
+No debe publicarse en WordPress.
+
+No debe enviarse a producción.
+
+---
+
+# 9. FLUJO DE OPP-001
+
+Actualmente:
+
+INVESTIGACIÓN
+↓
+EVIDENCIA
+↓
+OPP-001
+↓
+INVESTIGAR
+
+Pendiente:
+
+nueva evidencia
+↓
+reevaluación
+↓
+CREAR / AGRUPAR / INVESTIGAR / NO CREAR
+
+Si finalmente:
+
+CREAR
+
+entonces:
+
+ARQUITECTURA
+↓
+BLOQUES
+↓
+IA
+↓
+VALIDACIÓN
+↓
+N8N
+↓
+WORDPRESS
+
+---
+
+# 10. RELACIÓN CON EL ESQUEMA DE DATOS
+
+El modelo canónico está definido en:
+
+`proyecto/seo/esquema-datos.md`
+
+Esta matriz representa únicamente la capa de oportunidades.
+
+No debe crear estructuras paralelas incompatibles con el esquema canónico.
+
+---
+
+# 11. RELACIÓN CON EL MOTOR
+
+El motor utiliza esta matriz como entrada.
+
+Archivo:
+
+`proyecto/seo/motor-decision.md`
+
+La matriz proporciona datos.
+
+El motor proporciona:
+
+CREAR
+
+AGRUPAR
+
+INVESTIGAR
+
+NO CREAR
+
+---
+
+# 12. RELACIÓN CON ARQUITECTURA
+
+Solo después de:
+
+decision_seo = CREAR
+
+se consolida:
+
+- tipo_pagina;
+- URL;
+- canonical;
+- parent_url;
+- profundidad.
+
+La matriz puede contener una URL propuesta, pero nunca constituye por sí misma una autorización para crearla.
+
+---
+
+# 13. RELACIÓN CON LANDING
+
+CREAR:
+
+puede generar landing.
+
+AGRUPAR:
+
+se integra en otra página.
+
+INVESTIGAR:
+
+queda pendiente.
+
+NO CREAR:
+
+no genera landing.
+
+---
+
+# 14. REGLA DE NO INVENCIÓN
+
+No se deben inventar:
+
+- demanda;
+- competencia;
+- empresas;
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
+- cobertura;
+- zonas;
+- reseñas;
+- testimonios;
+- experiencia;
+- certificaciones;
+- garantías.
+
+Cuando no exista evidencia:
+
+DESCONOCIDA
+
+o:
+
+null
+
+según el campo.
+
+---
+
+# 15. CONTROL DE DUPLICADOS
+
+Antes de crear una oportunidad nueva se comprobará:
+
+- mismo servicio;
+- mismo subservicio;
+- mismo municipio;
+- misma localidad;
+- misma intención.
+
+Si ya existe:
+
+se conserva el opportunity_id existente.
+
+---
+
+# 16. HISTORIAL OPP-001
+
+### 2026-08-23
+
+Estado inicial:
+
+DETECTADA
+
+Posteriormente evaluada mediante el motor.
+
+Resultado:
+
+INVESTIGAR
+
+Motivos principales:
+
+- intención local comercial;
+- relevancia territorial;
+- oferta local;
+- competencia alta;
+- demanda cuantitativa desconocida;
+- diferenciación insuficientemente documentada;
+- información local parcial;
+- riesgo de duplicación medio/alto.
+
+Estado actual:
+
+INVESTIGAR
+
+---
+
+# 17. SIGUIENTE ACCIÓN
+
+Para modificar la decisión de OPP-001 se necesita nueva evidencia.
+
+Prioridades:
+
+1. demanda;
+2. diferenciación;
+3. información local;
+4. competencia;
+5. riesgo de duplicación.
+
+Hasta entonces:
+
+decision_seo = INVESTIGAR
+
+---
+
+# 18. ESCALABILIDAD
+
+La estructura se podrá reutilizar para:
+
+- electricistas;
+- abogados;
+- carpinteros;
+- pintores;
+- jardineros;
+- reformas;
+- otros servicios profesionales.
+
+Ejemplo futuro:
+
+`matriz-oportunidades-electricistas.md`
+
+La estructura debe permanecer estable.
+
+---
+
+# 19. PRINCIPIO DE CALIDAD
+
+No se crearán oportunidades únicamente mediante:
+
+servicios × localidades
+
+La combinación automática sirve para detectar candidatos.
+
+La evidencia determina cuáles merecen ser evaluados.
+
+El motor determina qué hacer.
+
+---
+
+# 20. ESTADO DEL DOCUMENTO
+
+Estado:
+
+ACTIVO
+
+Versión:
+
+1.1
+
+Fecha:
+
+2026-08-23
+
+Cambios:
+
+- incorporación de OPP-001;
+- actualización de su decisión a INVESTIGAR;
+- alineación con esquema-datos.md;
+- separación entre oportunidad y landing;
+- incorporación de prueba técnica;
+- incorporación de historial;
+- eliminación del estado obsoleto PENDIENTE DE CARGA.
+
+---
+
+# 21. REGLA FINAL
+
+La matriz responde:
+
+¿QUÉ OPORTUNIDADES DEBEMOS EVALUAR?
 
 El motor responde:
 
-¿QUÉ HACEMOS CON CADA COMBINACIÓN?
+¿QUÉ HACEMOS CON CADA OPORTUNIDAD?
 
-La arquitectura de URL responde:
+La arquitectura responde:
 
-¿QUÉ URL LE CORRESPONDE?
-
-La arquitectura de landing responde:
-
-¿CÓMO SERÁ LA PÁGINA?
-
-El sistema de bloques responde:
-
-¿QUÉ COMPONENTES LA FORMAN?
-
-El modelo de datos responde:
-
-¿QUÉ INFORMACIÓN NECESITA?
+¿QUÉ ESTRUCTURA TENDRÁ?
 
 La IA responde:
 
@@ -631,43 +572,6 @@ N8N responde:
 
 ¿CÓMO AUTOMATIZAMOS EL PROCESO?
 
----
+WordPress responde:
 
-29. ESTADO DEL DOCUMENTO
-
-Estado:
-
-ACTIVO — ESTRUCTURA DEFINIDA
-
-La estructura está preparada.
-
-La carga completa de oportunidades reales se realizará utilizando las evidencias consolidadas de la investigación.
-
----
-
-30. REGISTRO DE ACTUALIZACIÓN
-
-2026-08-23
-
-Se crea la matriz de oportunidades de fontanería.
-
-Se establece como capa intermedia entre:
-
-EVIDENCIAS
-
-y:
-
-MOTOR DE DECISIÓN
-
-Se establece la separación entre:
-
-- combinación detectada;
-- evidencia;
-- evaluación;
-- decisión;
-- URL;
-- landing.
-
-Se establece un sistema de identificadores únicos y conservación del historial.
-
-Se establece que ninguna oportunidad será creada únicamente por permutación automática de servicios y localidades.
+¿DÓNDE SE PUBLICA?
