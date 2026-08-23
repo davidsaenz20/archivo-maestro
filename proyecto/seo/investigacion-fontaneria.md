@@ -1,451 +1,560 @@
-Investigación de Fontanería — SEO Local y Programático
+Investigación SEO — Fontanería
 
-1. Objetivo de la investigación
+1. Función del documento
 
-Investigar cómo se presenta actualmente el mercado de fontanería en España y utilizar esa información para diseñar una arquitectura SEO escalable basada en:
+Este documento conserva la investigación específica realizada sobre el sector de fontanería.
 
-SERVICIO + LOCALIDAD + INTENCIÓN + INFORMACIÓN LOCAL
+Su función es almacenar:
 
-La investigación sirve como base para construir posteriormente:
+- Evidencias.
+- Observaciones.
+- Patrones detectados.
+- Hipótesis.
+- Conclusiones.
+- Información competitiva.
+- Información territorial.
+- Reglas específicas que puedan derivarse de la investigación.
 
-- Matriz de servicios.
-- Matriz territorial.
-- Motor de decisión.
-- Primera prueba.
-- Automatización.
-- Escalado.
+Este documento no define la metodología general del proyecto.
+
+Tampoco define por sí solo qué páginas deben crearse.
+
+La decisión final corresponde al motor de decisión.
 
 ---
 
-2. Alcance
+2. Alcance de la investigación
 
-La investigación se ha centrado en:
+La investigación se ha centrado en estudiar cómo se comporta el mercado de fontanería en España y, especialmente:
 
-- Empresas y webs de fontanería.
-- Directorios y plataformas de servicios.
+- Servicios ofrecidos.
+- Intenciones de búsqueda.
+- Estructuras de páginas.
+- Competidores.
+- Directorios.
 - Resultados locales.
-- Páginas de ciudades.
-- Páginas de servicios.
-- Páginas de especialidades.
-- Páginas de urgencias.
-- Estructuras servicio + localidad.
-- Diferencias entre ciudades y municipios.
-- Formas de presentar servicios y especialidades.
-- Profundidad territorial.
-- Intenciones comerciales.
-
-Se han utilizado como referencia diferentes mercados y localidades españolas, incluyendo grandes ciudades y localidades con fuerte actividad local y turística.
-
----
-
-3. Patrón principal observado
-
-La combinación:
-
-FONTANERO + LOCALIDAD
-
-aparece como una estructura comercial y SEO fundamental.
-
-Ejemplos:
-
-- Fontanero Madrid.
-- Fontanero Barcelona.
-- Fontanero Málaga.
-- Fontanero Marbella.
-- Fontanero Sevilla.
-- Fontanero Bilbao.
-- Fontanero Valencia.
-- Fontanero Alicante.
-
-Sin embargo, el análisis demuestra que no basta con crear automáticamente una página para cada combinación.
-
-El valor depende de:
-
-- Demanda.
-- Competencia.
-- Intención.
-- Servicios disponibles.
-- Especialización.
-- Información local.
+- Ciudades y localidades.
+- Combinaciones servicio + localidad.
+- Servicios urgentes.
+- Servicios especializados.
+- Diferenciación territorial.
 - Potencial comercial.
 
+La investigación debe considerarse una fuente de información para las siguientes fases del sistema.
+
 ---
 
-4. Servicios recurrentes observados
+3. Fuentes investigadas
 
-Entre los servicios que aparecen repetidamente en webs de fontanería se encuentran:
+Se han utilizado diferentes tipos de fuentes, entre ellas:
+
+- Webs reales de empresas de fontanería.
+- Páginas de servicios.
+- Páginas locales.
+- Directorios profesionales.
+- Resultados de búsqueda.
+- Resultados locales.
+- SERP.
+- Información pública de empresas.
+- Observación comparativa de estructuras web.
+
+Las fuentes concretas y los datos obtenidos deben conservarse cuando sean necesarios para justificar una conclusión.
+
+---
+
+4. Principales servicios observados
+
+Durante la investigación aparecen recurrentemente servicios como:
 
 - Fontanería general.
 - Reparación de fugas.
 - Detección de fugas.
 - Desatascos.
+- Tuberías.
 - Reparación de tuberías.
-- Instalación de tuberías.
-- Reparaciones de agua.
-- Agua caliente.
-- Reparación de calentadores.
-- Instalación de calentadores.
-- Termos eléctricos.
-- Instalación o reparación de termos.
-- Reparación de grifos.
-- Reparación de cisternas.
-- Sanitarios.
 - Instalaciones.
+- Agua caliente.
+- Termos.
+- Calentadores.
+- Grifos.
+- Sanitarios.
+- Cisternas.
 - Mantenimiento.
 - Urgencias.
 - Servicios 24 horas.
 
-No todos deben convertirse automáticamente en páginas independientes.
+La presencia frecuente de un servicio en webs competidoras no demuestra por sí sola que deba convertirse en una URL independiente.
+
+Debe analizarse mediante el motor.
 
 ---
 
-5. Servicios de alta intención
+5. Intenciones detectadas
 
-Algunos servicios presentan una intención comercial especialmente clara.
+Las búsquedas relacionadas con fontanería pueden responder a diferentes intenciones.
 
-Entre ellos:
+5.1 Contratación directa
 
-- Fugas.
-- Desatascos.
-- Urgencias.
-- Tuberías.
-- Termos.
-- Calentadores.
-- Agua caliente.
-- Reparaciones.
+El usuario busca contratar un profesional.
 
-Estos servicios deben analizarse individualmente dentro del motor de decisión.
+Ejemplos conceptuales:
+
+- fontanero Marbella;
+- fontanero cerca;
+- fontanero urgente;
+- empresa de fontanería.
 
 ---
 
-6. Urgencias
+5.2 Problema + solución
 
-La urgencia aparece como una dimensión importante del mercado.
+El usuario tiene un problema concreto.
 
 Ejemplos:
 
-- Fontanero urgente.
-- Fontanero 24 horas.
-- Desatascos urgentes.
-- Reparación urgente de fugas.
-
-La urgencia no debe tratarse simplemente como una palabra añadida a todas las URLs.
-
-Debe existir una demanda o intención suficiente que justifique una página específica.
+- fuga de agua;
+- tubería rota;
+- atasco;
+- falta de agua caliente.
 
 ---
 
-7. Especialización
+5.3 Servicio específico
 
-La investigación muestra que el mercado permite dividir la fontanería en especialidades.
+El usuario conoce aproximadamente lo que necesita.
 
 Ejemplos:
 
-- Fugas.
-- Desatascos.
-- Tuberías.
-- Termos.
-- Calentadores.
-- Agua caliente.
-- Sanitarios.
-- Instalaciones.
-- Mantenimiento.
-- Urgencias.
-
-Esta clasificación permitirá posteriormente construir una matriz de servicios.
+- reparación de termo;
+- instalación de calentador;
+- desatascos;
+- detección de fugas.
 
 ---
 
-8. Diferencias territoriales
+5.4 Urgencia
 
-No todas las localidades deben tratarse igual.
+Existe una necesidad inmediata.
 
-Una ciudad grande puede justificar:
+Ejemplos:
 
-- Más servicios.
-- Más especialidades.
-- Mayor profundidad.
-- Más páginas territoriales.
-- Mayor segmentación.
+- fontanero urgente;
+- fontanero 24 horas;
+- desatascos urgentes.
 
-Un municipio pequeño puede requerir una estructura mucho más sencilla.
+La urgencia puede modificar el valor comercial de una búsqueda y debe ser considerada por el motor.
 
-La profundidad territorial debe depender de:
+---
+
+6. Importancia de la localidad
+
+La investigación confirma que la dimensión territorial es especialmente relevante en servicios de fontanería.
+
+El usuario suele necesitar un profesional que pueda desplazarse hasta su ubicación.
+
+Por ello, la combinación:
+
+SERVICIO + LOCALIDAD
+
+constituye una unidad fundamental de análisis.
+
+Sin embargo, esto no significa que todas las localidades deban tener páginas para todos los servicios.
+
+---
+
+7. Diferencias territoriales
+
+Las localidades pueden presentar diferencias importantes.
+
+Entre ellas:
 
 - Población.
-- Demanda.
-- Competencia.
 - Actividad económica.
 - Turismo.
-- Tipología de viviendas.
-- Servicios relevantes.
-- Información local disponible.
-- Potencial comercial.
-
----
-
-9. Información local
-
-Una página local de calidad puede diferenciarse mediante información específica.
-
-Ejemplos:
-
-- Zonas atendidas.
-- Barrios.
+- Vivienda residencial.
+- Segunda residencia.
 - Urbanizaciones.
-- Tipos de viviendas.
-- Problemas habituales.
-- Características del municipio.
-- Actividad turística.
-- Segundas residencias.
+- Hoteles.
+- Restauración.
+- Empresas.
 - Antigüedad de edificios.
-- Necesidades de mantenimiento.
-- Horarios.
-- Urgencias.
-- Perfil del cliente.
+- Características de las instalaciones.
+- Distancia entre núcleos.
+- Cobertura profesional.
 
-Esto permite evitar páginas que sean simplemente una plantilla con el nombre de la localidad cambiado.
-
----
-
-10. Tipos de cliente
-
-La investigación permite identificar diferentes perfiles:
-
-Particulares
-
-- Viviendas.
-- Pisos.
-- Casas.
-- Comunidades.
-
-Empresas
-
-- Locales comerciales.
-- Oficinas.
-- Restaurantes.
-- Hoteles.
-- Negocios.
-
-Comunidades
-
-- Comunidades de propietarios.
-- Urbanizaciones.
-- Administradores de fincas.
-
-Turismo
-
-Especialmente relevante en determinados municipios:
-
-- Apartamentos turísticos.
-- Hoteles.
-- Villas.
-- Segundas residencias.
-
-No todos estos perfiles deben convertirse en páginas independientes.
+Estas diferencias pueden modificar la oportunidad de determinados servicios.
 
 ---
 
-11. Arquitectura potencial
+8. Grandes ciudades
 
-La arquitectura observada permite diferentes niveles.
+Las grandes ciudades presentan generalmente:
 
-Nivel 1
+- mayor población;
+- mayor número de viviendas;
+- mayor número de empresas;
+- mayor variedad de servicios;
+- mayor competencia.
 
-Servicio:
+Esto puede generar muchas oportunidades, pero también una competencia más fuerte.
 
-"Fontanero"
+Por tanto:
 
-Nivel 2
-
-Servicio + localidad:
-
-"Fontanero Marbella"
-
-Nivel 3
-
-Especialidad + localidad:
-
-"Desatascos Marbella"
-
-Nivel 4
-
-Urgencia + localidad:
-
-"Fontanero urgente Marbella"
-
-Nivel 5
-
-Servicio especializado + territorio:
-
-"Reparación de termos Marbella"
-
-La existencia de cada nivel debe decidirse mediante reglas.
+gran ciudad ≠ CREAR automáticamente
 
 ---
 
-12. Problema detectado
+9. Municipios turísticos
 
-Existe un riesgo importante:
+Los mercados turísticos pueden presentar características especiales.
 
-crear demasiadas páginas con poca diferenciación.
+Pueden existir:
 
-Una estrategia puramente programática puede generar:
+- hoteles;
+- apartamentos turísticos;
+- segundas residencias;
+- comunidades;
+- restaurantes;
+- negocios estacionales;
+- necesidades urgentes;
+- mayor actividad durante determinadas épocas.
 
-- Contenido repetitivo.
-- Páginas de poco valor.
-- Canibalización.
-- Problemas de indexación.
-- Mantenimiento innecesario.
-- Costes de generación.
-- Mala experiencia de usuario.
+Estas características pueden aumentar el interés comercial de determinados servicios.
 
-Por ello se necesita un motor de decisión.
+Deben utilizarse como variables del análisis, no como garantía automática de demanda.
 
 ---
 
-13. Necesidad del motor de decisión
+10. Urbanizaciones y zonas residenciales
 
-El sistema debe decidir antes de generar una URL.
+Las urbanizaciones pueden presentar necesidades específicas relacionadas con:
 
-Variables iniciales:
+- piscinas;
+- comunidades;
+- instalaciones exteriores;
+- presión de agua;
+- redes internas;
+- mantenimiento;
+- viviendas unifamiliares.
+
+No debe crearse una página específica para cada urbanización salvo que exista una justificación suficiente y contenido real que la diferencie.
+
+---
+
+11. Competencia
+
+La investigación ha encontrado diferentes tipos de competidores:
+
+- Empresas locales.
+- Empresas con cobertura provincial.
+- Empresas con cobertura nacional.
+- Directorios.
+- Marketplaces.
+- Profesionales independientes.
+
+Las webs presentan diferentes niveles de:
+
+- especialización;
+- contenido;
+- páginas locales;
+- páginas de servicios;
+- optimización local;
+- autoridad;
+- información comercial.
+
+La presencia de competencia no determina por sí sola la decisión.
+
+Debe analizarse la relación:
+
+demanda + intención + competencia + diferenciación + potencial comercial.
+
+---
+
+12. Patrones observados en webs competidoras
+
+Se observan estructuras frecuentes basadas en:
 
 - Servicio.
-- Especialidad.
 - Localidad.
-- Población.
+- Servicio + localidad.
+- Urgencia.
+- Servicio especializado.
+- Zonas atendidas.
+- Preguntas frecuentes.
+- Información de contacto.
+- Llamadas a la acción.
+
+Estos patrones sirven como evidencia sobre cómo se presenta actualmente el mercado.
+
+No deben copiarse automáticamente.
+
+---
+
+13. Directorios y marketplaces
+
+Los directorios pueden ocupar posiciones relevantes para búsquedas locales.
+
+Pueden aportar información sobre:
+
+- existencia de profesionales;
+- cobertura territorial;
+- servicios;
+- demanda comercial;
+- estructura del mercado.
+
+Sin embargo, la existencia de un directorio para una búsqueda no demuestra automáticamente que una nueva página tenga oportunidad.
+
+---
+
+14. Diferenciación
+
+La investigación indica que una página local debe poder diferenciarse mediante información útil.
+
+Posibles elementos:
+
+- cobertura real;
+- zonas;
+- barrios;
+- urbanizaciones;
+- tipos de vivienda;
+- problemas frecuentes;
+- servicios relevantes;
+- horarios;
+- urgencias;
+- características locales;
+- información comercial.
+
+Cambiar únicamente el nombre de la localidad no constituye diferenciación suficiente.
+
+---
+
+15. Servicios urgentes
+
+Los servicios urgentes tienen una característica importante:
+
+la intención comercial puede ser especialmente fuerte.
+
+El usuario suele necesitar resolver un problema rápidamente.
+
+Esto puede aumentar:
+
+- valor comercial;
+- conversión potencial;
+- importancia de la proximidad;
+- importancia de disponibilidad.
+
+La urgencia debe analizarse como una variable independiente dentro del motor.
+
+---
+
+16. Servicios especializados
+
+Servicios como:
+
+- detección de fugas;
+- desatascos;
+- reparación de termos;
+- reparación de calentadores;
+- instalaciones;
+- mantenimiento;
+
+pueden tener intenciones diferentes a la búsqueda genérica de fontanero.
+
+No deben agruparse ni separarse automáticamente.
+
+La decisión debe depender de:
+
+- demanda;
+- intención;
+- potencial comercial;
+- diferenciación;
+- competencia;
+- utilidad.
+
+---
+
+17. Principales conclusiones de la investigación
+
+Conclusión 1
+
+La dimensión local es fundamental para el sector.
+
+---
+
+Conclusión 2
+
+La combinación servicio + localidad es una unidad de análisis válida.
+
+---
+
+Conclusión 3
+
+No todas las combinaciones servicio + localidad justifican una página independiente.
+
+---
+
+Conclusión 4
+
+La urgencia puede aumentar significativamente el valor comercial de determinadas búsquedas.
+
+---
+
+Conclusión 5
+
+Los servicios especializados pueden tener intenciones suficientemente diferentes como para justificar análisis independiente.
+
+---
+
+Conclusión 6
+
+La diferenciación local es necesaria para evitar páginas repetitivas.
+
+---
+
+Conclusión 7
+
+El tamaño de una localidad no debe utilizarse como único criterio de decisión.
+
+---
+
+Conclusión 8
+
+La competencia debe analizarse junto con demanda, intención y potencial comercial.
+
+---
+
+Conclusión 9
+
+La presencia de una página competidora no demuestra automáticamente que nuestra página tenga oportunidad.
+
+---
+
+Conclusión 10
+
+La generación masiva de páginas sin validación puede producir contenido de bajo valor.
+
+---
+
+18. Hipótesis pendientes de validación
+
+Las siguientes cuestiones deben considerarse hipótesis hasta disponer de datos suficientes:
+
+- Qué volumen mínimo de demanda justifica una página.
+- Qué diferencia de demanda existe entre grandes ciudades y municipios pequeños.
+- Cuánto influye la urgencia en la conversión.
+- Qué servicios especializados tienen suficiente demanda independiente.
+- Qué nivel de profundidad territorial es rentable.
+- Qué variables predicen mejor el rendimiento.
+- Qué combinación de factores produce las mejores páginas.
+- Qué nivel de competencia permite entrar con garantías razonables.
+
+Estas hipótesis serán utilizadas para validar y ajustar el motor.
+
+---
+
+19. Relación con el motor de decisión
+
+Esta investigación proporciona información para:
+
+"proyecto/seo/motor-decision.md"
+
+El motor utiliza variables como:
+
 - Demanda.
-- Competencia.
 - Intención.
-- Tipo de cliente.
-- Información local disponible.
+- Competencia.
 - Potencial comercial.
-- Diferenciación posible.
+- Relevancia territorial.
+- Diferenciación.
+- Información disponible.
+- Riesgo de duplicación.
 
-Resultado posible:
-
-CREAR
-
-AGRUPAR
-
-NO CREAR
+Las conclusiones de este documento pueden alimentar reglas específicas de fontanería, pero no deben convertirse automáticamente en reglas universales para otros servicios.
 
 ---
 
-14. Principio de diferenciación
+20. Regla de reutilización
 
-La página debe aportar valor adicional respecto a otras páginas existentes.
+Cuando se investigue un nuevo servicio:
 
-No basta con:
+NO copiar esta investigación.
 
-- Cambiar el nombre de la ciudad.
-- Cambiar una provincia.
-- Repetir el mismo texto.
-- Cambiar unas pocas palabras.
+Debe utilizarse únicamente como referencia metodológica sobre cómo investigar.
 
-La información local debe ser real, útil y relevante.
+Para cada nuevo servicio deberán estudiarse de nuevo:
 
----
-
-15. Fontanería como primer caso de prueba
-
-Fontanería se utilizará como primer sector para comprobar la arquitectura.
-
-La razón es que permite estudiar:
-
-- Muchos servicios.
-- Diferentes especialidades.
-- Alta intención local.
-- Urgencias.
-- Diferentes tipos de cliente.
-- Diferentes niveles territoriales.
-- Mercado urbano y turístico.
-
-Si el sistema funciona con fontanería, podrá estudiarse su adaptación a otros sectores.
+- servicios;
+- intenciones;
+- competencia;
+- mercado;
+- territorio;
+- clientes;
+- potencial comercial;
+- excepciones.
 
 ---
 
-16. Hipótesis obtenidas
+21. Clasificación de la información
 
-Las siguientes afirmaciones deben considerarse hipótesis hasta su validación mediante datos reales:
+Cada dato o conclusión debe poder clasificarse como:
 
-1. Servicio + localidad puede ser una estructura SEO comercialmente potente.
-2. Las especialidades pueden justificar páginas independientes en determinadas localidades.
-3. Las urgencias pueden constituir una intención independiente.
-4. La información local puede mejorar la diferenciación.
-5. Las grandes ciudades pueden soportar mayor profundidad.
-6. Los municipios pequeños pueden necesitar estructuras más simples.
-7. Un motor de decisión puede reducir páginas de bajo valor.
-8. La arquitectura puede reutilizarse en otros servicios profesionales.
+DATO
 
----
+Información observada o procedente de una fuente.
 
-17. Conclusiones de la investigación
+OBSERVACIÓN
 
-La investigación permite establecer como base de trabajo:
+Patrón detectado durante la investigación.
 
-No debemos crear miles de páginas indiscriminadamente.
+HIPÓTESIS
 
-Debemos crear un sistema capaz de decidir:
+Interpretación todavía no validada.
 
-qué página crear, dónde crearla, por qué crearla y qué información debe contener.
+CONCLUSIÓN
 
-La arquitectura debe combinar:
+Resultado suficientemente respaldado por la investigación.
 
-SERVICIO
+REGLA
 
-+ 
+Decisión que ya ha sido incorporada al sistema.
 
-LOCALIDAD
-
-+ 
-
-INTENCIÓN
-
-+ 
-
-INFORMACIÓN LOCAL
-
-+ 
-
-POTENCIAL COMERCIAL
+No se deben presentar hipótesis como reglas.
 
 ---
 
-18. Próximo paso
+22. Actualizaciones de investigación
 
-Utilizar esta investigación para construir:
+Las nuevas investigaciones relevantes deben añadirse al final de este documento indicando:
 
-1. Matriz de servicios de fontanería.
-2. Matriz territorial.
-3. Variables del motor de decisión.
-4. Sistema de puntuación.
-5. Primera prueba pequeña.
+- Fecha.
+- Qué se investigó.
+- Qué se descubrió.
+- Qué información cambia.
+- Si modifica alguna conclusión.
+- Si modifica alguna regla del motor.
+
+Cuando una actualización contradiga una conclusión anterior, debe revisarse expresamente.
+
+La información posterior no sustituye automáticamente a la anterior: debe evaluarse la calidad y relevancia de ambas.
 
 ---
 
-19. Estado
+23. Registro de actualización
 
-Investigación:
+2026-08-23
 
-REALIZADA / CONSOLIDADA
+Se consolida la investigación realizada sobre:
 
-Arquitectura:
+- Servicios de fontanería.
+- Intenciones.
+- Competencia.
+- Localidades.
+- Servicios urgentes.
+- Servicios especializados.
+- Diferenciación local.
+- Estructuras de competidores.
+- Relación servicio + localidad.
 
-DEFINIDA CONCEPTUALMENTE
+Se establece que las conclusiones de fontanería constituyen conocimiento sectorial, mientras que la metodología y el motor general deben permanecer reutilizables para otros servicios.
 
-Motor de decisión:
-
-PENDIENTE DE FORMALIZACIÓN
-
-Prueba:
-
-PENDIENTE
-
-Automatización:
-
-PENDIENTE
-
-Escalado:
-
-PENDIENTE
+Las hipótesis que necesiten validación real quedan diferenciadas de las conclusiones consolidadas.
