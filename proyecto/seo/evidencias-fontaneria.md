@@ -1,562 +1,343 @@
-EVIDENCIAS DE INVESTIGACIÓN — FONTANERÍA
+EVIDENCIAS FONTANERÍA
 
-1. FUNCIÓN DEL DOCUMENTO
+1. FUNCIÓN
 
-Este documento conserva las evidencias obtenidas durante la investigación del sector de fontanería.
+Este documento conserva evidencias utilizadas para evaluar oportunidades SEO relacionadas con el servicio de fontanería.
 
-Su objetivo es evitar que información relevante dependa de:
+No contiene las reglas del motor.
 
-- la memoria de una conversación;
-- conclusiones no documentadas;
-- archivos temporales;
-- observaciones que posteriormente no puedan reconstruirse.
+Las reglas se encuentran en:
 
-Este documento constituye la capa de evidencia situada entre la investigación y las matrices.
+"proyecto/seo/motor-decision.md"
 
----
+Las decisiones resultantes se registran en:
 
-2. POSICIÓN DENTRO DEL SISTEMA
-
-El flujo documental es:
-
-INVESTIGACIÓN
-
-↓
-
-EVIDENCIAS
-
-↓
-
-MATRICES
-
-↓
-
-MATRIZ DE OPORTUNIDADES
-
-↓
-
-MOTOR DE DECISIÓN
-
-↓
-
-REGISTRO DE DECISIONES
-
-↓
-
-ARQUITECTURA DE URL
-
-↓
-
-LANDING
-
-La evidencia no contiene decisiones finales.
+"proyecto/seo/registro-decisiones.md"
 
 ---
 
-3. REGLA FUNDAMENTAL
+2. PRIMERA OPORTUNIDAD ANALIZADA
 
-Una evidencia debe distinguir claramente entre:
+Oportunidad
 
-DATO OBSERVADO
+Servicio: Fontanero
+Subservicio: ninguno
+Localidad: Marbella
+Provincia: Málaga
 
-Información comprobada directamente en una fuente.
+Objetivo
 
-INFERENCIA
-
-Conclusión razonable derivada de uno o varios datos observados.
-
-HIPÓTESIS
-
-Conclusión todavía pendiente de validación.
-
-Nunca se debe presentar una hipótesis como un dato.
-
----
-
-4. TIPOS DE EVIDENCIA
-
-Las evidencias pueden pertenecer a:
-
-- SERP.
-- Competidores.
-- Webs de empresas.
-- Servicios ofrecidos.
-- Subservicios.
-- Localidades.
-- Barrios.
-- Cobertura territorial.
-- Intención de búsqueda.
-- Estructura de URLs.
-- Arquitectura de páginas.
-- Contenido.
-- Diferenciación.
-- Señales comerciales.
-- Datos territoriales.
-- Demanda.
-- Otros patrones relevantes.
-
----
-
-5. CAMPOS DE CADA EVIDENCIA
-
-Cada evidencia debería conservar, cuando sea posible:
-
-ID:
-Fecha:
-Sector:
-Servicio:
-Subservicio:
-Localidad:
-Provincia:
-
-Tipo de evidencia:
-
-Fuente:
-URL:
-
-Dato observado:
-
-Interpretación:
-
-Clasificación:
-DATO / INFERENCIA / HIPÓTESIS
-
-Fiabilidad:
-
-Relevancia:
-
-Observaciones:
-
----
-
-6. CRITERIO DE FIABILIDAD
-
-La fiabilidad se registrará cualitativamente.
-
-ALTA
-
-Fuente directa, verificable y claramente relacionada con el dato.
-
-MEDIA
-
-Fuente razonable pero con alguna limitación.
-
-BAJA
-
-Señal indirecta o información que requiere confirmación.
-
-La fiabilidad no debe confundirse con la importancia de la evidencia.
-
----
-
-7. CRITERIO DE RELEVANCIA
-
-ALTA
-
-La evidencia puede influir directamente en una decisión SEO.
-
-MEDIA
-
-Puede aportar contexto.
-
-BAJA
-
-Tiene interés secundario.
-
----
-
-8. EVIDENCIAS TERRITORIALES
-
-Cuando una fuente demuestre que un servicio está relacionado con una localidad concreta, se registrará.
-
-Ejemplo:
-
-ID:
-EVID-001
-
-Sector:
-Fontanería
-
-Servicio:
-Fontanero
-
-Subservicio:
-Desatascos
-
-Localidad:
-Marbella
-
-Tipo:
-Competidor / servicio local
-
-Fuente:
-[URL]
-
-Dato observado:
-La empresa ofrece desatascos específicamente en Marbella.
-
-Clasificación:
-DATO
-
-Fiabilidad:
-ALTA
-
-Relevancia:
-ALTA
-
----
-
-9. EVIDENCIAS DE COMPETENCIA
-
-La presencia de competidores debe registrarse como evidencia, no convertirse automáticamente en una puntuación.
-
-Debe conservarse:
-
-- empresa;
-- localidad;
-- servicio;
-- URL;
-- tipo de página;
-- observaciones relevantes.
-
-Posteriormente el motor utilizará estas evidencias.
-
----
-
-10. EVIDENCIAS DE ARQUITECTURA
-
-También se registrarán patrones observados en las webs competidoras:
-
-- servicio/localidad;
-- servicio/subservicio/localidad;
-- categorías;
-- páginas de servicio;
-- páginas territoriales;
-- páginas de urgencias;
-- páginas de barrios;
-- otras estructuras.
-
-Estas observaciones sirven para estudiar el mercado.
-
-No significan que debamos copiar su arquitectura.
-
----
-
-11. EVIDENCIAS DE CONTENIDO
-
-Cuando se analice una landing se podrán registrar:
-
-- H1.
-- Subtítulos.
-- Servicios incluidos.
-- Información local.
-- CTA.
-- FAQs.
-- Cobertura.
-- Datos de contacto.
-- Elementos de confianza.
-- Información diferencial.
-- Elementos repetidos.
-
-El objetivo es identificar patrones de mercado y oportunidades de diferenciación.
-
----
-
-12. EVIDENCIAS DE INTENCIÓN
-
-Se registrarán señales que permitan determinar qué busca el usuario.
-
-Ejemplos:
-
-- contratación;
-- urgencia;
-- precio;
-- reparación;
-- instalación;
-- información;
-- localización;
-- comparación;
-- servicio especializado.
-
-No se debe asumir la intención únicamente por el nombre del servicio.
-
----
-
-13. EVIDENCIAS DE DEMANDA
-
-Pueden incluir:
-
-- volumen de búsqueda;
-- tendencias;
-- herramientas SEO;
-- frecuencia de aparición;
-- señales de SERP;
-- datos propios;
-- señales comerciales.
-
-Si no existe un dato fiable:
-
-DEMANDA:
-DESCONOCIDA
-
-No se inventará ningún volumen.
-
----
-
-14. EVIDENCIAS DE DIFERENCIACIÓN
-
-Se registrarán características que puedan permitir una landing realmente específica.
-
-Ejemplos:
-
-- problema local específico;
-- tipo de vivienda;
-- particularidad del servicio;
-- cobertura concreta;
-- características del territorio;
-- necesidad específica;
-- información comercial real;
-- preguntas frecuentes específicas.
-
-Cambiar únicamente el nombre de la localidad no constituye evidencia de diferenciación.
-
----
-
-15. EVIDENCIAS DE DUPLICACIÓN
-
-También se registrará cuando varias páginas parezcan resolver exactamente la misma intención.
-
-Esto permitirá al motor detectar:
-
-- duplicación;
-- canibalización;
-- páginas innecesarias;
-- riesgo de crear páginas puerta.
-
----
-
-16. INVESTIGACIÓN REALIZADA
-
-Durante la investigación inicial se analizaron webs y resultados relacionados con servicios de fontanería en diferentes localidades españolas.
-
-Entre los patrones observados se encuentran:
-
-- páginas de fontanería por localidad;
-- páginas de servicios específicos;
-- desatascos;
-- fugas;
-- reparaciones;
-- instalaciones;
-- termos;
-- calentadores;
-- urgencias;
-- cobertura territorial;
-- páginas que agrupan varios servicios;
-- páginas específicas para determinadas intenciones.
-
-Estos patrones se utilizarán como evidencia de mercado.
-
-No se interpretarán automáticamente como prueba de que una determinada combinación deba tener una landing propia.
-
----
-
-17. REGLA SOBRE COMPETIDORES
-
-El hecho de que un competidor tenga una URL:
+Determinar si existe justificación suficiente para crear una landing independiente:
 
 "/fontanero/marbella/"
 
-o:
+---
 
-"/desatascos/marbella/"
+3. EVIDENCIA DE INTENCIÓN
 
-no demuestra por sí mismo que nuestra web deba crear la misma URL.
+La SERP presenta resultados específicamente orientados a personas que buscan fontaneros en Marbella.
 
-La evidencia sirve para:
+Se observan:
 
-- conocer el mercado;
-- analizar intención;
-- detectar patrones;
-- estudiar competencia;
-- identificar oportunidades.
+- páginas específicas de fontaneros en Marbella;
+- directorios con listados de fontaneros;
+- empresas locales;
+- páginas de servicios;
+- páginas de urgencias;
+- páginas de reparación;
+- páginas de desatascos.
 
-La decisión final corresponde al motor.
+Esto demuestra que la consulta tiene una intención comercial/local claramente identificable.
 
 ---
 
-18. RELACIÓN CON LA MATRIZ DE SERVICIOS
+4. EVIDENCIA DE COMPETENCIA
 
-Las evidencias pueden utilizarse para confirmar:
+Se han localizado múltiples resultados específicos.
 
-- existencia de servicios;
-- existencia de subservicios;
-- relación entre servicios;
-- relevancia comercial;
-- especialización.
+Fontaneros Marbella
 
-Pero la matriz de servicios mantiene la clasificación estructural.
+Fuente:
 
----
+"https://www.fontaneromarbella.net/"
 
-19. RELACIÓN CON LA MATRIZ DE LOCALIDADES
+La página se orienta específicamente a fontanería en Marbella y presenta múltiples servicios, incluyendo fugas, desatascos, averías, instalaciones y urgencias.
 
-Las evidencias pueden utilizarse para confirmar:
+Observación:
 
-- existencia de actividad;
-- cobertura;
-- competencia;
-- relevancia territorial;
-- particularidades locales.
-
-La matriz de localidades mantiene la estructura territorial.
+Existe competencia directa con páginas específicamente orientadas a la combinación servicio + localidad.
 
 ---
 
-20. RELACIÓN CON LA MATRIZ DE OPORTUNIDADES
+Fontanería JM
 
-La matriz de oportunidades utilizará las evidencias para construir combinaciones evaluables.
+Fuente:
 
-Ejemplo:
+"https://fontaneriajm.com/"
 
-Servicio:
-Fontanero
+La página utiliza explícitamente:
 
-Subservicio:
-Desatascos
+"Fontanero en Marbella"
 
-Localidad:
-Marbella
+y presenta servicios de fontanería, climatización, energía solar y reparación/mantenimiento.
 
-Evidencias relacionadas:
-EVID-001
-EVID-007
-EVID-014
+Observación:
 
-La matriz no debe copiar toda la evidencia.
-
-Debe referenciarla.
+Existe otra empresa que trabaja directamente la intención "fontanero + Marbella".
 
 ---
 
-21. RELACIÓN CON EL MOTOR
+Termogrif
 
-El motor utilizará las evidencias como base para evaluar:
+Fuente:
 
-- intención;
-- demanda;
-- potencial comercial;
-- relevancia territorial;
-- competencia;
-- diferenciación;
-- información disponible;
-- riesgo de duplicación.
+"https://termogrif.com/"
 
-Si la evidencia es insuficiente:
+La página se presenta como:
+
+"Expertos fontaneros en Marbella"
+
+y ofrece instalaciones y reparaciones de tuberías, fugas, desatascos, grifería, sanitarios, calefacción y climatización.
+
+Observación:
+
+Existe competencia adicional con página específica para Marbella.
+
+---
+
+FontaneroLocal
+
+Fuente:
+
+"https://fontanerolocal.es/marbella/"
+
+La página está específicamente orientada a:
+
+"Fontanero en Marbella 24 horas"
+
+Incluye listados de profesionales, servicios y diferentes intenciones relacionadas.
+
+Observación:
+
+Existe competencia con una estructura específicamente diseñada para resolver la intención local.
+
+---
+
+Páginas Amarillas
+
+Fuente:
+
+"https://www.paginasamarillas.es/a/fontaneros/malaga/marbella/"
+
+La página muestra un listado específico de:
+
+"Fontaneros en Marbella"
+
+y recoge numerosos negocios que ofrecen fontanería, desatascos, fugas, reparaciones y servicios relacionados.
+
+Observación:
+
+La existencia de numerosos profesionales confirma que existe oferta comercial local.
+
+---
+
+5. EVIDENCIA DE OFERTA
+
+La investigación muestra una oferta amplia de profesionales y empresas.
+
+Páginas Amarillas muestra decenas de resultados para fontaneros en Marbella.
+
+También aparecen empresas con páginas propias orientadas a la localidad.
+
+Conclusión:
+
+Oferta local: ALTA
+
+---
+
+6. EVIDENCIA DE INTENCIONES SECUNDARIAS
+
+Dentro de la SERP aparecen necesidades relacionadas con:
+
+- reparaciones;
+- fugas;
+- desatascos;
+- termos;
+- calderas;
+- grifería;
+- sanitarios;
+- instalaciones;
+- mantenimiento;
+- urgencias;
+- boletines;
+- piscinas;
+- climatización.
+
+Esto demuestra que "fontanero + Marbella" es una intención amplia que contiene múltiples necesidades secundarias.
+
+---
+
+7. EVIDENCIA DE SOLAPAMIENTO
+
+Existe un riesgo importante de que una landing general de:
+
+"/fontanero/marbella/"
+
+termine compitiendo con páginas específicas de:
+
+"/fontanero/desatascos/marbella/"
+
+"/fontanero/fugas/marbella/"
+
+"/fontanero/termos/marbella/"
+
+etc.
+
+Por tanto, la arquitectura debe distinguir claramente:
+
+Servicio general
+
+de:
+
+Servicio + subservicio
+
+---
+
+8. DEMANDA
+
+Estado
+
+"NO DOCUMENTADA CUANTITATIVAMENTE"
+
+La evidencia actual demuestra existencia de intención y competencia, pero no contiene todavía un dato cuantitativo fiable de volumen de búsqueda.
+
+No se debe inventar una cifra.
+
+No se debe afirmar:
+
+X búsquedas/mes
+
+sin una fuente que lo respalde.
+
+---
+
+9. DIFERENCIACIÓN
+
+Estado
+
+"NO SUFICIENTEMENTE DOCUMENTADA"
+
+La SERP muestra que los competidores ya utilizan:
+
+- servicio local;
+- urgencias;
+- rapidez;
+- precios;
+- desatascos;
+- fugas;
+- reparaciones;
+- experiencia;
+- presupuestos.
+
+Por tanto, utilizar simplemente esos mismos argumentos no constituye una diferenciación suficiente.
+
+---
+
+10. INFORMACIÓN LOCAL
+
+Estado
+
+"SUFICIENTE PARA IDENTIFICAR LA LOCALIDAD"
+
+Marbella está claramente identificada como localidad objetivo y existe oferta comercial específica.
+
+Sin embargo, para construir contenido local realmente diferencial será necesario disponer de datos locales fiables.
+
+No se deben inventar barrios, calles, tiempos de desplazamiento ni características locales.
+
+---
+
+11. INFORMACIÓN COMERCIAL
+
+La investigación demuestra que existen negocios reales relacionados con el servicio.
+
+Sin embargo, esto no significa que podamos utilizar sus datos en nuestra futura landing.
+
+Los datos de terceros son únicamente evidencia de mercado.
+
+No deben copiarse como datos comerciales de nuestro proyecto.
+
+---
+
+12. CONCLUSIÓN DE EVIDENCIAS
+
+Para:
+
+Fontanero × Marbella
+
+tenemos:
+
+Intención:              CONFIRMADA
+Potencial comercial:    PROBABLEMENTE ALTO
+Relevancia territorial: CONFIRMADA
+Competencia:            CONFIRMADA / ALTA
+Oferta local:           CONFIRMADA
+Demanda cuantitativa:   DESCONOCIDA
+Diferenciación:         INSUFICIENTEMENTE DOCUMENTADA
+Riesgo duplicación:     MEDIO/ALTO
+Información local:      PARCIAL
+
+---
+
+13. RESULTADO PARA EL MOTOR
+
+Con las evidencias actualmente disponibles:
+
+DECISIÓN RECOMENDADA:
 
 INVESTIGAR
 
----
+No se debe convertir todavía en "CREAR".
 
-22. RELACIÓN CON EL REGISTRO DE DECISIONES
-
-Cuando el motor tome una decisión deberá poder indicar qué evidencias la respaldan.
-
-Ejemplo:
-
-DECISIÓN:
-CREAR
-
-EVIDENCIAS:
-EVID-001
-EVID-007
-EVID-014
-
-Esto permite reconstruir posteriormente por qué se tomó la decisión.
+La razón es que faltan datos suficientes para justificar objetivamente la oportunidad frente a las condiciones del motor.
 
 ---
 
-23. NO DUPLICAR INFORMACIÓN SIN NECESIDAD
+14. INFORMACIÓN QUE FALTA
 
-Este documento conserva evidencias.
+Para poder pasar de "INVESTIGAR" a una decisión definitiva necesitamos, como mínimo:
 
-La investigación contiene:
-
-CONCLUSIONES Y ANÁLISIS
-
-Las matrices contienen:
-
-ESTRUCTURA Y DATOS ORGANIZADOS
-
-La matriz de oportunidades contiene:
-
-COMBINACIONES A EVALUAR
-
-El motor contiene:
-
-REGLAS
-
-El registro contiene:
-
-DECISIONES
-
-No se debe copiar el mismo contenido completo en todos los documentos.
+1. dato cuantitativo de demanda;
+2. análisis más completo de la SERP;
+3. análisis de páginas competidoras;
+4. diferenciación posible;
+5. comprobación de solapamiento con subservicios;
+6. evaluación definitiva del riesgo de duplicación.
 
 ---
 
-24. FUENTES EXTERNAS
+15. REGLA
 
-Cuando se utilice una fuente externa, se conservará:
+La ausencia de estos datos no debe resolverse mediante una estimación inventada.
 
-- URL.
-- Fecha de consulta.
-- Qué se observó.
-- Por qué es relevante.
+Mientras no estén disponibles:
 
-Si la fuente deja de estar disponible, la evidencia histórica no debe desaparecer.
+INVESTIGAR
 
----
-
-25. ACTUALIZACIONES
-
-Las evidencias nuevas se añadirán mediante nuevos registros.
-
-No se debe borrar una evidencia anterior simplemente porque posteriormente cambie.
-
-Si una evidencia queda obsoleta:
-
-Estado:
-SUPERADA
-
-Sustituida por:
-EVID-XXX
-
-Motivo:
-Nueva información.
+es el resultado correcto.
 
 ---
 
-26. CONTROL DE CAMBIOS
+16. FECHA DE OBSERVACIÓN
 
 2026-08-23
 
-Se crea este documento para conservar de forma permanente las evidencias de la investigación de fontanería.
-
-Se establece la separación entre:
-
-EVIDENCIA → MATRIZ → MOTOR → DECISIÓN
-
-Se establece que los datos no verificables deberán clasificarse como inferencias o hipótesis.
-
-Se establece la obligación de conservar las fuentes y fechas de observación cuando sea posible.
+Las SERP y las condiciones competitivas deben considerarse datos temporales.
 
 ---
 
-27. ESTADO
-
-Estado:
+17. ESTADO
 
 ACTIVO
 
-Este documento será ampliado con las evidencias concretas de la investigación ya realizada y con las nuevas evidencias obtenidas durante la validación.
-
-No se considera cerrado hasta que las evidencias utilizadas para las primeras decisiones del motor estén correctamente registradas.
+Esta investigación constituye la evidencia inicial de la primera oportunidad real del sistema.
