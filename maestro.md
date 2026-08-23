@@ -960,3 +960,330 @@ escalar.
 Nunca:
 
 automatizar primero y descubrir después que el modelo era incorrecto.
+
+
+
+---
+
+ACTUALIZACIÓN DE ESTADO — 2026-08-23
+
+ESTADO ACTUAL DEL PROYECTO
+
+El proyecto ha pasado de la fase principal de diseño documental a la fase de implementación técnica.
+
+La documentación estructural existente se mantiene como fuente de verdad.
+
+No se crearán nuevos documentos de arquitectura salvo que sean estrictamente necesarios.
+
+---
+
+COMPONENTES COMPLETADOS
+
+Arquitectura
+
+Estado: DEFINIDA
+
+Sistema de bloques B01–B23
+
+Estado: DEFINIDO
+
+Los bloques oficiales son:
+
+B01 HEADER
+B02 NAVEGACIÓN
+B03 HERO
+B04 CONTENIDO PRINCIPAL
+B05 CTA PRINCIPAL
+B06 FOOTER
+B07 SUBSERVICIO
+B08 PROBLEMAS / NECESIDADES
+B09 INFORMACIÓN LOCAL
+B10 ZONAS / COBERTURA
+B11 PROCESO
+B12 ELEMENTOS DE CONFIANZA
+B13 DIFERENCIACIÓN
+B14 FAQ
+B15 SERVICIOS RELACIONADOS
+B16 LOCALIDADES RELACIONADAS
+B17 DATOS ESTRUCTURADOS
+B18 TESTIMONIOS
+B19 CASOS / EJEMPLOS
+B20 GALERÍA
+B21 PRECIO / TARIFAS
+B22 HORARIOS
+B23 MAPA / UBICACIÓN
+
+La IA no puede crear bloques fuera del catálogo.
+
+---
+
+CONTRATO IA
+
+Archivo:
+
+"proyecto/seo/contrato-salida-ia.md"
+
+Versión:
+
+1.1
+
+Estado:
+
+DEFINIDO
+
+La IA genera datos estructurados.
+
+La IA no decide:
+
+- qué páginas existen;
+- la arquitectura SEO;
+- la URL;
+- los bloques disponibles;
+- datos comerciales no proporcionados.
+
+---
+
+VALIDADOR
+
+Archivo:
+
+"proyecto/seo/validador.md"
+
+Versión:
+
+1.0
+
+Estado:
+
+DISEÑADO
+
+Función:
+
+IA → JSON → VALIDACIÓN → CONTINUAR / BLOQUEAR
+
+El validador debe comprobar:
+
+- estructura;
+- identidad;
+- bloques;
+- SEO;
+- URLs;
+- interlinking;
+- schema;
+- datos comerciales;
+- contenido prohibido;
+- coherencia;
+- seguridad.
+
+Una salida con errores bloqueantes no puede continuar hacia WordPress.
+
+---
+
+INTEGRACIÓN N8N → WORDPRESS
+
+Archivo:
+
+"proyecto/seo/integracion-n8n-wordpress.md"
+
+Versión:
+
+1.1
+
+Estado:
+
+DISEÑADA
+
+Flujo:
+
+IA
+
+↓
+
+JSON
+
+↓
+
+VALIDADOR
+
+↓
+
+TRANSFORMADOR
+
+↓
+
+WORDPRESS
+
+↓
+
+VERIFICACIÓN
+
+↓
+
+LOG
+
+La integración utiliza "landing_id" como identificador estable y debe ser idempotente.
+
+Durante la primera fase, las landings se crearán como "draft".
+
+---
+
+DECISIÓN SOBRE FIXTURES
+
+Se decidió no continuar creando fixtures o pruebas documentales antes de construir el sistema real.
+
+Las pruebas se realizarán sobre los componentes reales cuando estén implementados.
+
+La prueba técnica de Fontanero Marbella no constituye aprobación SEO para publicación.
+
+---
+
+FASE ACTUAL
+
+FASE:
+
+IMPLEMENTACIÓN
+
+El proyecto deja atrás la creación de documentación estructural y comienza la construcción técnica.
+
+---
+
+SIGUIENTE COMPONENTE
+
+El siguiente componente a construir es:
+
+B01–B23 → COMPONENTES WORDPRESS
+
+Objetivo:
+
+Definir cómo los datos estructurados recibidos desde N8N son representados visualmente mediante plantillas/componentes WordPress.
+
+La IA proporciona los datos.
+
+WordPress proporciona las plantillas.
+
+N8N conecta ambos sistemas.
+
+La IA no genera directamente el HTML final de la página.
+
+---
+
+FLUJO TÉCNICO ACTUAL
+
+INVESTIGACIÓN
+
+↓
+
+DECISIÓN SEO
+
+↓
+
+ARQUITECTURA
+
+↓
+
+DATOS
+
+↓
+
+BLOQUES
+
+↓
+
+IA
+
+↓
+
+JSON
+
+↓
+
+VALIDADOR
+
+↓
+
+N8N
+
+↓
+
+MODELO WORDPRESS
+
+↓
+
+COMPONENTES B01–B23
+
+↓
+
+HTML / PÁGINA
+
+↓
+
+VERIFICACIÓN
+
+↓
+
+PUBLICACIÓN
+
+---
+
+TRABAJO PENDIENTE
+
+1. Definir la representación WordPress de B01–B23.
+2. Implementar el validador V1.
+3. Construir workflow N8N V1.
+4. Implementar comunicación con WordPress.
+5. Crear plantilla/componentes WordPress.
+6. Probar creación y actualización idempotente.
+7. Probar una landing completa.
+8. Automatizar generación a escala.
+9. Implementar medición.
+10. Escalar únicamente después de validar el sistema.
+
+---
+
+REGLA DE PRIORIDAD
+
+A partir de este punto:
+
+NO AÑADIR DOCUMENTACIÓN POR INERCIA.
+
+PRIMERO:
+
+CONSTRUIR.
+
+DESPUÉS:
+
+PROBAR.
+
+DESPUÉS:
+
+CORREGIR.
+
+Y solo entonces:
+
+ESCALAR.
+
+---
+
+MEMORIA PERSISTENTE
+
+El repositorio GitHub constituye la memoria persistente del proyecto.
+
+Las decisiones importantes deben quedar registradas en archivos del repositorio.
+
+La conversación no debe ser necesaria para reconstruir el estado del sistema.
+
+---
+
+PRÓXIMO HITO
+
+PRÓXIMO HITO:
+
+COMPONENTES WORDPRESS B01–B23
+
+Después:
+
+N8N V1
+
+Después:
+
+PRIMERA LANDING REAL EN WORDPRESS
