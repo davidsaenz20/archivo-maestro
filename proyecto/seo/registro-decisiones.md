@@ -1,495 +1,275 @@
 REGISTRO DE DECISIONES SEO
 
-1. FUNCIÓN DEL DOCUMENTO
+1. FUNCIÓN
 
-Este documento registra las decisiones concretas obtenidas al aplicar el motor de decisión a combinaciones reales de:
+Este documento registra las decisiones tomadas por el motor SEO sobre cada oportunidad analizada.
 
-SERVICIO × LOCALIDAD
+No sustituye:
 
-y, cuando corresponda:
+- la matriz de servicios;
+- la matriz de localidades;
+- las evidencias;
+- el motor de decisión;
+- la arquitectura de URLs.
 
-SERVICIO × SUBSERVICIO × LOCALIDAD
-
-Su función es conservar la trazabilidad de las decisiones.
-
-Este documento NO contiene las reglas generales del motor.
-
-Las reglas se encuentran en:
-
-"proyecto/seo/motor-decision.md"
-
-Este documento contiene los resultados de aplicar esas reglas.
+Su función es conservar el resultado de aplicar esas reglas a una oportunidad concreta.
 
 ---
 
-2. PRINCIPIO DE TRAZABILIDAD
+2. ESTADOS
 
-Cada decisión importante debe poder reconstruirse.
-
-El flujo es:
-
-EVIDENCIA
-
-↓
-
-DATOS
-
-↓
-
-MATRIZ
-
-↓
-
-MOTOR
-
-↓
-
-DECISIÓN
-
-↓
-
-URL
-
-↓
-
-LANDING
-
-Una decisión no debe depender de la memoria de la conversación.
-
----
-
-3. INFORMACIÓN MÍNIMA DE UNA DECISIÓN
-
-Cada registro debe conservar, cuando exista:
-
-- Fecha.
-- Sector.
-- Servicio.
-- Subservicio.
-- Localidad.
-- Provincia.
-- Datos de entrada.
-- Puntuaciones.
-- Decisión.
-- Motivo.
-- URL.
-- Evidencia.
-- Versión del motor.
-- Observaciones.
-- Resultado de validación.
-- Cambios posteriores.
-
----
-
-4. DECISIONES POSIBLES
-
-El motor puede producir:
+Las decisiones pueden ser:
 
 CREAR
-
-La combinación justifica una página independiente.
-
-AGRUPAR
-
-La intención debe resolverse dentro de otra página existente.
-
-INVESTIGAR
-
-No existe información suficiente para decidir.
-
 NO CREAR
-
-La combinación no justifica una página independiente.
-
----
-
-5. RELACIÓN CON LA URL
-
-Cuando la decisión sea:
-
-CREAR
-
-se registrará la URL propuesta.
-
-Ejemplo:
-
-SERVICIO:
-fontanero
-
-SUBSERVICIO:
-desatascos
-
-LOCALIDAD:
-Marbella
-
-DECISIÓN:
-CREAR
-
-URL:
- /fontanero/desatascos/marbella/
-
-La URL debe seguir las reglas de:
-
-"proyecto/seo/arquitectura-urls.md"
-
-La IA no decide la URL.
-
----
-
-6. VERSIÓN DEL MOTOR
-
-Cada decisión debe indicar qué versión del motor se utilizó.
-
-Ejemplo:
-
-"motor v1.0"
-
-Si posteriormente cambia el motor, las decisiones antiguas no deben modificarse silenciosamente.
-
-Debe registrarse la nueva decisión o revisión.
-
----
-
-7. EVIDENCIA
-
-Siempre que sea posible debe registrarse la evidencia que respalda la decisión.
-
-Puede incluir:
-
-- URL de fuente.
-- Web analizada.
-- SERP.
-- Competidores.
-- Observación.
-- Dato de matriz.
-- Investigación sectorial.
-- Fecha de observación.
-
-No es obligatorio duplicar toda la investigación aquí.
-
-Debe existir una referencia suficiente para localizarla.
-
----
-
-8. REGLA DE NO INVENTAR DATOS
-
-Si un dato necesario para decidir no está disponible:
-
-No debe inventarse.
-
-La decisión puede ser:
-
 INVESTIGAR
+REVISAR
 
-hasta disponer de información suficiente.
+Una oportunidad "INVESTIGAR" no puede pasar a generación de landing.
 
 ---
 
-9. REGISTRO DE DECISIONES
-
-DECISIÓN #001
-
-Estado:
-
-PENDIENTE DE VALIDACIÓN
-
-Este registro se utilizará como primera prueba del sistema.
+3. DECISIÓN #001
 
 Identificación
 
-Fecha:
+ID: OPP-001
 
-"2026-08-23"
+Servicio: Fontanero
+Subservicio: Ninguno
 
-Sector:
+Localidad: Marbella
+Provincia: Málaga
 
-"Fontanería"
-
-Servicio:
-
-"Pendiente"
-
-Subservicio:
-
-"Pendiente"
-
-Localidad:
-
-"Pendiente"
-
-Provincia:
-
-"Pendiente"
+Fecha: 2026-08-23
 
 ---
 
-Datos de entrada
+4. INTENCIÓN
 
-Demanda:
+Resultado: CONFIRMADA
 
-"Pendiente"
-
-Intención:
-
-"Pendiente"
-
-Potencial comercial:
-
-"Pendiente"
-
-Relevancia territorial:
-
-"Pendiente"
-
-Competencia:
-
-"Pendiente"
-
-Diferenciación:
-
-"Pendiente"
-
-Información disponible:
-
-"Pendiente"
-
-Riesgo de duplicación:
-
-"Pendiente"
+Existe intención local y comercial claramente identificable para personas que buscan servicios de fontanería en Marbella.
 
 ---
 
-Resultado del motor
+5. POTENCIAL COMERCIAL
 
-Versión:
+Resultado: PROBABLEMENTE ALTO
 
-"Pendiente"
-
-Puntuación:
-
-"Pendiente"
-
-Decisión:
-
-"Pendiente"
-
-Motivo:
-
-"Pendiente"
+La SERP contiene empresas y páginas orientadas directamente a la contratación de servicios de fontanería en Marbella.
 
 ---
 
-Arquitectura URL
+6. RELEVANCIA TERRITORIAL
 
-URL propuesta:
+Resultado: CONFIRMADA
 
-"Pendiente"
-
-¿La URL sigue la arquitectura definida?:
-
-"Pendiente"
+Marbella constituye una localidad claramente diferenciada y existe oferta específica de fontanería dirigida a ella.
 
 ---
 
-Validación
+7. COMPETENCIA
 
-¿Merece una landing independiente?:
+Resultado: ALTA
 
-"Pendiente"
+Se han identificado múltiples empresas y páginas específicas para la combinación:
 
-¿Existe información suficiente para construirla?:
-
-"Pendiente"
-
-¿Existe riesgo de solapamiento?:
-
-"Pendiente"
-
-Resultado final:
-
-"Pendiente"
+fontanero + Marbella
 
 ---
 
-Evidencias
+8. OFERTA LOCAL
 
-Fuentes:
+Resultado: CONFIRMADA
 
-"Pendiente"
-
-Observaciones:
-
-"Pendiente"
+Existen numerosos profesionales y empresas que ofrecen servicios de fontanería en Marbella.
 
 ---
 
-10. FORMATO PARA FUTURAS DECISIONES
+9. DEMANDA CUANTITATIVA
 
-Cada nueva decisión seguirá esta estructura:
+Resultado: DESCONOCIDA
 
-DECISIÓN #XXX
+No se dispone todavía de un dato cuantitativo documentado de volumen de búsqueda.
 
-Fecha:
-Sector:
-
-Servicio:
-Subservicio:
-Localidad:
-Provincia:
-
-Datos de entrada:
-
-Demanda:
-Intención:
-Potencial comercial:
-Relevancia territorial:
-Competencia:
-Diferenciación:
-Información disponible:
-Riesgo de duplicación:
-
-Versión del motor:
-
-Puntuación:
-
-Decisión:
-CREAR / AGRUPAR / INVESTIGAR / NO CREAR
-
-Motivo:
-
-URL:
-
-¿Landing independiente?:
-
-Evidencias:
-
-Observaciones:
-
-Resultado de validación:
-
-Cambios posteriores:
+No se utilizará ninguna cifra estimada como si fuera un dato real.
 
 ---
 
-11. REVISIÓN DE DECISIONES
+10. DIFERENCIACIÓN
 
-Una decisión puede revisarse posteriormente si:
+Resultado: INSUFICIENTEMENTE DOCUMENTADA
 
-- aparecen nuevos datos;
-- cambia la demanda;
-- cambia la competencia;
-- cambia la arquitectura;
-- cambia el motor;
-- aparece nueva evidencia;
-- se detecta un error.
+La competencia existente ya utiliza argumentos habituales como:
 
-La decisión anterior no debe desaparecer.
+- urgencias;
+- rapidez;
+- reparaciones;
+- fugas;
+- desatascos;
+- presupuestos;
+- experiencia;
+- disponibilidad.
 
-Debe conservarse el historial.
-
----
-
-12. CAMBIO DE DECISIÓN
-
-Ejemplo:
-
-DECISIÓN ORIGINAL:
-CREAR
-
-DECISIÓN POSTERIOR:
-AGRUPAR
-
-FECHA DEL CAMBIO:
-2026-XX-XX
-
-MOTIVO:
-Nueva evidencia demuestra que la intención se solapa con una página existente.
-
-NUEVA URL:
-No aplica.
-
-DECISIÓN ANTERIOR:
-Conservada para mantener trazabilidad.
+Todavía no se ha documentado una propuesta de diferenciación suficientemente sólida.
 
 ---
 
-13. RELACIÓN CON OTROS DOCUMENTOS
+11. RIESGO DE DUPLICACIÓN
 
-Este documento depende principalmente de:
+Resultado: MEDIO/ALTO
 
-"proyecto/seo/motor-decision.md"
+La intención general de fontanería contiene múltiples subintenciones:
 
-"proyecto/seo/arquitectura-urls.md"
+desatascos
+fugas
+reparaciones
+termos
+calderas
+grifería
+sanitarios
+instalaciones
+urgencias
 
-"proyecto/seo/matriz-servicios-fontaneria.md"
-
-"proyecto/seo/matriz-localidades.md"
-
-"proyecto/seo/investigacion-fontaneria.md"
-
-Y posteriormente podrá relacionarse con:
-
-- Arquitectura de landing.
-- Sistema de bloques.
-- Modelo de datos.
-- IA.
-- Validación.
-- N8N.
+Por tanto, la landing general debe diferenciarse claramente de futuras landings de subservicio.
 
 ---
 
-14. REGLA FUNDAMENTAL
+12. INFORMACIÓN LOCAL
 
-El motor define:
+Resultado: PARCIAL
 
-CÓMO DECIDIMOS
+Existe información suficiente para identificar la localidad y la oferta existente.
 
-Este documento registra:
+No existe todavía información local propia suficiente para crear una diferenciación territorial profunda.
 
-QUÉ DECIDIMOS
-
-La arquitectura de URLs define:
-
-CÓMO SE REPRESENTA LA DECISIÓN EN UNA URL
-
-La arquitectura de landing definirá:
-
-CÓMO SE CONSTRUYE LA PÁGINA
-
-La IA definirá:
-
-CÓMO SE GENERA EL CONTENIDO DENTRO DE LAS REGLAS
-
-N8N definirá:
-
-CÓMO SE AUTOMATIZA EL PROCESO
+No deben inventarse datos locales.
 
 ---
 
-15. ESTADO DEL DOCUMENTO
+13. EVIDENCIAS
+
+Las evidencias utilizadas están documentadas en:
+
+proyecto/seo/evidencias-fontaneria.md
+
+---
+
+14. APLICACIÓN DEL MOTOR
+
+Aplicando las reglas definidas en:
+
+proyecto/seo/motor-decision.md
+
+el resultado actual es:
+
+DECISIÓN = INVESTIGAR
+
+---
+
+15. MOTIVO
+
+La oportunidad presenta:
+
+Intención              → confirmada
+Potencial comercial    → probable
+Relevancia local      → confirmada
+Competencia           → confirmada
+Oferta                → confirmada
+Demanda cuantitativa  → desconocida
+Diferenciación        → insuficiente
+Riesgo duplicación    → medio/alto
+
+Por tanto, todavía no se cumplen todas las condiciones necesarias para "CREAR".
+
+---
+
+16. URL
+
+No se activa todavía la creación de la URL porque la decisión SEO todavía no es "CREAR".
+
+No obstante, la arquitectura prevista para esta oportunidad sería:
+
+/fontanero/marbella/
+
+si finalmente se aprueba la creación.
+
+---
+
+17. LANDING
 
 Estado:
 
-ACTIVO
+NO GENERAR TODAVÍA
 
-El documento se encuentra preparado para comenzar la validación real del motor.
-
-Todavía no contiene decisiones reales definitivas.
+La IA no debe recibir esta oportunidad como "READY".
 
 ---
 
-16. REGISTRO DE ACTUALIZACIONES
+18. BLOQUES
 
-2026-08-23
+No se activa todavía el sistema de bloques.
 
-Se crea el registro de decisiones.
+La selección definitiva se realizará cuando la oportunidad pase a:
 
-Objetivo:
+CREAR
 
-Separar las reglas generales del motor de los resultados concretos obtenidos al aplicar dichas reglas.
+---
 
-Se establece un sistema de trazabilidad entre:
+19. ACCIÓN PENDIENTE
 
-EVIDENCIA → DATOS → MATRIZ → MOTOR → DECISIÓN → URL → LANDING
+Para desbloquear la oportunidad:
 
-El primer registro queda preparado para la validación real del motor y la arquitectura de URLs.
+1. Obtener demanda cuantitativa.
+2. Completar análisis competitivo.
+3. Identificar una diferenciación real.
+4. Comprobar definitivamente el solapamiento con subservicios.
+5. Volver a ejecutar el motor.
+
+---
+
+20. RESULTADO
+
+OPP-001
+
+Estado:
+INVESTIGAR
+
+Landing:
+NO
+
+URL:
+PENDIENTE DE APROBACIÓN
+
+IA:
+NO EJECUTAR
+
+N8N:
+NO EJECUTAR
+
+WordPress:
+NO CREAR
+
+---
+
+21. REGLA DE ACTUALIZACIÓN
+
+Cuando aparezcan nuevas evidencias, esta decisión deberá actualizarse.
+
+No se debe borrar el razonamiento anterior.
+
+Debe quedar constancia de:
+
+fecha
+evidencia nueva
+cambio producido
+nueva decisión
+
+---
+
+22. ESTADO DEL REGISTRO
+
+DECISIÓN #001: INVESTIGAR
+
+Esta es la primera decisión real registrada del sistema.
