@@ -1,10 +1,3 @@
-Perfecto. Ahora vamos con el archivo 4:
-
-proyecto/seo/matriz-servicios-fontaneria.md
-
-Aquí tampoco vamos a meter el progreso general del proyecto. La matriz debe ser un documento de trabajo sectorial, con sus criterios, clasificación y actualizaciones propias.
-
-Sustituye todo el contenido por este:
 
 Matriz de Servicios — Fontanería
 
