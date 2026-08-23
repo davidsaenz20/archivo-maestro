@@ -1,1000 +1,581 @@
 INTEGRACIÓN N8N → WORDPRESS
 
-1. FUNCIÓN
+Versión: 1.1
+Estado: Diseño técnico
+Proyecto: Plataforma de landings locales automatizadas
 
-Este documento define cómo N8N transforma la salida estructurada de la IA en una landing real dentro de WordPress.
+---
+
+1. OBJETIVO
+
+Definir la comunicación entre el sistema de generación/validación y WordPress.
+
+N8N actúa como orquestador.
+
+WordPress actúa como sistema de almacenamiento y renderizado.
+
+N8N no debe delegar en WordPress decisiones estratégicas de SEO, arquitectura, bloques o contenido.
 
 Flujo:
 
-OPORTUNIDAD
-↓
-MOTOR SEO
-↓
 ARQUITECTURA
+↓
+CONTEXTO
 ↓
 IA
 ↓
 JSON
 ↓
-N8N
+VALIDADOR
 ↓
-VALIDACIÓN
-↓
-TRANSFORMACIÓN
+TRANSFORMADOR
 ↓
 WORDPRESS
 ↓
-LANDING
-
-N8N es el orquestador técnico.
-
-No decide la estrategia SEO.
+VERIFICACIÓN
 
 ---
 
-2. RESPONSABILIDADES
+2. CONTRATO DE ENTRADA
 
-Motor SEO
+N8N recibe una salida compatible con:
 
-Decide:
+contrato-salida-ia.md
 
-- oportunidad;
-- creación;
-- tipo de página;
-- URL;
-- canonical;
-- arquitectura.
+Versión soportada:
 
-IA
+schema_version: "1.1"
 
-Genera:
+La salida debe contener un objeto "landing".
 
-- contenido;
-- SEO;
-- datos de bloques;
-- navegación;
-- FAQ;
-- enlaces;
-- estructura JSON.
-
-N8N
-
-Realiza:
-
-- recepción;
-- validación;
-- transformación;
-- creación;
-- actualización;
-- registro;
-- control de errores.
-
-WordPress
-
-Realiza:
-
-- almacenamiento;
-- renderizado;
-- publicación.
+No se procesa una salida que no cumpla el contrato.
 
 ---
 
-3. ENTRADA
+3. IDENTIFICADOR
 
-N8N recibe exclusivamente el JSON definido en:
+La unidad de publicación se identifica mediante:
 
-proyecto/seo/contrato-salida-ia.md
+landing_id
 
 Ejemplo:
 
-{
-  "schema_version": "1.0",
-  "opportunity_id": "OPP-0001",
-  "status": "READY",
-  "identity": {},
-  "architecture": {},
-  "seo": {},
-  "menu": {},
-  "blocks": [],
-  "images": [],
-  "internal_links": [],
-  "schema": {},
-  "validation": {},
-  "issues": {},
-  "traceability": {}
-}
+LANDING-fontanero-marbella
+
+"landing_id" debe ser estable.
+
+No debe depender del ID interno de WordPress.
 
 ---
 
-4. PRIMERA VALIDACIÓN
+4. IDEMPOTENCIA
 
-N8N debe comprobar:
+Antes de crear una landing:
 
-1. JSON válido.
-2. "schema_version".
-3. "opportunity_id".
-4. "status".
-5. URL.
-6. canonical.
-7. identidad.
-8. tipo de página.
-9. bloques.
-10. incidencias.
-11. campos obligatorios.
+buscar landing_id
 
-Si falla una comprobación crítica:
+Si no existe:
 
-DETENER
-↓
-NO PUBLICAR
-↓
-REGISTRAR ERROR
+CREATE
+
+Si existe:
+
+UPDATE
+
+Nunca se deben crear duplicados por ejecutar dos veces el mismo workflow.
 
 ---
 
-5. VALIDACIÓN DE URL
+5. WORKFLOW
 
-N8N debe comprobar que:
+El workflow conceptual será:
 
-architecture.url
-
-coincide con la arquitectura recibida.
-
-Ejemplo:
-
-/fontanero/marbella/
-
-No debe transformarse en:
-
-/fontanero/desatascos/marbella/
-
-si la oportunidad no tiene subservicio.
-
-La URL es un dato protegido.
-
----
-
-6. VALIDACIÓN DE CANONICAL
-
-Debe existir coherencia entre:
-
-architecture.url
-architecture.canonical
-
-Ejemplo:
-
-URL:
-/fontanero/marbella/
-
-Canonical:
-/fontanero/marbella/
-
-Si existe discrepancia:
-
-REVIEW
-
-y no se publica.
+01 TRIGGER
+      ↓
+02 CARGAR CONTEXTO
+      ↓
+03 GENERAR IA
+      ↓
+04 PARSEAR JSON
+      ↓
+05 VALIDAR
+      ↓
+06 ¿VALID?
+    ↙       ↘
+   NO        SÍ
+   ↓         ↓
+ ERROR    TRANSFORMAR
+             ↓
+       BUSCAR LANDING
+             ↓
+        CREATE / UPDATE
+             ↓
+       VERIFICAR RESULTADO
+             ↓
+           LOG
 
 ---
 
-7. COMPROBACIÓN DE EXISTENCIA
+6. NODOS
 
-Antes de crear una página, N8N debe comprobar si la URL ya existe.
+Nodo 01 — Trigger
 
-Estados:
+Inicia el proceso.
 
-NO EXISTE
-EXISTE
+Puede ser:
+
+- manual;
+- webhook;
+- ejecución programada;
+- entrada desde otro workflow.
+
+---
+
+Nodo 02 — Contexto
+
+Carga los datos necesarios para generar la landing:
+
+identidad
+servicio
+localidad
+arquitectura
+bloques autorizados
+datos disponibles
+restricciones
+
+La IA no debe recibir información innecesaria.
+
+---
+
+Nodo 03 — IA
+
+Genera exclusivamente la estructura definida por:
+
+contrato-salida-ia.md
+
+No genera HTML libre.
+
+No decide qué bloques existen.
+
+No puede crear bloques fuera del catálogo.
+
+---
+
+Nodo 04 — Parse JSON
+
+Convierte la respuesta de IA en objeto estructurado.
+
+Si el JSON es inválido:
+
 ERROR
+→ no continuar
 
 ---
 
-8. SI LA URL NO EXISTE
+Nodo 05 — Validador
 
-Flujo:
+Ejecuta las reglas de:
 
-NO EXISTE
-↓
-VALIDACIÓN
-↓
-CREAR PÁGINA
+validador.md
 
----
+Entrada:
 
-9. SI LA URL YA EXISTE
+JSON IA
 
-N8N no debe crear un duplicado.
+Salida:
 
-Debe comprobar:
-
-- si pertenece a la misma oportunidad;
-- si puede actualizarse;
-- si existe conflicto.
-
-Estados:
-
-ACTUALIZAR
-REVISAR
-NO TOCAR
-
----
-
-10. MODO DE PUBLICACIÓN
-
-El sistema debe permitir inicialmente:
-
-DRAFT
-
-y posteriormente:
-
-PUBLISH
-
-Durante la fase de desarrollo se recomienda:
-
-IA
-↓
-N8N
-↓
-WORDPRESS
-↓
-DRAFT
-
-para poder revisar las primeras generaciones.
-
----
-
-11. CREACIÓN DE PÁGINA
-
-N8N deberá enviar a WordPress como mínimo:
-
-title
-slug
-content
-status
-
-La implementación concreta dependerá de la API y del sistema de plantillas elegido.
-
----
-
-12. URL Y SLUG
-
-La URL estratégica no debe generarse mediante un slug improvisado.
-
-N8N debe utilizar la arquitectura recibida.
-
-Ejemplo:
-
-URL:
-/fontanero/marbella/
-
-Slug:
-fontanero/marbella
-
-Si WordPress requiere una estructura concreta de página padre/hija, N8N deberá traducirla respetando la URL final.
-
----
-
-13. PÁGINA PADRE
-
-Cuando sea necesario:
-
-/fontanero/
-
-puede actuar como página padre.
-
-La landing:
-
-/fontanero/marbella/
-
-podrá quedar relacionada con ella.
-
-La existencia de la página padre deberá estar validada antes de crear la hija.
-
----
-
-14. LANDING DE SERVICIO + LOCALIDAD
-
-Ejemplo:
-
-/fontanero/marbella/
-
-Datos:
-
-Servicio:
-Fontanero
-
-Municipio:
-Marbella
-
-Tipo:
-servicio_localidad
-
----
-
-15. LANDING DE SERVICIO + SUBSERVICIO + LOCALIDAD
-
-Ejemplo:
-
-/fontanero/desatascos/marbella/
-
-Datos:
-
-Servicio:
-Fontanero
-
-Subservicio:
-Desatascos
-
-Municipio:
-Marbella
-
-Tipo:
-servicio_subservicio_localidad
-
----
-
-16. TRANSFORMACIÓN DE BLOQUES
-
-La IA devuelve:
-
-{
-  "blocks": [
-    {
-      "id": "B01",
-      "type": "hero",
-      "enabled": true,
-      "data": {}
-    }
-  ]
-}
-
-N8N transforma cada bloque en el formato que utilice WordPress.
-
-Conceptualmente:
-
-B01
-↓
-componente Hero
-
-B02
-↓
-componente contenido
-
-B03
-↓
-componente servicios
-
----
-
-17. REGLA DE BLOQUES
-
-N8N no debe aceptar bloques que no estén autorizados.
-
-Debe comprobar:
-
-block.id
-block.type
-block.enabled
-block.data
-
-contra:
-
-proyecto/seo/sistema-bloques.md
-
----
-
-18. BLOQUES DESACTIVADOS
+valid
+errors
+warnings
+metadata
 
 Si:
 
-{
-  "enabled": false
-}
+valid = false
 
-N8N no debe renderizar ese bloque.
+se detiene el flujo de publicación.
 
 ---
 
-19. BLOQUES OBLIGATORIOS
+Nodo 06 — IF VALID
 
-Si falta un bloque obligatorio:
+Condición:
 
-ERROR
+valid == true
 
-o:
+Rama TRUE:
 
-REVIEW
+TRANSFORMAR
 
-según la gravedad definida.
+Rama FALSE:
 
-Nunca debe solucionarse inventando contenido.
+ERROR HANDLER
 
 ---
 
-20. ORDEN DE BLOQUES
+7. ERROR HANDLER
 
-El orden recibido por la IA debe conservarse.
+Cuando la validación falla:
 
-Ejemplo:
+guardar landing_id
+guardar errores
+guardar warnings
+guardar timestamp
+guardar versión
+
+No publicar.
+
+No actualizar WordPress.
+
+El error debe ser trazable.
+
+---
+
+8. TRANSFORMADOR
+
+El transformador convierte la salida validada al modelo esperado por WordPress.
+
+Conceptualmente:
+
+IA JSON
+↓
+MODELO COMÚN
+↓
+MODELO WORDPRESS
+
+El transformador no debe modificar contenido semántico.
+
+Solo adapta estructura.
+
+---
+
+9. DATOS WORDPRESS
+
+La proyección debe respetar:
+
+modelo-datos-wordpress.md
+
+Datos principales:
+
+landing_id
+identidad
+slug
+SEO
+bloques
+interlinking
+images
+schema
+estado
+
+---
+
+10. BLOQUES
+
+El sistema utiliza exclusivamente el catálogo oficial:
 
 B01
 B02
 B03
+B04
+B05
+B06
+B07
 B08
 B09
+B10
+B11
+B12
+B13
+B14
+B15
+B16
+B17
+B18
+B19
+B20
+B21
+B22
+B23
 
-se renderiza en ese orden.
+La definición funcional de cada bloque pertenece a:
 
-La IA no debe devolver bloques desordenados si el sistema exige una secuencia determinada.
+sistema-bloques.md
 
----
-
-21. HEADER
-
-N8N debe utilizar la configuración global de WordPress para:
-
-- logo;
-- menú principal;
-- navegación;
-- elementos globales.
-
-La IA no debe duplicar elementos globales innecesariamente.
-
----
-
-22. MENÚ
-
-La IA puede devolver elementos específicos de la landing.
-
-N8N debe validar:
-
-label
-url
-type
-
-Los anchors deben existir realmente en la página.
-
-Ejemplo:
-
-#servicios
-#faq
-#contacto
-
-Si el bloque correspondiente no existe, N8N debe eliminar el enlace o marcar la landing para revisión.
+N8N no crea bloques nuevos.
 
 ---
 
-23. CONTENIDO
+11. CREATE
 
-N8N debe insertar el contenido generado por la IA en los componentes correspondientes.
+Si "landing_id" no existe:
 
-No debe alterar el contenido semántico salvo:
+POST /wp-json/...
 
-- sanitización;
-- escape;
-- conversión técnica;
-- formato necesario para WordPress.
+La implementación definitiva del endpoint dependerá de la API WordPress elegida.
 
----
+Estado inicial:
 
-24. SEO
+draft
 
-Los campos:
-
-seo.title
-seo.meta_description
-seo.h1
-
-deben llegar a WordPress o al plugin SEO utilizado.
-
-La implementación exacta dependerá del sistema SEO instalado.
+La primera fase de producción no debe publicar automáticamente.
 
 ---
 
-25. CANONICAL
+12. UPDATE
 
-N8N debe configurar la canonical según:
+Si "landing_id" existe:
 
-architecture.canonical
+UPDATE
 
-No debe calcular una canonical diferente.
+El contenido existente debe sustituirse únicamente después de que la nueva versión haya pasado el validador.
 
----
-
-26. SCHEMA
-
-Si la IA devuelve:
-
-schema.type
-schema.data
-
-N8N deberá enviarlo al mecanismo de datos estructurados correspondiente.
-
-Solo se publicará si pasa la validación.
+No actualizar parcialmente una landing con datos inválidos.
 
 ---
 
-27. IMÁGENES
+13. WORDPRESS
 
-La IA puede indicar qué imágenes necesita.
+WordPress debe recibir datos estructurados.
 
-N8N podrá:
+No debe recibir una página HTML completa generada arbitrariamente por IA.
 
-1. buscar una imagen autorizada;
-2. utilizar una biblioteca existente;
-3. solicitar generación;
-4. dejar placeholder;
-5. enviar a revisión.
-
-Nunca debe inventar una URL.
-
----
-
-28. ALT
-
-El texto ALT será tomado del campo:
-
-images[].alt
-
-Debe describir la imagen.
-
-No debe utilizarse para keyword stuffing.
-
----
-
-29. ENLACES INTERNOS
-
-N8N debe comprobar que cada:
-
-internal_links[].url
-
-existe o está autorizada.
-
-Si no:
-
-NO PUBLICAR ENLACE
-
-No se deben crear enlaces rotos.
-
----
-
-30. SANITIZACIÓN
-
-Antes de enviar contenido a WordPress, N8N debe aplicar las medidas técnicas necesarias para:
-
-- evitar HTML peligroso;
-- evitar scripts no autorizados;
-- evitar contenido malformado;
-- evitar inyección;
-- mantener estructura válida.
-
----
-
-31. DATOS COMERCIALES
-
-N8N no debe completar automáticamente:
-
-- teléfono;
-- WhatsApp;
-- email;
-- dirección;
-- horario;
-- precio;
-
-si no están presentes en los datos autorizados.
-
----
-
-32. PUBLICACIÓN
-
-El flujo inicial recomendado:
-
-GENERAR
-↓
-VALIDAR
-↓
-CREAR DRAFT
-↓
-REVISIÓN
-↓
-PUBLISH
-
-Cuando el sistema esté suficientemente validado podrá evolucionar hacia:
-
-GENERAR
-↓
-VALIDAR
-↓
-PUBLICAR AUTOMÁTICAMENTE
-
----
-
-33. CONTROL DE ERRORES
-
-Cada ejecución debe registrar:
-
-opportunity_id
-url
-fecha
-estado
-error
-resultado
-
-Estados posibles:
-
-SUCCESS
-REVIEW
-ERROR
-SKIPPED
-
----
-
-34. IDEMPOTENCIA
-
-La misma oportunidad no debe crear páginas duplicadas.
-
-La combinación:
-
-opportunity_id
-url
-
-debe permitir identificar la operación.
-
-Si N8N recibe dos veces la misma oportunidad:
-
-OPP-0001
-/fontanero/marbella/
-
-debe detectar que ya existe una operación relacionada.
-
----
-
-35. ACTUALIZACIÓN
-
-Si la landing ya existe y se determina que debe actualizarse:
-
-VALIDAR
-↓
-ACTUALIZAR
-↓
-REGISTRAR
-
-No se debe duplicar.
-
----
-
-36. REGISTRO
-
-N8N deberá registrar como mínimo:
+Conceptualmente:
 
 {
-  "opportunity_id": "",
-  "url": "",
-  "wordpress_id": "",
-  "status": "",
-  "timestamp": "",
-  "schema_version": "",
-  "prompt_version": ""
+  "landing_id": "LANDING-fontanero-marbella",
+  "status": "draft",
+  "slug": "fontanero-marbella",
+  "seo": {},
+  "blocks": [],
+  "internal_links": [],
+  "images": [],
+  "schema": null
 }
 
 ---
 
-37. WORDPRESS_ID
+14. API
 
-Una vez creada la página, N8N debe guardar el identificador de WordPress.
+La comunicación utilizará HTTPS.
 
-Ejemplo:
+La autenticación deberá realizarse mediante credenciales almacenadas de forma segura en N8N.
 
-wordpress_id = 1234
+Nunca incluir:
 
-Esto permitirá futuras actualizaciones.
+- contraseñas;
+- tokens;
+- claves API;
 
----
-
-38. RELACIÓN OPPORTUNITY → WORDPRESS
-
-Debe poder reconstruirse:
-
-OPP-0001
-↓
-/fontanero/marbella/
-↓
-WordPress ID 1234
-
-Esto permitirá controlar todo el ciclo de vida de la landing.
+dentro del contenido generado por IA.
 
 ---
 
-39. REINTENTOS
+15. SEGURIDAD
 
-Si una llamada a WordPress falla por un error temporal:
+Las credenciales deben mantenerse fuera del JSON de contenido.
 
-RETRY
+N8N utilizará su sistema de credenciales.
 
-debe poder ejecutarse de forma controlada.
-
-No deben generarse duplicados.
+WordPress deberá aceptar únicamente solicitudes autenticadas para creación/actualización.
 
 ---
 
-40. ERROR PERMANENTE
+16. VERIFICACIÓN POSTERIOR
 
-Si el error no es recuperable:
+Después de crear o actualizar:
+
+consultar WordPress
+
+Comprobar:
+
+landing_id
+slug
+estado
+bloques
+SEO
+
+Si la respuesta no coincide:
 
 ERROR
 
-La operación debe quedar registrada.
-
-No debe continuar automáticamente hacia publicación.
-
 ---
 
-41. RESPUESTA DE WORDPRESS
+17. LOG
 
-N8N debe registrar como mínimo:
+Cada ejecución deberá registrar:
 
-wordpress_id
-url
-status
-response
+landing_id
 timestamp
+schema_version
+validator_version
+operation
+wordpress_id
+status
+result
+errors
+warnings
+
+No almacenar innecesariamente información sensible.
 
 ---
 
-42. VALIDACIÓN POSTERIOR
+18. RETRIES
 
-Después de crear la página, N8N debería comprobar:
+Los errores temporales de red pueden reintentarse.
 
-1. página creada;
-2. URL correcta;
-3. estado correcto;
-4. contenido presente;
-5. SEO presente;
-6. canonical presente;
-7. bloques presentes;
-8. enlaces válidos.
+Los errores de validación NO deben reintentarse automáticamente sin cambiar la entrada.
 
----
+Separación:
 
-43. VALIDACIÓN DE URL FINAL
+ERROR DE RED
+→ retry
 
-Debe comprobarse que WordPress realmente genera:
+ERROR DE CONTRATO
+→ stop
 
-/fontanero/marbella/
+ERROR DE VALIDACIÓN
+→ stop
 
-y no una URL distinta.
+ERROR WORDPRESS 4xx
+→ stop/revisión
 
-Si WordPress genera una URL incorrecta:
-
-ERROR
-
-y la landing no se considera válida.
+ERROR WORDPRESS 5xx
+→ retry controlado
 
 ---
 
-44. PUBLICACIÓN SEGURA
+19. IDEMPOTENCIA Y REINTENTOS
 
-La publicación automática solo estará permitida cuando:
+Una ejecución repetida con el mismo:
 
-IA = READY
-+
-VALIDACIÓN = OK
-+
-WORDPRESS = OK
+landing_id
+version
+contenido
 
-Si cualquiera falla:
+no debe generar una segunda landing.
 
-NO PUBLICAR
+El workflow debe poder ejecutarse de nuevo de forma segura.
 
 ---
 
-45. FLUJO COMPLETO
+20. ESTADO DEL WORKFLOW
 
-El workflow final será conceptualmente:
+Estados conceptuales:
 
-TRIGGER
-↓
-RECIBIR OPORTUNIDAD
-↓
-OBTENER DATOS
-↓
-MOTOR SEO
-↓
-ARQUITECTURA
-↓
-GENERAR INPUT IA
-↓
-LLAMAR IA
-↓
-RECIBIR JSON
-↓
-VALIDAR JSON
-↓
-VALIDAR ARQUITECTURA
-↓
-VALIDAR BLOQUES
-↓
-VALIDAR CONTENIDO
-↓
-COMPROBAR URL
-↓
-COMPROBAR SI EXISTE
-↓
-CREAR / ACTUALIZAR WORDPRESS
-↓
-CONFIGURAR SEO
-↓
-CONFIGURAR CANONICAL
-↓
-CONFIGURAR SCHEMA
-↓
-CONFIGURAR ENLACES
-↓
-VALIDAR RESULTADO
-↓
-REGISTRAR
-↓
-DRAFT / PUBLISH
+RECEIVED
+GENERATING
+VALIDATING
+VALIDATED
+TRANSFORMING
+CREATING
+UPDATING
+VERIFYING
+COMPLETED
+FAILED
 
 ---
 
-46. PRIMERA PRUEBA
+21. REGLA DE PUBLICACIÓN
 
-La primera prueba del sistema será:
-
-Servicio:
-Fontanero
-
-Municipio:
-Marbella
-
-Provincia:
-Málaga
-
-Subservicio:
-null
-
-Resultado esperado:
-
-URL:
-/fontanero/marbella/
-
-La IA deberá generar:
-
-- SEO;
-- H1;
-- menú;
-- bloques;
-- contenido;
-- FAQ;
-- CTA;
-- enlaces;
-- validación.
-
-N8N deberá transformar esa salida en una página WordPress.
-
----
-
-47. SEGUNDA PRUEBA
-
-Posteriormente:
-
-Servicio:
-Fontanero
-
-Subservicio:
-Desatascos
-
-Municipio:
-Marbella
-
-Provincia:
-Málaga
-
-Resultado esperado:
-
-URL:
-/fontanero/desatascos/marbella/
-
-Debe generarse una landing diferente y específica.
-
----
-
-48. PRUEBA MASIVA
-
-Una vez superadas las pruebas individuales:
-
-5 oportunidades
-↓
-5 generaciones
-↓
-5 validaciones
-↓
-5 páginas
-
-Después:
-
-100 oportunidades
-↓
-100 landings
-
-El sistema debe mantener:
-
-- URLs correctas;
-- ausencia de duplicados;
-- coherencia;
-- trazabilidad;
-- control de errores.
-
----
-
-49. IMPLEMENTACIÓN TÉCNICA PENDIENTE
-
-Este documento define la lógica de integración.
-
-Todavía deben definirse los detalles concretos de:
-
-- instalación de WordPress;
-- API utilizada;
-- autenticación;
-- sistema de plantillas;
-- constructor visual, si existe;
-- campos personalizados;
-- mecanismo exacto de bloques;
-- plugin SEO;
-- gestión de imágenes;
-- base de datos o registro de oportunidades.
-
-Estos elementos se concretarán cuando se configure el entorno real.
-
----
-
-50. PRINCIPIO DE SEGURIDAD
-
-N8N nunca debe publicar una landing únicamente porque la IA haya devuelto contenido.
-
-Debe existir una cadena de validación.
+Durante la fase inicial:
 
 IA
 ↓
-VALIDACIÓN
+VALIDADOR
 ↓
 N8N
 ↓
 WORDPRESS
 ↓
-VALIDACIÓN
+DRAFT
+
+No se habilitará publicación automática hasta comprobar:
+
+- validador;
+- renderizado;
+- SEO;
+- URLs;
+- interlinking;
+- schema;
+- idempotencia.
+
+---
+
+22. SEPARACIÓN DE RESPONSABILIDADES
+
+IA
+
+Genera contenido estructurado.
+
+Validador
+
+Determina si cumple las reglas.
+
+N8N
+
+Orquesta.
+
+Transformador
+
+Adapta estructura.
+
+WordPress
+
+Almacena y renderiza.
+
+Plantilla
+
+Presenta los datos.
+
+Ningún componente debe asumir responsabilidades de otro.
+
+---
+
+23. FUENTES DE VERDAD
+
+modelo-datos.md
+sistema-bloques.md
+contrato-salida-ia.md
+validador.md
+arquitectura-wordpress.md
+modelo-datos-wordpress.md
+
+Este documento define exclusivamente la integración.
+
+---
+
+24. VERSIONADO
+
+Actualmente:
+
+integración: 1.1
+contrato IA: 1.1
+
+Cualquier cambio de contrato debe revisarse contra:
+
+validador
+transformador
+N8N
+WordPress
+
+---
+
+25. SIGUIENTE PASO
+
+Una vez guardada esta versión, se deja de ampliar la documentación.
+
+El siguiente trabajo será construir:
+
+N8N WORKFLOW V1
+
+con los nodos definidos anteriormente.
+
+Después:
+
+VALIDADOR V1
 ↓
-PUBLICACIÓN
-
----
-
-51. PRINCIPIO DE SEPARACIÓN
-
-El sistema mantiene separadas:
-
-ESTRATEGIA
-→ Motor SEO
-
-CONTENIDO
-→ IA
-
-AUTOMATIZACIÓN
-→ N8N
-
-RENDERIZADO
-→ WordPress
-
-Esto permite modificar una capa sin reconstruir todo el sistema.
-
----
-
-52. ESTADO
-
-DEFINIDO COMO ESPECIFICACIÓN FUNCIONAL.
-
-Este documento establece cómo debe funcionar la integración.
-
-Los datos concretos de API, WordPress y entorno se definirán durante la implementación técnica.
-
-El siguiente objetivo es realizar una prueba completa con una oportunidad real de ejemplo antes de construir el workflow definitivo de N8N.
+WORDPRESS API
+↓
+PLANTILLA
+↓
+PRIMERA LANDING
