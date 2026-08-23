@@ -1,540 +1,475 @@
-Matriz Territorial — Fontanería
+Matriz Territorial — Localidades
 
-1. Objetivo
+1. Función del documento
 
-Esta matriz organiza los criterios territoriales que se utilizarán para cruzar:
+Esta matriz organiza el componente territorial del proyecto.
+
+Su función es identificar y clasificar localidades y otros niveles geográficos que puedan ser relevantes para la plataforma.
+
+No determina por sí sola qué páginas deben crearse.
+
+Su función es proporcionar información territorial al:
+
+"motor-decision.md"
+
+para que este pueda evaluar:
 
 SERVICIO × LOCALIDAD
-
-Su finalidad es determinar qué profundidad territorial puede tener sentido para cada servicio.
-
-Esta matriz NO determina todavía qué localidades tendrán páginas.
-
-La decisión final corresponderá al motor de decisión.
 
 ---
 
 2. Principio territorial
 
-No todas las localidades tienen el mismo potencial.
+La existencia de una localidad no implica que deba existir una página para todos los servicios.
 
-La arquitectura debe adaptarse a:
+La oportunidad depende de la combinación entre:
 
-- Tamaño de población.
+- Servicio.
+- Localidad.
+- Intención.
 - Demanda.
 - Competencia.
-- Actividad económica.
-- Turismo.
-- Número y tipo de viviendas.
-- Presencia de empresas.
-- Comunidades y urbanizaciones.
-- Información local disponible.
 - Potencial comercial.
-
-Por tanto:
-
-LOCALIDAD ≠ LOCALIDAD
+- Diferenciación.
+- Información disponible.
+- Cobertura real.
 
 ---
 
 3. Niveles territoriales
 
-Nivel 1 — Grandes ciudades
+El sistema puede trabajar con diferentes niveles:
 
-Ejemplos:
+- País.
+- Comunidad autónoma.
+- Provincia.
+- Ciudad.
+- Municipio.
+- Localidad.
+- Zona.
+- Barrio.
+- Urbanización.
 
-- Madrid.
-- Barcelona.
-- Valencia.
-- Sevilla.
-- Zaragoza.
-- Málaga.
-- Bilbao.
-- Alicante.
-
-Características:
-
-- Alta población.
-- Mercado amplio.
-- Mayor variedad de servicios.
-- Mayor competencia.
-- Mayor posibilidad de segmentación.
-- Mayor posibilidad de especialización.
-
-Potencial:
-
-ALTO
+No todos los niveles deben utilizarse para todos los servicios.
 
 ---
 
-4. Nivel 2 — Ciudades importantes
+4. Clasificación de localidades
 
-Ejemplos:
+Las localidades pueden clasificarse según:
 
-- Córdoba.
-- Valladolid.
-- Vigo.
-- Gijón.
-- Granada.
-- A Coruña.
-- Murcia.
-- Palma.
-- Las Palmas de Gran Canaria.
-- Tenerife.
+Grandes ciudades
 
-Características:
+Mercados con:
 
-- Mercado relevante.
-- Diversidad de servicios.
-- Potencial comercial.
-- Competencia variable.
-
-Potencial:
-
-MEDIO/ALTO
+- población elevada;
+- gran número de empresas;
+- gran actividad económica;
+- mayor variedad de servicios;
+- mayor competencia.
 
 ---
 
-5. Nivel 3 — Ciudades y municipios medianos
+Ciudades medianas
 
-Son localidades con suficiente población o actividad económica para generar un mercado local relevante.
+Mercados con:
 
-Características:
-
-- Demanda potencial.
-- Menor amplitud que las grandes ciudades.
-- Puede existir especialización.
-- Deben analizarse individualmente.
-
-Potencial:
-
-VARIABLE
+- demanda local relevante;
+- competencia significativa;
+- posibilidad de especialización.
 
 ---
 
-6. Nivel 4 — Municipios pequeños
+Municipios pequeños
 
-Municipios con menor población.
+Pueden tener menor demanda absoluta, pero pueden resultar relevantes cuando existe:
 
-No deben descartarse automáticamente.
-
-Pueden presentar oportunidades cuando exista:
-
-- Turismo.
-- Segunda residencia.
-- Urbanizaciones.
-- Hoteles.
-- Restauración.
-- Actividad empresarial.
-- Poca competencia.
-- Servicios urgentes.
-- Alta demanda relativa.
-
-Potencial:
-
-VARIABLE
+- poca competencia;
+- alta intención;
+- actividad económica;
+- turismo;
+- características residenciales;
+- proximidad a otras localidades.
 
 ---
 
-7. Nivel 5 — Localidades turísticas
-
-Categoría transversal.
-
-Ejemplos:
-
-- Marbella.
-- Estepona.
-- Benidorm.
-- Torremolinos.
-- Fuengirola.
-- Sitges.
-- Salou.
-- Ibiza.
-- Adeje.
-
-El turismo puede aumentar la relevancia de:
-
-- Urgencias.
-- Mantenimiento.
-- Reparaciones.
-- Apartamentos turísticos.
-- Hoteles.
-- Villas.
-- Segundas residencias.
-
-La condición turística no garantiza por sí sola que una página sea necesaria.
-
----
-
-8. Nivel 6 — Barrios y zonas
-
-Los barrios pueden tener potencial cuando:
-
-- Tienen suficiente población.
-- Existe intención local.
-- La competencia utiliza esa segmentación.
-- La actividad comercial lo justifica.
-- Existe información diferenciada.
-- La página puede aportar valor real.
-
-No se crearán páginas de barrios automáticamente.
-
----
-
-9. Urbanizaciones
-
-Las urbanizaciones pueden ser relevantes especialmente para fontanería.
+Localidades turísticas
 
 Pueden presentar:
 
-- Viviendas unifamiliares.
-- Piscinas.
-- Comunidades.
-- Segundas residencias.
-- Instalaciones antiguas.
-- Mantenimiento.
-- Urgencias.
+- hoteles;
+- apartamentos turísticos;
+- segundas residencias;
+- restauración;
+- actividad estacional;
+- necesidades urgentes.
 
-Podrán convertirse en una variable del motor de decisión.
-
----
-
-10. Zonas de cobertura
-
-Una empresa de fontanería puede atender varias localidades.
-
-La plataforma podrá estudiar relaciones como:
-
-Fontanero Marbella
-
-→ zonas atendidas
-
-→ urbanizaciones
-
-→ localidades próximas
-
-→ municipios cercanos
-
-Pero debe evitarse crear páginas únicamente para ampliar artificialmente el número de URLs.
+El turismo es una variable, no una garantía automática de oportunidad.
 
 ---
 
-11. Localidades cercanas
+Zonas residenciales
 
-La proximidad geográfica puede ser relevante.
+Pueden incluir:
 
-Una localidad pequeña puede ser atendida por profesionales de una ciudad próxima.
+- urbanizaciones;
+- comunidades;
+- viviendas unifamiliares;
+- zonas de nueva construcción;
+- zonas con características específicas.
+
+Solo deben convertirse en páginas independientes cuando exista suficiente justificación.
+
+---
+
+5. Variables territoriales
+
+Para cada localidad se intentará recopilar, cuando sea relevante:
+
+- Población.
+- Provincia.
+- Comunidad autónoma.
+- Actividad económica.
+- Turismo.
+- Tipo de vivienda.
+- Urbanizaciones.
+- Empresas.
+- Hoteles.
+- Restauración.
+- Características del mercado.
+- Cobertura profesional.
+- Distancia respecto a otros núcleos.
+- Competencia local.
+- Otras características específicas.
+
+No todas las variables estarán disponibles para todas las localidades.
+
+---
+
+6. Población
+
+La población puede utilizarse como indicador de tamaño de mercado.
 
 Sin embargo:
 
-proximidad geográfica ≠ demanda suficiente
+población ≠ demanda
 
-Por ello deberá analizarse:
+y:
+
+población ≠ decisión automática de crear página
+
+Debe combinarse con otras variables.
+
+---
+
+7. Turismo
+
+El turismo puede aumentar determinadas oportunidades comerciales.
+
+Debe analizarse mediante:
+
+- volumen turístico;
+- estacionalidad;
+- tipo de alojamiento;
+- segunda residencia;
+- actividad empresarial;
+- necesidades específicas.
+
+No debe utilizarse simplemente como argumento para crear páginas.
+
+---
+
+8. Urbanizaciones
+
+Las urbanizaciones pueden ser relevantes para determinados servicios.
+
+Pueden aportar:
+
+- concentración residencial;
+- características constructivas;
+- comunidades;
+- piscinas;
+- instalaciones comunes;
+- necesidades de mantenimiento.
+
+La existencia de una urbanización no justifica automáticamente una página independiente.
+
+---
+
+9. Cobertura
+
+Una localidad debe analizarse también desde el punto de vista de la cobertura real.
+
+Debe considerarse:
 
 - Distancia.
-- Población.
-- Demanda.
-- Competencia.
-- Oferta profesional.
-- Intención.
-- Potencial comercial.
+- Tiempo de desplazamiento.
+- Existencia de profesionales.
+- Capacidad de atención.
+- Modelo de negocio.
+- Cobertura declarada.
+
+Una página no debe prometer cobertura que no exista.
 
 ---
 
-12. Variables territoriales
+10. Competencia local
 
-Cada localidad podrá recibir valores para:
+Debe analizarse:
 
-Variable| Descripción
-Población| Tamaño del mercado
-Demanda| Interés por el servicio
-Competencia| Intensidad competitiva
-Turismo| Actividad turística
-Empresas| Actividad empresarial
-Viviendas| Tipología y volumen
-Urbanizaciones| Presencia relevante
-Segundas residencias| Peso potencial
-Información local| Datos disponibles
-Potencial comercial| Capacidad de generar negocio
+- Empresas locales.
+- Directorios.
+- Marketplaces.
+- Empresas provinciales.
+- Empresas nacionales.
+- Resultados locales.
+- Calidad de las páginas competidoras.
+
+La competencia alta no implica automáticamente descartar una localidad.
 
 ---
 
-13. Clasificación territorial inicial
+11. Relevancia territorial por servicio
 
-A — Prioridad alta
+Una localidad puede ser especialmente interesante para determinados servicios.
 
-Localidades con:
+Ejemplo conceptual:
 
-- Gran población.
-- Alta actividad económica.
-- Demanda potencial elevada.
-- Mercado amplio.
-- Diversidad de servicios.
-- Potencial comercial elevado.
+Una zona turística puede tener mayor relevancia para:
 
----
+- mantenimiento;
+- urgencias;
+- fontanería residencial;
+- instalaciones;
+- servicios para alojamientos.
 
-B — Prioridad media/alta
+Pero no necesariamente tendrá la misma oportunidad para todos los servicios.
 
-Localidades con:
-
-- Mercado relevante.
-- Actividad económica.
-- Demanda razonable.
-- Potencial de especialización.
+Por ello la matriz territorial debe cruzarse con la matriz de servicios.
 
 ---
 
-C — Analizar individualmente
+12. Matriz conceptual
 
-Localidades medianas o pequeñas que puedan presentar oportunidades específicas.
+La estructura de análisis será:
 
----
+Localidad| Tipo| Tamaño| Turismo| Actividad| Competencia| Diferenciación| Evaluación
+Madrid| Gran ciudad| Muy alto| Alto| Muy alto| Alta| Alta| Motor
+Barcelona| Gran ciudad| Muy alto| Alto| Muy alto| Alta| Alta| Motor
+Málaga| Gran ciudad| Alto| Muy alto| Alto| Alta| Alta| Motor
+Marbella| Turística| Medio| Muy alto| Alto| Alta| Alta| Motor
+Sevilla| Gran ciudad| Alto| Alto| Alto| Alta| Alta| Motor
 
-D — No crear automáticamente
+Esta tabla es conceptual y no constituye por sí misma una decisión de creación de páginas.
 
-Localidades donde:
-
-- La demanda sea desconocida o muy baja.
-- No exista información suficiente.
-- No exista diferenciación.
-- El contenido resultaría pobre.
-- La combinación tenga poco potencial comercial.
-
----
-
-14. Ciudades iniciales de referencia
-
-Para estudiar el comportamiento del mercado se consideran como referencias iniciales:
-
-Grandes mercados
-
-- Madrid.
-- Barcelona.
-- Valencia.
-- Sevilla.
-- Málaga.
-- Zaragoza.
-- Bilbao.
-- Alicante.
-
-Mercados adicionales
-
-- Murcia.
-- Palma.
-- Córdoba.
-- Valladolid.
-- Vigo.
-- Gijón.
-- Granada.
-- A Coruña.
-- Las Palmas de Gran Canaria.
-- Santa Cruz de Tenerife.
-
-Mercados turísticos/locales
-
-- Marbella.
-- Estepona.
-- Fuengirola.
-- Torremolinos.
-- Benalmádena.
-- Benidorm.
-- Ibiza.
-- Sitges.
-- Salou.
-- Adeje.
-
-Esta lista es de referencia para investigación, no una lista definitiva de URLs.
+Los datos definitivos deben proceder de investigación y fuentes verificables.
 
 ---
 
-15. Matriz servicio × localidad
+13. Estados territoriales
 
-La unidad final de análisis será:
+Una localidad puede encontrarse en:
+
+IDENTIFICADA
+
+Incluida en el universo territorial.
+
+INVESTIGADA
+
+Existe información suficiente.
+
+PRIORIZADA
+
+Presenta características que justifican analizarla con mayor profundidad.
+
+VALIDADA
+
+La oportunidad ha sido comprobada.
+
+AGRUPADA
+
+Debe analizarse conjuntamente con otra zona.
+
+DESCARTADA
+
+No existe justificación suficiente para continuar su análisis.
+
+---
+
+14. Cruce con servicios
+
+La matriz territorial debe cruzarse con:
+
+"matriz-servicios-fontaneria.md"
+
+para producir oportunidades potenciales:
 
 SERVICIO × LOCALIDAD
 
 Ejemplos:
 
-Servicio| Localidad| Decisión
-Fontanero| Madrid| Pendiente
-Fontanero| Marbella| Pendiente
-Desatascos| Madrid| Pendiente
-Desatascos| Marbella| Pendiente
-Fugas| Madrid| Pendiente
-Fugas| Marbella| Pendiente
-Termos| Madrid| Pendiente
-Termos| Marbella| Pendiente
-Fontanero urgente| Madrid| Pendiente
-Fontanero urgente| Marbella| Pendiente
+- Fontanero × Marbella.
+- Desatascos × Marbella.
+- Reparación de fugas × Marbella.
+- Fontanero urgente × Málaga.
 
-La columna decisión será determinada posteriormente por el motor.
+Estas combinaciones no deben convertirse automáticamente en URLs.
+
+Deben pasar por el motor.
 
 ---
 
-16. Profundidad territorial
+15. Profundidad territorial
 
-La profundidad puede aumentar según el potencial.
+El motor puede determinar diferentes niveles de profundidad.
 
 Ejemplo conceptual:
 
-Localidad pequeña
+Nivel 1
 
-Fontanero + localidad
+Servicio + ciudad.
 
-Una página general puede incluir múltiples servicios.
+Nivel 2
 
-Ciudad mediana
+Servicio + localidad.
 
-Fontanero + localidad
+Nivel 3
 
-+ 
+Servicio + zona.
 
-algunos servicios diferenciados.
+Nivel 4
 
-Gran ciudad
+Servicio + barrio/urbanización.
 
-Fontanero + localidad
+La profundidad debe justificarse mediante:
 
-+ 
-
-especialidades relevantes
-
-+ 
-
-urgencias cuando estén justificadas
-
-+ 
-
-posibles zonas/barrios cuando exista suficiente evidencia.
+- demanda;
+- intención;
+- diferenciación;
+- información;
+- utilidad;
+- cobertura.
 
 ---
 
-17. Regla de no proliferación
+16. Regla contra la expansión artificial
 
-No se crearán páginas simplemente porque exista una localidad.
+No se deben crear páginas simplemente porque existan:
 
-No se crearán páginas simplemente porque exista una combinación matemática.
+- municipios;
+- barrios;
+- urbanizaciones;
+- códigos postales;
+- zonas.
 
-La combinación:
-
-SERVICIO × LOCALIDAD
-
-debe superar los criterios mínimos del motor de decisión.
-
----
-
-18. Información local necesaria
-
-Antes de generar una página local deberá estudiarse qué información real puede aportar.
-
-Posibles datos:
-
-- Municipio.
-- Barrios.
-- Urbanizaciones.
-- Zonas residenciales.
-- Tipos de viviendas.
-- Actividad turística.
-- Hoteles.
-- Restaurantes.
-- Comunidades.
-- Segundas residencias.
-- Problemas de fontanería relevantes.
-- Servicios más demandados.
-- Cobertura profesional.
-
-Si no existe suficiente información diferenciadora, la página podrá:
-
-- Agruparse.
-- Reducirse.
-- No crearse.
+La existencia geográfica no equivale a oportunidad SEO.
 
 ---
 
-19. Relación con la matriz de servicios
+17. Información local
 
-La matriz territorial no funciona de manera independiente.
+Una página territorial debe poder incorporar información real.
 
-Debe cruzarse con:
+Puede incluir:
 
-"matriz-servicios-fontaneria.md"
+- zonas atendidas;
+- características locales;
+- problemas frecuentes;
+- tipos de vivienda;
+- negocios;
+- turismo;
+- urbanizaciones;
+- servicios relevantes;
+- cobertura.
 
-Ejemplo:
-
-Servicio: desatascos
-
-puede tener:
-
-- Alta prioridad en Madrid.
-- Alta prioridad en Barcelona.
-- Alta prioridad en Marbella.
-- Prioridad diferente en municipios pequeños.
-
-Por tanto, no existe una prioridad territorial universal.
+No debe inventarse información local para hacer parecer única una página.
 
 ---
 
-20. Variables pendientes de datos
+18. Relación con el motor
 
-Para convertir esta matriz conceptual en una matriz cuantitativa necesitaremos datos reales de:
+El motor utiliza la matriz territorial como fuente de información.
 
-- Población.
-- Volumen de búsqueda.
-- Variantes.
-- SERP.
-- Competencia.
-- Empresas existentes.
-- Estacionalidad.
-- Turismo.
-- Potencial comercial.
+El motor debe valorar conjuntamente:
 
-Estos datos serán utilizados posteriormente por el motor.
+SERVICIO + LOCALIDAD
 
----
+y no utilizar la localidad de forma aislada.
 
-21. Regla territorial principal
+Variables territoriales importantes:
 
-No debemos decidir la profundidad de una localidad únicamente por población.
-
-Una localidad pequeña puede tener gran potencial.
-
-Una ciudad grande puede tener una competencia que haga menos interesante una determinada combinación.
-
-La decisión debe ser multidimensional.
+- tamaño;
+- actividad;
+- turismo;
+- competencia;
+- cobertura;
+- diferenciación;
+- características del mercado.
 
 ---
 
-22. Estado
+19. Reutilización
 
-Matriz territorial:
+La estructura territorial puede reutilizarse para cualquier servicio.
 
-ESTRUCTURADA — PENDIENTE DE DATOS
+Sin embargo, los factores importantes pueden variar.
 
-Matriz de servicios:
+Por ejemplo:
 
-ESTRUCTURADA
+- Fontanería puede depender mucho de cobertura y urgencia.
+- Abogados puede depender más de especialización, tipo de cliente y densidad empresarial.
+- Reformas puede depender de vivienda, renta y actividad inmobiliaria.
+- Jardinería puede depender de vivienda unifamiliar, urbanizaciones y zonas verdes.
 
-Investigación:
+Por tanto:
 
-CONSOLIDADA
+estructura reutilizable ≠ variables idénticas para todos los sectores.
 
-Arquitectura:
+---
 
-DEFINIDA CONCEPTUALMENTE
+20. Regla de evidencia
 
-Motor de decisión:
+Las decisiones territoriales importantes deben poder justificarse mediante:
 
-SIGUIENTE FASE
+- datos;
+- fuentes;
+- SERP;
+- competencia;
+- investigación;
+- información comercial;
+- resultados reales.
 
-Primera prueba:
+La intuición puede generar una hipótesis, pero no debe convertirse automáticamente en regla.
 
-PENDIENTE
+---
 
-Automatización:
+21. Actualizaciones
 
-PENDIENTE
+Las modificaciones importantes de esta matriz se registrarán al final indicando:
 
-Escalado:
+- Fecha.
+- Información añadida.
+- Información modificada.
+- Motivo.
+- Evidencia.
+- Consecuencia.
 
-PENDIENTE
+Cuando una actualización contradiga información anterior, se revisará expresamente antes de sustituirla.
+
+---
+
+22. Registro de actualización
+
+2026-08-23
+
+Se consolida la estructura territorial del proyecto.
+
+Se establece que:
+
+- La localidad es un input del sistema.
+- La existencia de una localidad no implica creación automática.
+- La población no es suficiente como criterio.
+- Turismo, actividad, competencia y cobertura deben analizarse conjuntamente.
+- La profundidad territorial debe decidirse según la oportunidad.
+- El análisis definitivo se realiza mediante el cruce SERVICIO × LOCALIDAD.
+- La estructura territorial puede reutilizarse para otros servicios, adaptando las variables sectoriales.
