@@ -358,3 +358,29 @@ SERVICIO + LOCALIDAD
 puede generar tráfico, contactos y posteriormente ingresos.
 
 A partir de los resultados de esa prueba se decidirá si merece la pena escalar.
+
+## REGLA DE ACTUALIZACIÓN DE ARCHIVOS
+
+ChatGPT no modifica directamente los archivos del repositorio.
+
+Cuando sea necesario actualizar un archivo:
+
+1. ChatGPT debe leer primero la versión actual.
+2. Integrar la nueva información.
+3. Entregar el contenido COMPLETO del archivo actualizado.
+4. Indicar claramente la ruta del archivo.
+5. El usuario sustituirá el contenido completo en GitHub y hará el Commit.
+
+No se entregarán únicamente fragmentos de modificación cuando sea posible entregar el archivo completo.
+
+Antes de crear un archivo nuevo, comprobar que existe información suficiente para justificarlo.
+
+Cuando una información sea importante pero todavía no requiera crear un archivo nuevo, se guardará en el archivo correspondiente ya existente.
+
+ChatGPT debe avisar siempre con:
+
+GUARDAR EN GITHUB: SÍ
+ARCHIVO: [ruta]
+ACCIÓN: sustituir contenido completo
+
+El usuario será responsable de realizar físicamente la actualización en GitHub.
