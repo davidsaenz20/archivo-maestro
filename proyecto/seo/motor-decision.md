@@ -1,60 +1,135 @@
-Motor de Decisión del Proyecto
+Motor de Decisión SEO
 
-1. Propósito
+1. Función del documento
 
-Este documento define el sistema mediante el cual el proyecto decide si una combinación:
+Este documento define el sistema utilizado para decidir qué oportunidades SEO deben convertirse en páginas, cuáles deben agruparse, cuáles necesitan más investigación y cuáles deben descartarse.
+
+El motor recibe información de:
+
+- Investigación sectorial.
+- Matriz de servicios.
+- Matriz territorial.
+- Competencia.
+- Demanda.
+- Intención.
+- Potencial comercial.
+- Diferenciación.
+- Información disponible.
+
+Su unidad principal de análisis es:
 
 SERVICIO × LOCALIDAD
-
-debe:
-
-- CREAR una página independiente.
-- AGRUPAR el servicio con otra página.
-- NO CREAR una página.
-
-El motor debe ser reutilizable para cualquier sector.
-
-Fontanería es el primer caso de aplicación.
 
 ---
 
 2. Principio fundamental
 
-El motor no debe maximizar el número de páginas.
+El sistema no debe generar páginas por volumen.
 
-Debe maximizar la relación entre:
+Debe generar únicamente páginas que puedan justificarse mediante una combinación suficiente de:
 
-DEMANDA + INTENCIÓN + VALOR COMERCIAL + DIFERENCIACIÓN + UTILIDAD
+demanda + intención + oportunidad comercial + relevancia territorial + diferenciación + información disponible
 
-y
-
-COSTE + RIESGO + REDUNDANCIA + BAJA DEMANDA
-
-Por tanto:
-
-más URLs ≠ mejor proyecto
+La automatización nunca debe sustituir esta evaluación.
 
 ---
 
-3. Inputs del motor
+3. Entradas del motor
 
-El motor recibe información procedente de:
+Para cada combinación se recopilarán, cuando sea posible:
 
-- Investigación.
-- Matriz de servicios.
-- Matriz territorial.
-- Datos de búsqueda.
-- SERP.
+Servicio
+
+- Servicio principal.
+- Especialidad.
+- Sinónimos.
+- Variantes.
+- Servicios relacionados.
+
+Territorio
+
+- Localidad.
+- Provincia.
+- Comunidad.
+- Tamaño.
+- Características.
+- Zonas.
+- Barrios.
+- Urbanizaciones.
+
+Mercado
+
+- Demanda.
+- Intención.
 - Competencia.
-- Información local.
-- Datos comerciales.
-- Resultados de pruebas anteriores.
+- SERP.
+- Resultados locales.
+- Empresas existentes.
+
+Negocio
+
+- Potencial comercial.
+- Urgencia.
+- Tipo de cliente.
+- Valor del servicio.
+- Posibilidad de conversión.
+
+Contenido
+
+- Información local disponible.
+- Diferenciación posible.
+- Capacidad para generar contenido útil.
+- Riesgo de contenido repetitivo.
 
 ---
 
-4. Unidad de análisis
+4. Flujo de decisión
 
-La unidad básica es:
+El motor seguirá este orden:
+
+1. IDENTIFICAR
+
+↓
+
+2. COMPROBAR INTENCIÓN
+
+↓
+
+3. COMPROBAR DEMANDA
+
+↓
+
+4. ANALIZAR COMPETENCIA
+
+↓
+
+5. ANALIZAR RELEVANCIA TERRITORIAL
+
+↓
+
+6. ANALIZAR POTENCIAL COMERCIAL
+
+↓
+
+7. ANALIZAR DIFERENCIACIÓN
+
+↓
+
+8. ANALIZAR INFORMACIÓN DISPONIBLE
+
+↓
+
+9. EVALUAR RIESGO DE DUPLICACIÓN
+
+↓
+
+10. TOMAR DECISIÓN
+
+---
+
+5. Paso 1 — Identificar
+
+Se identifica la combinación:
 
 SERVICIO × LOCALIDAD
 
@@ -62,826 +137,572 @@ Ejemplo:
 
 Desatascos × Marbella
 
-El motor no decide únicamente sobre el servicio ni únicamente sobre la localidad.
-
-Decide sobre la combinación.
+Se comprueba que el servicio y la localidad sean reales y coherentes.
 
 ---
 
-5. Variables principales
+6. Paso 2 — Intención
 
-Cada combinación será evaluada mediante las siguientes dimensiones.
+Se determina qué quiere conseguir el usuario.
 
-5.1 Demanda
+Tipos principales:
 
-Determina si existe suficiente interés potencial.
+- Contratación.
+- Urgencia.
+- Servicio especializado.
+- Información.
+- Comparación.
+- Navegación.
+- Otra intención.
 
-Puede utilizar:
+Para una página comercial local, la intención debe ser suficientemente compatible con la contratación del servicio.
 
-- Volumen de búsquedas.
+---
+
+7. Paso 3 — Demanda
+
+Debe analizarse si existe suficiente interés.
+
+La demanda puede evaluarse mediante:
+
+- Volumen de búsqueda.
 - Variantes.
 - Tendencias.
-- Consultas relacionadas.
-- Evidencia SERP.
-- Datos propios posteriores.
+- SERP.
+- Resultados relacionados.
+- Evidencia comercial.
+- Datos propios cuando existan.
 
-La ausencia de volumen conocido no significa automáticamente demanda cero.
-
-Debe distinguirse entre:
-
-dato conocido
-
-y
-
-dato desconocido.
+No se utilizará una cifra aislada como criterio absoluto.
 
 ---
 
-6. Intención
+8. Paso 4 — Competencia
 
-Determina qué quiere conseguir el usuario.
+Debe estudiarse qué aparece actualmente para la intención.
 
-Clasificaciones posibles:
+Se analizará:
 
-- Comercial.
-- Comercial urgente.
-- Problema + solución.
-- Instalación.
-- Reparación.
-- Mantenimiento.
-- Informacional.
-- Mixta.
-
-La intención debe ser compatible con el objetivo de la página.
-
----
-
-7. Competencia
-
-Debe analizarse:
-
-- Número de competidores relevantes.
-- Calidad de las páginas.
-- Autoridad aproximada.
-- Especialización.
-- Calidad del contenido.
-- Presencia local.
-- Directorios.
-- Empresas reales.
-- SERP dominante.
-
-La competencia alta no significa automáticamente:
-
-NO CREAR
-
-Puede existir oportunidad si existe una vía clara de diferenciación.
-
----
-
-8. Potencial comercial
-
-Debe analizarse:
-
-- Valor del servicio.
-- Urgencia.
-- Probabilidad de contratación.
-- Margen potencial.
-- Frecuencia.
-- Valor para el profesional.
-- Valor de cliente.
-
-Un servicio con pocas búsquedas puede ser interesante si tiene elevado valor comercial.
-
----
-
-9. Relevancia territorial
-
-Debe analizarse:
-
-- Población.
-- Actividad económica.
-- Turismo.
-- Viviendas.
-- Urbanizaciones.
 - Empresas.
-- Tipo de mercado.
-- Distancia/cobertura.
-- Demanda local.
+- Directorios.
+- Marketplaces.
+- Resultados locales.
+- Calidad de páginas.
+- Autoridad aparente.
+- Especialización.
+- Diferenciación.
+- Cobertura territorial.
 
-No debe utilizarse únicamente la población como criterio.
+La competencia debe interpretarse junto con el resto de variables.
 
 ---
 
-10. Diferenciación
+9. Paso 5 — Relevancia territorial
+
+Debe determinarse si la localidad es realmente relevante para el servicio.
+
+Se analizará:
+
+- Tamaño.
+- Actividad.
+- Turismo.
+- Vivienda.
+- Empresas.
+- Urbanizaciones.
+- Características locales.
+- Cobertura.
+- Proximidad.
+
+Una localidad grande no garantiza una oportunidad.
+
+Una localidad pequeña tampoco debe descartarse automáticamente.
+
+---
+
+10. Paso 6 — Potencial comercial
+
+Debe estimarse el valor comercial de la combinación.
+
+Variables posibles:
+
+- Necesidad.
+- Urgencia.
+- Valor del servicio.
+- Facilidad de contratación.
+- Frecuencia del problema.
+- Tipo de cliente.
+- Capacidad de conversión.
+
+El potencial comercial debe distinguirse de la demanda.
+
+Una búsqueda puede tener mucho volumen y poco valor comercial.
+
+---
+
+11. Paso 7 — Diferenciación
 
 Debe responderse:
 
-¿Podemos crear una página que aporte algo realmente específico para esta combinación?
+¿Podemos crear una página realmente útil y diferente?
 
-Posibles elementos:
+Debe existir potencial para incorporar:
 
 - Información local.
-- Problemas específicos.
 - Cobertura.
-- Tipos de vivienda.
-- Urbanizaciones.
-- Empresas.
-- Turismo.
-- Casuística.
-- Servicios relacionados.
-- Información práctica.
+- Servicios específicos.
+- Problemas habituales.
+- Tipos de cliente.
+- Características del mercado.
+- Preguntas frecuentes.
+- Información comercial.
+- Otros datos relevantes.
 
-Si no existe diferenciación suficiente, debe considerarse AGRUPAR o NO CREAR.
-
----
-
-11. Información disponible
-
-Debe determinarse si existe suficiente información real para crear una página útil.
-
-Se debe distinguir:
-
-Información confirmada
-
-Datos obtenidos de fuentes reales.
-
-Información inferida
-
-Conclusiones razonables basadas en datos.
-
-Información desconocida
-
-Datos que todavía no se han investigado.
-
-Información inventada
-
-Información que no debe utilizarse.
-
-Nunca se debe rellenar una página con datos inventados para justificar su existencia.
+Si la única diferencia posible es cambiar el nombre de la localidad, la oportunidad debe cuestionarse.
 
 ---
 
-12. Riesgo de contenido duplicado
+12. Paso 8 — Información disponible
 
-Debe analizarse:
+Debe comprobarse si existe información suficiente para construir una página fiable.
 
-- Similitud entre páginas.
-- Repetición de estructuras.
-- Cambios mínimos entre localidades.
-- Canibalización.
-- Thin content.
-- Páginas prácticamente idénticas.
+Se valorará:
 
-Si dos páginas responderían esencialmente a la misma intención, debe estudiarse AGRUPAR.
+- Datos locales.
+- Información del servicio.
+- Información comercial.
+- Fuentes.
+- Evidencia.
+- Capacidad de actualización.
 
----
-
-13. Puntuación conceptual
-
-El motor puede utilizar una puntuación para ordenar oportunidades.
-
-Las dimensiones principales son:
-
-- Demanda.
-- Intención.
-- Potencial comercial.
-- Relevancia territorial.
-- Diferenciación.
-- Información disponible.
-- Competencia.
-- Riesgo de duplicación.
-
-La puntuación debe servir para priorizar, no para sustituir el análisis.
+No se debe rellenar una página con información inventada para justificar su existencia.
 
 ---
 
-14. No utilizar pesos universales sin validación
+13. Paso 9 — Riesgo de duplicación
 
-Los pesos definitivos NO deben considerarse universales.
+Debe comprobarse si la nueva página sería esencialmente igual a otra.
 
-Los pesos pueden cambiar según:
+Riesgos:
 
-- Sector.
-- Tipo de servicio.
-- Modelo comercial.
-- Localidad.
-- Datos obtenidos.
-- Resultados reales.
+- Misma intención.
+- Mismo contenido.
+- Misma propuesta.
+- Misma información.
+- Cambio únicamente territorial.
+- Solapamiento con otra página.
 
-Por tanto:
-
-motor general ≠ pesos idénticos para todos los sectores
+Si el riesgo es elevado, se debe estudiar AGRUPAR.
 
 ---
 
-15. Decisión CREAR
+14. Sistema de puntuación
 
-Una combinación puede clasificarse como:
+El motor puede utilizar una puntuación ponderada para ordenar oportunidades.
+
+La puntuación conceptual será:
+
+OPORTUNIDAD = DEMANDA + INTENCIÓN + COMERCIAL + TERRITORIO + DIFERENCIACIÓN + INFORMACIÓN − COMPETENCIA − DUPLICACIÓN
+
+Los pesos y umbrales definitivos deben validarse con datos reales.
+
+No deben considerarse valores definitivos hasta completar la validación.
+
+---
+
+15. Variables de puntuación
+
+Cada variable puede valorarse inicialmente en una escala de:
+
+0 a 10
+
+Demanda
+
+0 = inexistente o irrelevante.
+
+10 = demanda claramente elevada.
+
+Intención
+
+0 = no comercial.
+
+10 = intención de contratación directa.
+
+Potencial comercial
+
+0 = escaso valor comercial.
+
+10 = elevado potencial de conversión/valor.
+
+Relevancia territorial
+
+0 = localidad poco relacionada.
+
+10 = localidad altamente relevante.
+
+Diferenciación
+
+0 = imposible diferenciar.
+
+10 = gran capacidad de crear contenido útil y específico.
+
+Información
+
+0 = información insuficiente.
+
+10 = información abundante y verificable.
+
+Competencia
+
+0 = competencia mínima.
+
+10 = competencia muy fuerte.
+
+Duplicación
+
+0 = no existe riesgo.
+
+10 = riesgo muy elevado.
+
+---
+
+16. Ponderación inicial
+
+Como punto de partida experimental:
+
+Variable| Peso
+Demanda| 20%
+Intención| 20%
+Potencial comercial| 15%
+Relevancia territorial| 10%
+Diferenciación| 15%
+Información| 10%
+Competencia| 5%
+Duplicación| 5%
+
+La puntuación resultante es una herramienta de priorización, no una verdad absoluta.
+
+Los pesos deberán validarse mediante pruebas reales.
+
+---
+
+17. Resultado
+
+El motor puede producir cuatro decisiones principales.
 
 CREAR
 
-cuando existe evidencia suficiente de que:
-
-- La intención está clara.
-- Existe demanda o una oportunidad razonable.
-- Existe potencial comercial.
-- Existe relevancia territorial.
-- Puede generarse contenido útil.
-- Existe diferenciación suficiente.
-- El riesgo de duplicación es aceptable.
-- La página tiene una función clara dentro de la arquitectura.
+La combinación presenta suficiente oportunidad y puede justificar una página independiente.
 
 ---
-
-16. Decisión AGRUPAR
-
-Una combinación debe considerar:
 
 AGRUPAR
 
-cuando:
+Existe interés, pero la intención o el contenido se solapan con otra página.
 
-- Existe intención relacionada con otro servicio.
-- La demanda independiente es insuficiente.
-- La separación produciría contenido pobre.
-- La información local no permite suficiente diferenciación.
-- Varias búsquedas pueden resolverse mejor desde una página común.
-- La agrupación mejora la experiencia del usuario.
-
-Agrupar NO significa ignorar el servicio.
-
-Significa integrarlo dentro de una página más adecuada.
+La información debe integrarse en una página más amplia.
 
 ---
-
-17. Decisión NO CREAR
-
-Una combinación puede clasificarse como:
-
-NO CREAR
-
-cuando:
-
-- La demanda es insuficiente y no existe otra oportunidad relevante.
-- El potencial comercial es muy bajo.
-- No existe intención clara.
-- No existe información suficiente.
-- No existe diferenciación.
-- La página sería redundante.
-- Existe elevado riesgo de contenido pobre.
-- La combinación no tiene una función clara.
-
----
-
-18. Datos insuficientes
-
-Si faltan datos importantes:
-
-NO asumir automáticamente NO CREAR.
-
-Debe clasificarse como:
-
-PENDIENTE DE INVESTIGACIÓN
-
-cuando la combinación podría ser relevante.
-
-Esto evita eliminar oportunidades simplemente por falta de información.
-
----
-
-19. Estados posibles
-
-El motor utilizará conceptualmente estos estados:
-
-PENDIENTE
-
-Todavía no existe información suficiente.
 
 INVESTIGAR
 
-Hace falta obtener datos adicionales.
+Existe una oportunidad potencial, pero falta información crítica.
 
-CREAR
+No se debe tomar una decisión definitiva hasta obtenerla.
 
-La combinación supera los criterios.
-
-AGRUPAR
-
-Debe integrarse en otra página.
+---
 
 NO CREAR
 
-No existe suficiente justificación.
-
-VALIDAR
-
-La decisión necesita comprobarse mediante una prueba.
-
-VALIDADO
-
-La decisión ha sido comprobada con resultados reales.
+La combinación no presenta suficiente oportunidad o existe un riesgo elevado de generar una página de bajo valor.
 
 ---
 
-20. Flujo de decisión
+18. Umbrales iniciales experimentales
 
-Para cada combinación:
+Como punto de partida:
 
-1. Identificar servicio
+8–10
 
-↓
+Alta oportunidad
 
-2. Identificar localidad
+Candidata a CREAR, previa revisión.
 
-↓
+6–7,9
 
-3. Determinar intención
+Oportunidad media
 
-↓
+Revisar variables y considerar INVESTIGAR.
 
-4. Analizar demanda
+4–5,9
 
-↓
+Oportunidad baja
 
-5. Analizar competencia
+Generalmente AGRUPAR o INVESTIGAR.
 
-↓
+0–3,9
 
-6. Analizar potencial comercial
+Oportunidad muy baja
 
-↓
+Generalmente NO CREAR.
 
-7. Analizar relevancia territorial
+Estos umbrales son experimentales.
 
-↓
-
-8. Analizar diferenciación
-
-↓
-
-9. Comprobar información disponible
-
-↓
-
-10. Comprobar riesgo de duplicación
-
-↓
-
-11. Determinar estado
-
-↓
-
-12. CREAR / AGRUPAR / INVESTIGAR / NO CREAR
-
-↓
-
-13. Validar mediante prueba cuando corresponda
+No deben considerarse definitivos hasta validarlos con resultados reales.
 
 ---
 
-21. Profundidad de la página
+19. Reglas de seguridad
 
-El motor no solo debe decidir:
+Una puntuación elevada no permite CREAR automáticamente si existe:
 
-crear / no crear
+- Información insuficiente.
+- Cobertura inexistente.
+- Intención incorrecta.
+- Riesgo grave de duplicación.
+- Imposibilidad de diferenciar.
+- Datos no verificables.
 
-También debe determinar la profundidad adecuada.
-
-Posibilidades:
-
-Nivel básico
-
-Una página general de servicio + localidad.
-
-Nivel intermedio
-
-Servicio + localidad con especialidades relacionadas.
-
-Nivel avanzado
-
-Servicio + localidad + especialidades + zonas relevantes.
-
-La profundidad dependerá de la evidencia.
+Estas condiciones pueden bloquear la creación independientemente de la puntuación.
 
 ---
 
-22. No crear profundidad artificial
+20. Regla de urgencia
 
-No se deben crear:
+“Urgente”, “24 horas” y expresiones similares pueden aumentar la intención comercial.
 
-- barrios;
-- urbanizaciones;
-- subservicios;
-- urgencias;
-- páginas adicionales;
+Pero no deben generar automáticamente una URL.
 
-solo para aumentar el número de URLs.
+Primero deben comprobarse:
 
-Cada nivel debe tener una razón real.
-
----
-
-23. Excepciones
-
-El motor debe permitir excepciones justificadas.
-
-Ejemplos:
-
-- Servicio de alto valor con poca demanda aparente.
-- Servicio urgente.
-- Mercado turístico.
-- Localidad con características especiales.
-- Sector regulado.
-- Servicio con alta estacionalidad.
-- Nicho con poca competencia.
-- Información comercial excepcional.
-
-Toda excepción debe quedar registrada y explicada.
-
----
-
-24. Registro de excepciones
-
-Una excepción debe indicar:
-
-- Combinación afectada.
-- Regla general que se modifica.
-- Motivo.
-- Evidencia.
-- Decisión.
-- Fecha.
-
-Esto permite revisar posteriormente si la excepción debe convertirse en regla general.
-
----
-
-25. Aplicación a fontanería
-
-Fontanería será la primera aplicación real.
-
-Ejemplo:
-
-Fontanero × Marbella
-
-puede tener:
-
-- Demanda elevada.
-- Intención comercial.
-- Mercado turístico.
-- Alta actividad residencial.
+- Demanda.
+- SERP.
 - Competencia.
+- Disponibilidad real.
+- Diferenciación.
 - Potencial comercial.
 
-El motor evaluará todos los factores antes de decidir.
+---
 
-Otro ejemplo:
+21. Regla territorial
 
-Servicio muy específico × municipio pequeño
+No se crearán automáticamente todas las combinaciones:
 
-podría terminar en:
+SERVICIO × TODAS LAS LOCALIDADES
+
+El motor debe seleccionar las combinaciones justificadas.
+
+---
+
+22. Regla de especialización
+
+Un servicio especializado puede tener página independiente cuando tenga:
+
+- intención diferenciada;
+- demanda suficiente;
+- potencial comercial;
+- contenido propio;
+- diferenciación.
+
+Si no cumple estas condiciones, puede AGRUPARSE.
+
+---
+
+23. Regla de agrupación
+
+AGRUPAR no significa descartar la intención.
+
+Significa determinar que la mejor experiencia para el usuario es resolver varias intenciones relacionadas dentro de una misma página.
+
+La agrupación debe evitar:
+
+- páginas redundantes;
+- canibalización;
+- contenido artificial;
+- arquitectura innecesariamente compleja.
+
+---
+
+24. Ejemplo
+
+Combinación:
+
+Fontanero urgente × Marbella
+
+Supongamos:
+
+- Demanda: 8.
+- Intención: 10.
+- Comercial: 9.
+- Territorial: 9.
+- Diferenciación: 8.
+- Información: 8.
+- Competencia: 7.
+- Duplicación: 2.
+
+La combinación presenta una oportunidad elevada.
+
+Pero antes de CREAR se debe comprobar:
+
+- cobertura real;
+- disponibilidad;
+- SERP;
+- posibilidad de diferenciación;
+- solapamiento con “fontanero Marbella”.
+
+El resultado final podría ser:
+
+CREAR
+
+o:
 
 AGRUPAR
 
-aunque el servicio exista realmente.
+según la evidencia.
 
 ---
 
-26. Aplicación a abogados
+25. Trazabilidad
 
-El mismo motor debe poder utilizarse para:
+Cada decisión importante debe poder responder:
 
-Abogado × localidad
+- Qué combinación se analizó.
+- Cuándo se analizó.
+- Qué datos se utilizaron.
+- Qué puntuación obtuvo.
+- Qué decisión se tomó.
+- Por qué.
+- Qué evidencia la respalda.
 
-Ejemplos:
-
-- Abogado laboralista × Málaga.
-- Abogado de extranjería × Marbella.
-- Abogado de divorcios × Madrid.
-- Abogado de herencias × Sevilla.
-
-Pero:
-
-NO se deben copiar automáticamente los servicios, pesos ni umbrales de fontanería.
-
-La metodología se mantiene.
-
-Los datos y reglas específicas se adaptan al sector.
+Esto permitirá posteriormente analizar si las decisiones fueron correctas.
 
 ---
 
-27. Adaptación por sector
+26. Aprendizaje del sistema
 
-Cada nuevo sector debe definir:
+Las decisiones iniciales no son inmutables.
 
-- Sus servicios.
-- Sus intenciones.
-- Sus tipos de cliente.
-- Sus particularidades territoriales.
-- Sus riesgos.
-- Sus excepciones.
-- Sus variables comerciales.
+Después de publicar y medir resultados se podrán revisar:
 
-El motor general permanece.
+- pesos;
+- umbrales;
+- variables;
+- reglas;
+- excepciones.
 
-Las reglas específicas pueden añadirse como una capa sectorial.
+El sistema debe aprender de resultados reales.
+
+No se debe modificar una regla simplemente porque una página concreta haya tenido un resultado aislado.
 
 ---
 
-28. Arquitectura de dos capas
+27. Aplicación a otros servicios
 
-El sistema debe evolucionar hacia:
-
-Capa 1 — Motor general
-
-Reglas comunes:
-
-- Investigar.
-- Evaluar.
-- Comparar.
-- Decidir.
-- Validar.
-- Medir.
-
-Capa 2 — Reglas sectoriales
-
-Características propias de:
+El motor general debe poder reutilizarse para:
 
 - Fontanería.
 - Abogados.
 - Electricistas.
+- Reformas.
 - Carpinteros.
 - Pintores.
 - Jardineros.
-- Reformas.
-- Etc.
+- Cerrajeros.
+- Climatización.
+- Otros servicios.
 
-Esto permite escalar sin convertir cada nuevo servicio en un proyecto completamente independiente.
+Sin embargo, cada sector tendrá:
 
----
+- variables específicas;
+- servicios diferentes;
+- intenciones diferentes;
+- pesos potencialmente diferentes;
+- reglas específicas;
+- excepciones propias.
 
-29. Validación del motor
+La estructura del motor es general.
 
-Antes de automatizar se debe probar el motor manualmente.
-
-Se seleccionará una muestra de combinaciones.
-
-Ejemplo:
-
-- 10 combinaciones claramente buenas.
-- 10 combinaciones dudosas.
-- 10 combinaciones aparentemente malas.
-
-Se aplicará el motor.
-
-Después se revisará:
-
-- ¿Las decisiones tienen sentido?
-- ¿Existen falsos positivos?
-- ¿Existen falsos negativos?
-- ¿Hay demasiadas páginas?
-- ¿Hay demasiadas agrupaciones?
-- ¿Faltan variables?
+Los parámetros sectoriales deben validarse por separado.
 
 ---
 
-30. Aprendizaje
+28. Relación con otros documentos
 
-Los resultados de la primera prueba pueden modificar:
+El motor recibe información de:
 
-- Pesos.
-- Umbrales.
-- Variables.
-- Excepciones.
-- Reglas sectoriales.
+"investigacion-fontaneria.md"
 
-El motor no debe considerarse inmutable.
+"matriz-servicios-fontaneria.md"
 
-Debe evolucionar con evidencia.
+"matriz-localidades.md"
+
+y de futuras fuentes de investigación.
+
+La arquitectura se encuentra definida en:
+
+"arquitectura-seo.md"
+
+La metodología general se encuentra en:
+
+"../metodologia.md"
 
 ---
 
-31. Regla de evidencia
+29. Estado de las reglas
 
-Una decisión importante debe poder responder:
+Las reglas del motor se clasifican como:
 
-¿Por qué hemos tomado esta decisión?
+CONCEPTUAL
 
-Por ello el sistema debe conservar:
+Definida pero no probada.
 
-- Datos utilizados.
-- Fuentes.
+EXPERIMENTAL
+
+Utilizada en una prueba.
+
+VALIDADA
+
+Respaldada por resultados suficientes.
+
+REVISADA
+
+Modificada después de obtener nueva evidencia.
+
+Nunca debe presentarse una regla CONCEPTUAL o EXPERIMENTAL como una regla VALIDADA.
+
+---
+
+30. Actualizaciones del motor
+
+Las modificaciones importantes deben registrarse al final del documento indicando:
+
 - Fecha.
-- Interpretación.
-- Resultado.
+- Regla modificada.
+- Motivo.
+- Evidencia.
+- Versión anterior.
+- Nueva versión.
+- Consecuencia.
 
-Esto permitirá auditar cualquier decisión posteriormente.
-
----
-
-32. Regla contra la memoria
-
-El motor no debe depender de que ChatGPT recuerde conversaciones anteriores.
-
-Toda regla consolidada debe existir en documentación.
-
-La conversación sirve para trabajar.
-
-Los archivos sirven para conservar.
+Si una actualización contradice una regla anterior, la actualización debe analizarse y prevalecer únicamente cuando exista justificación suficiente.
 
 ---
 
-33. Regla contra contradicciones
+31. Registro de actualización
 
-Si aparece una información nueva que contradice una regla anterior:
+2026-08-23
 
-1. Detectar la contradicción.
-2. Revisar la fecha.
-3. Revisar la evidencia.
-4. Determinar qué información es más reciente y válida.
-5. Actualizar la decisión.
-6. Registrar el cambio.
-7. Actualizar "maestro.md" cuando afecte al estado general.
+Se consolida el diseño inicial del motor de decisión.
 
-Nunca ignorar silenciosamente una contradicción.
+Se establece:
 
----
+- SERVICIO × LOCALIDAD como unidad principal.
+- Sistema de evaluación multidimensional.
+- Puntuación inicial de 0–10.
+- Ponderaciones experimentales.
+- Cuatro decisiones: CREAR, AGRUPAR, INVESTIGAR y NO CREAR.
+- Umbrales iniciales experimentales.
+- Reglas de seguridad.
+- Trazabilidad.
+- Sistema de aprendizaje y validación posterior.
 
-34. Salida del motor
-
-Cada combinación debería terminar produciendo una estructura equivalente a:
-
-Servicio:
-Localidad:
-Intención:
-Demanda:
-Competencia:
-Potencial comercial:
-Relevancia territorial:
-Diferenciación:
-Información disponible:
-Riesgo de duplicación:
-Decisión:
-Nivel de página:
-Motivo:
-Estado:
-Fecha:
-
----
-
-35. Orden de prioridad
-
-Cuando existan muchas combinaciones, el motor debe permitir priorizarlas.
-
-Prioridad alta:
-
-- Alta oportunidad.
-- Alta intención.
-- Alto potencial comercial.
-- Buena diferenciación.
-- Información suficiente.
-
-Prioridad media:
-
-- Oportunidad razonable.
-- Algunos datos pendientes.
-
-Prioridad baja:
-
-- Poco potencial.
-- Alta incertidumbre.
-- Baja diferenciación.
-
----
-
-36. Regla de automatización
-
-El motor debe validarse manualmente antes de automatizarlo.
-
-Primero:
-
-MOTOR MANUAL
-
-↓
-
-PRUEBA
-
-↓
-
-CORRECCIÓN
-
-↓
-
-MOTOR SEMIAUTOMÁTICO
-
-↓
-
-VALIDACIÓN
-
-↓
-
-AUTOMATIZACIÓN
-
-↓
-
-ESCALADO
-
----
-
-37. Relación con la metodología
-
-La metodología establece:
-
-INVESTIGAR → CONSERVAR → ESTRUCTURAR → DECIDIR → VALIDAR → PROBAR → MEDIR → CORREGIR → AUTOMATIZAR → ESCALAR
-
-El motor ejecuta principalmente la parte:
-
-DECIDIR
-
-pero utiliza información generada por las fases anteriores y devuelve información para las fases posteriores.
-
----
-
-38. Estado
-
-Motor de decisión:
-
-DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
-
-Metodología:
-
-DEFINIDA
-
-Investigación de fontanería:
-
-CONSOLIDADA
-
-Matriz de servicios:
-
-ESTRUCTURADA
-
-Matriz territorial:
-
-ESTRUCTURADA
-
-Arquitectura:
-
-DEFINIDA CONCEPTUALMENTE
-
-Primera prueba:
-
-PENDIENTE
-
-Automatización:
-
-PENDIENTE
-
-Escalado:
-
-PENDIENTE
-
----
-
-39. Próximo paso
-
-Una vez guardado este documento:
-
-1. Auditar todos los documentos.
-2. Corregir estados desactualizados.
-3. Corregir referencias de rutas.
-4. Actualizar "maestro.md".
-5. Seleccionar la primera muestra real.
-6. Aplicar manualmente el motor.
-7. Detectar errores.
-8. Ajustar el motor.
-9. Repetir la prueba.
-10. Solo después diseñar la automatización.
-
----
-
-40. Regla final
-
-El motor no existe para generar páginas.
-
-Existe para tomar decisiones justificadas.
-
-La pregunta fundamental siempre será:
-
-«¿Esta página aporta suficiente valor como para existir de forma independiente?»
-
-Si la respuesta es sí:
-
-CREAR.
-
-Si puede resolverse mejor junto a otra:
-
-AGRUPAR.
-
-Si no existe justificación suficiente:
-
-NO CREAR.
-
-Si todavía no sabemos lo suficiente:
-
-INVESTIGAR.
-
-Nunca inventar datos para forzar una decisión.
+Los pesos y umbrales quedan expresamente definidos como experimentales, pendientes de validación mediante pruebas reales.
