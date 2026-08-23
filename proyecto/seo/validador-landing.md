@@ -1,24 +1,33 @@
 # VALIDADOR DE LANDING
 
-## 1. FUNCIÓN
+## 1. OBJETIVO
 
-Este documento define las reglas de validación de una landing generada por IA.
+Este documento define las reglas del sistema que valida una landing generada por IA antes de permitir que continúe hacia N8N y, posteriormente, WordPress.
 
-Su función es comprobar que la salida:
+El validador comprueba que la salida de IA:
 
-- cumple el contrato;
-- respeta la arquitectura;
-- utiliza únicamente bloques autorizados;
-- no contiene datos inventados;
-- mantiene la coherencia con la oportunidad;
-- puede continuar hacia N8N;
-- o debe quedar bloqueada para revisión.
+- respeta el contexto protegido;
+- cumple el contrato de salida;
+- mantiene la identidad de la oportunidad;
+- respeta la arquitectura autorizada cuando exista;
+- utiliza únicamente bloques permitidos;
+- no inventa información;
+- mantiene coherencia SEO;
+- no introduce enlaces no autorizados;
+- no presenta errores estructurales;
+- puede continuar o debe quedar bloqueada.
 
 Flujo:
 
+MAESTRO
+↓
+OPORTUNIDAD
+↓
+CONTEXTO PROTEGIDO
+↓
 IA
 ↓
-JSON
+OUTPUT IA
 ↓
 VALIDADOR
 ↓
@@ -28,26 +37,140 @@ N8N
 ↓
 WORDPRESS
 
-El validador no decide si una oportunidad debe existir.
-
 ---
 
 # 2. PRINCIPIO FUNDAMENTAL
 
-La validación debe ser determinista siempre que sea posible.
+El modelo maestro es la fuente de verdad.
 
-No debe depender de una interpretación subjetiva de la IA.
+La IA genera contenido.
 
-Las reglas deben poder convertirse posteriormente en:
+La IA NO tiene autoridad para modificar:
 
-- código;
-- nodos N8N;
-- validaciones JSON Schema;
-- reglas de WordPress.
+- la oportunidad;
+- la decisión SEO;
+- la identidad;
+- la arquitectura;
+- las URLs protegidas;
+- los bloques autorizados;
+- las reglas de publicación.
+
+El validador compara la salida de IA contra el contexto protegido.
 
 ---
 
-# 3. RESULTADOS
+# 3. SEPARACIÓN DE MODELOS
+
+El sistema utiliza tres capas:
+
+## 3.1 MODELO MAESTRO
+
+Representa los datos canónicos del proyecto.
+
+Ejemplos:
+
+- servicio;
+- municipio;
+- provincia;
+- decisión SEO;
+- arquitectura;
+- URLs;
+- profundidad;
+- estado;
+- relaciones.
+
+---
+
+## 3.2 CONTRATO IA
+
+Define el formato que debe devolver la IA.
+
+Puede utilizar nombres técnicos diferentes al modelo maestro.
+
+Ejemplo:
+
+Modelo maestro:
+
+servicio
+
+Contrato IA:
+
+service
+
+Modelo maestro:
+
+municipio
+
+Contrato IA:
+
+municipality
+
+Esta diferencia es válida siempre que exista una correspondencia definida.
+
+---
+
+## 3.3 CONTEXTO PROTEGIDO
+
+Es la información que el validador recibe directamente del sistema y no de la IA.
+
+La IA no puede modificarla.
+
+Ejemplo conceptual:
+
+{
+  "opportunity_id": "TEST-FONTANERO-MARBELLA",
+  "decision_seo": "CREAR",
+  "identity": {},
+  "architecture": {},
+  "authorized_blocks": []
+}
+
+---
+
+# 4. ENTRADA DEL VALIDADOR
+
+El validador recibe:
+
+{
+  "protected_context": {},
+  "ai_output": {}
+}
+
+## protected_context
+
+Contiene la información de confianza.
+
+## ai_output
+
+Contiene exclusivamente la salida generada por la IA.
+
+---
+
+# 5. ARQUITECTURA Y DECISIÓN SEO
+
+La arquitectura definitiva depende de la decisión SEO.
+
+Si:
+
+decision_seo = CREAR
+
+puede existir una arquitectura definitiva que debe ser respetada.
+
+Si:
+
+decision_seo != CREAR
+
+no se debe asumir que existe una arquitectura definitiva de publicación.
+
+Por tanto, el validador debe distinguir entre:
+
+- contexto de oportunidad;
+- arquitectura definitiva;
+- fixture de prueba.
+
+---
+
+# 6. RESULTADOS
 
 El validador puede producir:
 
@@ -57,86 +180,112 @@ REVIEW
 
 ERROR
 
----
+Además calcula:
 
-## READY
-
-La salida:
-
-- es estructuralmente válida;
-- cumple el contrato;
-- respeta la arquitectura;
-- utiliza bloques autorizados;
-- no presenta incidencias críticas;
-- contiene todos los datos necesarios para continuar.
-
-READY no significa:
-
-"publicar inmediatamente".
-
-Significa:
-
-"puede continuar hacia la siguiente fase del proceso".
+publication_allowed
 
 ---
 
-## REVIEW
+# 7. READY
 
-Existe una incidencia que requiere revisión humana.
+READY significa:
+
+"La salida de IA supera las validaciones automáticas y puede continuar hacia la siguiente fase."
+
+READY NO significa necesariamente:
+
+"publicar".
+
+Una landing puede estar:
+
+READY
+
+y:
+
+publication_allowed = false
+
+---
+
+# 8. REVIEW
+
+REVIEW significa:
+
+"La salida no presenta necesariamente un error técnico, pero existe una cuestión que requiere revisión humana."
 
 Ejemplos:
 
 - información insuficiente;
-- bloque condicional sin evidencia suficiente;
 - posible duplicación;
-- dato que necesita comprobación;
-- contenido potencialmente ambiguo;
-- información comercial incompleta.
+- diferenciación insuficiente;
+- evidencia local insuficiente;
+- contenido ambiguo;
+- afirmación que requiere comprobación.
 
-Una salida REVIEW no puede publicarse automáticamente.
+REVIEW bloquea la publicación automática.
 
 ---
 
-## ERROR
+# 9. ERROR
 
-Existe un incumplimiento técnico o estructural.
+ERROR significa:
+
+"Existe un incumplimiento técnico, estructural o de integridad."
 
 Ejemplos:
 
 - JSON inválido;
-- schema_version incorrecta;
-- opportunity_id inexistente;
-- URL modificada;
-- canonical incorrecto;
-- bloque no autorizado;
-- estructura inválida;
 - campo obligatorio ausente;
-- contradicción con datos protegidos.
+- identidad modificada;
+- arquitectura modificada;
+- URL modificada;
+- bloque no autorizado;
+- dato inventado;
+- enlace no autorizado.
 
-Una salida ERROR queda bloqueada.
-
----
-
-# 4. NIVELES DE VALIDACIÓN
-
-La validación se divide en:
-
-1. ESTRUCTURA
-2. IDENTIDAD
-3. ARQUITECTURA
-4. BLOQUES
-5. CONTENIDO
-6. DATOS
-7. ENLACES
-8. SEO
-9. PUBLICACIÓN
-10. TRAZABILIDAD
+ERROR bloquea el proceso.
 
 ---
 
-# 5. VALIDACIÓN ESTRUCTURAL
+# 10. REGLA DE AUTORIDAD
 
-## V001 — JSON válido
+El resultado de la IA nunca tiene prioridad sobre el validador.
+
+Ejemplo:
+
+IA:
+
+status = READY
+
+VALIDADOR:
+
+ERROR
+
+Resultado final:
+
+ERROR
+
+Otro ejemplo:
+
+IA:
+
+status = READY
+
+VALIDADOR:
+
+READY
+
+decision_seo = INVESTIGAR
+
+Resultado:
+
+status = READY
+publication_allowed = false
+
+---
+
+# 11. VALIDACIÓN ESTRUCTURAL
+
+## V001 — JSON
 
 La salida debe ser JSON válido.
 
@@ -148,15 +297,7 @@ ERROR
 
 ## V002 — schema_version
 
-Debe existir:
-
-schema_version
-
-Debe ser compatible con la versión aceptada.
-
-Actualmente:
-
-1.1
+Debe existir y ser compatible con la versión aceptada.
 
 Si no:
 
@@ -166,11 +307,9 @@ ERROR
 
 ## V003 — opportunity_id
 
-Debe existir:
+Debe existir.
 
-opportunity_id
-
-Debe corresponder con la oportunidad utilizada como entrada.
+Debe corresponder al contexto protegido.
 
 Si no:
 
@@ -178,55 +317,57 @@ ERROR
 
 ---
 
-## V004 — campos principales
+## V004 — campos obligatorios
 
-Deben existir:
+Deben existir los campos obligatorios definidos por el contrato IA.
 
-- schema_version;
-- opportunity_id;
-- status;
-- identity;
-- architecture;
-- seo;
-- blocks;
-- validation;
-- issues;
-- traceability.
-
-Si falta alguno:
+Si falta un campo estructural obligatorio:
 
 ERROR
 
 ---
 
-# 6. VALIDACIÓN DE IDENTIDAD
+# 12. CORRESPONDENCIA CON EL MODELO MAESTRO
 
-La identidad debe coincidir exactamente con los datos recibidos.
+El validador debe realizar explícitamente la correspondencia entre:
 
-Campos:
+MODELO MAESTRO
 
-- sector;
-- service;
-- subservice;
-- municipality;
-- province.
+y:
 
-No se permite que la IA modifique:
+CONTRATO IA.
+
+Ejemplo:
+
+maestro.servicio
+↕
+ia.identity.service
+
+maestro.municipio
+↕
+ia.identity.municipality
+
+La traducción no debe depender de una interpretación de la IA.
+
+---
+
+# 13. IDENTIDAD
+
+Cuando exista identidad protegida, debe coincidir:
 
 - servicio;
 - subservicio;
 - municipio;
-- provincia.
+- provincia;
+- sector cuando corresponda.
 
-Ejemplo:
-
-Entrada:
+La IA no puede cambiar:
 
 Marbella
 
-Salida:
+por:
 
-Estepona
+Estepona.
 
 Resultado:
 
@@ -234,49 +375,42 @@ ERROR
 
 ---
 
-# 7. VALIDACIÓN DE ARQUITECTURA
+# 14. ARQUITECTURA PROTEGIDA
 
-La arquitectura es un dato protegido.
+Cuando exista arquitectura definitiva, el validador debe comprobar:
 
-Debe coincidir exactamente con la entrada.
-
-Campos:
-
-- page_type;
-- url;
+- tipo de página;
+- URL;
 - canonical;
-- parent_url.
+- parent_url;
+- profundidad;
+- cualquier otro campo protegido definido por el maestro.
 
-La IA no puede:
-
-- crear una URL;
-- cambiar una URL;
-- cambiar canonical;
-- cambiar parent_url;
-- cambiar page_type.
-
-Si lo hace:
-
-ERROR
+La IA no puede modificar estos valores.
 
 ---
 
-# 8. VALIDACIÓN DE URL
+# 15. URL
 
-La URL debe:
+Cuando exista una URL protegida:
 
-- coincidir con la arquitectura;
-- utilizar una estructura autorizada;
-- no contener URLs inventadas;
-- no contener parámetros no autorizados;
-- no apuntar a otra localidad;
-- no apuntar a otro servicio.
+La URL generada debe coincidir exactamente con la autorizada.
 
-Ejemplo válido:
+No se permite:
+
+- cambiar localidad;
+- cambiar servicio;
+- crear parámetros;
+- modificar estructura;
+- inventar URLs.
+
+Ejemplo:
+
+Autorizada:
 
 /fontanero/marbella/
 
-Ejemplo inválido:
+IA:
 
 /fontanero/estepona/
 
@@ -286,143 +420,49 @@ ERROR
 
 ---
 
-# 9. VALIDACIÓN DE CANONICAL
+# 16. CANONICAL
 
-La canonical debe existir cuando la página sea indexable.
+Cuando exista canonical protegida:
 
-Debe coincidir con la arquitectura recibida.
+Debe coincidir con la arquitectura.
 
-Si falta cuando es obligatoria:
+La IA no puede calcular una canonical diferente.
 
-ERROR
-
-Si existe pero es diferente:
+Si existe una canonical incorrecta:
 
 ERROR
 
-La IA nunca calcula la canonical.
+---
 
-La recibe como dato protegido.
+# 17. BLOQUES
+
+La IA solo puede utilizar bloques incluidos en:
+
+authorized_blocks
+
+Un bloque no autorizado produce:
+
+ERROR
 
 ---
 
-# 10. VALIDACIÓN DE SEO
+# 18. IDENTIDAD DEL BLOQUE
 
-Debe existir:
+Cada bloque debe mantener correspondencia entre:
 
-- title;
-- meta_description;
-- h1;
-- slug.
+id
 
-## TITLE
+y:
 
-Debe corresponder con la intención.
-
-No debe introducir:
-
-- servicios inexistentes;
-- localidades distintas;
-- promesas no respaldadas.
-
-## META DESCRIPTION
-
-No debe contener:
-
-- datos inventados;
-- precios inventados;
-- garantías inventadas;
-- disponibilidad inventada.
-
-## H1
-
-Debe corresponder con:
-
-- servicio;
-- subservicio cuando corresponda;
-- localidad.
-
-## SLUG
-
-Debe corresponder exactamente con la URL autorizada.
-
----
-
-# 11. VALIDACIÓN DE BLOQUES
-
-Todos los bloques deben pertenecer al conjunto autorizado:
-
-B01-B23.
-
-No se permiten IDs nuevos.
+type
 
 Ejemplo:
 
-B99
-
-Resultado:
-
-ERROR
-
----
-
-# 12. ID Y TYPE
-
-Cada bloque debe mantener correspondencia:
-
-B01 → header
-
-B02 → navigation
-
 B03 → hero
-
-B04 → main_content
-
-B05 → cta
-
-B06 → footer
-
-B07 → subservice
-
-B08 → problems
-
-B09 → local_context
-
-B10 → coverage
-
-B11 → process
-
-B12 → trust
-
-B13 → differentiation
-
-B14 → faq
-
-B15 → related_services
-
-B16 → related_locations
-
-B17 → structured_data
-
-B18 → testimonials
-
-B19 → cases
-
-B20 → gallery
-
-B21 → pricing
-
-B22 → opening_hours
-
-B23 → map
 
 Si:
 
-id = B03
-
-pero:
-
-type = faq
+B03 → faq
 
 resultado:
 
@@ -430,70 +470,35 @@ ERROR
 
 ---
 
-# 13. BLOQUES NO AUTORIZADOS
+# 19. BLOQUES OBLIGATORIOS
 
-La IA no puede generar un bloque que no haya sido autorizado.
+Cuando la arquitectura establezca bloques obligatorios, deben estar presentes.
 
-Ejemplo:
-
-Entrada:
-
-authorized_blocks:
-
-B01
-B02
-B03
-B04
-B05
-B06
-B08
-B14
-
-Salida:
-
-B10
-
-Resultado:
+Si falta un bloque obligatorio:
 
 ERROR
 
----
-
-# 14. BLOQUES OBLIGATORIOS
-
-La validación debe comprobar que los bloques definidos como obligatorios por la arquitectura estén presentes.
-
-No se puede eliminar silenciosamente un bloque obligatorio.
-
-Si falta:
-
-ERROR
-
-o:
-
-REVIEW
-
-cuando la arquitectura permita una excepción explícita.
+salvo que exista una excepción explícitamente autorizada.
 
 ---
 
-# 15. BLOQUES CONDICIONALES
+# 20. BLOQUES CONDICIONALES
 
-Los bloques condicionales pueden estar ausentes.
+Un bloque condicional puede omitirse cuando no exista información suficiente.
+
+No se debe inventar información únicamente para completar el bloque.
 
 Ejemplo:
 
-B10 — cobertura
+B10 — coverage
 
-Si no existe información de cobertura:
+Si no existe información real de cobertura:
 
 puede omitirse.
 
-No debe inventarse información para rellenarlo.
-
 ---
 
-# 16. REGLA DE NO INVENCIÓN
+# 21. NO INVENCIÓN
 
 La IA no puede inventar:
 
@@ -505,54 +510,42 @@ La IA no puede inventar:
 - direcciones;
 - precios;
 - horarios;
-- experiencia;
-- certificaciones;
 - garantías;
-- reseñas;
+- certificaciones;
+- experiencia;
 - testimonios;
+- reseñas;
+- casos;
+- disponibilidad;
 - cobertura;
 - zonas;
-- casos;
-- imágenes;
-- disponibilidad.
-
-Si un dato es necesario pero no existe:
-
-REVIEW
-
-o:
-
-ERROR
-
-según su importancia.
+- datos comerciales.
 
 ---
 
-# 17. DATOS COMERCIALES
+# 22. DATOS COMERCIALES
 
-Los datos comerciales requieren especial control.
+Los datos comerciales son especialmente sensibles.
 
-Ejemplos:
+Incluyen:
 
 - teléfono;
 - WhatsApp;
 - email;
-- precio;
-- horario;
-- garantía;
+- precios;
+- horarios;
+- garantías;
 - disponibilidad.
 
-Si aparecen sin haber sido proporcionados:
+Si aparecen sin estar respaldados por el contexto:
 
 ERROR
 
-La IA no puede rellenar estos campos con valores plausibles.
-
 ---
 
-# 18. DATOS LOCALES
+# 23. DATOS LOCALES
 
-Los datos locales deben estar respaldados.
+Los datos locales requieren evidencia.
 
 Ejemplos:
 
@@ -560,102 +553,54 @@ Ejemplos:
 - urbanizaciones;
 - zonas;
 - cobertura;
-- características locales;
-- tiempos de desplazamiento.
+- tiempos de desplazamiento;
+- características específicas de la localidad.
 
-Si aparecen sin evidencia:
+Si existe información insuficiente:
 
 REVIEW
 
-Si son claramente inventados:
+Si se detecta una invención clara:
 
 ERROR
 
 ---
 
-# 19. COBERTURA
+# 24. TESTIMONIOS
 
-El bloque B10 requiere información real.
+No se pueden generar testimonios ficticios.
 
-Si:
-
-coverage_confirmed = false
-
-entonces:
-
-B10 no puede contener zonas inventadas.
-
-Puede:
-
-- omitirse;
-- aparecer desactivado;
-- generar REVIEW si se intentó utilizar.
-
----
-
-# 20. CONFIANZA
-
-B12 no puede contener afirmaciones no verificadas.
-
-No se permiten:
-
-"más de 20 años de experiencia"
-
-"profesionales certificados"
-
-"servicio 24 horas"
-
-"garantía de 2 años"
-
-si no existen como datos de entrada.
-
-Resultado:
+Si un testimonio no tiene fuente o respaldo:
 
 ERROR
 
 ---
 
-# 21. TESTIMONIOS
-
-B18 requiere testimonios reales.
-
-No se permite que la IA genere testimonios ficticios.
-
-Si aparecen testimonios sin fuente:
-
-ERROR
-
----
-
-# 22. CASOS
-
-B19 requiere casos reales.
+# 25. CASOS
 
 No se pueden inventar:
 
 - clientes;
 - trabajos;
 - resultados;
-- ubicaciones;
-- fechas.
+- fechas;
+- ubicaciones.
 
-Si aparecen sin fuente:
+Si aparecen sin respaldo:
 
 ERROR
 
 ---
 
-# 23. PRECIOS
+# 26. PRECIOS
 
-B21 requiere datos de precios reales.
+No se pueden inventar precios.
 
-No se permiten precios estimados generados por IA.
-
-Ejemplo prohibido:
+Ejemplo:
 
 "Desde 50 €"
 
-si no existe ese dato.
+si el dato no existe en el contexto.
 
 Resultado:
 
@@ -663,17 +608,15 @@ ERROR
 
 ---
 
-# 24. HORARIOS
+# 27. HORARIOS
 
-B22 requiere horarios reales.
+No se pueden inventar horarios.
 
-No se permite:
+Ejemplo:
 
-"24 horas"
+"Servicio 24 horas"
 
-"abierto todos los días"
-
-si no existe evidencia.
+sin respaldo.
 
 Resultado:
 
@@ -681,310 +624,225 @@ ERROR
 
 ---
 
-# 25. MAPA
+# 28. COBERTURA
 
-B23 requiere ubicación real.
-
-No se debe inventar:
-
-- dirección;
-- coordenadas;
-- ubicación comercial.
+La cobertura debe proceder de información disponible y autorizada.
 
 Si no existe:
 
-omitir.
+el bloque puede omitirse.
+
+No se puede completar con barrios o zonas inventadas.
 
 ---
 
-# 26. IMÁGENES
+# 29. CONFIANZA
 
-No se deben inventar imágenes.
+No se pueden generar afirmaciones como:
 
-Cada imagen debe poder identificarse mediante:
+- más de 20 años de experiencia;
+- profesionales certificados;
+- servicio 24 horas;
+- garantía de 2 años;
+- cientos de clientes;
+
+si no existe respaldo.
+
+Resultado:
+
+ERROR
+
+---
+
+# 30. IMÁGENES
+
+No se deben presentar imágenes como representativas de una empresa real si no existe una fuente autorizada.
+
+Las imágenes deben disponer, cuando corresponda, de:
 
 - fuente;
 - referencia;
 - URL;
 - archivo autorizado.
 
-Si la imagen no está disponible:
-
-puede omitirse.
-
-No se debe crear una imagen como si representara una empresa real cuando no existe evidencia.
-
 ---
 
-# 27. ENLACES INTERNOS
+# 31. ENLACES INTERNOS
 
-Todos los enlaces deben apuntar a URLs autorizadas.
+Los enlaces deben utilizar únicamente URLs autorizadas.
 
 No se permite:
 
-- URL inexistente;
 - URL inventada;
+- URL inexistente;
 - URL fuera de arquitectura;
-- URL hacia una página no aprobada.
+- enlace a una página no aprobada.
 
-Si aparece:
+Resultado:
 
 ERROR
 
 ---
 
-# 28. MENU
+# 32. SEO
 
-Los elementos del menú deben utilizar URLs autorizadas.
-
-No se pueden crear páginas nuevas únicamente para completar el menú.
-
----
-
-# 29. SEO DUPLICADO
-
-El validador debe detectar señales básicas de contenido potencialmente duplicado.
-
-Debe comparar, cuando existan:
+La salida debe mantener coherencia entre:
 
 - title;
+- meta description;
 - H1;
-- contenido;
-- bloques;
-- estructura.
+- slug;
+- intención;
+- servicio;
+- localidad.
 
-Una similitud alta no implica automáticamente ERROR.
+No debe introducir:
 
-Resultado:
-
-REVIEW
-
-para evaluación.
-
----
-
-# 30. DIFERENCIACIÓN
-
-Si B13 está activado:
-
-debe existir información que justifique la diferenciación.
-
-Si B13 solo contiene:
-
-- cambio de localidad;
-- sinónimos;
-- reordenación;
-- texto genérico;
-
-resultado:
-
-REVIEW
+- servicios inexistentes;
+- localidades diferentes;
+- promesas no respaldadas.
 
 ---
 
-# 31. FAQ
+# 33. SLUG
+
+Cuando exista arquitectura definitiva:
+
+El slug debe corresponder con la URL autorizada.
+
+Si no:
+
+ERROR
+
+---
+
+# 34. FAQ
 
 Las FAQ deben:
 
 - estar relacionadas con la intención;
-- responder preguntas reales;
+- responder preguntas útiles;
 - no inventar datos;
 - no utilizarse únicamente para introducir keywords.
 
-Si contienen datos no respaldados:
+Una FAQ con información dudosa:
 
 REVIEW
 
-o:
+Una FAQ con información inventada:
 
 ERROR
 
-según el caso.
-
 ---
 
-# 32. CTA
+# 35. CTA
 
-El CTA debe utilizar únicamente acciones autorizadas.
+El CTA debe utilizar acciones autorizadas.
 
-Permitido:
+Ejemplos:
 
 - contactar;
 - solicitar información;
 - solicitar presupuesto;
 - pedir cita.
 
-No permitido:
+No puede utilizar:
 
-- teléfono inexistente;
-- WhatsApp inexistente;
-- disponibilidad inventada;
-- precio inventado.
-
----
-
-# 33. STATUS DE LA IA
-
-El status proporcionado por la IA no es suficiente por sí mismo.
-
-El validador debe calcular su propio resultado.
-
-Ejemplo:
-
-IA:
-
-READY
-
-Validador:
-
-ERROR
-
-Resultado final:
-
-ERROR
-
-El validador tiene autoridad sobre el estado técnico.
+- teléfono inventado;
+- WhatsApp inventado;
+- precio inventado;
+- disponibilidad inventada.
 
 ---
 
-# 34. REGLAS DE READY
+# 36. DUPLICACIÓN
 
-Solo puede producirse:
+El sistema puede detectar señales de contenido potencialmente duplicado.
 
-READY
+Puede comparar:
 
-si:
+- title;
+- H1;
+- contenido;
+- estructura;
+- bloques.
 
-- JSON válido;
-- schema_version correcta;
-- opportunity_id correcto;
-- identidad correcta;
-- arquitectura correcta;
-- URL correcta;
-- canonical correcta;
-- bloques válidos;
-- bloques autorizados;
-- SEO válido;
-- enlaces válidos;
-- no existen incidencias críticas;
-- no existen datos comerciales inventados;
-- no existen datos locales inventados;
-- no existen testimonios inventados;
-- no existen casos inventados;
-- no existen precios inventados;
-- no existen horarios inventados.
+Una posible duplicación no implica automáticamente ERROR.
 
----
-
-# 35. REGLAS DE REVIEW
-
-Debe producirse:
+Resultado:
 
 REVIEW
 
-cuando exista:
+---
 
-- información insuficiente;
-- posible duplicación;
-- diferenciación insuficiente;
-- dato ambiguo;
-- bloque condicional dudoso;
-- evidencia insuficiente;
-- necesidad de comprobación humana.
+# 37. DIFERENCIACIÓN
+
+Una landing local no debe limitarse a cambiar el nombre de la localidad.
+
+Si el contenido resulta excesivamente genérico o intercambiable:
+
+REVIEW
+
+No se debe exigir una diferenciación artificial inventando datos locales.
 
 ---
 
-# 36. REGLAS DE ERROR
+# 38. DECISIÓN SEO
 
-Debe producirse:
+La decisión SEO pertenece al sistema maestro.
 
-ERROR
-
-cuando exista:
-
-- JSON inválido;
-- schema_version incompatible;
-- opportunity_id incorrecto;
-- identidad modificada;
-- URL modificada;
-- canonical modificada;
-- bloque no autorizado;
-- id/type incorrecto;
-- dato comercial inventado;
-- testimonio inventado;
-- caso inventado;
-- precio inventado;
-- horario inventado;
-- enlace no autorizado;
-- estructura incompatible.
-
----
-
-# 37. PUBLICACIÓN
-
-El validador debe separar:
-
-VALIDADA
-
-de:
-
-PUBLICABLE
-
-Una página puede estar:
-
-READY
-
-y aun así no tener autorización para publicación.
-
-La publicación requiere además:
-
-- decisión SEO = CREAR;
-- arquitectura aprobada;
-- datos comerciales disponibles cuando sean necesarios;
-- validación completa;
-- autorización de publicación.
-
----
-
-# 38. REGLA DE BLOQUEO
-
-Si:
-
-decision_seo != CREAR
-
-entonces:
-
-publication_allowed = false
-
-Aunque la IA devuelva:
-
-READY
+La IA no puede modificarla.
 
 Ejemplo:
 
 decision_seo = INVESTIGAR
 
-IA status = READY
+La IA no puede convertirla en:
 
-Resultado:
+CREAR
 
+---
+
+# 39. PUBLICATION_ALLOWED
+
+publication_allowed debe calcularlo el validador.
+
+No debe aceptarse directamente desde la IA.
+
+Regla mínima:
+
+decision_seo != CREAR
+→ publication_allowed = false
+
+Además, debe ser false si:
+
+- status = REVIEW;
+- status = ERROR;
+- existe una incidencia crítica;
+- falta una autorización necesaria.
+
+---
+
+# 40. READY Y PUBLICACIÓN
+
+Puede existir:
+
+status = READY
+publication_allowed = false
+
+Esto es completamente válido.
+
+Ejemplo:
+
+decision_seo = INVESTIGAR
+status = READY
 publication_allowed = false
 
 ---
 
-# 39. MODO TEST
+# 41. MODO TEST
 
-El sistema puede ejecutar pruebas técnicas sin modificar la decisión real.
-
-Una prueba debe utilizar:
-
-test = true
-
-y un:
-
-opportunity_id
-
-de prueba separado.
+Las pruebas deben utilizar un identificador independiente.
 
 Ejemplo:
 
@@ -992,49 +850,127 @@ TEST-FONTANERO-MARBELLA
 
 El modo TEST:
 
-- no modifica OPP-001;
-- no autoriza publicación;
+- no modifica oportunidades reales;
+- no modifica el maestro;
+- no publica;
 - no modifica WordPress;
-- no modifica la decisión SEO.
+- no cambia decisiones SEO.
 
 ---
 
-# 40. TRAZABILIDAD
+# 42. FIXTURE TEST-FONTANERO-MARBELLA
 
-Toda validación debe registrar:
+El fixture es una prueba técnica.
 
-- opportunity_id;
-- schema_version;
-- fecha;
-- resultado;
-- errores;
-- advertencias;
-- versión del validador;
-- origen de la entrada.
+No debe interpretarse como una oportunidad real autorizada para publicación.
+
+Su objetivo es probar:
+
+- estructura;
+- identidad;
+- bloques;
+- SEO;
+- no invención;
+- validación;
+- bloqueo de publicación.
 
 ---
 
-# 41. RESULTADO DE VALIDACIÓN
+# 43. CASOS DE PRUEBA MÍNIMOS
 
-Estructura prevista:
+## TEST 01 — correcto
+
+Resultado:
+
+READY
+
+---
+
+## TEST 02 — cambio de localidad
+
+Marbella → Estepona.
+
+Resultado:
+
+ERROR
+
+---
+
+## TEST 03 — bloque no autorizado
+
+IA añade B10 cuando no está autorizado.
+
+Resultado:
+
+ERROR
+
+---
+
+## TEST 04 — teléfono inventado
+
+Resultado:
+
+ERROR
+
+---
+
+## TEST 05 — precio inventado
+
+Resultado:
+
+ERROR
+
+---
+
+## TEST 06 — contenido genérico
+
+Resultado:
+
+REVIEW
+
+---
+
+## TEST 07 — posible duplicación
+
+Resultado:
+
+REVIEW
+
+---
+
+## TEST 08 — página técnicamente correcta + INVESTIGAR
+
+Resultado:
+
+READY
+
+publication_allowed = false
+
+---
+
+# 44. SALIDA DEL VALIDADOR
+
+Formato previsto:
 
 {
   "status": "READY",
   "publication_allowed": false,
   "errors": [],
   "warnings": [],
-  "checks": {}
+  "checks": {},
+  "traceability": {}
 }
 
 ---
 
-# 42. CHECKS
+# 45. CHECKS
 
 Ejemplo:
 
 {
   "json_valid": true,
   "schema_version_valid": true,
+  "opportunity_id_valid": true,
   "identity_valid": true,
   "architecture_valid": true,
   "url_valid": true,
@@ -1049,151 +985,158 @@ Ejemplo:
 
 ---
 
-# 43. ORDEN DE VALIDACIÓN
+# 46. ERRORES Y WARNINGS
 
-El validador ejecutará:
+Los errores deben registrar:
+
+- código;
+- mensaje;
+- gravedad;
+- campo afectado cuando corresponda.
+
+Ejemplo:
+
+{
+  "code": "V005",
+  "severity": "ERROR",
+  "field": "identity.municipality",
+  "message": "La localidad generada no coincide con el contexto protegido."
+}
+
+Los warnings pueden utilizarse para incidencias no críticas.
+
+---
+
+# 47. TRAZABILIDAD
+
+La validación debe registrar:
+
+- opportunity_id;
+- fecha;
+- schema_version;
+- versión del validador;
+- resultado;
+- errores;
+- warnings;
+- origen del input.
+
+---
+
+# 48. ORDEN DE VALIDACIÓN
+
+El orden recomendado es:
 
 1. JSON
 2. schema_version
 3. opportunity_id
-4. identidad
-5. arquitectura
-6. URL
-7. canonical
-8. bloques
-9. id/type
-10. SEO
-11. datos
-12. enlaces
-13. no invención
-14. duplicación
-15. trazabilidad
-16. publicación
-
-Si falla una validación estructural crítica:
-
-se puede detener el proceso.
+4. correspondencia con modelo maestro
+5. identidad
+6. arquitectura
+7. URL
+8. canonical
+9. bloques
+10. id/type
+11. SEO
+12. datos
+13. enlaces
+14. no invención
+15. duplicación
+16. trazabilidad
+17. publicación
 
 ---
 
-# 44. RELACIÓN CON N8N
+# 49. INTEGRACIÓN CON N8N
 
-N8N recibirá:
+El validador será implementado inicialmente como lógica ejecutable dentro de N8N.
 
-INPUT IA
+Flujo:
 
-+
-
-RESULTADO VALIDADOR
-
-N8N decidirá el siguiente paso técnico según el resultado.
-
-Ejemplo:
-
-READY
+IA
 ↓
-continuar
-
-REVIEW
+Code Node / Validador
 ↓
-detener / revisión
+IF status
+├── READY
+├── REVIEW
+└── ERROR
 
-ERROR
-↓
-detener / registrar incidencia
+No se necesita inicialmente:
+
+- servidor independiente;
+- API propia;
+- aplicación externa;
+- infraestructura adicional.
 
 ---
 
-# 45. RELACIÓN CON WORDPRESS
+# 50. INTEGRACIÓN CON WORDPRESS
 
-WordPress no debe recibir directamente la salida de IA.
+WordPress nunca debe recibir directamente la salida de IA.
 
 Flujo obligatorio:
 
 IA
-
 ↓
-
 VALIDADOR
-
 ↓
-
 N8N
-
 ↓
-
 WORDPRESS
 
-Si el validador devuelve:
+Si:
 
 ERROR
 
-WordPress no recibe la página.
+no continúa.
 
-Si devuelve:
+Si:
 
 REVIEW
 
-WordPress no publica automáticamente.
+no publica automáticamente.
+
+Si:
+
+READY
+
+puede continuar siempre que:
+
+publication_allowed = true
 
 ---
 
-# 46. REGLA DE SEGURIDAD
+# 51. REGLA DE SEGURIDAD
 
-Nunca confiar únicamente en:
-
-- la IA;
-- el prompt;
-- N8N;
-- WordPress.
-
-La validación debe actuar como barrera independiente.
-
----
-
-# 47. PRUEBA FONTANERO MARBELLA
-
-Fixture:
-
-TEST-FONTANERO-MARBELLA
-
-Debe comprobar:
-
-- identidad;
-- arquitectura;
-- bloques;
-- SEO;
-- ausencia de datos comerciales;
-- ausencia de datos locales inventados;
-- ausencia de testimonios;
-- ausencia de precios;
-- bloqueo de publicación.
-
-Resultado esperado:
-
-READY o REVIEW
-
-pero:
-
-publication_allowed = false
-
----
-
-# 48. PRINCIPIO FINAL
+Ninguna capa debe confiar ciegamente en otra.
 
 La IA genera.
+
+El contexto protegido define la verdad.
 
 El validador comprueba.
 
 N8N orquesta.
 
-WordPress publica.
-
-Ninguna capa debe asumir las responsabilidades de otra.
+WordPress ejecuta la publicación autorizada.
 
 ---
 
-# 49. ESTADO DEL DOCUMENTO
+# 52. PRINCIPIO FINAL
+
+La arquitectura del sistema debe impedir que una IA pueda convertir por sí sola:
+
+- INVESTIGAR → CREAR;
+- una URL no autorizada → URL válida;
+- un dato inventado → dato real;
+- REVIEW → publicación;
+- ERROR → publicación.
+
+El validador constituye una barrera independiente entre generación y publicación.
+
+---
+
+# 53. ESTADO DEL DOCUMENTO
 
 Estado:
 
@@ -1201,7 +1144,7 @@ ACTIVO
 
 Versión:
 
-1.0
+2.0
 
 Fecha:
 
@@ -1209,8 +1152,8 @@ Fecha:
 
 Motivo:
 
-Creación del sistema formal de validación de landings.
+Consolidación del sistema de validación y alineación con el modelo maestro y el contrato IA.
 
 Siguiente evolución:
 
-convertir estas reglas en validaciones ejecutables mediante código/N8N.
+Implementación del validador como Code Node de N8N y ejecución de los casos de prueba definidos.
