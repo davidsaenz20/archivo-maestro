@@ -1,781 +1,680 @@
-Metodología Operativa del Proyecto
+METODOLOGÍA DEL PROYECTO
 
-1. Propósito de este documento
+1. OBJETIVO
 
-Este documento define el método general de trabajo del proyecto.
+Definir un sistema reproducible para investigar, diseñar, validar y automatizar una plataforma de páginas SEO locales para servicios profesionales.
 
-Su función es permitir que cualquier sesión futura pueda recuperar rápidamente:
+El sistema debe poder aplicarse inicialmente a fontanería y posteriormente a otros sectores como:
 
-- Qué estamos construyendo.
-- Qué objetivo tiene el proyecto.
-- Qué metodología debemos seguir.
-- En qué fase nos encontramos.
-- Qué está terminado.
-- Qué está pendiente.
-- Qué debemos hacer a continuación.
-- Qué reglas deben respetarse.
-- Qué información debe conservarse.
-- Cómo aplicar el método a nuevos servicios.
+- Abogados.
+- Electricistas.
+- Reformas.
+- Carpinteros.
+- Pintores.
+- Jardineros.
+- Cerrajeros.
+- Climatización.
+- Otros servicios profesionales.
 
-Este documento debe consultarse junto con "maestro.md".
-
-No sustituye a "maestro.md".
-
-"maestro.md" contiene el estado central y las decisiones consolidadas del proyecto.
-
-Este documento contiene el método de trabajo.
+La metodología debe permitir pasar desde la investigación inicial hasta la generación y publicación automatizada de páginas mediante IA + N8N + WordPress u otra infraestructura compatible.
 
 ---
 
-2. Objetivo general
+2. PRINCIPIO FUNDAMENTAL
 
-Construir una plataforma escalable de servicios profesionales capaz de generar y gestionar páginas locales de alta calidad.
+El proyecto no consiste simplemente en generar miles de páginas.
 
-La estructura conceptual principal es:
+El objetivo es construir un sistema capaz de:
 
-SERVICIO + LOCALIDAD + INTENCIÓN + INFORMACIÓN LOCAL
+1. Investigar un mercado.
+2. Identificar servicios.
+3. Identificar localidades.
+4. Analizar demanda e intención.
+5. Analizar competencia.
+6. Detectar oportunidades.
+7. Decidir qué páginas tienen sentido.
+8. Definir qué información debe contener cada página.
+9. Generar contenido útil y diferenciado.
+10. Automatizar la producción.
+11. Publicar.
+12. Medir resultados.
+13. Aprender de los resultados.
+14. Mejorar las reglas.
 
-El objetivo NO es generar el máximo número posible de páginas.
-
-El objetivo es generar únicamente páginas que tengan:
-
-- utilidad real;
-- intención adecuada;
-- potencial comercial;
-- diferenciación;
-- información suficiente;
-- sentido territorial.
-
----
-
-3. Principio fundamental
-
-La plataforma no debe funcionar como un generador masivo de páginas.
-
-Debe funcionar como un:
-
-SISTEMA DE DECISIÓN + GENERACIÓN + VALIDACIÓN + APRENDIZAJE
-
-Antes de crear una página debe existir una razón objetiva para crearla.
+La automatización debe ejecutar decisiones previamente justificadas.
 
 ---
 
-4. Jerarquía documental
+3. JERARQUÍA DE DOCUMENTOS
 
-El proyecto utiliza diferentes tipos de documentos.
+El proyecto utiliza diferentes niveles documentales.
 
-Nivel 1 — Maestro
+NIVEL 1 — MAESTRO
 
 "maestro.md"
 
+Es el documento de control general del proyecto.
+
 Contiene:
 
-- estado consolidado;
-- decisiones vigentes;
-- arquitectura oficial;
-- reglas;
-- cambios importantes;
-- historial de actualizaciones.
+- Estado general.
+- Principios.
+- Arquitectura documental.
+- Reglas de prioridad.
+- Actualizaciones importantes.
+- Situación actual.
+- Próximos pasos.
 
 ---
 
-Nivel 2 — Metodología
+NIVEL 2 — METODOLOGÍA
 
 "proyecto/metodologia.md"
 
-Contiene:
+Define:
 
-- método general;
-- fases;
-- procedimiento;
-- reglas operativas;
-- forma de trabajar;
-- criterios de reutilización.
+- Cómo trabajamos.
+- En qué orden trabajamos.
+- Qué documentos debemos crear.
+- Qué debe comprobarse antes de avanzar.
+- Cómo se investiga un nuevo servicio.
+- Cómo se pasa de investigación a automatización.
 
 ---
 
-Nivel 3 — Documentación específica
+NIVEL 3 — DOCUMENTOS ESTRUCTURALES
+
+Incluyen documentos como:
+
+- Arquitectura SEO.
+- Motor de decisión.
+- Arquitectura de landing.
+- Sistema de bloques.
+- Sistema de contenido.
+- Datos de entrada.
+- Automatización.
+
+Definen cómo funciona el sistema.
+
+---
+
+NIVEL 4 — DOCUMENTACIÓN SECTORIAL
 
 Ejemplos:
 
-- "arquitectura-seo.md"
-- "investigacion-fontaneria.md"
-- "matriz-servicios-fontaneria.md"
-- "matriz-localidades.md"
-- "motor-decision.md"
+- Investigación de fontanería.
+- Matriz de servicios de fontanería.
+- Matriz de localidades.
+- Investigación de abogados.
+- Matriz de servicios jurídicos.
 
-Estos documentos contienen el trabajo detallado de cada área.
-
----
-
-5. Regla de prioridad documental
-
-Nunca se debe asumir automáticamente que un documento antiguo tiene prioridad sobre uno posterior.
-
-Cuando exista una posible contradicción se debe comprobar:
-
-1. Fecha.
-2. Contexto.
-3. Naturaleza de la información.
-4. Si es hipótesis o decisión.
-5. Si está validada.
-6. Si ha sido posteriormente modificada.
-7. Si "maestro.md" ya fue actualizado.
-
-Una decisión nueva y validada puede sustituir una decisión anterior.
-
-Cuando esto ocurra:
-
-documento de trabajo → decisión consolidada → actualización del maestro
+Contienen información específica de cada mercado.
 
 ---
 
-6. Historial y conservación
+4. REGLA DE PRIORIDAD
 
-Todo trabajo importante debe conservarse en un archivo antes de continuar.
+Cuando dos documentos entren en contradicción:
 
-No se debe depender exclusivamente de:
+1. Primero se comprueba la fecha.
+2. Se comprueba si existe una actualización posterior.
+3. Se analiza la evidencia que originó cada decisión.
+4. Se aplica la información más reciente y mejor fundamentada.
+5. Se actualizan los documentos afectados.
+6. Se registra el cambio.
 
-- memoria;
-- conversación;
-- contexto temporal;
-- explicaciones verbales.
+No debe darse prioridad automática al documento maestro si existe información posterior y válida en documentos especializados.
 
-Si una investigación ha requerido trabajo considerable, primero debe documentarse.
-
----
-
-7. Método general
-
-El método completo es:
-
-FASE 1 — DEFINICIÓN
-
-↓
-
-FASE 2 — INVESTIGACIÓN
-
-↓
-
-FASE 3 — CONSERVACIÓN DE EVIDENCIA
-
-↓
-
-FASE 4 — CLASIFICACIÓN
-
-↓
-
-FASE 5 — MATRICES
-
-↓
-
-FASE 6 — MOTOR DE DECISIÓN
-
-↓
-
-FASE 7 — VALIDACIÓN
-
-↓
-
-FASE 8 — PRIMERA PRUEBA
-
-↓
-
-FASE 9 — MEDICIÓN
-
-↓
-
-FASE 10 — CORRECCIÓN
-
-↓
-
-FASE 11 — AUTOMATIZACIÓN
-
-↓
-
-FASE 12 — ESCALADO
+El maestro actúa como índice y documento de control, no como una fuente eterna que pueda invalidar trabajo posterior.
 
 ---
 
-8. Fase 1 — Definición
+5. SISTEMA DE ACTUALIZACIONES
 
-Antes de investigar se debe determinar:
+Las decisiones importantes deben poder actualizarse sin borrar necesariamente el historial.
 
-- Qué servicio se analiza.
-- Qué tipo de cliente existe.
-- Qué territorio se quiere cubrir.
-- Qué objetivo comercial tiene.
-- Qué tipo de páginas podrían existir.
-- Qué problema queremos resolver.
+Los documentos que evolucionen deben registrar:
 
-La arquitectura general debe quedar definida antes de automatizar.
+- Fecha.
+- Cambio.
+- Motivo.
+- Evidencia.
+- Consecuencia.
+
+Cuando una actualización contradiga información anterior, debe indicarse expresamente.
+
+La información posterior y suficientemente fundamentada puede sustituir a una decisión anterior.
 
 ---
 
-9. Fase 2 — Investigación
+6. FASES DEL PROYECTO
 
-La investigación debe realizarse antes de establecer reglas definitivas.
+FASE 1 — INVESTIGACIÓN
 
-Debe analizar:
+Objetivo:
 
-Mercado
+Comprender el mercado antes de diseñar la estructura definitiva.
 
-- Empresas existentes.
-- Directorios.
-- Competidores.
-- Servicios ofrecidos.
-- Especializaciones.
+Se investiga:
 
-SEO
-
-- Consultas.
+- Servicios.
 - Intenciones.
+- Localidades.
+- Competencia.
 - SERP.
-- Estructuras de URLs.
-- Páginas locales.
-- Páginas de servicios.
-
-Territorio
-
-- Grandes ciudades.
-- Ciudades medianas.
-- Municipios.
-- Localidades turísticas.
-- Barrios.
-- Urbanizaciones.
-- Zonas de cobertura.
-
-Negocio
-
-- Servicios de mayor valor.
-- Urgencias.
-- Tipos de cliente.
+- Directorios.
+- Empresas.
+- Demanda.
 - Potencial comercial.
-- Diferencias territoriales.
+- Diferenciación.
+- Características territoriales.
+
+Resultado
+
+Documentación sectorial y territorial.
 
 ---
 
-10. Fase 3 — Conservación de evidencia
+7. FASE 2 — MATRICES
 
-La investigación debe guardarse antes de avanzar.
+Se estructuran los datos obtenidos.
 
-Debe diferenciarse entre:
+Principales matrices:
 
-Evidencia
+- Servicios.
+- Localidades.
+- Competencia.
+- Oportunidades.
 
-Información observada en fuentes reales.
-
-Interpretación
-
-Conclusión obtenida a partir de la evidencia.
-
-Hipótesis
-
-Idea que todavía necesita validación.
-
-Decisión
-
-Regla que el proyecto adopta después de analizar la evidencia.
-
-Nunca se debe presentar una hipótesis como si fuera una decisión consolidada.
-
----
-
-11. Fase 4 — Clasificación
-
-Después de investigar se debe organizar la información.
-
-Se clasificará:
-
-Servicios
-
-- Servicio principal.
-- Especialidad.
-- Problema.
-- Urgencia.
-- Instalación.
-- Reparación.
-- Mantenimiento.
-
-Intenciones
-
-- Comercial.
-- Urgente.
-- Problema + solución.
-- Informacional.
-- Instalación.
-- Mantenimiento.
-
-Territorios
-
-- Ciudad.
-- Municipio.
-- Zona.
-- Barrio.
-- Urbanización.
-- Localidad turística.
-- Área de cobertura.
-
----
-
-12. Fase 5 — Matrices
-
-Las matrices permiten transformar la investigación en información estructurada.
-
-Como mínimo se deben estudiar:
-
-Matriz de servicios
-
-y
-
-Matriz territorial
-
-Posteriormente pueden existir matrices adicionales si aportan valor.
-
-La matriz NO debe convertirse automáticamente en una lista de URLs.
-
-Sirve para alimentar el motor de decisión.
-
----
-
-13. Unidad principal de análisis
-
-La unidad principal será:
+La combinación principal es:
 
 SERVICIO × LOCALIDAD
 
-Ejemplo:
+Resultado
 
-Desatascos × Marbella
-
-La combinación deberá analizarse mediante múltiples variables.
+Universo de combinaciones posibles para analizar.
 
 ---
 
-14. Fase 6 — Motor de decisión
+8. FASE 3 — MOTOR DE DECISIÓN
 
-El motor debe decidir entre:
+El motor analiza cada combinación.
 
-CREAR
-
-Existe suficiente justificación para crear una página independiente.
-
-AGRUPAR
-
-La intención puede satisfacerse mejor integrando el servicio dentro de otra página.
-
-NO CREAR
-
-No existe suficiente justificación.
-
----
-
-15. Variables del motor
-
-El motor deberá considerar, como mínimo:
+Variables principales:
 
 - Demanda.
 - Intención.
-- Competencia.
 - Potencial comercial.
-- Relevancia del servicio.
 - Relevancia territorial.
-- Información local disponible.
-- Diferenciación posible.
-- Tipo de cliente.
-- Estacionalidad cuando sea relevante.
-- Capacidad de generar contenido útil.
+- Competencia.
+- Diferenciación.
+- Información disponible.
+- Riesgo de duplicación.
 
-Los pesos y umbrales se definirán en "motor-decision.md".
+Resultados posibles
 
----
+- CREAR.
+- AGRUPAR.
+- INVESTIGAR.
+- NO CREAR.
 
-16. Regla de calidad
+El motor está actualmente:
 
-Una página no debe crearse únicamente porque:
+DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
 
-- exista una localidad;
-- exista un servicio;
-- exista una combinación matemática;
-- una keyword parezca interesante.
-
-Debe existir una oportunidad real.
+Los pesos y umbrales actuales son experimentales.
 
 ---
 
-17. Regla de diferenciación
+9. FASE 4 — ARQUITECTURA DE LANDING
 
-Cada página debe poder responder:
+Esta fase es obligatoria antes de automatizar la generación de páginas.
 
-¿Qué aporta esta página que no aporta una página genérica?
+Su objetivo es definir:
 
-La diferenciación puede proceder de:
+- Estructura de la landing.
+- Bloques.
+- Orden.
+- Función de cada bloque.
+- Información necesaria.
+- Elementos variables.
+- Elementos fijos.
+- Elementos opcionales.
+- Reglas de combinación.
+- Reglas de exclusión.
 
-- servicio;
-- intención;
-- territorio;
-- información local;
-- tipo de cliente;
-- problemas específicos;
+No se debe pasar directamente del motor a N8N.
+
+Primero debe existir una estructura de landing suficientemente definida.
+
+Resultado
+
+Una plantilla lógica de landing reutilizable.
+
+---
+
+10. FASE 5 — SISTEMA DE BLOQUES
+
+Cada landing estará formada por bloques independientes.
+
+Ejemplos potenciales:
+
+- Hero.
+- Propuesta de valor.
+- Servicios.
+- Problemas.
+- Cobertura.
+- Información local.
+- Proceso.
+- Urgencias.
+- FAQ.
+- CTA.
+- Elementos de confianza.
+- SEO.
+- Datos estructurados.
+
+La lista definitiva debe determinarse mediante investigación y pruebas.
+
+Cada bloque deberá definir:
+
+- Objetivo.
+- Datos de entrada.
+- Reglas.
+- Contenido que puede generar la IA.
+- Contenido que no debe inventar.
+- Condiciones de aparición.
+- Variables.
+- Salida esperada.
+
+---
+
+11. FASE 6 — SISTEMA DE CONTENIDO
+
+Una vez definidos los bloques se determinará cómo se genera el contenido.
+
+La IA no recibirá simplemente:
+
+«"Escribe una landing de fontanero en Marbella."»
+
+Recibirá información estructurada.
+
+Ejemplo:
+
+servicio
+localidad
+intención
+tipo_de_cliente
+zonas
+servicios_relacionados
+datos_locales
+información_comercial
+urgencia
+faq
+diferenciadores
+restricciones
+
+La IA deberá generar únicamente contenido compatible con los datos disponibles.
+
+No debe inventar:
+
+- empresas;
+- precios;
+- direcciones;
+- teléfonos;
+- disponibilidad;
+- certificaciones;
+- testimonios;
 - cobertura;
-- características del mercado.
+- datos locales no verificados.
 
 ---
 
-18. Fase 7 — Validación
+12. FASE 7 — DATOS DE ENTRADA
 
-Antes de escalar se debe comprobar que las decisiones del motor son razonables.
+Debe definirse un modelo estructurado para cada oportunidad.
 
-Se comprobará:
+Ejemplo conceptual:
 
-- Si las páginas seleccionadas tienen sentido.
-- Si las páginas descartadas realmente pueden descartarse.
-- Si las páginas agrupadas deberían estar agrupadas.
-- Si existe canibalización.
-- Si existe contenido insuficiente.
-- Si la arquitectura responde a la intención.
+ID
+SERVICIO
+LOCALIDAD
+PROVINCIA
+INTENCIÓN
+DEMANDA
+COMPETENCIA
+POTENCIAL_COMERCIAL
+DIFERENCIACIÓN
+INFORMACIÓN_DISPONIBLE
+COBERTURA
+URGENCIA
+TIPO_CLIENTE
+SERVICIOS_RELACIONADOS
+BLOQUES_ACTIVOS
+DECISIÓN
 
----
-
-19. Fase 8 — Primera prueba
-
-Nunca se debe empezar generando miles de páginas.
-
-Primero:
-
-1. Seleccionar un pequeño conjunto.
-2. Aplicar el motor.
-3. Crear las páginas.
-4. Revisarlas.
-5. Medir resultados.
-6. Detectar errores.
-7. Corregir reglas.
-
-La primera prueba sirve para validar el sistema.
+Este modelo será utilizado posteriormente por N8N.
 
 ---
 
-20. Fase 9 — Medición
+13. FASE 8 — GENERACIÓN CON IA
 
-La plataforma debe aprender de los resultados.
+La IA recibirá:
 
-Se deben observar, cuando sea posible:
+1. Datos estructurados.
+2. Arquitectura de landing.
+3. Bloques seleccionados.
+4. Reglas de contenido.
+5. Información verificable.
+6. Restricciones.
+
+La IA producirá:
+
+- Contenido.
+- Metadatos.
+- Elementos SEO.
+- FAQ cuando corresponda.
+- Datos estructurados cuando corresponda.
+
+La generación debe ser controlada.
+
+---
+
+14. FASE 9 — AUTOMATIZACIÓN N8N
+
+N8N será la capa de orquestación.
+
+Flujo conceptual:
+
+DATOS
+
+↓
+
+MOTOR
+
+↓
+
+DECISIÓN
+
+↓
+
+SELECCIÓN DE BLOQUES
+
+↓
+
+RECOPILACIÓN DE INFORMACIÓN
+
+↓
+
+IA
+
+↓
+
+VALIDACIÓN
+
+↓
+
+WORDPRESS
+
+↓
+
+PUBLICACIÓN
+
+↓
+
+MEDICIÓN
+
+N8N no debe tomar decisiones estratégicas que correspondan al motor.
+
+---
+
+15. FASE 10 — PUBLICACIÓN
+
+Antes de publicar una página debe comprobarse:
+
+- Contenido completo.
+- Información coherente.
+- Variables correctas.
+- Localidad correcta.
+- Servicio correcto.
+- Ausencia de información inventada.
+- Diferenciación suficiente.
+- SEO técnico.
+- Enlaces.
+- CTA.
+- Datos estructurados cuando proceda.
+
+---
+
+16. FASE 11 — MEDICIÓN
+
+Una vez publicadas las páginas se medirán:
 
 - Impresiones.
 - Clics.
 - Posiciones.
 - CTR.
 - Conversiones.
-- Consultas.
-- Páginas indexadas.
-- Páginas excluidas.
+- Contactos.
+- Llamadas.
+- Formularios.
 - Rendimiento por servicio.
 - Rendimiento por localidad.
 
-Los resultados podrán modificar las reglas.
-
 ---
 
-21. Fase 10 — Corrección
+17. FASE 12 — APRENDIZAJE
 
-Si los resultados contradicen una hipótesis:
+Los resultados reales pueden utilizarse para modificar:
 
-se modifica la hipótesis.
-
-Si los resultados demuestran que una regla no funciona:
-
-se modifica la regla.
-
-Las modificaciones importantes deben registrarse.
-
----
-
-22. Fase 11 — Automatización
-
-La automatización solo debe comenzar cuando:
-
-- la arquitectura esté definida;
-- el método esté definido;
-- el motor esté definido;
-- la primera prueba haya sido validada.
-
-La tecnología no debe utilizarse para automatizar una lógica todavía incorrecta.
-
----
-
-23. Fase 12 — Escalado
-
-Una vez validado el sistema:
-
-- ampliar servicios;
-- ampliar localidades;
-- automatizar procesos;
-- controlar calidad;
-- medir resultados;
-- detectar errores;
-- actualizar información.
-
-El escalado debe mantener los mismos criterios de calidad.
-
----
-
-24. Aplicación a nuevos servicios
-
-Fontanería es el primer caso de aplicación.
-
-Cuando se quiera estudiar otro servicio:
-
-Ejemplo:
-
-Electricista
-
-NO se debe copiar automáticamente la matriz de fontanería.
-
-Se debe repetir el método:
-
-1. Investigar el mercado.
-2. Investigar servicios.
-3. Investigar intenciones.
-4. Investigar territorios.
-5. Analizar competidores.
-6. Conservar evidencia.
-7. Crear matriz específica.
-8. Adaptar el motor cuando sea necesario.
-9. Validar.
-10. Realizar una prueba.
-11. Comparar resultados.
-12. Integrar el conocimiento general en la metodología si procede.
-
----
-
-25. Qué se puede reutilizar
-
-Se puede reutilizar:
-
-- La estructura de investigación.
-- La metodología.
-- El concepto de matrices.
-- El modelo servicio × localidad.
-- El concepto CREAR / AGRUPAR / NO CREAR.
-- La lógica de validación.
-- La metodología de pruebas.
-- El sistema de medición.
-
----
-
-26. Qué NO se debe copiar automáticamente
-
-No se deben copiar sin investigar:
-
-- Servicios.
-- Keywords.
 - Pesos.
 - Umbrales.
+- Bloques.
+- Contenido.
+- Reglas.
+- Priorización.
+- Arquitectura.
+
+Una decisión no debe modificarse únicamente por un resultado aislado.
+
+Debe existir suficiente evidencia.
+
+---
+
+18. INVESTIGACIÓN DE UN NUEVO SERVICIO
+
+Cuando se incorpore un nuevo sector:
+
+Paso 1
+
+Crear carpeta/documentación específica.
+
+Paso 2
+
+Investigar el mercado.
+
+Paso 3
+
+Identificar servicios.
+
+Paso 4
+
+Identificar intenciones.
+
+Paso 5
+
+Investigar competencia.
+
+Paso 6
+
+Investigar localidades relevantes.
+
+Paso 7
+
+Crear matrices.
+
+Paso 8
+
+Adaptar variables sectoriales del motor.
+
+Paso 9
+
+Validar oportunidades.
+
+Paso 10
+
+Adaptar arquitectura de landing si el sector lo requiere.
+
+Paso 11
+
+Definir bloques específicos.
+
+Paso 12
+
+Definir datos de entrada.
+
+Paso 13
+
+Integrar con el sistema general.
+
+Paso 14
+
+Automatizar.
+
+---
+
+19. REGLA DE REUTILIZACIÓN
+
+El sistema debe separar:
+
+COMPONENTES GENERALES
+
+Reutilizables:
+
+- Metodología.
+- Arquitectura general.
+- Motor.
+- Modelo de datos.
+- Sistema de bloques.
+- Automatización.
+- Validación.
+- Medición.
+
+COMPONENTES SECTORIALES
+
+Específicos:
+
+- Servicios.
 - Intenciones.
-- Profundidad territorial.
-- Estructuras específicas.
-- Reglas comerciales.
+- Variables.
+- Reglas.
 - Excepciones.
+- Contenido.
+- Bloques específicos.
+- Datos territoriales.
 
-Cada sector puede comportarse de manera diferente.
-
----
-
-27. Gestión del estado del proyecto
-
-En cada nueva sesión de trabajo se debe determinar:
-
-1. Dónde estamos
-
-Consultar "maestro.md".
-
-2. Qué se ha hecho
-
-Consultar los documentos correspondientes.
-
-3. Qué está pendiente
-
-Consultar el estado de la fase actual.
-
-4. Qué contradicciones existen
-
-Comparar fechas y decisiones.
-
-5. Qué toca hacer
-
-Continuar desde el siguiente paso pendiente.
-
-Nunca comenzar una fase nueva simplemente por intuición si existe una fase anterior pendiente.
+Nunca se debe copiar automáticamente una conclusión sectorial a otro servicio.
 
 ---
 
-28. Protocolo de inicio de cada sesión
+20. REGLA DE NO AUTOMATIZAR DEMASIADO PRONTO
 
-Al retomar el proyecto:
+No se debe comenzar la automatización completa mientras no estén suficientemente definidos:
 
-1. Leer "maestro.md".
-2. Identificar la fase actual.
-3. Leer el documento específico de esa fase.
-4. Revisar los últimos cambios.
-5. Comprobar si existen contradicciones.
-6. Determinar el siguiente paso.
-7. Ejecutar primero el trabajo que pueda realizarse sin intervención del usuario.
-8. Pedir al usuario únicamente las acciones que necesiten realizarse fuera del entorno disponible.
-9. Guardar el resultado antes de avanzar.
+1. Motor.
+2. Arquitectura de landing.
+3. Sistema de bloques.
+4. Modelo de datos.
+5. Reglas de contenido.
+6. Validaciones.
 
----
-
-29. Protocolo ante una nueva decisión
-
-Cuando aparezca una nueva conclusión:
-
-1. Analizar la evidencia.
-2. Compararla con decisiones anteriores.
-3. Determinar si contradice algo.
-4. Si es una hipótesis, marcarla como hipótesis.
-5. Si está validada, convertirla en decisión.
-6. Actualizar el documento correspondiente.
-7. Actualizar "maestro.md" si afecta al estado general.
-8. Registrar la fecha.
+Esto evita construir una automatización sobre una arquitectura todavía cambiante.
 
 ---
 
-30. Protocolo de conservación
+21. ORDEN ACTUAL DEL TRABAJO
 
-Ningún trabajo importante debe quedar únicamente en la conversación.
+Estado actual:
 
-Si se realiza:
+COMPLETADO
 
-- investigación;
-- análisis;
-- matriz;
-- arquitectura;
-- decisión;
-- regla;
-- prueba;
+- Maestro.
+- Metodología base.
+- Investigación inicial de fontanería.
+- Matriz de servicios.
+- Matriz territorial.
+- Arquitectura SEO.
+- Motor de decisión.
 
-debe guardarse en el documento correspondiente antes de pasar a una fase posterior.
+EN CURSO
 
----
+Diseño de la arquitectura de landing y sistema de bloques.
 
-31. Estado operativo actual
+DESPUÉS
 
-Proyecto general
-
-EN DESARROLLO
-
-Arquitectura SEO
-
-DEFINIDA CONCEPTUALMENTE
-
-Investigación de fontanería
-
-CONSOLIDADA
-
-Matriz de servicios
-
-ESTRUCTURADA
-
-Matriz territorial
-
-ESTRUCTURADA
-
-Metodología
-
-DOCUMENTO OPERATIVO EN CREACIÓN
-
-Motor de decisión
-
-PENDIENTE DE FINALIZAR
-
-Validación
-
-PENDIENTE
-
-Primera prueba
-
-PENDIENTE
-
-Automatización
-
-PENDIENTE
-
-Escalado
-
-PENDIENTE
+1. Arquitectura de landing.
+2. Sistema de bloques.
+3. Modelo de datos de cada landing.
+4. Sistema de prompts/contenido.
+5. Sistema de validación.
+6. Diseño del flujo N8N.
+7. Integración con WordPress.
+8. Primera prueba controlada.
+9. Medición.
+10. Optimización.
 
 ---
 
-32. Próximo paso obligatorio
+22. CONTROL DE COHERENCIA
 
-Una vez guardado este documento:
+Antes de pasar de una fase a otra se debe comprobar:
 
-NO empezar todavía la automatización.
+- Que los documentos no se contradigan.
+- Que las reglas estén actualizadas.
+- Que el maestro refleje el estado real.
+- Que las decisiones nuevas estén registradas.
+- Que no se haya perdido información de investigación.
+- Que el siguiente paso esté claramente definido.
 
-El siguiente paso será:
-
-finalizar "motor-decision.md"
-
-Después:
-
-auditar todos los documentos contra "maestro.md".
-
-Después:
-
-realizar la primera prueba.
+Si existe una contradicción, se detiene el avance y se corrigen primero los documentos.
 
 ---
 
-33. Regla final
+23. REGLA PARA EL TRABAJO CON IA
 
-El proyecto debe avanzar siempre siguiendo esta lógica:
+La IA debe interpretar siempre:
 
-INVESTIGAR
+1. Maestro.
+2. Metodología.
+3. Documentos estructurales relevantes.
+4. Documentación sectorial relevante.
+5. Actualizaciones posteriores.
 
-↓
+No debe asumir que un documento antiguo tiene prioridad simplemente por ser más general.
 
-CONSERVAR
+Cuando exista contradicción, debe analizar:
 
-↓
+- fecha;
+- evidencia;
+- contexto;
+- actualización;
+- dependencia entre documentos.
 
-ESTRUCTURAR
+---
 
-↓
+24. REGISTRO DE ACTUALIZACIÓN
 
-DECIDIR
+2026-08-23
 
-↓
+Se actualiza la metodología para reflejar correctamente el estado actual del proyecto.
 
-VALIDAR
+El motor de decisión queda definido, aunque todavía pendiente de validación real.
 
-↓
+Se incorpora explícitamente una nueva fase entre el motor y la automatización:
 
-PROBAR
+ARQUITECTURA DE LANDING → SISTEMA DE BLOQUES → SISTEMA DE CONTENIDO → DATOS DE ENTRADA → IA → N8N
 
-↓
+Se establece que N8N no debe diseñar la arquitectura ni tomar decisiones estratégicas.
 
-MEDIR
+También se define que la plataforma debe separar componentes generales reutilizables de componentes específicos de cada sector.
 
-↓
-
-CORREGIR
-
-↓
-
-AUTOMATIZAR
-
-↓
-
-ESCALAR
-
-Si existe información suficiente para avanzar, se avanza.
-
-Si falta información crítica, se investiga.
-
-Si una decisión contradice una decisión anterior, se analiza y se actualiza la versión vigente.
-
-Si un trabajo importante no está documentado, primero se documenta y después se continúa.
-
-El objetivo no es avanzar rápido.
-
-El objetivo es construir un sistema que pueda seguir funcionando aunque el proyecto crezca enormemente y aunque pase tiempo entre una sesión y otra.
+El siguiente trabajo prioritario es diseñar la arquitectura de landing y los bloques que permitirán posteriormente generar páginas mediante IA de forma controlada y reutilizable.
