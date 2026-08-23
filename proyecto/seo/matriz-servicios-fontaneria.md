@@ -1,407 +1,476 @@
-Matriz de Servicios de Fontanería
+Perfecto. Ahora vamos con el archivo 4:
 
-1. Objetivo
+proyecto/seo/matriz-servicios-fontaneria.md
 
-Esta matriz organiza los servicios de fontanería identificados durante la investigación.
+Aquí tampoco vamos a meter el progreso general del proyecto. La matriz debe ser un documento de trabajo sectorial, con sus criterios, clasificación y actualizaciones propias.
 
-Su finalidad es servir como base para:
+Sustituye todo el contenido por este:
 
-- Arquitectura SEO.
-- Clasificación de servicios.
-- Detección de intenciones.
-- Selección de páginas potenciales.
-- Motor de decisión.
-- Primera prueba.
-- Posterior automatización.
+Matriz de Servicios — Fontanería
 
-Esta matriz NO significa que todos los servicios deban tener una URL propia.
+1. Función del documento
 
-La decisión final dependerá de demanda, intención, competencia, localidad, diferenciación y potencial comercial.
+Esta matriz organiza los servicios del sector de fontanería que pueden formar parte de la plataforma.
+
+Su función es:
+
+- Identificar servicios.
+- Agrupar servicios relacionados.
+- Diferenciar intenciones.
+- Detectar posibles oportunidades.
+- Proporcionar inputs al motor de decisión.
+- Facilitar futuras validaciones.
+
+La existencia de un servicio en esta matriz no implica automáticamente la creación de una página independiente.
+
+La decisión corresponde al motor.
 
 ---
 
-2. Categorías principales
+2. Principio de clasificación
+
+Los servicios deben clasificarse según:
+
+- Necesidad del usuario.
+- Intención.
+- Tipo de problema.
+- Tipo de solución.
+- Potencial comercial.
+- Diferenciación.
+- Relación con otros servicios.
+- Posibilidad de crear contenido útil.
+
+La clasificación puede evolucionar a medida que aparezcan nuevos datos.
+
+---
+
+3. Categorías principales
 
 A. Fontanería general
 
-Servicios relacionados con reparaciones e instalaciones generales.
+Servicios relacionados con trabajos generales de fontanería.
 
-Servicio| Intención| Potencial de página
-Fontanero| Comercial| Alto
-Fontanería general| Comercial| Alto
-Reparaciones de fontanería| Comercial| Medio/Alto
-Instalaciones de fontanería| Comercial| Medio/Alto
-Mantenimiento de fontanería| Comercial| Medio
-Servicio de fontanería| Comercial| Alto
+Ejemplos:
+
+- Fontanero.
+- Empresa de fontanería.
+- Servicios de fontanería.
+- Reparaciones generales.
 
 ---
 
 B. Fugas de agua
 
-Categoría con intención comercial y de urgencia elevada.
+Servicios relacionados con detección y reparación.
 
-Servicio| Intención| Potencial
-Reparación de fugas| Comercial/Urgente| Alto
-Detección de fugas| Comercial| Alto
-Fugas de agua| Problema + solución| Alto
-Fugas en tuberías| Problema + solución| Medio/Alto
-Fugas en vivienda| Problema + solución| Medio
-Reparación de escapes de agua| Comercial/Urgente| Medio
+Ejemplos:
 
-Observación
-
-Las fugas pueden constituir una categoría independiente porque responden a una necesidad concreta y urgente.
-
----
-
-3. Desatascos
-
-Categoría claramente diferenciada.
-
-Servicio| Intención| Potencial
-Desatascos| Comercial| Alto
-Desatascos urgentes| Comercial/Urgente| Alto
-Desatascos 24 horas| Comercial/Urgente| Alto
-Desatasco de tuberías| Comercial| Alto
-Desatasco de fregaderos| Problema + solución| Medio
-Desatasco de baños| Problema + solución| Medio
-Desatasco de WC| Problema + solución| Medio
-Desatasco de desagües| Problema + solución| Medio/Alto
-
-Observación
-
-Los desatascos deben estudiarse como una familia de servicios independiente de la fontanería general.
-
----
-
-4. Tuberías
-
-Servicio| Intención| Potencial
-Reparación de tuberías| Comercial| Alto
-Cambio de tuberías| Comercial| Medio/Alto
-Instalación de tuberías| Comercial| Medio
-Fugas en tuberías| Problema + solución| Alto
-Sustitución de tuberías| Comercial| Medio
-Reparación de tuberías de agua| Comercial| Medio/Alto
-
----
-
-5. Agua caliente
-
-Servicio| Intención| Potencial
-Reparación de agua caliente| Problema + solución| Alto
-Falta de agua caliente| Problema + solución| Medio/Alto
-Instalación de agua caliente| Comercial| Medio
-Mantenimiento de agua caliente| Comercial| Medio
-
-Esta categoría puede relacionarse directamente con termos y calentadores.
-
----
-
-6. Termos eléctricos
-
-Servicio| Intención| Potencial
-Reparación de termos| Comercial| Alto
-Instalación de termos| Comercial| Alto
-Cambio de termo eléctrico| Comercial| Alto
-Termo eléctrico| Comercial| Alto
-Mantenimiento de termos| Comercial| Medio
-Termo eléctrico averiado| Problema + solución| Alto
-
-Observación
-
-Los termos presentan una intención de servicio bastante concreta y pueden justificar páginas específicas en determinadas localidades.
-
----
-
-7. Calentadores
-
-Servicio| Intención| Potencial
-Reparación de calentadores| Comercial| Alto
-Instalación de calentadores| Comercial| Alto
-Cambio de calentador| Comercial| Alto
-Calentador averiado| Problema + solución| Alto
-Mantenimiento de calentadores| Comercial| Medio
-
----
-
-8. Grifos
-
-Servicio| Intención| Potencial
-Reparación de grifos| Comercial| Medio
-Cambio de grifos| Comercial| Medio
-Instalación de grifos| Comercial| Medio
-Grifo con fuga| Problema + solución| Medio/Alto
-
-No se debe asumir que todos estos servicios necesitan URL independiente.
-
----
-
-9. Sanitarios y WC
-
-Servicio| Intención| Potencial
-Reparación de WC| Problema + solución| Medio
-Instalación de WC| Comercial| Medio
-Reparación de cisternas| Problema + solución| Medio/Alto
-Cambio de cisterna| Comercial| Medio
-Reparación de sanitarios| Comercial| Medio
-Instalación de sanitarios| Comercial| Medio
-
----
-
-10. Urgencias
-
-La urgencia es una dimensión transversal.
-
-Servicio| Intención| Potencial
-Fontanero urgente| Urgente| Alto
-Fontanero 24 horas| Urgente| Alto
-Fontanería urgente| Urgente| Alto
-Desatascos urgentes| Urgente| Alto
-Reparación urgente de fugas| Urgente| Alto
-
-Regla
-
-No crear automáticamente una página de urgencias para cada servicio y localidad.
-
-Debe existir suficiente intención y posibilidad de diferenciación.
-
----
-
-11. Instalaciones
-
-Servicio| Intención| Potencial
-Instalaciones de fontanería| Comercial| Medio/Alto
-Instalación de tuberías| Comercial| Medio
-Instalación de termos| Comercial| Alto
-Instalación de calentadores| Comercial| Alto
-Instalación de sanitarios| Comercial| Medio
-Instalación de grifos| Comercial| Medio
-
----
-
-12. Mantenimiento
-
-Servicio| Intención| Potencial
-Mantenimiento de fontanería| Comercial| Medio
-Mantenimiento de tuberías| Comercial| Medio
-Mantenimiento de termos| Comercial| Medio
-Mantenimiento de calentadores| Comercial| Medio
-
-El mantenimiento puede tener mayor importancia en:
-
-- Comunidades.
-- Hoteles.
-- Restaurantes.
-- Negocios.
-- Urbanizaciones.
-- Viviendas de uso turístico.
-
----
-
-13. Clasificación por intención
-
-Intención comercial directa
-
-- Fontanero.
-- Fontanería.
-- Desatascos.
 - Reparación de fugas.
+- Detección de fugas.
+- Fugas de agua.
+- Fugas en tuberías.
+- Fugas ocultas.
+
+---
+
+C. Desatascos
+
+Servicios relacionados con obstrucciones y atascos.
+
+Ejemplos:
+
+- Desatascos.
+- Desatascos urgentes.
+- Desatascos de tuberías.
+- Desatascos de fregaderos.
+- Desatascos de WC.
+- Desatascos de desagües.
+
+---
+
+D. Tuberías
+
+Servicios relacionados con instalación, reparación o sustitución.
+
+Ejemplos:
+
 - Reparación de tuberías.
+- Sustitución de tuberías.
+- Instalación de tuberías.
+- Tuberías rotas.
+- Tuberías atascadas.
+
+---
+
+E. Agua caliente
+
+Servicios relacionados con producción y suministro de agua caliente.
+
+Ejemplos:
+
 - Reparación de termos.
 - Instalación de termos.
 - Reparación de calentadores.
 - Instalación de calentadores.
+- Averías de agua caliente.
 
-Intención urgente
+---
+
+F. Grifería y sanitarios
+
+Ejemplos:
+
+- Reparación de grifos.
+- Instalación de grifos.
+- Reparación de cisternas.
+- Reparación de sanitarios.
+- Instalación de sanitarios.
+
+---
+
+G. Instalaciones
+
+Servicios de instalación.
+
+Ejemplos:
+
+- Instalaciones de fontanería.
+- Instalación de tuberías.
+- Instalación de sanitarios.
+- Instalación de grifería.
+- Instalación de sistemas de agua.
+
+---
+
+H. Mantenimiento
+
+Servicios preventivos y periódicos.
+
+Ejemplos:
+
+- Mantenimiento de instalaciones.
+- Revisión de fontanería.
+- Mantenimiento de tuberías.
+- Mantenimiento preventivo.
+
+---
+
+I. Urgencias
+
+Servicios con intención inmediata.
+
+Ejemplos:
 
 - Fontanero urgente.
 - Fontanero 24 horas.
 - Desatascos urgentes.
-- Fugas urgentes.
-- Reparaciones urgentes.
+- Reparación urgente de fugas.
 
-Intención problema + solución
-
-- Fuga de agua.
-- Tubería rota.
-- Termo averiado.
-- Calentador averiado.
-- WC atascado.
-- Cisternas con problemas.
-- Falta de agua caliente.
-
-Intención de instalación
-
-- Instalación de termos.
-- Instalación de calentadores.
-- Instalación de tuberías.
-- Instalación de sanitarios.
-- Instalación de grifos.
-
-Intención de mantenimiento
-
-- Mantenimiento de fontanería.
-- Mantenimiento de instalaciones.
-- Mantenimiento de termos.
-- Mantenimiento de calentadores.
+La urgencia puede modificar la prioridad de una combinación.
 
 ---
 
-14. Clasificación por potencial inicial
+4. Matriz conceptual
 
-Nivel A — Alta prioridad para investigar
+Servicio| Categoría| Intención principal| Posible diferenciación| Evaluación
+Fontanero| General| Contratación| Localidad + cobertura| Motor
+Reparación de fugas| Fugas| Problema + contratación| Tipo de fuga + localidad| Motor
+Detección de fugas| Fugas| Servicio especializado| Método + localidad| Motor
+Desatascos| Desatascos| Problema + contratación| Tipo de atasco + localidad| Motor
+Reparación de tuberías| Tuberías| Reparación| Tipo de instalación + localidad| Motor
+Termos| Agua caliente| Reparación/instalación| Tipo de equipo + localidad| Motor
+Calentadores| Agua caliente| Reparación/instalación| Tipo de equipo + localidad| Motor
+Grifos| Grifería| Reparación/instalación| Tipo de trabajo + localidad| Motor
+Sanitarios| Sanitarios| Reparación/instalación| Tipo de sanitario + localidad| Motor
+Mantenimiento| Mantenimiento| Comercial/servicio| Tipo de cliente + localidad| Motor
+Fontanero urgente| Urgencias| Contratación inmediata| Cobertura + disponibilidad| Motor
+Fontanero 24 horas| Urgencias| Contratación inmediata| Disponibilidad real| Motor
 
-- Fontanero.
-- Fontanero + localidad.
-- Desatascos.
-- Desatascos + localidad.
-- Reparación de fugas.
-- Fugas + localidad.
-- Fontanero urgente.
-- Fontanero 24 horas.
-- Reparación de termos.
-- Instalación de termos.
-- Reparación de calentadores.
-- Instalación de calentadores.
-- Reparación de tuberías.
+---
 
-Nivel B — Investigar según localidad
+5. Regla de independencia de servicios
 
-- Agua caliente.
-- Tuberías.
-- Sanitarios.
-- WC.
-- Cisternas.
-- Grifos.
-- Instalaciones.
+Dos servicios no deben tener automáticamente páginas separadas solo porque tengan nombres diferentes.
+
+Debe estudiarse:
+
+- Intención.
+- SERP.
+- Demanda.
+- Contenido necesario.
+- Diferenciación.
+- Potencial comercial.
+
+Si dos servicios satisfacen esencialmente la misma intención, puede ser mejor AGRUPAR.
+
+---
+
+6. Regla de especialización
+
+Un servicio puede merecer una página independiente cuando:
+
+- Tiene intención propia.
+- Existe demanda suficiente.
+- Existe potencial comercial.
+- Puede explicarse de forma útil.
+- Tiene diferenciación.
+- No genera una página redundante.
+
+---
+
+7. Regla de urgencia
+
+La palabra “urgente”, “24 horas” o equivalente no debe generar automáticamente una nueva URL.
+
+Primero debe comprobarse:
+
+- Intención.
+- Demanda.
+- SERP.
+- Disponibilidad real del servicio.
+- Diferenciación.
+- Potencial comercial.
+
+La urgencia puede convertirse en:
+
+- página independiente;
+- sección;
+- atributo;
+- filtro;
+- agrupación;
+
+dependiendo del resultado del análisis.
+
+---
+
+8. Regla de equipos y marcas
+
+Servicios relacionados con equipos concretos, como termos o calentadores, deben analizarse según:
+
+- Tipo de equipo.
+- Intención.
+- Reparación.
+- Instalación.
 - Mantenimiento.
+- Marca.
+- Demanda.
+- Competencia.
 
-Nivel C — No crear automáticamente
-
-Servicios muy específicos o con baja diferenciación potencial.
-
-Su creación dependerá de datos reales de búsqueda e intención.
+No deben generarse automáticamente páginas por cada marca o modelo.
 
 ---
 
-15. Relación servicio + localidad
+9. Regla de cliente
 
-La unidad principal de análisis será:
+Cuando un servicio tenga intenciones diferentes según el cliente, debe estudiarse la posibilidad de diferenciación.
+
+Tipos de cliente potenciales:
+
+- Particular.
+- Comunidad.
+- Empresa.
+- Hotel.
+- Restaurante.
+- Local comercial.
+- Administrador de fincas.
+
+Una diferencia de cliente solo justifica una página cuando modifica realmente la intención o el contenido necesario.
+
+---
+
+10. Relación con localidades
+
+La matriz de servicios debe cruzarse posteriormente con:
+
+"matriz-localidades.md"
+
+para analizar:
 
 SERVICIO × LOCALIDAD
 
+No se deben generar todas las combinaciones posibles.
+
+El motor debe evaluar cada combinación.
+
+---
+
+11. Priorización conceptual
+
+Los servicios pueden priorizarse inicialmente como:
+
+Alta prioridad
+
+Servicios con:
+
+- intención comercial clara;
+- problema urgente;
+- potencial comercial elevado;
+- alta relevancia local.
+
+Ejemplos potenciales:
+
+- Fontanero.
+- Desatascos.
+- Reparación de fugas.
+- Fontanero urgente.
+
+Prioridad media
+
+Servicios con intención comercial pero menor urgencia.
+
 Ejemplos:
 
-- Fontanero × Marbella.
-- Desatascos × Marbella.
-- Fugas × Marbella.
-- Termos × Marbella.
-- Calentadores × Marbella.
-- Fontanero urgente × Marbella.
-
-Cada combinación será evaluada individualmente.
-
----
-
-16. Regla de agrupación
-
-Servicios relacionados pueden agruparse en una página cuando:
-
-- La intención sea prácticamente la misma.
-- La demanda individual sea insuficiente.
-- No exista diferenciación suficiente.
-- Una página conjunta responda mejor a la necesidad del usuario.
-- La separación genere contenido pobre o redundante.
-
-Ejemplo conceptual:
-
-Una localidad pequeña podría tener una página general de:
-
-Fontanero + localidad
-
-que incluya:
-
-- Fugas.
-- Tuberías.
-- Grifos.
-- Sanitarios.
+- Instalaciones.
 - Termos.
 - Calentadores.
+- Tuberías.
 
-Mientras que una ciudad grande podría justificar páginas independientes para algunos de ellos.
+Prioridad variable
 
----
+Servicios cuya oportunidad depende mucho de localidad, cliente o demanda.
 
-17. Regla de separación
+Ejemplos:
 
-Un servicio puede justificar página propia cuando:
+- Mantenimiento.
+- Servicios muy específicos.
+- Servicios para determinados equipos.
 
-- Tiene intención claramente diferenciada.
-- Existe demanda suficiente.
-- Tiene competencia específica.
-- Tiene potencial comercial.
-- Permite contenido útil y diferenciado.
-- Existe información local suficiente.
-- La separación mejora la experiencia del usuario.
+Estas prioridades son orientativas y deben validarse mediante datos.
 
 ---
 
-18. Variables que faltan por investigar
+12. Información necesaria para el motor
 
-La matriz todavía NO determina definitivamente qué URLs crear.
+Para cada servicio se intentará obtener:
 
-Para cada servicio habrá que estudiar:
-
-- Volumen de búsqueda.
-- Variantes de búsqueda.
+- Nombre.
+- Sinónimos.
+- Variantes.
 - Intención.
+- Demanda.
 - Competencia.
-- SERP.
-- CPC cuando sea útil.
-- Localidad.
-- Estacionalidad.
 - Potencial comercial.
-- Posibilidad de diferenciación.
-
-Estas variables alimentarán el motor de decisión.
-
----
-
-19. Regla principal
-
-La matriz NO es una lista de URLs.
-
-Es una clasificación de servicios e intenciones que posteriormente se cruzará con:
-
-LOCALIDADES
-
-y con los datos de:
-
-DEMANDA + COMPETENCIA + INFORMACIÓN LOCAL + POTENCIAL COMERCIAL
-
-Solo después se decidirá qué páginas deben existir.
+- Localidades relevantes.
+- Diferenciación posible.
+- Servicios relacionados.
+- Riesgo de duplicación.
+- Información disponible.
 
 ---
 
-20. Estado
+13. Estados de cada servicio
 
-Matriz de servicios:
+Cada servicio puede encontrarse en:
 
-ESTRUCTURADA — PENDIENTE DE VALIDACIÓN CON DATOS
+IDENTIFICADO
 
-Arquitectura SEO:
+Detectado durante la investigación.
 
-DEFINIDA CONCEPTUALMENTE
+INVESTIGADO
 
-Matriz territorial:
+Existe información suficiente para analizarlo.
 
-SIGUIENTE FASE
+PRIORIZADO
 
-Motor de decisión:
+Se considera relevante para una prueba.
 
-POSTERIOR A LAS MATRICES
+VALIDADO
 
-Primera prueba:
+Su comportamiento ha sido comprobado.
 
-PENDIENTE
+AGRUPADO
+
+Se ha decidido integrarlo con otro servicio.
+
+DESCARTADO
+
+No justifica una oportunidad independiente.
+
+---
+
+14. Regla de evidencia
+
+Toda decisión importante sobre un servicio debe poder justificarse mediante:
+
+- Datos.
+- SERP.
+- Competencia.
+- Investigación.
+- Información comercial.
+- Resultados reales.
+
+No se debe convertir una intuición en una regla permanente sin validación.
+
+---
+
+15. Relación con otros documentos
+
+Esta matriz utiliza información procedente de:
+
+"investigacion-fontaneria.md"
+
+y proporciona información para:
+
+"matriz-localidades.md"
+
+y:
+
+"motor-decision.md"
+
+La metodología general se encuentra en:
+
+"proyecto/metodologia.md"
+
+---
+
+16. Reutilización
+
+Esta matriz es específica de fontanería.
+
+Cuando se trabaje con otro sector:
+
+NO se copiará como matriz definitiva.
+
+Se reutilizará únicamente su estructura de trabajo.
+
+Para abogados, por ejemplo, se investigarán de nuevo:
+
+- especialidades;
+- servicios;
+- intenciones;
+- tipos de cliente;
+- demanda;
+- competencia;
+- factores territoriales;
+- potencial comercial.
+
+---
+
+17. Actualizaciones
+
+Las modificaciones importantes de esta matriz se registrarán al final indicando:
+
+- Fecha.
+- Qué se modifica.
+- Motivo.
+- Evidencia.
+- Consecuencia.
+
+Si una actualización contradice una clasificación anterior, se revisará la información previa antes de modificarla.
+
+---
+
+18. Registro de actualización
+
+2026-08-23
+
+Se consolida la clasificación inicial de servicios de fontanería.
+
+Se establece que:
+
+- La matriz es un inventario estructurado.
+- La presencia de un servicio no implica creación automática de URL.
+- Las combinaciones deben pasar por el motor.
+- La urgencia no genera automáticamente una página.
+- La matriz es específica de fontanería.
+- La estructura metodológica sí puede reutilizarse en otros servicios.
