@@ -28,18 +28,21 @@ El objetivo es construir un sistema capaz de:
 
 1. Investigar un mercado.
 2. Identificar servicios.
-3. Identificar localidades.
-4. Analizar demanda e intención.
-5. Analizar competencia.
-6. Detectar oportunidades.
-7. Decidir qué páginas tienen sentido.
-8. Definir qué información debe contener cada página.
-9. Generar contenido útil y diferenciado.
-10. Automatizar la producción.
-11. Publicar.
-12. Medir resultados.
-13. Aprender de los resultados.
-14. Mejorar las reglas.
+3. Identificar subservicios y especialidades.
+4. Identificar localidades.
+5. Analizar demanda e intención.
+6. Analizar competencia.
+7. Detectar oportunidades.
+8. Decidir qué combinaciones merecen una página.
+9. Determinar la estructura URL correspondiente.
+10. Definir qué información debe contener cada página.
+11. Generar contenido útil y diferenciado.
+12. Validar el contenido.
+13. Automatizar la producción.
+14. Publicar.
+15. Medir resultados.
+16. Aprender de los resultados.
+17. Mejorar las reglas.
 
 La automatización debe ejecutar decisiones previamente justificadas.
 
@@ -79,6 +82,7 @@ Define:
 - Qué debe comprobarse antes de avanzar.
 - Cómo se investiga un nuevo servicio.
 - Cómo se pasa de investigación a automatización.
+- Qué responsabilidades tiene cada capa del sistema.
 
 ---
 
@@ -88,10 +92,12 @@ Incluyen documentos como:
 
 - Arquitectura SEO.
 - Motor de decisión.
+- Arquitectura de URLs.
 - Arquitectura de landing.
 - Sistema de bloques.
+- Modelo de datos.
 - Sistema de contenido.
-- Datos de entrada.
+- Validación.
 - Automatización.
 
 Definen cómo funciona el sistema.
@@ -112,6 +118,27 @@ Contienen información específica de cada mercado.
 
 ---
 
+NIVEL 5 — EVIDENCIAS Y DECISIONES
+
+Debe conservarse la información necesaria para poder reconstruir por qué se tomó una decisión.
+
+Puede incluir:
+
+- Fuentes consultadas.
+- URLs analizadas.
+- SERP observadas.
+- Competidores.
+- Observaciones.
+- Datos relevantes.
+- Fecha de investigación.
+- Decisiones derivadas.
+- Versiones del motor utilizadas.
+- Resultados de validaciones.
+
+La memoria de la conversación no sustituye esta documentación.
+
+---
+
 4. REGLA DE PRIORIDAD
 
 Cuando dos documentos entren en contradicción:
@@ -125,7 +152,7 @@ Cuando dos documentos entren en contradicción:
 
 No debe darse prioridad automática al documento maestro si existe información posterior y válida en documentos especializados.
 
-El maestro actúa como índice y documento de control, no como una fuente eterna que pueda invalidar trabajo posterior.
+El maestro actúa como documento de control y referencia general, no como una fuente inmutable que pueda invalidar trabajo posterior.
 
 ---
 
@@ -149,6 +176,8 @@ La información posterior y suficientemente fundamentada puede sustituir a una d
 
 6. FASES DEL PROYECTO
 
+El proyecto seguirá las siguientes fases.
+
 FASE 1 — INVESTIGACIÓN
 
 Objetivo:
@@ -158,6 +187,7 @@ Comprender el mercado antes de diseñar la estructura definitiva.
 Se investiga:
 
 - Servicios.
+- Subservicios.
 - Intenciones.
 - Localidades.
 - Competencia.
@@ -168,10 +198,11 @@ Se investiga:
 - Potencial comercial.
 - Diferenciación.
 - Características territoriales.
+- Información local.
 
 Resultado
 
-Documentación sectorial y territorial.
+Documentación sectorial, territorial y evidencias.
 
 ---
 
@@ -182,6 +213,7 @@ Se estructuran los datos obtenidos.
 Principales matrices:
 
 - Servicios.
+- Subservicios.
 - Localidades.
 - Competencia.
 - Oportunidades.
@@ -190,9 +222,15 @@ La combinación principal es:
 
 SERVICIO × LOCALIDAD
 
+También pueden existir:
+
+SERVICIO × SUBSERVICIO × LOCALIDAD
+
 Resultado
 
 Universo de combinaciones posibles para analizar.
+
+Las matrices deben conservar suficiente información para saber de dónde procede cada conclusión importante.
 
 ---
 
@@ -210,6 +248,7 @@ Variables principales:
 - Diferenciación.
 - Información disponible.
 - Riesgo de duplicación.
+- Utilidad potencial.
 
 Resultados posibles
 
@@ -222,19 +261,66 @@ El motor está actualmente:
 
 DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
 
-Los pesos y umbrales actuales son experimentales.
+Los pesos y umbrales actuales son experimentales hasta completar las pruebas.
 
 ---
 
-9. FASE 4 — ARQUITECTURA DE LANDING
+9. FASE 4 — ARQUITECTURA DE URLs
 
-Esta fase es obligatoria antes de automatizar la generación de páginas.
+Esta fase transforma una oportunidad aprobada por el motor en una URL concreta.
 
-Su objetivo es definir:
+La estructura base es:
 
-- Estructura de la landing.
-- Bloques.
-- Orden.
+"/{servicio}/{localidad}/"
+
+o:
+
+"/{servicio}/{subservicio}/{localidad}/"
+
+Ejemplos:
+
+"/fontanero/marbella/"
+
+"/fontanero/desatascos/marbella/"
+
+La existencia de un servicio, subservicio y localidad no genera automáticamente una URL.
+
+Primero debe existir una decisión válida del motor.
+
+Responsabilidades
+
+El motor decide:
+
+- Si existe oportunidad.
+- Si merece una página.
+- Si debe agruparse.
+- Si necesita investigación.
+- Si debe descartarse.
+
+La arquitectura de URLs determina:
+
+- Estructura.
+- Jerarquía.
+- Slugs.
+- Profundidad.
+- Relación entre servicio, subservicio y localidad.
+
+La IA no decide libremente la URL.
+
+Resultado
+
+Una URL estructurada y asociada a una oportunidad concreta.
+
+---
+
+10. FASE 5 — ARQUITECTURA DE LANDING
+
+Esta fase define la estructura de la página correspondiente a una URL validada.
+
+Debe determinar:
+
+- Estructura.
+- Orden de bloques.
 - Función de cada bloque.
 - Información necesaria.
 - Elementos variables.
@@ -243,17 +329,13 @@ Su objetivo es definir:
 - Reglas de combinación.
 - Reglas de exclusión.
 
-No se debe pasar directamente del motor a N8N.
-
-Primero debe existir una estructura de landing suficientemente definida.
-
 Resultado
 
 Una plantilla lógica de landing reutilizable.
 
 ---
 
-10. FASE 5 — SISTEMA DE BLOQUES
+11. FASE 6 — SISTEMA DE BLOQUES
 
 Cada landing estará formada por bloques independientes.
 
@@ -286,57 +368,21 @@ Cada bloque deberá definir:
 - Variables.
 - Salida esperada.
 
----
+Resultado
 
-11. FASE 6 — SISTEMA DE CONTENIDO
-
-Una vez definidos los bloques se determinará cómo se genera el contenido.
-
-La IA no recibirá simplemente:
-
-«"Escribe una landing de fontanero en Marbella."»
-
-Recibirá información estructurada.
-
-Ejemplo:
-
-servicio
-localidad
-intención
-tipo_de_cliente
-zonas
-servicios_relacionados
-datos_locales
-información_comercial
-urgencia
-faq
-diferenciadores
-restricciones
-
-La IA deberá generar únicamente contenido compatible con los datos disponibles.
-
-No debe inventar:
-
-- empresas;
-- precios;
-- direcciones;
-- teléfonos;
-- disponibilidad;
-- certificaciones;
-- testimonios;
-- cobertura;
-- datos locales no verificados.
+Un sistema modular de bloques reutilizable.
 
 ---
 
-12. FASE 7 — DATOS DE ENTRADA
+12. FASE 7 — MODELO DE DATOS
 
-Debe definirse un modelo estructurado para cada oportunidad.
+Debe definirse un modelo estructurado para cada oportunidad y cada landing.
 
 Ejemplo conceptual:
 
 ID
 SERVICIO
+SUBSERVICIO
 LOCALIDAD
 PROVINCIA
 INTENCIÓN
@@ -351,35 +397,92 @@ TIPO_CLIENTE
 SERVICIOS_RELACIONADOS
 BLOQUES_ACTIVOS
 DECISIÓN
+URL
 
-Este modelo será utilizado posteriormente por N8N.
+El modelo podrá ampliarse cuando las pruebas lo requieran.
 
----
+Resultado
 
-13. FASE 8 — GENERACIÓN CON IA
-
-La IA recibirá:
-
-1. Datos estructurados.
-2. Arquitectura de landing.
-3. Bloques seleccionados.
-4. Reglas de contenido.
-5. Información verificable.
-6. Restricciones.
-
-La IA producirá:
-
-- Contenido.
-- Metadatos.
-- Elementos SEO.
-- FAQ cuando corresponda.
-- Datos estructurados cuando corresponda.
-
-La generación debe ser controlada.
+Una estructura de datos que pueda ser utilizada posteriormente por IA, N8N y WordPress.
 
 ---
 
-14. FASE 9 — AUTOMATIZACIÓN N8N
+13. FASE 8 — SISTEMA DE CONTENIDO E IA
+
+La IA no recibirá simplemente:
+
+«"Escribe una landing de fontanero en Marbella."»
+
+Recibirá información estructurada.
+
+Ejemplo:
+
+servicio
+subservicio
+localidad
+intención
+tipo_de_cliente
+zonas
+servicios_relacionados
+datos_locales
+información_comercial
+urgencia
+faq
+diferenciadores
+restricciones
+url
+bloques_activos
+
+La IA deberá generar únicamente contenido compatible con los datos disponibles.
+
+No debe inventar:
+
+- Empresas.
+- Precios.
+- Direcciones.
+- Teléfonos.
+- Disponibilidad.
+- Certificaciones.
+- Testimonios.
+- Cobertura.
+- Datos locales no verificados.
+
+Resultado
+
+Contenido estructurado y controlado para cada landing.
+
+---
+
+14. FASE 9 — VALIDACIÓN
+
+Antes de publicar una página debe comprobarse:
+
+- URL correcta.
+- Servicio correcto.
+- Subservicio correcto.
+- Localidad correcta.
+- Intención correcta.
+- Contenido completo.
+- Información coherente.
+- Variables correctas.
+- Ausencia de información inventada.
+- Diferenciación suficiente.
+- SEO técnico.
+- Enlaces.
+- CTA.
+- Datos estructurados cuando proceda.
+
+Si una página no supera la validación:
+
+NO SE PUBLICA.
+
+Resultado
+
+Página preparada para publicación.
+
+---
+
+15. FASE 10 — AUTOMATIZACIÓN N8N
 
 N8N será la capa de orquestación.
 
@@ -394,6 +497,14 @@ MOTOR
 ↓
 
 DECISIÓN
+
+↓
+
+URL
+
+↓
+
+SELECCIÓN DE LANDING
 
 ↓
 
@@ -427,25 +538,21 @@ N8N no debe tomar decisiones estratégicas que correspondan al motor.
 
 ---
 
-15. FASE 10 — PUBLICACIÓN
+16. FASE 11 — PUBLICACIÓN
 
-Antes de publicar una página debe comprobarse:
+La publicación debe realizarse únicamente después de superar la validación.
 
-- Contenido completo.
-- Información coherente.
-- Variables correctas.
-- Localidad correcta.
-- Servicio correcto.
-- Ausencia de información inventada.
-- Diferenciación suficiente.
-- SEO técnico.
-- Enlaces.
-- CTA.
-- Datos estructurados cuando proceda.
+La infraestructura podrá ser:
+
+- WordPress.
+- Otra plataforma compatible.
+- Sistema propio si posteriormente se considera conveniente.
+
+La tecnología concreta no debe determinar la arquitectura estratégica.
 
 ---
 
-16. FASE 11 — MEDICIÓN
+17. FASE 12 — MEDICIÓN
 
 Una vez publicadas las páginas se medirán:
 
@@ -459,10 +566,11 @@ Una vez publicadas las páginas se medirán:
 - Formularios.
 - Rendimiento por servicio.
 - Rendimiento por localidad.
+- Rendimiento por tipo de página.
 
 ---
 
-17. FASE 12 — APRENDIZAJE
+18. FASE 13 — APRENDIZAJE
 
 Los resultados reales pueden utilizarse para modificar:
 
@@ -480,13 +588,145 @@ Debe existir suficiente evidencia.
 
 ---
 
-18. INVESTIGACIÓN DE UN NUEVO SERVICIO
+19. RELACIÓN ENTRE LAS CAPAS
+
+La relación oficial del sistema es:
+
+INVESTIGACIÓN
+
+↓
+
+MATRICES
+
+↓
+
+MOTOR DE DECISIÓN
+
+↓
+
+ARQUITECTURA DE URL
+
+↓
+
+ARQUITECTURA DE LANDING
+
+↓
+
+BLOQUES
+
+↓
+
+MODELO DE DATOS
+
+↓
+
+IA / CONTENIDO
+
+↓
+
+VALIDACIÓN
+
+↓
+
+N8N
+
+↓
+
+WORDPRESS
+
+↓
+
+MEDICIÓN
+
+↓
+
+APRENDIZAJE
+
+Ninguna capa debe saltarse sin justificación.
+
+---
+
+20. RESPONSABILIDAD DE CADA CAPA
+
+Investigación
+
+Descubre y conserva información.
+
+Matrices
+
+Estructuran la información.
+
+Motor
+
+Toma decisiones.
+
+Arquitectura URL
+
+Convierte la decisión en una URL.
+
+Arquitectura de landing
+
+Define cómo será la página.
+
+Bloques
+
+Definen las piezas de la página.
+
+Modelo de datos
+
+Define qué información recibe el sistema.
+
+IA
+
+Genera contenido utilizando los datos y reglas proporcionados.
+
+Validación
+
+Comprueba el resultado.
+
+N8N
+
+Orquesta el proceso.
+
+WordPress
+
+Publica.
+
+Medición
+
+Observa resultados.
+
+Aprendizaje
+
+Permite mejorar el sistema.
+
+---
+
+21. REGLA DE NO AUTOMATIZAR DEMASIADO PRONTO
+
+No se debe comenzar la automatización completa mientras no estén suficientemente definidos:
+
+1. Investigación.
+2. Matrices.
+3. Motor.
+4. Arquitectura de URLs.
+5. Arquitectura de landing.
+6. Sistema de bloques.
+7. Modelo de datos.
+8. Reglas de contenido.
+9. Validaciones.
+
+Esto evita construir una automatización sobre una arquitectura todavía cambiante.
+
+---
+
+22. INVESTIGACIÓN DE UN NUEVO SERVICIO
 
 Cuando se incorpore un nuevo sector:
 
 Paso 1
 
-Crear carpeta/documentación específica.
+Crear documentación específica del sector.
 
 Paso 2
 
@@ -498,51 +738,63 @@ Identificar servicios.
 
 Paso 4
 
-Identificar intenciones.
+Identificar subservicios.
 
 Paso 5
 
-Investigar competencia.
+Identificar intenciones.
 
 Paso 6
 
-Investigar localidades relevantes.
+Investigar competencia.
 
 Paso 7
 
-Crear matrices.
+Investigar localidades relevantes.
 
 Paso 8
 
-Adaptar variables sectoriales del motor.
+Crear matrices.
 
 Paso 9
 
-Validar oportunidades.
+Adaptar las variables sectoriales del motor.
 
 Paso 10
 
-Adaptar arquitectura de landing si el sector lo requiere.
+Validar oportunidades.
 
 Paso 11
 
-Definir bloques específicos.
+Aplicar la arquitectura de URLs.
 
 Paso 12
 
-Definir datos de entrada.
+Adaptar la arquitectura de landing si el sector lo requiere.
 
 Paso 13
 
-Integrar con el sistema general.
+Definir bloques específicos.
 
 Paso 14
+
+Definir datos de entrada.
+
+Paso 15
+
+Definir reglas de contenido.
+
+Paso 16
+
+Integrar con el sistema general.
+
+Paso 17
 
 Automatizar.
 
 ---
 
-19. REGLA DE REUTILIZACIÓN
+23. REGLA DE REUTILIZACIÓN
 
 El sistema debe separar:
 
@@ -554,6 +806,7 @@ Reutilizables:
 - Arquitectura general.
 - Motor.
 - Modelo de datos.
+- Arquitectura URL.
 - Sistema de bloques.
 - Automatización.
 - Validación.
@@ -564,6 +817,7 @@ COMPONENTES SECTORIALES
 Específicos:
 
 - Servicios.
+- Subservicios.
 - Intenciones.
 - Variables.
 - Reglas.
@@ -576,55 +830,31 @@ Nunca se debe copiar automáticamente una conclusión sectorial a otro servicio.
 
 ---
 
-20. REGLA DE NO AUTOMATIZAR DEMASIADO PRONTO
+24. REGISTRO DE DECISIONES
 
-No se debe comenzar la automatización completa mientras no estén suficientemente definidos:
+Las decisiones relevantes deben registrarse para mantener trazabilidad.
 
-1. Motor.
-2. Arquitectura de landing.
-3. Sistema de bloques.
-4. Modelo de datos.
-5. Reglas de contenido.
-6. Validaciones.
+Una decisión podrá contener:
 
-Esto evita construir una automatización sobre una arquitectura todavía cambiante.
+FECHA
+SECTOR
+SERVICIO
+SUBSERVICIO
+LOCALIDAD
+DATOS_UTILIZADOS
+PUNTUACIÓN
+DECISIÓN
+URL
+MOTIVO
+VERSIÓN_MOTOR
+EVIDENCIA
+CAMBIO_POSTERIOR
 
----
-
-21. ORDEN ACTUAL DEL TRABAJO
-
-Estado actual:
-
-COMPLETADO
-
-- Maestro.
-- Metodología base.
-- Investigación inicial de fontanería.
-- Matriz de servicios.
-- Matriz territorial.
-- Arquitectura SEO.
-- Motor de decisión.
-
-EN CURSO
-
-Diseño de la arquitectura de landing y sistema de bloques.
-
-DESPUÉS
-
-1. Arquitectura de landing.
-2. Sistema de bloques.
-3. Modelo de datos de cada landing.
-4. Sistema de prompts/contenido.
-5. Sistema de validación.
-6. Diseño del flujo N8N.
-7. Integración con WordPress.
-8. Primera prueba controlada.
-9. Medición.
-10. Optimización.
+Esto permitirá conocer en el futuro por qué se creó, agrupó, investigó o descartó una combinación.
 
 ---
 
-22. CONTROL DE COHERENCIA
+25. CONTROL DE COHERENCIA
 
 Antes de pasar de una fase a otra se debe comprobar:
 
@@ -633,48 +863,135 @@ Antes de pasar de una fase a otra se debe comprobar:
 - Que el maestro refleje el estado real.
 - Que las decisiones nuevas estén registradas.
 - Que no se haya perdido información de investigación.
+- Que cada dato tenga un documento de destino.
+- Que no existan duplicaciones documentales innecesarias.
 - Que el siguiente paso esté claramente definido.
 
 Si existe una contradicción, se detiene el avance y se corrigen primero los documentos.
 
 ---
 
-23. REGLA PARA EL TRABAJO CON IA
+26. REGLA DE CONSERVACIÓN DEL TRABAJO
 
-La IA debe interpretar siempre:
+Todo trabajo de investigación que produzca una conclusión, matriz, decisión, regla, URL, estructura o criterio debe quedar documentado en el repositorio antes de considerarse terminado.
 
-1. Maestro.
-2. Metodología.
-3. Documentos estructurales relevantes.
-4. Documentación sectorial relevante.
-5. Actualizaciones posteriores.
+La conversación puede servir para trabajar.
 
-No debe asumir que un documento antiguo tiene prioridad simplemente por ser más general.
+El repositorio debe servir para conservar.
 
-Cuando exista contradicción, debe analizar:
-
-- fecha;
-- evidencia;
-- contexto;
-- actualización;
-- dependencia entre documentos.
+La memoria de la IA no sustituye la documentación persistente.
 
 ---
 
-24. REGISTRO DE ACTUALIZACIÓN
+27. REGLA DE AUDITORÍA
+
+Cuando se termine una fase importante se realizará una auditoría documental.
+
+La auditoría comprobará:
+
+1. Qué se ha hecho.
+2. Qué está documentado.
+3. Qué evidencia existe.
+4. Qué decisiones se han tomado.
+5. Qué archivos dependen de esas decisiones.
+6. Qué contradicciones existen.
+7. Qué información falta.
+8. Qué debe actualizarse.
+9. Cuál es el siguiente paso.
+
+No se avanzará a una nueva fase si existe una pérdida documental relevante.
+
+---
+
+28. ESTADO ACTUAL DEL PROYECTO
+
+COMPLETADO
+
+- Investigación inicial de fontanería.
+- Matriz de servicios.
+- Matriz de localidades.
+- Arquitectura SEO.
+- Motor de decisión definido.
+- Arquitectura de URLs definida.
+
+EN VALIDACIÓN
+
+- Motor de decisión.
+- Arquitectura de URLs.
+
+PENDIENTE
+
+- Arquitectura de landing.
+- Sistema de bloques.
+- Modelo de datos.
+- Sistema de contenido/prompt.
+- Validación automática.
+- Automatización N8N.
+- Integración WordPress.
+- Primera publicación controlada.
+- Medición.
+- Optimización.
+
+---
+
+29. SIGUIENTE PASO OFICIAL
+
+Antes de diseñar la arquitectura de landing se debe realizar una validación real del sistema:
+
+MATRIZ
+
+↓
+
+MOTOR
+
+↓
+
+DECISIÓN
+
+↓
+
+URL
+
+Se utilizarán combinaciones reales de fontanería.
+
+Se comprobará:
+
+- Si el motor puntúa correctamente.
+- Si la decisión es razonable.
+- Si la URL resultante es coherente.
+- Si existe riesgo de duplicación.
+- Si la combinación merece una landing independiente.
+
+Los resultados se documentarán.
+
+Una vez superada esta validación:
+
+ARQUITECTURA DE LANDING será la siguiente fase.
+
+---
+
+30. REGISTRO DE ACTUALIZACIÓN
 
 2026-08-23
 
-Se actualiza la metodología para reflejar correctamente el estado actual del proyecto.
+Se actualiza la metodología para incorporar explícitamente la arquitectura de URLs como fase independiente entre el motor de decisión y la arquitectura de landing.
 
-El motor de decisión queda definido, aunque todavía pendiente de validación real.
+Se establece oficialmente la cadena:
 
-Se incorpora explícitamente una nueva fase entre el motor y la automatización:
+INVESTIGACIÓN → MATRICES → MOTOR → URL → LANDING → BLOQUES → DATOS → IA → VALIDACIÓN → N8N → WORDPRESS → MEDICIÓN → APRENDIZAJE
 
-ARQUITECTURA DE LANDING → SISTEMA DE BLOQUES → SISTEMA DE CONTENIDO → DATOS DE ENTRADA → IA → N8N
+Se establece que la IA no decide libremente las URLs.
 
-Se establece que N8N no debe diseñar la arquitectura ni tomar decisiones estratégicas.
+Se incorpora un sistema de conservación de evidencias y decisiones para evitar depender de la memoria de la conversación.
 
-También se define que la plataforma debe separar componentes generales reutilizables de componentes específicos de cada sector.
+Se incorpora una regla de auditoría documental antes de avanzar entre fases.
 
-El siguiente trabajo prioritario es diseñar la arquitectura de landing y los bloques que permitirán posteriormente generar páginas mediante IA de forma controlada y reutilizable.
+El motor de decisión continúa definido pero pendiente de validación real.
+
+La arquitectura de URLs está definida pero pendiente de validación real.
+
+El siguiente trabajo oficial será validar conjuntamente:
+
+MOTOR DE DECISIÓN + ARQUITECTURA DE URLs
+
+utilizando datos reales de la investigación de fontanería.
