@@ -1,770 +1,580 @@
-ARCHIVO MAESTRO — PROYECTO
+ARCHIVO MAESTRO DEL PROYECTO
 
-1. FUNCIÓN DE ESTE ARCHIVO
+1. Función del archivo
 
-Este archivo es la fuente central de verdad y referencia actual del proyecto.
+Este es el documento central del proyecto.
 
-Contiene:
+Su función es conservar el estado consolidado y vigente del proyecto y permitir que una nueva sesión pueda recuperar rápidamente:
 
-- Decisiones tomadas.
-- Objetivos.
-- Reglas de funcionamiento.
-- Arquitectura actual.
-- Información importante que no debemos perder.
-- Estado real del proyecto.
-- Próximos pasos.
-- Historial resumido de cambios importantes.
+- Qué estamos construyendo.
+- Qué decisiones están vigentes.
+- Qué metodología seguimos.
+- Qué documentación existe.
+- En qué fase estamos.
+- Qué está terminado.
+- Qué está pendiente.
+- Qué debe hacerse a continuación.
 
-"maestro.md" debe mantenerse actualizado durante toda la vida del proyecto.
-
----
-
-2. REGLA FUNDAMENTAL DE ACTUALIZACIÓN
-
-El contenido de "maestro.md" representa el estado actual del proyecto, no una versión histórica inmutable.
-
-Por tanto, una información antigua del maestro NO tiene prioridad automática sobre información posterior encontrada o desarrollada en otro documento.
-
-Cuando exista una contradicción entre documentos:
-
-1. No se debe borrar automáticamente el trabajo nuevo.
-2. Se debe comprobar la fecha de cada información.
-3. Se debe comprobar si la información posterior fue una propuesta, una prueba, una hipótesis o una decisión.
-4. Se debe comprobar si ha sido validada.
-5. Si la información posterior representa una decisión nueva y válida, debe sustituir a la información anterior.
-6. El maestro debe actualizarse para reflejar esa nueva decisión.
-7. El documento especializado debe conservar el desarrollo detallado.
-8. Si no está claro cuál información debe prevalecer, se debe consultar al usuario antes de eliminar o invalidar trabajo.
-
-Regla resumida
-
-INFORMACIÓN MÁS RECIENTE + VALIDADA + DECISIÓN TOMADA = ESTADO ACTUAL
-
-Nunca se debe perder trabajo simplemente porque contradiga una versión anterior del maestro.
+Este archivo debe leerse antes de continuar cualquier trabajo importante del proyecto.
 
 ---
 
-3. HISTORIAL DE ACTUALIZACIONES
+2. Regla fundamental de actualización
 
-Este apartado registra únicamente cambios importantes.
+El maestro representa el estado vigente, no necesariamente el historial completo de todo lo que se ha pensado.
 
-No es necesario registrar cada conversación o cada pequeño cambio.
+Cuando una decisión posterior, validada o suficientemente consolidada contradiga una decisión anterior:
 
-Formato:
+la decisión posterior pasa a ser la vigente.
 
-FECHA — CAMBIO — MOTIVO
+No se debe dar prioridad automática a una información antigua simplemente porque aparezca en "maestro.md".
 
-2026-08-23
+Antes de considerar que existe una contradicción se debe comprobar:
 
-- Se establece GitHub como sistema documental permanente del proyecto.
-- Se confirma "maestro.md" como documento central.
-- Se establece que los documentos especializados amplían y desarrollan el maestro.
-- Se crea "proyecto/seo/arquitectura-seo.md".
-- Se establece la arquitectura conceptual basada en servicio + localidad + intención + información local.
-- Se establece que la arquitectura ya está definida conceptualmente, aunque todavía debe validarse mediante una prueba real.
-- Se establece el motor de decisión como componente central para decidir qué combinaciones deben convertirse en páginas.
-- Se establece una nueva regla documental: las decisiones nuevas y validadas deben actualizar el maestro aunque contradigan información anterior.
-- Se establece que las contradicciones deben resolverse teniendo en cuenta fecha, validación y decisión tomada, y no simplemente dando prioridad al archivo maestro antiguo.
+1. Fecha.
+2. Evidencia.
+3. Contexto.
+4. Si era hipótesis o decisión.
+5. Si posteriormente fue validada o modificada.
 
----
+Cuando una nueva decisión sustituya una anterior:
 
-4. ESTRUCTURA DOCUMENTAL
-
-El proyecto utiliza diferentes niveles de documentación.
-
-"maestro.md"
-
-Documento central.
-
-Contiene:
-
-- Visión general.
-- Decisiones principales.
-- Estado actual.
-- Arquitectura resumida.
-- Reglas.
-- Relaciones entre documentos.
-- Próximos pasos.
-- Historial de cambios importantes.
-
-Documentos especializados
-
-Desarrollan en profundidad áreas concretas.
-
-Ejemplo:
-
-"proyecto/seo/arquitectura-seo.md"
-
-Estos documentos:
-
-- Amplían el maestro.
-- Contienen detalles técnicos o estratégicos.
-- Pueden contener investigaciones.
-- Pueden evolucionar antes de que una decisión quede consolidada.
-- Deben actualizar el maestro cuando una decisión importante quede validada.
-
-Importante
-
-Un documento especializado puede contener información más reciente que "maestro.md".
-
-En ese caso no se debe descartar automáticamente.
-
-Primero se analiza y, si corresponde, se actualiza el maestro.
+- actualizar el documento específico;
+- actualizar este maestro cuando afecte al estado general;
+- registrar el cambio en el historial cuando sea relevante.
 
 ---
 
-5. OBJETIVO DEL PROYECTO
+3. Regla de conservación
 
-Crear un negocio online basado en una gran plataforma de servicios profesionales.
+El proyecto no debe depender de la memoria de una conversación.
 
-La plataforma podrá incluir:
+Todo trabajo importante debe quedar documentado.
 
-- Fontaneros.
-- Electricistas.
-- Carpinteros.
-- Pintores.
-- Jardineros.
-- Empresas de reformas.
-- Abogados.
-- Climatización.
-- Cerrajería.
-- Otros servicios profesionales.
+La conversación sirve para trabajar.
 
-La idea NO es crear solamente una web general.
+Los archivos sirven para conservar.
 
-La diferencia principal será poder crear páginas específicas combinando:
-
-SERVICIO + LOCALIDAD
-
-Ejemplos:
-
-- Fontanero Marbella.
-- Fontanero Estepona.
-- Electricista Marbella.
-- Electricista Málaga.
-- Pintor Estepona.
-- Abogado Marbella.
-
-El objetivo final es poder generar cientos o miles de páginas específicas de forma controlada y automatizada.
+Ninguna investigación, decisión, regla, matriz o resultado importante debe darse por consolidado si únicamente existe en el chat.
 
 ---
 
-6. MODELO DE NEGOCIO
+4. Objetivo del proyecto
 
-Principios:
-
-- Coste inicial reducido.
-- Máxima automatización posible.
-- Gestión principalmente desde móvil cuando sea viable.
-- Poco tiempo diario.
-- Escalabilidad.
-- Ingresos recurrentes.
-- Validación antes de realizar grandes inversiones.
-
-No se debe construir una infraestructura compleja sin comprobar primero que existe una oportunidad comercial real.
-
----
-
-7. PRINCIPIOS DEL PROYECTO
-
-Validación antes de construcción
-
-Primero validar:
-
-1. Demanda.
-2. Competencia.
-3. Posibilidad de posicionamiento.
-4. Captación.
-5. Monetización.
-6. Costes.
-7. Tiempo de mantenimiento.
-
-Después escalar.
-
-Simplicidad
-
-Priorizar:
-
-- Soluciones sencillas.
-- Bajo coste.
-- Facilidad de mantenimiento.
-- Automatización.
-- Escalabilidad.
-
-Tecnología al servicio del negocio
-
-Una automatización técnicamente interesante no significa necesariamente que exista un negocio rentable.
-
----
-
-8. RECURSOS Y CONOCIMIENTOS
-
-Conocimientos actuales:
-
-- WordPress.
-- HTML.
-- CSS.
-- Excel / Google Sheets.
-- Automatización.
-- IA.
-- APIs.
-- n8n.
-
-Preferencias:
-
-- Trabajar desde móvil cuando sea posible.
-- Evitar herramientas innecesariamente caras.
-- Mantener bajo el presupuesto inicial.
-
----
-
-9. AUTOMATIZACIÓN
-
-Se estudiará la utilización de:
-
-- IA.
-- APIs.
-- Google Sheets.
-- GitHub.
-- n8n.
-- WordPress.
-- Bases de datos.
-- Automatización de contenidos.
-- Automatización de publicación.
-- Sistemas de clasificación y decisión.
-
-Ninguna herramienta está considerada obligatoria.
-
-La herramienta definitiva se elegirá según:
-
-- Coste.
-- Facilidad.
-- Límites.
-- Escalabilidad.
-- Mantenimiento.
-- Utilidad real.
-
----
-
-10. ARQUITECTURA GENERAL
-
-La arquitectura conceptual del proyecto está definida.
-
-El modelo principal será:
+Construir una plataforma escalable de servicios profesionales capaz de generar páginas específicas combinando:
 
 SERVICIO + LOCALIDAD + INTENCIÓN + INFORMACIÓN LOCAL
 
-La generación de páginas estará controlada mediante un motor de decisión.
+El objetivo NO es generar automáticamente el máximo número de páginas.
 
-El sistema deberá permitir:
+El objetivo es crear únicamente páginas que tengan:
 
-- Investigación.
-- Clasificación.
-- Decisión.
-- Obtención de datos.
-- Generación de contenido.
-- Publicación.
-- Enlazado.
-- Seguimiento.
-- Automatización.
-- Escalado.
-
-Importante
-
-La arquitectura está definida conceptualmente.
-
-Eso NO significa que esté demostrado que el modelo funciona comercialmente.
-
-Todavía debe pasar por una prueba real.
+- utilidad real;
+- intención adecuada;
+- potencial comercial;
+- diferenciación;
+- información suficiente;
+- sentido territorial.
 
 ---
 
-11. ARQUITECTURA SEO
+5. Concepto central
 
-Documento especializado:
+La plataforma debe funcionar como un sistema de:
 
-"proyecto/seo/arquitectura-seo.md"
+INVESTIGACIÓN → DECISIÓN → GENERACIÓN → VALIDACIÓN → MEDICIÓN → APRENDIZAJE → ESCALADO
 
-La estrategia SEO se basa en combinaciones como:
-
-SERVICIO + LOCALIDAD
-
-Ejemplos:
-
-- Fontanero Marbella.
-- Fontanero Estepona.
-- Electricista Marbella.
-- Pintor Estepona.
-
-Pero no todas las combinaciones deben generar una página.
-
-Cada combinación debe pasar por el motor de decisión.
+No como un simple generador masivo de URLs.
 
 ---
 
-12. CALIDAD DE LAS PÁGINAS
+6. Arquitectura documental
 
-No se deben generar miles de páginas idénticas.
+La documentación actual se organiza así:
 
-Cada página debe aportar valor real.
+maestro.md
 
-Una página local puede incluir:
+proyecto/
+├── metodologia.md
+└── seo/
+    ├── arquitectura-seo.md
+    ├── investigacion-fontaneria.md
+    ├── matriz-servicios-fontaneria.md
+    ├── matriz-localidades.md
+    └── motor-decision.md
 
-- Zonas atendidas.
-- Características del municipio.
-- Tipos de viviendas.
-- Problemas habituales.
-- Servicios relevantes.
-- Contexto turístico.
-- Tipo de cliente.
-- Horarios.
-- Urgencias.
-- Información comercial.
-- Preguntas frecuentes.
-- Datos específicos del servicio.
+Función de cada documento
 
-La localización no debe consistir simplemente en cambiar el nombre de una ciudad dentro de una plantilla.
+maestro.md
 
----
+Estado general y decisiones vigentes.
 
-13. MOTOR DE DECISIÓN
+metodologia.md
 
-El motor determinará qué combinaciones merecen páginas propias.
+Método general reutilizable para todos los servicios.
 
-Debe valorar:
+arquitectura-seo.md
 
-- Existencia del servicio.
-- Demanda.
-- Intención.
-- Relevancia local.
-- Especialización.
-- Diferenciación.
-- Información local disponible.
-- Tipo de cliente.
-- Competencia.
-- Potencial comercial.
-- Conversión.
-- Riesgo de contenido pobre.
-- Redundancia.
+Arquitectura SEO común del proyecto.
 
-Debe decidir:
+investigacion-fontaneria.md
 
-1. Si la combinación es válida.
-2. Si merece página.
-3. Qué tipo de página.
-4. Qué información local necesita.
-5. Qué profundidad territorial requiere.
-6. Qué contenido debe evitarse.
-7. Qué combinaciones deben descartarse.
+Investigación específica del primer sector estudiado.
 
-Posteriormente podrá implementarse mediante:
+matriz-servicios-fontaneria.md
 
-N8N + IA + base de datos + sistema de publicación
+Clasificación y estructura de servicios de fontanería.
+
+matriz-localidades.md
+
+Clasificación territorial utilizada para fontanería.
+
+motor-decision.md
+
+Reglas para decidir CREAR / AGRUPAR / NO CREAR / INVESTIGAR y priorizar combinaciones.
 
 ---
 
-14. ESTRUCTURA TERRITORIAL
+7. Metodología vigente
 
-El sistema podrá trabajar con:
+La metodología general del proyecto es:
 
-- País.
-- Comunidad autónoma.
-- Provincia.
-- Ciudad.
-- Municipio.
-- Localidad.
-- Zona.
-- Barrio cuando exista información suficiente.
+INVESTIGAR
 
-La profundidad no será idéntica para todos los servicios.
+↓
 
----
+CONSERVAR
 
-15. TIPOS DE PÁGINAS
+↓
 
-Servicio general
+ESTRUCTURAR
 
-Ejemplo:
+↓
 
-Fontanería.
+DECIDIR
 
-Servicio + localidad
+↓
 
-Ejemplo:
+VALIDAR
 
-Fontanero Marbella.
+↓
 
-Especialidad + localidad
+PROBAR
 
-Ejemplo:
+↓
 
-Desatascos Marbella.
+MEDIR
 
-Urgencia + localidad
+↓
 
-Ejemplo:
+CORREGIR
 
-Fontanero urgente Marbella.
+↓
 
-Servicio especializado + localidad
+AUTOMATIZAR
 
-Ejemplo:
+↓
 
-Instalación de termos Marbella.
+ESCALAR
 
-El motor decidirá cuáles deben existir.
+Esta metodología debe poder reutilizarse para:
 
----
-
-16. FONTANERÍA COMO PRIMER PILAR
-
-Fontanería es el primer sector utilizado para investigar y validar el sistema.
-
-Servicios iniciales:
-
-- Fontanería general.
-- Reparación de fugas.
-- Desatascos.
-- Tuberías.
-- Agua caliente.
-- Termos.
-- Urgencias.
-- Instalaciones.
-- Mantenimiento.
-- Otros servicios relacionados.
-
-La lista puede evolucionar durante la validación.
-
-Fontanería será el primer caso de prueba antes de replicar la arquitectura en otros sectores.
-
----
-
-17. ESCALABILIDAD
-
-La arquitectura podrá reutilizarse para:
-
+- Fontanería.
 - Electricidad.
+- Abogados.
 - Carpintería.
 - Pintura.
 - Jardinería.
 - Reformas.
-- Abogados.
 - Climatización.
 - Cerrajería.
-- Otros sectores.
+- Otros servicios profesionales.
 
-Cada sector tendrá investigación propia.
-
-No se asumirán automáticamente las mismas reglas para todos.
+Fontanería es el primer caso de aplicación, no la metodología en sí.
 
 ---
 
-18. SEO
+8. Arquitectura SEO vigente
 
-Se estudiará:
+La arquitectura parte de:
 
-- Búsqueda local.
+SERVICIO + LOCALIDAD
+
+pero puede incorporar:
+
+- Especialidad.
 - Intención.
-- Servicio + localidad.
+- Tipo de cliente.
+- Cobertura.
+- Información local.
+
+Ejemplos conceptuales:
+
+- Fontanero Marbella.
+- Desatascos Marbella.
+- Reparación de fugas Marbella.
+- Fontanero urgente Marbella.
+
+No todas las combinaciones deben convertirse en páginas independientes.
+
+La creación debe estar controlada por el motor de decisión.
+
+---
+
+9. Primer pilar: fontanería
+
+Fontanería es el primer sector utilizado para investigar y validar el sistema.
+
+La investigación realizada incluye:
+
+- Empresas y webs de fontanería.
+- Directorios.
+- Resultados locales.
+- Páginas de ciudades.
+- Páginas de servicios.
+- Especialidades.
+- Urgencias.
+- Estructuras servicio + localidad.
+- Diferencias territoriales.
+- Información local.
+- Tipos de cliente.
+- Potencial comercial.
+
+La investigación está considerada:
+
+REALIZADA / CONSOLIDADA
+
+Las conclusiones que todavía requieran validación mediante resultados reales deben seguir tratándose como hipótesis.
+
+---
+
+10. Servicios de fontanería
+
+La matriz de servicios está estructurada.
+
+Incluye, entre otros:
+
+- Fontanería general.
+- Reparación de fugas.
+- Detección de fugas.
+- Desatascos.
+- Tuberías.
+- Agua caliente.
+- Termos.
+- Calentadores.
+- Grifos.
+- Cisternas.
+- Sanitarios.
+- Instalaciones.
+- Mantenimiento.
+- Urgencias.
+- Servicios 24 horas.
+
+La existencia de un servicio en la matriz no implica automáticamente que deba tener una URL independiente.
+
+---
+
+11. Matriz territorial
+
+La matriz territorial está estructurada para estudiar diferentes niveles geográficos.
+
+Puede contemplar:
+
+- Grandes ciudades.
+- Ciudades medianas.
+- Municipios.
+- Localidades.
+- Zonas.
+- Barrios.
+- Urbanizaciones.
+
+La profundidad territorial no será idéntica para todos los servicios.
+
+Dependerá de:
+
+- Demanda.
+- Relevancia territorial.
 - Competencia.
-- Arquitectura web.
-- Enlazado interno.
-- Contenido.
-- Indexación.
-- SEO programático.
-- Posicionamiento local.
+- Potencial comercial.
+- Información local.
+- Características del mercado.
+- Posibilidad de diferenciación.
+
+---
+
+12. Motor de decisión
+
+El motor de decisión ya está documentado en:
+
+"proyecto/seo/motor-decision.md"
+
+Su estado actual es:
+
+DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
+
+El motor debe decidir, para cada combinación:
+
+SERVICIO × LOCALIDAD
+
+si corresponde:
+
+CREAR
+
+Crear una página independiente.
+
+AGRUPAR
+
+Integrar la intención dentro de otra página.
+
+NO CREAR
+
+No generar una página independiente.
+
+INVESTIGAR
+
+Obtener más información antes de decidir.
+
+El motor también debe determinar:
+
+- prioridad;
+- profundidad;
+- diferenciación;
+- requisitos de contenido;
+- excepciones.
+
+---
+
+13. Principios del motor
+
+El motor debe valorar, como mínimo:
+
+- Demanda.
+- Intención.
+- Competencia.
+- Potencial comercial.
+- Relevancia territorial.
 - Diferenciación.
+- Información disponible.
+- Riesgo de duplicación.
+- Tipo de cliente.
+- Características específicas del sector.
 
-Crear muchas páginas no garantiza tráfico.
+No existen pesos universales obligatorios para todos los servicios.
 
-Primero hay que demostrar qué combinaciones funcionan.
+Las reglas generales se mantienen.
 
----
-
-19. MONETIZACIÓN
-
-Modelos a estudiar:
-
-- Venta de leads.
-- Cobro por contacto.
-- Suscripción de profesionales.
-- Comisión.
-- Publicidad.
-- Destacar profesionales.
-- Servicios adicionales.
-
-No existe todavía un modelo definitivo validado.
+Los parámetros sectoriales podrán adaptarse mediante evidencia y validación.
 
 ---
 
-20. IA
+14. Regla de datos insuficientes
 
-La IA podrá utilizarse para:
+La falta de información no debe interpretarse automáticamente como:
 
-- Investigación.
-- Clasificación.
-- Generación de contenido.
-- Decisiones.
-- Automatización.
-- Análisis.
-- Atención.
-- Procesamiento de datos.
+NO CREAR
 
-Pero siempre estará subordinada al objetivo comercial.
+Si existe una oportunidad potencial pero faltan datos:
 
-No se utilizará para generar contenido masivo sin control.
+INVESTIGAR
+
+Esto evita descartar oportunidades por falta de investigación.
 
 ---
 
-21. GITHUB
+15. Regla de diferenciación
 
-Repositorio:
+No se considera suficiente:
 
-"davidsaenz20/archivo-maestro"
+- cambiar el nombre de una localidad;
+- cambiar unas pocas palabras;
+- duplicar una plantilla;
+- generar contenido artificial.
 
-Archivo central:
-
-"maestro.md"
-
-GitHub será el sistema permanente de almacenamiento y organización documental.
-
-Los archivos especializados estarán organizados dentro del repositorio.
+Una página local debe poder aportar información real y útil.
 
 ---
 
-22. REGLA DE CONFLICTO ENTRE INFORMACIONES
+16. Aplicación a nuevos servicios
 
-Cuando aparezcan dos informaciones diferentes:
+Cuando se incorpore un nuevo servicio:
 
-Paso 1
+NO se copiará automáticamente la matriz de fontanería.
 
-Comprobar fechas.
+Se seguirá la metodología general:
 
-Paso 2
+1. Definir el sector.
+2. Investigar.
+3. Conservar evidencia.
+4. Clasificar servicios.
+5. Clasificar territorios.
+6. Analizar intención.
+7. Crear matrices específicas.
+8. Aplicar el motor.
+9. Validar una muestra.
+10. Medir.
+11. Ajustar.
+12. Escalar.
 
-Determinar cuál es más reciente.
+La metodología se reutiliza.
 
-Paso 3
-
-Determinar si la información nueva es:
-
-- Hipótesis.
-- Propuesta.
-- Investigación.
-- Prueba.
-- Resultado.
-- Decisión.
-
-Paso 4
-
-Si es una decisión posterior y validada:
-
-La información nueva sustituye a la anterior.
-
-Paso 5
-
-Actualizar "maestro.md".
-
-Paso 6
-
-Conservar el desarrollo detallado en el documento especializado.
-
-Paso 7
-
-Registrar el cambio importante en el historial de actualizaciones.
-
-Regla absoluta
-
-Nunca descartar información posterior simplemente porque contradiga al maestro antiguo.
+Los datos y reglas sectoriales se investigan de nuevo.
 
 ---
 
-23. ESTADO ACTUAL
+17. Estado actual del proyecto
 
 DEFINIDO
 
-- Objetivo.
-- Modelo servicio + localidad.
+- Objetivo general.
 - Arquitectura conceptual.
-- Arquitectura SEO.
-- Principios de calidad.
-- Motor de decisión como componente central.
-- Información local como elemento diferenciador.
-- Sistema documental en GitHub.
-- Fontanería como primer pilar.
+- Metodología.
+- Estructura documental.
+- Investigación inicial de fontanería.
+- Matriz de servicios.
+- Matriz territorial.
+- Motor de decisión conceptual y operativo inicial.
 
-PENDIENTE DE VALIDAR
+PENDIENTE
 
-- Demanda real.
-- Posicionamiento.
-- Conversión.
-- Monetización.
-- Costes.
-- Primera prueba.
-- Escalabilidad.
-
-PENDIENTE DE IMPLEMENTAR
-
-- Motor técnico.
-- Base de datos.
-- Automatización.
-- N8N si finalmente se selecciona.
-- IA integrada.
-- Generación de páginas.
-- Publicación.
-- CMS definitivo.
-- Analítica.
+- Auditoría y sincronización final de todos los documentos.
+- Validación real del motor.
+- Primera prueba manual.
+- Ajuste del motor tras la prueba.
+- Diseño de automatización.
+- Implementación web.
+- Medición real.
+- Escalado.
 
 ---
 
-24. DECISIONES PENDIENTES
+18. Fase actual
 
-- CMS definitivo.
-- Arquitectura técnica definitiva.
-- Base de datos.
-- Sistema de generación.
-- Sistema de publicación.
-- Automatización.
-- Herramientas.
-- Primera localidad.
-- Tamaño de prueba.
-- Monetización.
-- Captación de profesionales.
-- Captación de clientes.
-- Costes reales.
-- Nivel definitivo de automatización.
+El proyecto se encuentra actualmente en:
+
+FASE DE VALIDACIÓN DEL SISTEMA DE DECISIÓN
+
+El siguiente objetivo no es todavía automatizar ni generar miles de páginas.
+
+Primero debemos comprobar que el motor toma decisiones razonables.
 
 ---
 
-25. ORDEN DE TRABAJO
+19. Próximo paso obligatorio
 
-IDEA
+El siguiente paso es:
 
-↓
+1. Sincronizar todos los documentos
 
-INVESTIGACIÓN
+Actualizar estados antiguos para que reflejen la situación actual.
 
-↓
+2. Auditar
 
-ARQUITECTURA
+Comprobar que:
 
-↓
+- maestro;
+- metodología;
+- arquitectura;
+- investigación;
+- matrices;
+- motor;
 
-MOTOR DE DECISIÓN
+no se contradicen.
 
-↓
+3. Primera prueba
 
-PRUEBA PEQUEÑA
+Seleccionar una muestra de combinaciones de fontanería.
 
-↓
+Aplicar manualmente el motor.
 
-RESULTADOS
+4. Evaluar
 
-↓
+Comprobar:
 
-OPTIMIZACIÓN
+- falsos positivos;
+- falsos negativos;
+- decisiones dudosas;
+- variables insuficientes;
+- reglas faltantes.
 
-↓
+5. Ajustar
 
-AUTOMATIZACIÓN
-
-↓
-
-ESCALADO
-
----
-
-26. REGLA PRINCIPAL
-
-NO CONSTRUIR POR CONSTRUIR.
-
-La tecnología debe estar al servicio del negocio.
-
-El objetivo es demostrar que el modelo funciona y después escalarlo.
+Modificar el motor únicamente cuando exista una razón documentada.
 
 ---
 
-27. PRÓXIMO OBJETIVO
+20. Regla para cada nueva sesión
 
-Terminar de formalizar el motor de decisión utilizando la investigación de fontanería.
+Antes de continuar el proyecto:
 
-Después:
-
-1. Diseñar una prueba pequeña.
-2. Ejecutarla.
-3. Medir resultados.
-4. Optimizar.
-5. Automatizar.
-6. Escalar.
-
----
-
-28. REGLA DE ACTUALIZACIÓN
-
-Cuando una decisión importante cambie:
-
-1. Consultar "maestro.md".
-2. Consultar documentos relacionados.
-3. Comparar fechas.
-4. Identificar la información más reciente.
-5. Determinar si está validada.
-6. Integrar la nueva decisión.
-7. Actualizar el maestro.
-8. Registrar el cambio en el historial.
-9. Mantener el detalle en el documento especializado.
-
-Cuando se actualice un archivo, se debe proporcionar el contenido completo del archivo que deba sustituirse siempre que sea posible.
+1. Leer este archivo.
+2. Identificar la fase actual.
+3. Revisar el documento específico de esa fase.
+4. Comprobar las últimas decisiones.
+5. Detectar contradicciones.
+6. Determinar el siguiente paso pendiente.
+7. Ejecutar primero el trabajo que pueda realizarse sin intervención del usuario.
+8. Pedir al usuario únicamente las acciones que necesite realizar en su dispositivo.
+9. Guardar el trabajo importante antes de avanzar.
 
 ---
 
-29. REGLA PARA EL USUARIO
+21. Regla contra la pérdida de trabajo
 
-Cuando haya que modificar un archivo en GitHub, indicar:
+Si se realiza una investigación extensa o se construye una matriz, regla, arquitectura o decisión importante:
 
-ARCHIVO: ruta exacta.
+primero se documenta y después se continúa.
 
-ACCIÓN: crear / sustituir.
-
-CONTENIDO: contenido completo.
-
-El usuario realizará físicamente el cambio desde GitHub.
+Nunca se debe reconstruir trabajo ya realizado simplemente porque no esté disponible en el contexto inmediato de una conversación.
 
 ---
 
-30. REGLA DE SEGURIDAD DEL CONOCIMIENTO
+22. Historial de actualizaciones
 
-El conocimiento del proyecto debe ser acumulativo.
+2026-08-23
 
-Ante cualquier contradicción:
+Actualización principal
 
-NO BORRAR
+Se consolida la arquitectura documental del proyecto.
 
-↓
+Se establece:
 
-COMPARAR
+- metodología general reutilizable;
+- arquitectura SEO;
+- investigación de fontanería;
+- matriz de servicios;
+- matriz territorial;
+- motor de decisión;
+- sistema de estados;
+- procedimiento de validación.
 
-↓
+Se establece que:
 
-COMPROBAR FECHAS
+fontanería es el primer caso de aplicación y no debe utilizarse como plantilla rígida para otros sectores.
 
-↓
+Se establece que las decisiones nuevas y validadas pueden sustituir decisiones anteriores y deben quedar reflejadas en la documentación vigente.
 
-COMPROBAR VALIDACIÓN
+Se establece que el motor se encuentra:
 
-↓
+DEFINIDO — PENDIENTE DE VALIDACIÓN REAL.
 
-DETERMINAR DECISIÓN ACTUAL
+La siguiente fase es:
 
-↓
+AUDITORÍA → PRIMERA PRUEBA → AJUSTE → AUTOMATIZACIÓN
 
-INTEGRAR
+---
 
-↓
+23. Regla final
 
-ACTUALIZAR MAESTRO
+Ante cualquier duda sobre qué hacer:
 
-↓
+no improvisar.
 
-REGISTRAR EN HISTORIAL
+Primero:
 
-El objetivo es que el proyecto nunca pierda trabajo útil por mantener una versión antigua de la información.
+leer maestro → comprobar fase → revisar documentación → identificar pendiente → ejecutar siguiente paso.
+
+El objetivo es construir un sistema documentado, trazable, reutilizable y escalable.
+
+No se debe avanzar simplemente por avanzar.
+
+Cada fase debe quedar suficientemente consolidada antes de pasar a la siguiente.
