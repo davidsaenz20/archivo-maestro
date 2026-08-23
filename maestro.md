@@ -1,119 +1,115 @@
-MAESTRO DEL PROYECTO
+# MAESTRO DEL PROYECTO
 
-1. FUNCIÓN
+## 1. FUNCIÓN
 
 Este archivo es el documento maestro de control del proyecto.
 
 Su función es mantener una visión general y actualizada de:
 
-- Qué es el proyecto.
-- Qué principios lo gobiernan.
-- Cómo está organizado.
-- Qué documentos existen.
-- En qué fase estamos.
-- Qué está completado.
-- Qué está en validación.
-- Qué está pendiente.
-- Qué decisiones importantes se han tomado.
-- Qué información prevalece cuando existen contradicciones.
-- Cuál es el siguiente paso oficial.
+- objetivo;
+- principios;
+- arquitectura;
+- documentos;
+- fase actual;
+- trabajo completado;
+- trabajo en validación;
+- trabajo pendiente;
+- decisiones;
+- contradicciones;
+- siguiente paso.
 
-El maestro NO sustituye a los documentos especializados.
+El maestro no sustituye a los documentos especializados.
 
 Los documentos especializados contienen el detalle.
 
 ---
 
-2. FUENTE DE VERDAD
+# 2. FUENTE DE VERDAD
 
 El repositorio es la memoria persistente del proyecto.
 
-La memoria de la conversación de ChatGPT no sustituye a la documentación.
+La conversación no sustituye al repositorio.
 
 Todo trabajo importante debe terminar documentado.
 
-Esto incluye:
+Cuando exista contradicción:
 
-- Investigación.
-- Evidencias.
-- Matrices.
-- Oportunidades.
-- Reglas.
-- Decisiones.
-- URLs.
-- Arquitectura de landings.
-- Bloques.
-- Modelo de datos.
-- Prompts.
-- Validaciones.
-- Automatizaciones.
-- Publicación.
-- Resultados.
-- Aprendizajes.
+1. comprobar fecha;
+2. comprobar versión;
+3. comprobar evidencia;
+4. determinar qué información está mejor fundamentada;
+5. actualizar los documentos afectados;
+6. registrar el cambio.
 
-Si una información importante solo existe en una conversación, todavía no está correctamente documentada.
+El maestro refleja el estado consolidado.
+
+No tiene prioridad automática sobre un documento especializado.
 
 ---
 
-3. REGLA DE PRIORIDAD
+# 3. OBJETIVO
 
-Cuando exista una contradicción:
+Construir un sistema escalable para detectar oportunidades SEO locales de servicios profesionales y, únicamente cuando exista justificación suficiente, generar landings útiles, diferenciadas y comercialmente válidas.
 
-1. Comprobar la fecha.
-2. Identificar la versión del documento.
-3. Comprobar la evidencia.
-4. Determinar qué información está mejor fundamentada.
-5. Dar prioridad a la información posterior y mejor fundamentada.
-6. Actualizar los documentos afectados.
-7. Registrar el cambio.
-
-El maestro NO tiene prioridad automática sobre un documento especializado simplemente por ser el maestro.
-
-El maestro refleja el estado consolidado del proyecto.
-
----
-
-4. ACTUALIZACIONES
-
-Las actualizaciones importantes deben conservar historial.
-
-Toda actualización relevante debe poder identificar:
-
-- Fecha.
-- Documento.
-- Información anterior.
-- Nueva información.
-- Motivo.
-- Evidencia.
-- Consecuencia.
-
-Una actualización posterior y suficientemente fundamentada puede sustituir una decisión anterior.
-
-La información anterior no debe desaparecer cuando tenga valor histórico.
-
----
-
-5. OBJETIVO DEL PROYECTO
-
-Construir un sistema escalable para investigar y generar páginas SEO locales de servicios profesionales.
-
-La unidad principal puede ser:
+Unidad principal:
 
 SERVICIO × LOCALIDAD
 
-o, cuando exista una intención suficientemente específica:
+o:
 
 SERVICIO × SUBSERVICIO × LOCALIDAD
 
-El objetivo NO es generar miles de páginas automáticamente.
+El objetivo no es generar miles de páginas automáticamente.
 
-El objetivo es identificar únicamente combinaciones que puedan justificar una página útil, diferenciada y comercialmente válida.
+El objetivo es generar únicamente páginas que puedan justificarse.
 
 ---
 
-6. ARQUITECTURA GENERAL
+# 4. PRINCIPIO CENTRAL
 
-El flujo oficial es:
+El sistema debe diferenciar:
+
+TECNOLOGÍA
+
+de:
+
+NEGOCIO
+
+La automatización no justifica una página.
+
+La IA no justifica una página.
+
+Una keyword no justifica una página.
+
+Una localidad no justifica una página.
+
+Debe existir:
+
+INTENCIÓN
+
++
+
+EVIDENCIA
+
++
+
+UTILIDAD
+
++
+
+INFORMACIÓN SUFICIENTE
+
++
+
+DIFERENCIACIÓN
+
++
+
+RIESGO DE DUPLICACIÓN ACEPTABLE
+
+---
+
+# 5. FLUJO OFICIAL
 
 INVESTIGACIÓN
 
@@ -127,7 +123,7 @@ MATRICES
 
 ↓
 
-MATRIZ DE OPORTUNIDADES
+OPORTUNIDADES
 
 ↓
 
@@ -147,15 +143,15 @@ ARQUITECTURA DE LANDING
 
 ↓
 
-SISTEMA DE BLOQUES
+DATOS
 
 ↓
 
-MODELO DE DATOS
+BLOQUES
 
 ↓
 
-IA / CONTENIDO
+IA
 
 ↓
 
@@ -167,7 +163,11 @@ N8N
 
 ↓
 
-WORDPRESS / PUBLICACIÓN
+WORDPRESS
+
+↓
+
+PUBLICACIÓN
 
 ↓
 
@@ -177,176 +177,239 @@ MEDICIÓN
 
 APRENDIZAJE
 
-Este es el flujo oficial.
-
-No debe saltarse una fase sin justificación.
+No se debe saltar una fase sin justificación.
 
 ---
 
-7. ARQUITECTURA DOCUMENTAL
+# 6. ARQUITECTURA DOCUMENTAL
 
-CONTROL
+## CONTROL
 
-"maestro.md"
+`maestro.md`
 
 Control general.
 
----
+## METODOLOGÍA
 
-METODOLOGÍA
-
-"proyecto/metodologia.md"
+`proyecto/metodologia.md`
 
 Define cómo se trabaja.
 
----
+## SEO
 
-SEO
+`proyecto/seo/`
 
-"proyecto/seo/"
+Incluye:
 
-Arquitectura SEO
-
-"proyecto/seo/arquitectura-seo.md"
-
-Define los principios SEO.
-
-Arquitectura de URLs
-
-"proyecto/seo/arquitectura-urls.md"
-
-Define las estructuras de URL permitidas.
-
-Actualmente:
-
-"/{servicio}/{localidad}/"
-
-"/{servicio}/{subservicio}/{localidad}/"
-
-Motor de decisión
-
-"proyecto/seo/motor-decision.md"
-
-Define las reglas de decisión:
-
-- CREAR.
-- AGRUPAR.
-- INVESTIGAR.
-- NO CREAR.
-
-Investigación
-
-"proyecto/seo/investigacion-fontaneria.md"
-
-Conserva el análisis y conclusiones de la investigación sectorial.
-
-Evidencias
-
-"proyecto/seo/evidencias-fontaneria.md"
-
-Conserva las fuentes y observaciones concretas.
-
-Matriz de servicios
-
-"proyecto/seo/matriz-servicios-fontaneria.md"
-
-Define servicios y subservicios.
-
-Matriz de localidades
-
-"proyecto/seo/matriz-localidades.md"
-
-Define la estructura territorial.
-
-Matriz de oportunidades
-
-"proyecto/seo/matriz-oportunidades-fontaneria.md"
-
-Cruza servicios, subservicios, localidades y evidencias para crear oportunidades evaluables.
-
-Registro de decisiones
-
-"proyecto/seo/registro-decisiones.md"
-
-Conserva las decisiones obtenidas al aplicar el motor.
+- arquitectura SEO;
+- arquitectura de URLs;
+- investigación;
+- evidencias;
+- matrices;
+- oportunidades;
+- motor;
+- decisiones;
+- arquitectura de landing;
+- sistema de bloques;
+- esquema de datos;
+- contrato IA.
 
 ---
 
-8. DOCUMENTOS DE CONSTRUCCIÓN
+# 7. DOCUMENTOS SEO PRINCIPALES
 
-Después de validar la parte de decisión se crearán:
+### Arquitectura SEO
 
-"proyecto/seo/arquitectura-landing.md"
+`proyecto/seo/arquitectura-seo.md`
 
-"proyecto/seo/sistema-bloques.md"
+Define principios SEO.
 
-"proyecto/seo/modelo-datos.md"
+### Arquitectura de URLs
 
-"proyecto/seo/sistema-contenido-ia.md"
+`proyecto/seo/arquitectura-urls.md`
 
-"proyecto/seo/validacion.md"
+Define estructuras permitidas.
 
-"proyecto/seo/automatizacion-n8n.md"
+Actuales:
 
-"proyecto/seo/publicacion-wordpress.md"
+`/{servicio}/{localidad}/`
 
-"proyecto/seo/medicion-aprendizaje.md"
+`/{servicio}/{subservicio}/{localidad}/`
 
-Estos documentos NO sustituyen a los anteriores.
+### Investigación
 
-Representan las siguientes capas del sistema.
+`proyecto/seo/investigacion-fontaneria.md`
 
----
+### Evidencias
 
-9. METODOLOGÍA
+`proyecto/seo/evidencias-fontaneria.md`
 
-La metodología oficial está en:
+### Matriz de servicios
 
-"proyecto/metodologia.md"
+`proyecto/seo/matriz-servicios-fontaneria.md`
 
-El orden es:
+### Matriz de localidades
 
-1. Investigación.
-2. Evidencias.
-3. Matrices.
-4. Oportunidades.
-5. Motor.
-6. Decisiones.
-7. URLs.
-8. Landing.
-9. Bloques.
-10. Modelo de datos.
-11. IA.
-12. Validación.
-13. N8N.
-14. Publicación.
-15. Medición.
-16. Aprendizaje.
+`proyecto/seo/matriz-localidades.md`
+
+### Matriz de oportunidades
+
+`proyecto/seo/matriz-oportunidades-fontaneria.md`
+
+### Motor
+
+`proyecto/seo/motor-decision.md`
+
+### Registro
+
+`proyecto/seo/registro-decisiones.md`
 
 ---
 
-10. MOTOR DE DECISIÓN
+# 8. DOCUMENTOS DE CONSTRUCCIÓN ACTUALES
 
-El motor actual es:
+## Arquitectura de landing
+
+`proyecto/seo/arquitectura-landing.md`
+
+Estado:
+
+DEFINIDA
+
+## Sistema de bloques
+
+`proyecto/seo/sistema-bloques.md`
+
+Estado:
+
+DEFINIDO
+
+## Esquema de datos
+
+`proyecto/seo/esquema-datos.md`
+
+Estado:
+
+DEFINIDO
+
+Versión:
+
+1.1
+
+## Contrato IA → N8N
+
+`proyecto/seo/contrato-salida-ia.md`
+
+Estado:
+
+DEFINIDO
+
+Versión:
+
+1.1
+
+---
+
+# 9. SISTEMA DE BLOQUES
+
+Los identificadores oficiales son:
+
+B01 HEADER
+
+B02 NAVEGACIÓN
+
+B03 HERO
+
+B04 CONTENIDO PRINCIPAL
+
+B05 CTA PRINCIPAL
+
+B06 FOOTER
+
+B07 SUBSERVICIO
+
+B08 PROBLEMAS / NECESIDADES
+
+B09 INFORMACIÓN LOCAL
+
+B10 ZONAS / COBERTURA
+
+B11 PROCESO
+
+B12 ELEMENTOS DE CONFIANZA
+
+B13 DIFERENCIACIÓN
+
+B14 FAQ
+
+B15 SERVICIOS RELACIONADOS
+
+B16 LOCALIDADES RELACIONADAS
+
+B17 DATOS ESTRUCTURADOS
+
+B18 TESTIMONIOS
+
+B19 CASOS / EJEMPLOS
+
+B20 GALERÍA
+
+B21 PRECIO / TARIFAS
+
+B22 HORARIOS
+
+B23 MAPA / UBICACIÓN
+
+El mapa es vinculante.
+
+La IA no puede inventar nuevos IDs.
+
+---
+
+# 10. ESQUEMA DE DATOS
+
+El modelo canónico actual es:
+
+OPORTUNIDAD
+
+├── opportunity_id
+├── identidad
+├── localizacion
+├── intencion
+├── investigacion
+├── decision_seo
+├── agrupacion
+├── arquitectura
+├── datos_locales
+├── cobertura
+├── datos_comerciales
+├── resenas
+├── bloques
+├── contenido
+├── imagenes
+├── enlazado
+├── schema
+├── estado_oportunidad
+├── estado_landing
+├── validacion
+├── incidencias
+└── trazabilidad
+
+Este esquema es la estructura común entre investigación, decisión, IA, N8N y publicación.
+
+---
+
+# 11. MOTOR DE DECISIÓN
+
+Versión:
 
 v1.0
 
 Estado:
 
-DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
+DEFINIDO — EN VALIDACIÓN REAL
 
-Variables principales:
-
-- Intención.
-- Demanda.
-- Potencial comercial.
-- Relevancia territorial.
-- Competencia.
-- Diferenciación.
-- Información disponible.
-- Riesgo de duplicación.
-
-Resultados:
+Resultados permitidos:
 
 CREAR
 
@@ -356,11 +419,20 @@ INVESTIGAR
 
 NO CREAR
 
-El motor v1.0 utiliza reglas y evidencia.
+Variables:
 
-No deben inventarse puntuaciones numéricas.
+- intención;
+- demanda;
+- potencial comercial;
+- relevancia territorial;
+- competencia;
+- diferenciación;
+- información disponible;
+- riesgo de duplicación.
 
-Si falta evidencia:
+No utiliza puntuaciones arbitrarias.
+
+Cuando falta evidencia:
 
 DESCONOCIDO
 
@@ -368,382 +440,523 @@ o:
 
 INVESTIGAR
 
-El motor solo se considerará validado después de probarlo con casos reales.
-
 ---
 
-11. ARQUITECTURA DE URL
+# 12. PRIMERA OPORTUNIDAD REAL
 
-La arquitectura está definida.
+ID:
 
-Estructura principal:
+OPP-001
 
-"/{servicio}/{localidad}/"
+Servicio:
 
-Estructura específica:
+fontanero
 
-"/{servicio}/{subservicio}/{localidad}/"
+Subservicio:
 
-Ejemplos:
+ninguno
 
-"/fontanero/marbella/"
+Municipio:
 
-"/fontanero/desatascos/marbella/"
+Marbella
 
-La existencia de una combinación no implica automáticamente crear una URL.
+Provincia:
 
-Primero:
+Málaga
 
-MOTOR → DECISIÓN
-
-Después:
-
-DECISIÓN → URL
-
-La IA no decide libremente la URL.
-
----
-
-12. TRAZABILIDAD
-
-Cada decisión importante debe poder reconstruirse:
-
-EVIDENCIA
-
-↓
-
-DATO
-
-↓
-
-MATRIZ
-
-↓
-
-OPORTUNIDAD
-
-↓
-
-MOTOR
-
-↓
-
-DECISIÓN
-
-↓
-
-URL
-
-↓
-
-LANDING
-
-Esto permite saber por qué se creó, agrupó, investigó o descartó una combinación.
-
----
-
-13. INVESTIGACIÓN DE FONTANERÍA
-
-La investigación de fontanería constituye el primer caso de estudio del sistema.
-
-Contiene:
-
-- Servicios.
-- Subservicios.
-- Localidades.
-- Competencia.
-- SERP.
-- Patrones.
-- Conclusiones.
-- Hipótesis.
-
-No debe tratarse como una verdad universal para otros sectores.
-
-Cuando se investigue otro servicio se repetirá la metodología.
-
----
-
-14. MATRICES
-
-Las matrices actuales son:
-
-- Servicios.
-- Localidades.
-- Oportunidades.
-
-Las evidencias proporcionan el soporte documental.
-
-Las matrices no sustituyen a las evidencias.
-
-Las oportunidades no sustituyen al motor.
-
----
-
-15. REGISTRO DE DECISIONES
-
-"proyecto/seo/registro-decisiones.md"
-
-contiene los resultados concretos del motor.
-
-El motor contiene:
-
-REGLAS
-
-El registro contiene:
-
-DECISIONES
-
-Nunca deben mezclarse ambas funciones.
-
----
-
-16. IA
-
-La IA no decide estratégicamente por su cuenta.
-
-La IA recibe:
-
-- Datos.
-- Reglas.
-- URL.
-- Bloques.
-- Evidencias.
-- Restricciones.
-
-Y genera contenido dentro de esos límites.
-
-No debe inventar:
-
-- Empresas.
-- Precios.
-- Direcciones.
-- Teléfonos.
-- Certificaciones.
-- Testimonios.
-- Disponibilidad.
-- Cobertura.
-- Datos locales no verificados.
-
----
-
-17. N8N
-
-N8N será la capa de orquestación.
-
-No debe sustituir al motor.
-
-No debe decidir estratégicamente qué páginas existen.
-
-Su función será ejecutar el proceso previamente definido.
-
----
-
-18. REGLA PARA NUEVOS SERVICIOS
-
-La metodología y arquitectura general son reutilizables.
-
-Las conclusiones sectoriales NO.
-
-Ejemplo:
-
-ABOGADOS
-
-↓
-
-Investigación específica.
-
-↓
-
-Evidencias.
-
-↓
-
-Matriz de servicios jurídicos.
-
-↓
-
-Matriz territorial.
-
-↓
-
-Oportunidades.
-
-↓
-
-Motor adaptado.
-
-↓
-
-Validación.
-
-↓
-
-URLs.
-
-↓
-
-Landings.
-
-↓
-
-IA.
-
-↓
-
-Automatización.
-
-Por tanto, el sistema será reutilizable sin copiar hipótesis de fontanería a otros sectores.
-
----
-
-19. AUDITORÍA ANTES DE AVANZAR
-
-Antes de cambiar de fase debe comprobarse:
-
-- Coherencia entre documentos.
-- Evidencias disponibles.
-- Matrices actualizadas.
-- Reglas identificadas.
-- Decisiones documentadas.
-- Ausencia de contradicciones importantes.
-- Siguiente fase definida.
-
-Si existe una pérdida documental importante:
-
-SE DETIENE EL AVANCE Y SE DOCUMENTA PRIMERO.
-
----
-
-20. ESTADO ACTUAL
-
-COMPLETADO
-
-- Arquitectura general del proyecto.
-- Metodología.
-- Arquitectura SEO.
-- Arquitectura de URLs.
-- Investigación inicial de fontanería.
-- Matriz de servicios.
-- Matriz de localidades.
-- Sistema de evidencias.
-- Matriz de oportunidades.
-- Motor de decisión v1.0.
-- Registro de decisiones.
-
-EN VALIDACIÓN
-
-- Evidencias de la investigación inicial.
-- Oportunidades reales.
-- Motor de decisión.
-- Arquitectura de URLs.
-
-SIGUIENTE BLOQUE
-
-Construcción de:
-
-- Arquitectura de landing.
-- Sistema de bloques.
-- Modelo de datos.
-- Sistema de contenido/IA.
-- Validación.
-
-DESPUÉS
-
-- N8N.
-- WordPress.
-- Publicación.
-- Medición.
-- Aprendizaje.
-- Escalado.
-
----
-
-21. SIGUIENTE PASO OFICIAL
-
-El siguiente paso inmediato es:
-
-VALIDAR OPORTUNIDADES REALES DE FONTANERÍA
-
-Para cada oportunidad:
-
-1. Identificar datos.
-2. Identificar evidencias.
-3. Aplicar motor.
-4. Registrar decisión.
-5. Determinar URL si procede.
-6. Comprobar si existe suficiente información para construir una landing.
-
-Cuando exista un conjunto suficiente de decisiones reales, se pasará a:
-
-ARQUITECTURA DE LANDING
-
----
-
-22. REGLA CONTRA LA DERIVA DEL PROYECTO
-
-Antes de crear o modificar cualquier documento se debe responder:
-
-- ¿Qué función cumple?
-- ¿Qué información contiene?
-- ¿De qué documentos depende?
-- ¿Qué documentos dependen de él?
-- ¿Existe ya esa información?
-- ¿En qué fase estamos?
-- ¿Es necesario modificarlo ahora?
-
-No se crearán documentos simplemente porque parezcan útiles en ese momento.
-
----
-
-23. REGLA CONTRA LA PÉRDIDA DE INFORMACIÓN
-
-Si durante una conversación se realiza:
-
-- investigación;
-- análisis;
-- descubrimiento;
-- decisión;
-- modificación de una regla;
-- creación de una matriz;
-- definición de una arquitectura;
-
-esa información deberá incorporarse al repositorio antes de considerarse cerrada.
-
-La memoria conversacional nunca se considera almacenamiento definitivo.
-
----
-
-24. REGISTRO DE ACTUALIZACIÓN
+Fecha:
 
 2026-08-23
 
-Se consolida la arquitectura documental del proyecto.
+---
 
-Se incorporan explícitamente:
+# 13. ESTADO DE OPP-001
 
-EVIDENCIAS
+La primera decisión registrada es:
 
-y:
+INVESTIGAR
 
-MATRIZ DE OPORTUNIDADES
+Motivos:
 
-al flujo oficial.
+- intención confirmada;
+- potencial comercial probable;
+- relevancia territorial confirmada;
+- competencia alta;
+- oferta local confirmada;
+- demanda cuantitativa todavía desconocida;
+- diferenciación insuficientemente documentada;
+- riesgo de duplicación medio/alto;
+- información local propia todavía parcial.
 
-Se consolida la separación entre:
+Por tanto:
 
-- investigación;
-- evidencia;
-- matrices;
-- oportunidades;
-- reglas;
-- decisiones;
-- URLs;
-- construcción de landings.
+NO ESTÁ APROBADA PARA PUBLICACIÓN.
 
-Se establece el motor v1.0 como sistema basado en reglas y evidencia, sin puntuaciones numéricas arbitrarias.
+---
 
-Se incorpora el registro de decisiones como documento ya existente.
+# 14. URL PREVISTA
 
-Se establece como siguiente fase la validación real del motor con oportunidades de fontanería.
+Si OPP-001 pasa a CREAR:
 
-A partir de esta actualización, la arquitectura documental queda considerada ESTABLE salvo que una prueba real demuestre la necesidad de modificarla.
+`/fontanero/marbella/`
+
+Actualmente:
+
+PENDIENTE DE APROBACIÓN
+
+La URL no se activa antes de la decisión.
+
+---
+
+# 15. PRUEBA TÉCNICA DE LANDING
+
+Existe una segunda línea de trabajo:
+
+PROBAR EL SISTEMA DE GENERACIÓN
+
+utilizando:
+
+Fontanero Marbella
+
+Esta prueba sirve para comprobar:
+
+- estructura;
+- bloques;
+- datos;
+- contrato IA;
+- JSON;
+- validación;
+- posterior integración con N8N;
+- posible generación WordPress.
+
+IMPORTANTE:
+
+Una prueba técnica de generación no equivale a aprobar OPP-001 para publicación.
+
+---
+
+# 16. REGLA DE LA PRUEBA
+
+Si se genera contenido de prueba para Fontanero Marbella:
+
+debe marcarse como:
+
+TEST
+
+y no:
+
+PUBLICABLE
+
+hasta que el motor real produzca:
+
+CREAR
+
+La prueba no puede utilizarse como evidencia para justificar la propia decisión.
+
+---
+
+# 17. IA
+
+La IA trabaja después de:
+
+1. investigación;
+2. evidencias;
+3. decisión;
+4. arquitectura;
+5. preparación de datos;
+6. selección de bloques.
+
+La IA genera contenido.
+
+No decide:
+
+- si existe la página;
+- URL;
+- canonical;
+- localidad;
+- servicio;
+- arquitectura;
+- bloques no autorizados.
+
+---
+
+# 18. CONTRATO IA
+
+Archivo:
+
+`proyecto/seo/contrato-salida-ia.md`
+
+Versión:
+
+1.1
+
+La salida debe ser JSON válido.
+
+La IA no puede devolver contenido fuera del JSON.
+
+Debe respetar:
+
+- identidad;
+- arquitectura;
+- URL;
+- canonical;
+- bloques;
+- restricciones;
+- datos disponibles.
+
+No puede inventar información factual.
+
+---
+
+# 19. N8N
+
+N8N será la capa de orquestación.
+
+No decide estratégicamente.
+
+Flujo previsto:
+
+DATOS
+
+↓
+
+IA
+
+↓
+
+JSON
+
+↓
+
+VALIDACIÓN
+
+↓
+
+N8N
+
+↓
+
+WORDPRESS
+
+N8N no debe decidir qué páginas existen.
+
+---
+
+# 20. WORDPRESS
+
+Todavía no se considera cerrada la integración.
+
+Pendiente:
+
+- formato de entrada;
+- endpoint;
+- creación de páginas;
+- asignación de plantilla;
+- metadatos;
+- imágenes;
+- enlaces;
+- publicación;
+- actualización;
+- control de errores.
+
+---
+
+# 21. VALIDACIÓN
+
+Debe comprobar como mínimo:
+
+- JSON válido;
+- schema_version;
+- opportunity_id;
+- identidad;
+- URL;
+- canonical;
+- bloques;
+- tipos de bloques;
+- ausencia de invenciones;
+- enlaces autorizados;
+- coherencia;
+- restricciones;
+- incidencias.
+
+Resultado:
+
+READY
+
+REVIEW
+
+ERROR
+
+---
+
+# 22. REGLA DE NO INVENCIÓN
+
+Está prohibido inventar:
+
+- empresas;
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
+- experiencia;
+- certificaciones;
+- garantías;
+- reseñas;
+- testimonios;
+- cobertura;
+- zonas;
+- casos;
+- imágenes;
+- URLs.
+
+Si no existe información:
+
+null
+
+o:
+
+REVIEW
+
+según corresponda.
+
+---
+
+# 23. DIFERENCIACIÓN
+
+Cambiar:
+
+Marbella
+
+por:
+
+Estepona
+
+no es suficiente.
+
+Tampoco:
+
+- cambiar título;
+- cambiar sinónimos;
+- cambiar orden;
+- generar texto distinto mediante IA.
+
+La diferenciación debe proceder de información real.
+
+---
+
+# 24. ESTADOS DEL SISTEMA
+
+## Decisión SEO
+
+CREAR
+
+AGRUPAR
+
+INVESTIGAR
+
+NO CREAR
+
+## Estado de oportunidad
+
+DETECTADA
+
+INVESTIGADA
+
+EVALUADA
+
+DECIDIDA
+
+CERRADA
+
+## Estado de landing
+
+NO_INICIADA
+
+DATOS_PREPARADOS
+
+ARQUITECTURA_PREPARADA
+
+BLOQUES_SELECCIONADOS
+
+CONTENIDO_GENERADO
+
+VALIDACION_PENDIENTE
+
+VALIDADA
+
+PUBLICADA
+
+RECHAZADA
+
+REVISAR
+
+---
+
+# 25. QUÉ ESTÁ COMPLETADO
+
+- arquitectura general;
+- metodología;
+- arquitectura SEO;
+- arquitectura de URLs;
+- investigación inicial de fontanería;
+- evidencias iniciales;
+- matriz de servicios;
+- matriz de localidades;
+- matriz de oportunidades;
+- motor de decisión v1.0;
+- registro de decisiones;
+- arquitectura de landing;
+- sistema de bloques;
+- esquema de datos v1.1;
+- contrato IA → N8N v1.1.
+
+---
+
+# 26. QUÉ ESTÁ EN VALIDACIÓN
+
+- motor de decisión;
+- oportunidades reales;
+- diferenciación;
+- arquitectura aplicada a casos reales;
+- generación técnica de landing;
+- contrato IA;
+- validación del JSON.
+
+---
+
+# 27. QUÉ ESTÁ PENDIENTE
+
+- completar pruebas IA;
+- validar salida JSON;
+- crear sistema de validación operativo;
+- definir integración N8N;
+- definir integración WordPress;
+- probar publicación;
+- medir resultados;
+- aprender;
+- escalar.
+
+---
+
+# 28. PRÓXIMO PASO OFICIAL
+
+No crear más documentación estructural por ahora.
+
+El siguiente trabajo es:
+
+PRUEBA TÉCNICA DE GENERACIÓN
+
+↓
+
+OPP-001 / FONTANERO / MARBELLA
+
+↓
+
+PREPARAR INPUT
+
+↓
+
+SELECCIONAR BLOQUES
+
+↓
+
+GENERAR JSON
+
+↓
+
+VALIDAR JSON
+
+↓
+
+ANALIZAR RESULTADO
+
+Después:
+
+INTEGRACIÓN N8N
+
+---
+
+# 29. REGLA DE TRABAJO
+
+Cuando un archivo necesite actualización:
+
+1. identificarlo;
+2. explicar brevemente por qué;
+3. entregar contenido completo;
+4. el usuario sustituye manualmente;
+5. comprobar el archivo;
+6. continuar.
+
+No modificar archivos innecesariamente.
+
+No crear documentos duplicados.
+
+---
+
+# 30. PRINCIPIO DE CONTROL
+
+Antes de avanzar:
+
+¿Está documentado?
+
+¿Está justificado?
+
+¿Está probado?
+
+¿Es necesario?
+
+Si no:
+
+no avanzar.
+
+---
+
+# 31. REGISTRO DE ACTUALIZACIÓN
+
+2026-08-23
+
+Se actualiza el maestro para reflejar el estado real del proyecto.
+
+Cambios:
+
+- sustitución de referencias antiguas a `modelo-datos.md` por `esquema-datos.md`;
+- incorporación de arquitectura de landing;
+- incorporación del sistema de bloques B01-B23;
+- incorporación del contrato IA → N8N;
+- incorporación del modelo de datos canónico;
+- incorporación del estado real de OPP-001;
+- separación entre prueba técnica y publicación real;
+- actualización de la fase actual;
+- definición del siguiente paso como prueba técnica de generación.
+
+Estado actual:
+
+ARQUITECTURA DOCUMENTAL CONSOLIDADA
+
+↓
+
+VALIDACIÓN TÉCNICA
+
+↓
+
+PRUEBA FONTANERO MARBELLA
+
+---
+
+# 32. REGLA FINAL
+
+El sistema debe demostrar primero que funciona correctamente con pocos casos.
+
+Después:
+
+automatizar.
+
+Después:
+
+escalar.
+
+Nunca:
+
+automatizar primero y descubrir después que el modelo era incorrecto.
