@@ -1,10 +1,10 @@
-ESQUEMA DE DATOS
+# ESQUEMA DE DATOS
 
-1. FUNCIÓN
+## 1. FUNCIÓN
 
-Este documento define la estructura de datos que utiliza el sistema para representar una oportunidad SEO y, cuando corresponde, la landing asociada.
+Este documento define el modelo de datos canónico del sistema.
 
-Es el esquema común entre:
+Es la estructura común entre:
 
 - investigación;
 - matrices;
@@ -18,33 +18,29 @@ Es el esquema común entre:
 - validación;
 - publicación.
 
-Los documentos pueden definir reglas adicionales, pero no deben utilizar estructuras o valores que contradigan este esquema.
+Los demás documentos pueden definir reglas específicas, pero no deben crear estructuras o valores que contradigan este esquema.
 
 ---
 
-2. PRINCIPIO FUNDAMENTAL
+## 2. PRINCIPIO FUNDAMENTAL
 
-Cada oportunidad debe poder identificarse y procesarse de forma independiente.
+Cada oportunidad debe poder identificarse, investigarse, decidirse, construirse y validarse de forma independiente.
 
-Ejemplo:
+Ejemplos:
 
 OPP-0001
 fontanero / Marbella
 
-o:
-
 OPP-0002
 fontanero / desatascos / Marbella
 
-Cada oportunidad debe conservar su propia información, decisión, arquitectura, contenido y trazabilidad.
+Una oportunidad conserva su propia información, decisión, arquitectura, contenido y trazabilidad.
 
 ---
 
-3. IDENTIFICADOR
+# 3. IDENTIFICACIÓN
 
-Campo:
-
-opportunity_id
+## opportunity_id
 
 Tipo:
 
@@ -62,9 +58,9 @@ OPP-0001
 
 ---
 
-4. IDENTIDAD
+# 4. IDENTIDAD
 
-La identidad define exactamente qué representa la oportunidad.
+Estructura:
 
 identidad
 ├── sector
@@ -72,19 +68,25 @@ identidad
 ├── subservicio
 └── tipo_pagina
 
-sector
+### sector
+
+Sector profesional.
 
 Ejemplo:
 
 servicios profesionales
 
-servicio
+### servicio
+
+Servicio principal.
 
 Ejemplo:
 
 fontanero
 
-subservicio
+### subservicio
+
+Servicio específico.
 
 Ejemplo:
 
@@ -94,20 +96,22 @@ Puede ser:
 
 null
 
-cuando no exista subservicio.
+cuando no exista.
 
-tipo_pagina
+### tipo_pagina
 
-Define qué tipo de página representa la oportunidad.
-
-Ejemplos:
+Valores iniciales:
 
 servicio_localidad
 servicio_subservicio_localidad
 
+La IA no decide este valor.
+
 ---
 
-5. LOCALIZACIÓN
+# 5. LOCALIZACIÓN
+
+Estructura:
 
 localizacion
 ├── pais
@@ -117,53 +121,44 @@ localizacion
 ├── localidad
 └── zonas
 
-Los campos territoriales deben proceder de datos válidos.
+Los datos territoriales deben proceder de información válida.
 
-provincia
-
-Ejemplo:
-
-Málaga
-
-municipio
+### municipio
 
 Ejemplo:
 
 Marbella
 
-localidad
-
-Puede utilizarse cuando sea necesario distinguir una localidad de un municipio.
-
-Puede ser:
-
-null
-
-zonas
-
-Lista de zonas confirmadas.
+### provincia
 
 Ejemplo:
 
-[
-  "Nueva Andalucía",
-  "San Pedro de Alcántara"
-]
+Málaga
 
-No deben incluirse zonas no confirmadas.
+### localidad
+
+Puede ser null cuando no sea necesaria.
+
+### zonas
+
+Lista de zonas confirmadas.
+
+No se deben inventar zonas.
 
 ---
 
-6. INTENCIÓN
+# 6. INTENCIÓN
+
+Estructura:
 
 intencion
 ├── tipo
 ├── confianza
 └── evidencia
 
-tipo
+### tipo
 
-Ejemplos:
+Valores iniciales:
 
 informacional
 comercial
@@ -172,25 +167,23 @@ navegacional
 local
 mixta
 
-La taxonomía definitiva puede ampliarse, pero debe mantenerse estable.
+### confianza
 
-confianza
-
-Valor que representa la confianza en la clasificación.
-
-Ejemplo:
+Valores:
 
 alta
 media
 baja
 
-evidencia
+### evidencia
 
-Referencia a la información que permite justificar la intención.
+Referencia a la información que justifica la clasificación.
 
 ---
 
-7. INVESTIGACIÓN
+# 7. INVESTIGACIÓN
+
+Estructura:
 
 investigacion
 ├── fuentes
@@ -200,62 +193,54 @@ investigacion
 ├── tendencia
 └── notas
 
-fuentes
+## fuentes
 
-Lista de fuentes utilizadas.
+Cada fuente puede contener:
 
-Cada fuente debe conservar, cuando sea posible:
+- id
+- tipo
+- url
+- fecha
+- descripcion
 
-id
-tipo
-url
-fecha
-descripcion
+## evidencias
 
-evidencias
+Debe diferenciar:
 
-Información obtenida de las fuentes.
+- confirmado;
+- incierto;
+- no_disponible.
 
-Debe diferenciarse entre:
+## demanda
 
-dato confirmado
-dato incierto
-dato no disponible
+Puede contener:
 
-demanda
+- keyword;
+- volumen;
+- tendencia;
+- estacionalidad;
+- fuente;
+- fecha.
 
-Información relacionada con demanda de búsqueda.
+Los datos desconocidos deben ser null.
 
-Puede incluir:
+Nunca se inventan.
 
-keyword
-volumen
-tendencia
-estacionalidad
-fuente
-fecha
+## competencia
 
-Cuando no exista un dato:
+Información sobre resultados, competidores y dificultad.
 
-null
-
-No se debe inventar.
-
-competencia
-
-Información sobre competidores o resultados existentes.
-
-tendencia
+## tendencia
 
 Información temporal relevante.
 
-notas
+## notas
 
-Observaciones adicionales de investigación.
+Observaciones adicionales.
 
 ---
 
-8. DECISIÓN SEO
+# 8. DECISIÓN SEO
 
 Campo:
 
@@ -268,74 +253,52 @@ AGRUPAR
 INVESTIGAR
 NO CREAR
 
-Estos son los únicos resultados oficiales del motor.
+Son los únicos resultados oficiales del motor.
 
 ---
 
-9. CREAR
+# 9. CREAR
 
 Significa que la oportunidad justifica una landing independiente.
 
-Cuando:
-
-decision_seo = CREAR
-
-puede continuar hacia arquitectura y construcción.
+Permite continuar hacia arquitectura y construcción.
 
 ---
 
-10. AGRUPAR
+# 10. AGRUPAR
 
-Significa que la intención existe, pero no justifica una página independiente.
+Significa que la intención existe pero no justifica una página independiente.
 
-Debe registrarse, cuando corresponda:
-
-agrupacion
-├── pagina_destino
-└── motivo
-
-No se genera una URL independiente.
-
----
-
-11. INVESTIGAR
-
-Significa que no existe suficiente información para tomar una decisión definitiva.
-
-La oportunidad queda pendiente de investigación.
-
-No se genera todavía una landing ni una URL definitiva.
-
----
-
-12. NO CREAR
-
-Significa que existe suficiente información para determinar que no debe existir una página independiente.
-
-No se genera landing.
-
----
-
-13. AGRUPACIÓN
-
-Cuando:
-
-decision_seo = AGRUPAR
-
-puede utilizarse:
+Estructura:
 
 agrupacion
 ├── pagina_destino
 ├── url_destino
 └── motivo
 
-La URL de destino debe ser una URL existente o previamente determinada.
+No se genera una URL independiente.
 
-La IA no debe inventarla.
+La URL de destino debe existir o estar previamente autorizada.
 
 ---
 
-14. ARQUITECTURA
+# 11. INVESTIGAR
+
+Significa que no existe información suficiente para tomar una decisión definitiva.
+
+No se genera todavía una landing definitiva.
+
+---
+
+# 12. NO CREAR
+
+Significa que existe información suficiente para determinar que no debe existir una página independiente.
+
+No se genera landing.
+
+---
+
+# 13. ARQUITECTURA
 
 Solo debe existir una arquitectura definitiva cuando:
 
@@ -353,71 +316,67 @@ arquitectura
 
 ---
 
-15. TIPO DE PÁGINA
-
-Ejemplos:
-
-servicio_localidad
-servicio_subservicio_localidad
-
-La elección debe proceder de la arquitectura SEO y de URLs.
-
-No de la IA.
-
----
-
-16. URL
-
-Campo:
-
-arquitectura.url
-
-Ejemplo:
-
-/fontanero/marbella/
-
-o:
-
-/fontanero/desatascos/marbella/
-
-La URL debe estar determinada antes de generar el contenido definitivo.
-
----
-
-17. TIPO DE URL
-
-Campo:
-
-url_tipo
+# 14. TIPO DE PÁGINA
 
 Valores iniciales:
 
 servicio_localidad
 servicio_subservicio_localidad
 
-Puede ampliarse cuando la arquitectura del proyecto lo requiera.
+La elección procede de la arquitectura SEO.
+
+La IA no puede modificarla.
 
 ---
 
-18. CANONICAL
+# 15. URL
 
 Campo:
 
-canonical
+arquitectura.url
 
-Debe representar la URL canónica de la página.
+Ejemplos:
 
-La IA no debe inventarla.
+/fontanero/marbella/
+
+/fontanero/desatascos/marbella/
+
+La URL debe estar determinada antes de generar contenido.
+
+La IA nunca decide la URL.
 
 ---
 
-19. PÁGINA PADRE
+# 16. TIPO DE URL
 
 Campo:
 
-parent_url
+arquitectura.url_tipo
 
-Representa la página jerárquicamente superior cuando exista.
+Valores iniciales:
+
+servicio_localidad
+servicio_subservicio_localidad
+
+---
+
+# 17. CANONICAL
+
+Campo:
+
+arquitectura.canonical
+
+Debe representar la URL canónica autorizada.
+
+La IA no puede inventarlo ni modificarlo.
+
+---
+
+# 18. PÁGINA PADRE
+
+Campo:
+
+arquitectura.parent_url
 
 Ejemplo:
 
@@ -427,27 +386,31 @@ para:
 
 /fontanero/marbella/
 
+Puede ser null.
+
 ---
 
-20. PROFUNDIDAD
+# 19. PROFUNDIDAD
 
 Campo:
 
-profundidad
+arquitectura.profundidad
 
-Representa el nivel de la página dentro de la arquitectura.
+Representa el nivel dentro de la arquitectura.
 
-Ejemplo:
+Ejemplos:
 
 1
 2
 3
 
-No debe confundirse con la longitud de la URL.
+No representa la longitud de la URL.
 
 ---
 
-21. DATOS LOCALES
+# 20. DATOS LOCALES
+
+Estructura:
 
 datos_locales
 ├── disponible
@@ -460,11 +423,13 @@ Si:
 
 disponible = false
 
-la IA no debe inventar información local.
+no se debe generar contenido local específico.
 
 ---
 
-22. COBERTURA
+# 21. COBERTURA
+
+Estructura:
 
 cobertura
 ├── confirmada
@@ -472,11 +437,13 @@ cobertura
 ├── zonas
 └── fuente
 
-La cobertura solo puede afirmarse cuando esté respaldada.
+Solo se afirma cobertura cuando está respaldada.
 
 ---
 
-23. DATOS COMERCIALES
+# 22. DATOS COMERCIALES
+
+Estructura:
 
 datos_comerciales
 ├── empresa
@@ -490,18 +457,23 @@ datos_comerciales
 ├── experiencia
 └── certificaciones
 
-Los campos pueden ser:
+Los campos pueden contener:
 
 valor
+
+o:
+
 null
 
-"null" significa que el dato no está disponible.
+null significa dato no disponible.
 
-Nunca debe interpretarse como permiso para inventarlo.
+Nunca significa permiso para inventarlo.
 
 ---
 
-24. RESEÑAS
+# 23. RESEÑAS
+
+Estructura:
 
 resenas
 ├── disponibles
@@ -509,27 +481,25 @@ resenas
 ├── cantidad
 └── elementos
 
-Los elementos pueden incluir:
+Cada elemento puede contener:
 
-autor
-fecha
-valoracion
-texto
-fuente
+- autor;
+- fecha;
+- valoracion;
+- texto;
+- fuente.
 
 Las reseñas deben ser reales.
 
 ---
 
-25. BLOQUES
+# 24. BLOQUES
+
+Estructura:
 
 bloques
 ├── seleccionados
 └── configuracion
-
-seleccionados
-
-Lista de identificadores de bloques.
 
 Ejemplo:
 
@@ -537,21 +507,95 @@ Ejemplo:
   "B01",
   "B02",
   "B03",
-  "B07",
-  "B09"
+  "B04",
+  "B05",
+  "B06"
 ]
 
-configuracion
-
-Datos necesarios para cada bloque.
-
-La selección procede de la arquitectura de landing y del sistema de bloques.
+La selección procede de la arquitectura de landing.
 
 La IA no puede añadir bloques por iniciativa propia.
 
 ---
 
-26. CONTENIDO
+# 25. MAPA OFICIAL DE BLOQUES
+
+Los identificadores oficiales son:
+
+B01 = HEADER
+
+B02 = NAVEGACIÓN
+
+B03 = HERO
+
+B04 = CONTENIDO PRINCIPAL
+
+B05 = CTA PRINCIPAL
+
+B06 = FOOTER
+
+B07 = SUBSERVICIO
+
+B08 = PROBLEMAS / NECESIDADES
+
+B09 = INFORMACIÓN LOCAL
+
+B10 = ZONAS / COBERTURA
+
+B11 = PROCESO
+
+B12 = ELEMENTOS DE CONFIANZA
+
+B13 = DIFERENCIACIÓN
+
+B14 = FAQ
+
+B15 = SERVICIOS RELACIONADOS
+
+B16 = LOCALIDADES RELACIONADAS
+
+B17 = DATOS ESTRUCTURADOS
+
+B18 = TESTIMONIOS
+
+B19 = CASOS / EJEMPLOS
+
+B20 = GALERÍA
+
+B21 = PRECIO / TARIFAS
+
+B22 = HORARIOS
+
+B23 = MAPA / UBICACIÓN
+
+Este mapa es vinculante.
+
+---
+
+# 26. CONFIGURACIÓN DE BLOQUES
+
+Cada bloque puede disponer de configuración específica.
+
+Ejemplo:
+
+{
+  "bloque_id": "B03",
+  "enabled": true,
+  "configuracion": {}
+}
+
+La configuración no puede contradecir:
+
+- arquitectura;
+- datos;
+- restricciones;
+- evidencias.
+
+---
+
+# 27. CONTENIDO
+
+Estructura:
 
 contenido
 ├── seo
@@ -560,7 +604,9 @@ contenido
 
 ---
 
-27. SEO
+# 28. SEO DE CONTENIDO
+
+Estructura:
 
 contenido.seo
 ├── title
@@ -568,49 +614,111 @@ contenido.seo
 ├── h1
 └── slug
 
-El "slug" debe coincidir con la arquitectura de URL.
+El slug debe coincidir con la URL autorizada.
 
 ---
 
-28. CONTENIDO DE BLOQUES
+# 29. CONTENIDO DE BLOQUES
 
-Cada bloque debe identificarse:
+Cada bloque generado debe conservar:
 
 bloque_id
 
-y contener su contenido correspondiente.
+type
 
-Ejemplo conceptual:
+enabled
+
+data
+
+Ejemplo:
 
 {
-  "bloque_id": "B01",
-  "contenido": {}
+  "bloque_id": "B03",
+  "type": "hero",
+  "enabled": true,
+  "data": {}
 }
+
+El type debe corresponder al identificador oficial.
 
 ---
 
-29. ESTADO DE CONTENIDO
+# 30. TIPOS OFICIALES DE BLOQUE
 
-El contenido puede encontrarse en:
+B01 → header
+
+B02 → navigation
+
+B03 → hero
+
+B04 → main_content
+
+B05 → cta
+
+B06 → footer
+
+B07 → subservice
+
+B08 → problems
+
+B09 → local_context
+
+B10 → coverage
+
+B11 → process
+
+B12 → trust
+
+B13 → differentiation
+
+B14 → faq
+
+B15 → related_services
+
+B16 → related_locations
+
+B17 → structured_data
+
+B18 → testimonials
+
+B19 → cases
+
+B20 → gallery
+
+B21 → pricing
+
+B22 → opening_hours
+
+B23 → map
+
+Un ID no puede utilizarse para otra función.
+
+---
+
+# 31. ESTADO DEL CONTENIDO
+
+Valores:
 
 NO_GENERADO
 GENERADO
 REVISAR
 VALIDADO
 
-Este estado pertenece al contenido.
+Este estado pertenece exclusivamente al contenido.
 
-No sustituye a:
+No sustituye:
 
 decision_seo
 
-ni a:
+ni:
 
 estado_landing
 
 ---
 
-30. IMÁGENES
+# 32. IMÁGENES
+
+Estructura:
 
 imagenes
 ├── necesarias
@@ -618,55 +726,59 @@ imagenes
 
 Cada elemento puede contener:
 
-tipo
-descripcion
-alt
-fuente
-url
-estado
+- tipo;
+- descripcion;
+- alt;
+- fuente;
+- url;
+- estado.
 
-La IA puede proponer descripciones y textos alternativos.
+La IA puede proponer descripciones y ALT.
 
-No debe inventar URLs de imágenes existentes.
+No puede inventar URLs de imágenes.
 
 ---
 
-31. ENLAZADO INTERNO
+# 33. ENLAZADO INTERNO
+
+Estructura:
 
 enlazado
 ├── entradas
 └── salidas
 
-Cada enlace debe contener:
+Cada enlace contiene:
 
-url
-anchor
-tipo
+- url;
+- anchor;
+- tipo.
 
 Las URLs deben proceder de la arquitectura existente.
 
 ---
 
-32. DATOS ESTRUCTURADOS
+# 34. DATOS ESTRUCTURADOS
+
+Estructura:
 
 schema
 ├── tipo
 ├── datos
 └── estado
 
-Los datos estructurados solo pueden utilizar información real disponible.
+Solo puede utilizar información real disponible.
 
-No deben generarse:
+Nunca se inventan:
 
-- valoraciones inventadas;
-- precios inventados;
-- direcciones inventadas;
-- horarios inventados;
-- empresas inventadas.
+- valoraciones;
+- precios;
+- direcciones;
+- horarios;
+- empresas.
 
 ---
 
-33. ESTADO DE OPORTUNIDAD
+# 35. ESTADO DE OPORTUNIDAD
 
 Campo:
 
@@ -682,56 +794,9 @@ CERRADA
 
 ---
 
-34. DETECTADA
+# 36. ESTADO DE LANDING
 
-La oportunidad ha sido identificada.
-
-Todavía no se ha investigado suficientemente.
-
----
-
-35. INVESTIGADA
-
-La información necesaria para evaluarla ha sido recopilada.
-
----
-
-36. EVALUADA
-
-La oportunidad ha sido analizada según los criterios del motor.
-
----
-
-37. DECIDIDA
-
-El motor ha producido una decisión:
-
-CREAR
-AGRUPAR
-INVESTIGAR
-NO CREAR
-
----
-
-38. CERRADA
-
-La oportunidad ya no requiere ninguna acción dentro del flujo actual.
-
-Puede corresponder a:
-
-AGRUPAR
-
-o:
-
-NO CREAR
-
-o a una oportunidad ya procesada completamente.
-
----
-
-39. ESTADO DE LANDING
-
-Solo debe existir cuando:
+Solo existe cuando:
 
 decision_seo = CREAR
 
@@ -748,96 +813,15 @@ PUBLICADA
 RECHAZADA
 REVISAR
 
----
+REVISAR es un estado operativo de landing.
 
-40. NO_INICIADA
-
-La oportunidad ha sido marcada para crear una landing, pero todavía no ha comenzado su construcción.
+No es una decisión SEO.
 
 ---
 
-41. DATOS_PREPARADOS
+# 37. VALIDACIÓN
 
-Los datos necesarios para la construcción han sido preparados.
-
----
-
-42. ARQUITECTURA_PREPARADA
-
-Se han determinado:
-
-- tipo de página;
-- URL;
-- canonical;
-- jerarquía;
-- página padre cuando corresponda.
-
----
-
-43. BLOQUES_SELECCIONADOS
-
-Se han determinado los bloques que formarán la landing.
-
----
-
-44. CONTENIDO_GENERADO
-
-La IA ha generado el contenido.
-
-Todavía puede estar pendiente de validación.
-
----
-
-45. VALIDACION_PENDIENTE
-
-El contenido está generado pero todavía no ha superado la validación.
-
----
-
-46. VALIDADA
-
-La landing ha superado los controles obligatorios.
-
----
-
-47. PUBLICADA
-
-La landing ha sido publicada.
-
-Debe conservarse:
-
-url_publicada
-fecha_publicacion
-version
-
----
-
-48. RECHAZADA
-
-La landing no puede publicarse en su estado actual.
-
-Debe existir una explicación.
-
----
-
-49. REVISAR
-
-La landing necesita intervención.
-
-Ejemplos:
-
-- dato contradictorio;
-- URL incorrecta;
-- bloque incompleto;
-- contenido problemático;
-- error de validación;
-- problema técnico.
-
-"REVISAR" no modifica automáticamente "decision_seo".
-
----
-
-50. VALIDACIÓN
+Estructura:
 
 validacion
 ├── resultado
@@ -846,11 +830,7 @@ validacion
 ├── errores
 └── observaciones
 
----
-
-51. RESULTADO DE VALIDACIÓN
-
-Valores:
+Valores de resultado:
 
 APROBADA
 RECHAZADA
@@ -858,27 +838,29 @@ REVISAR
 
 ---
 
-52. ERRORES
+# 38. ERRORES
 
-Cada error debe contener:
+Cada error contiene:
 
-codigo
-elemento
-descripcion
-gravedad
+- codigo;
+- elemento;
+- descripcion;
+- gravedad.
 
 Ejemplo:
 
 {
   "codigo": "DATA001",
   "elemento": "telefono",
-  "descripcion": "El CTA requiere teléfono pero no existe un teléfono validado.",
+  "descripcion": "No existe un teléfono validado.",
   "gravedad": "alta"
 }
 
 ---
 
-53. INCIDENCIAS
+# 39. INCIDENCIAS
+
+Estructura:
 
 incidencias
 ├── codigo
@@ -896,7 +878,9 @@ DESCARTADA
 
 ---
 
-54. TRAZABILIDAD
+# 40. TRAZABILIDAD
+
+Estructura:
 
 trazabilidad
 ├── version_schema
@@ -908,52 +892,41 @@ trazabilidad
 
 ---
 
-55. VERSION_SCHEMA
+# 41. VERSIONES
 
-Indica la versión del esquema utilizada.
+version_schema
 
-Ejemplo:
+Identifica la versión de este esquema.
 
-1.0
+Versión actual:
 
----
+1.1
 
-56. VERSION_MOTOR
+version_motor
 
-Indica qué versión del motor tomó la decisión.
+Identifica la versión del motor de decisión.
 
-Ejemplo:
+version_prompt
 
-1.0
-
-Esto permite saber por qué una oportunidad fue clasificada de una determinada manera.
+Identifica la versión del prompt utilizado por la IA.
 
 ---
 
-57. VERSION_PROMPT
-
-Indica qué versión del prompt utilizó la IA.
-
-Ejemplo:
-
-1.0
-
----
-
-58. FECHAS
+# 42. FECHAS
 
 Debe conservarse:
 
 fecha_creacion
+
 fecha_actualizacion
 
 en formato consistente.
 
 ---
 
-59. HISTORIAL
+# 43. HISTORIAL
 
-Los cambios importantes deben quedar registrados.
+Los cambios importantes deben conservarse.
 
 Ejemplo:
 
@@ -967,151 +940,183 @@ Ejemplo:
 
 ---
 
-60. REGLA DE NO INVENCIÓN
+# 44. REGLA DE NO INVENCIÓN
 
-Cuando un dato no esté disponible:
+Ninguna capa del sistema puede inventar información factual.
+
+Especialmente:
+
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- horarios;
+- precios;
+- empresas;
+- experiencia;
+- certificaciones;
+- garantías;
+- reseñas;
+- valoraciones;
+- zonas;
+- cobertura;
+- testimonios;
+- casos;
+- imágenes;
+- URLs.
+
+Cuando un dato no existe:
 
 null
 
-Debe utilizarse "null" en lugar de:
+o:
 
-- inventar;
-- estimar;
-- suponer;
-- copiar de otra oportunidad;
-- completar mediante conocimiento no respaldado.
+REVISAR
+
+según corresponda.
 
 ---
 
-61. REGLA DE IDENTIDAD
+# 45. REGLA DE IDENTIDAD
 
-Los siguientes campos deben ser coherentes entre sí:
+La identidad recibida debe conservarse exactamente.
 
-servicio
-subservicio
-municipio
-provincia
-tipo_pagina
-url
+Si:
 
-Si existe una contradicción, debe producirse una incidencia.
+servicio = fontanero
 
----
+municipio = Marbella
 
-62. REGLA DE URL
-
-La URL se determina después de:
-
-decision_seo = CREAR
-
-La IA recibe la URL ya determinada.
-
-La IA no debe crear una URL alternativa.
+no puede transformarse en otro servicio o municipio.
 
 ---
 
-63. REGLA DE BLOQUES
+# 46. REGLA DE ARQUITECTURA
 
-La IA recibe los bloques autorizados.
+La arquitectura se determina antes de la generación de contenido.
 
-No puede:
+La IA no decide:
 
-- crear bloques nuevos;
-- eliminar bloques obligatorios;
-- cambiar el orden;
-- modificar las condiciones de aplicación.
-
-Salvo que el flujo explícitamente lo permita.
+- tipo de página;
+- URL;
+- canonical;
+- parent_url;
+- profundidad.
 
 ---
 
-64. REGLA DE IA
+# 47. REGLA DE BLOQUES
 
-La IA puede modificar:
+La IA solo puede utilizar bloques incluidos en:
 
-- redacción;
-- estructura interna del contenido de cada bloque;
-- títulos;
-- textos;
-- FAQ;
-- CTA textual;
+bloques.seleccionados
 
-siempre dentro de las reglas recibidas.
+No puede añadir bloques nuevos.
 
-La IA no puede modificar:
+---
+
+# 48. REGLA DE DIFERENCIACIÓN
+
+Una landing no se considera diferente simplemente por:
+
+- cambiar la localidad;
+- cambiar el título;
+- cambiar sinónimos;
+- cambiar el orden de párrafos;
+- añadir palabras.
+
+La diferenciación debe proceder de información, intención, servicio, contexto o evidencias realmente diferentes.
+
+---
+
+# 49. REGLA DE INFORMACIÓN LOCAL
+
+El nombre de una localidad no constituye por sí mismo información local.
+
+Si no existen datos locales suficientes:
+
+- no inventar;
+- no rellenar artificialmente;
+- omitir el bloque cuando sea opcional;
+- registrar la ausencia cuando sea relevante.
+
+---
+
+# 50. REGLA DE ENLACES
+
+No se crean enlaces hacia URLs inexistentes o no autorizadas.
+
+---
+
+# 51. REGLA DE IA
+
+La IA trabaja después de:
+
+1. investigación;
+2. evaluación;
+3. decisión;
+4. arquitectura;
+5. selección de bloques;
+6. preparación de datos.
+
+La IA genera contenido.
+
+No sustituye esas fases.
+
+---
+
+# 52. REGLA DE ESTADOS
+
+Los estados tienen funciones diferentes:
 
 decision_seo
-tipo_pagina
-url
-servicio
-subservicio
-municipio
-provincia
-bloques_autorizados
-
----
-
-65. REGLA DE N8N
-
-N8N utiliza este esquema como contrato entre los diferentes componentes.
-
-Conceptualmente:
-
-INVESTIGACIÓN
-↓
-DATOS
-↓
-MOTOR
-↓
-DECISIÓN SEO
-↓
-ARQUITECTURA
-↓
-URL
-↓
-BLOQUES
-↓
-IA
-↓
-CONTENIDO
-↓
-VALIDACIÓN
-↓
-WORDPRESS
-
----
-
-66. DECISIONES Y ESTADOS
-
-Debe mantenerse siempre la siguiente separación:
-
-decision_seo
-CREAR / AGRUPAR / INVESTIGAR / NO CREAR
+→ decisión del motor.
 
 estado_oportunidad
-DETECTADA / INVESTIGADA / EVALUADA / DECIDIDA / CERRADA
+→ ciclo de vida de la oportunidad.
 
 estado_landing
-NO_INICIADA / DATOS_PREPARADOS / ARQUITECTURA_PREPARADA /
-BLOQUES_SELECCIONADOS / CONTENIDO_GENERADO /
-VALIDACION_PENDIENTE / VALIDADA / PUBLICADA /
-RECHAZADA / REVISAR
+→ ciclo de construcción de la landing.
+
+contenido.estado
+→ estado del contenido.
 
 validacion.resultado
-APROBADA / RECHAZADA / REVISAR
+→ resultado del control.
+
+No deben utilizarse como equivalentes.
 
 ---
 
-67. EJEMPLO COMPLETO
+# 53. REGLA DE TRAZABILIDAD
+
+Toda landing generada debe poder relacionarse con:
+
+- oportunidad;
+- investigación;
+- decisión;
+- arquitectura;
+- bloques;
+- versión del esquema;
+- versión del motor;
+- versión del prompt;
+- fechas;
+- validación.
+
+---
+
+# 54. EJEMPLO DE OPORTUNIDAD
+
+Ejemplo conceptual:
 
 {
   "opportunity_id": "OPP-0001",
 
   "identidad": {
-    "sector": "fontanería",
+    "sector": "servicios profesionales",
     "servicio": "fontanero",
-    "subservicio": "desatascos",
-    "tipo_pagina": "servicio_subservicio_localidad"
+    "subservicio": null,
+    "tipo_pagina": "servicio_localidad"
   },
 
   "localizacion": {
@@ -1123,273 +1128,112 @@ APROBADA / RECHAZADA / REVISAR
     "zonas": []
   },
 
-  "intencion": {
-    "tipo": "comercial",
-    "confianza": "alta",
-    "evidencia": []
-  },
+  "decision_seo": "INVESTIGAR",
 
-  "decision_seo": "CREAR",
-
-  "arquitectura": {
-    "tipo_pagina": "servicio_subservicio_localidad",
-    "url": "/fontanero/desatascos/marbella/",
-    "url_tipo": "servicio_subservicio_localidad",
-    "canonical": "/fontanero/desatascos/marbella/",
-    "parent_url": "/fontanero/",
-    "profundidad": 3
-  },
-
-  "investigacion": {
-    "fuentes": [],
-    "evidencias": [],
-    "demanda": null,
-    "competencia": null,
-    "tendencia": null,
-    "notas": []
-  },
-
-  "datos_locales": {
-    "disponible": false,
-    "informacion": [],
-    "puntos_interes": [],
-    "zonas": [],
-    "fuentes": []
-  },
-
-  "cobertura": {
-    "confirmada": true,
-    "municipios": ["Marbella"],
-    "zonas": [],
-    "fuente": []
-  },
-
-  "datos_comerciales": {
-    "empresa": null,
-    "telefono": null,
-    "whatsapp": null,
-    "email": null,
-    "direccion": null,
-    "horarios": null,
-    "precio": null,
-    "garantia": null,
-    "experiencia": null,
-    "certificaciones": []
-  },
-
-  "resenas": {
-    "disponibles": false,
-    "fuente": null,
-    "cantidad": 0,
-    "elementos": []
-  },
+  "arquitectura": null,
 
   "bloques": {
-    "seleccionados": [
-      "B01",
-      "B02",
-      "B03"
-    ],
+    "seleccionados": [],
     "configuracion": {}
   },
 
   "contenido": {
-    "seo": {
-      "title": null,
-      "meta_description": null,
-      "h1": null,
-      "slug": "fontanero/desatascos/marbella"
-    },
+    "seo": null,
     "bloques": [],
-    "estado": "NO_GENERADO"
-  },
-
-  "imagenes": {
-    "necesarias": [],
-    "elementos": []
-  },
-
-  "enlazado": {
-    "entradas": [],
-    "salidas": []
-  },
-
-  "schema": {
-    "tipo": null,
-    "datos": {},
     "estado": "NO_GENERADO"
   },
 
   "estado_oportunidad": "DECIDIDA",
 
-  "estado_landing": "NO_INICIADA",
-
-  "validacion": {
-    "resultado": null,
-    "fecha": null,
-    "reglas": [],
-    "errores": [],
-    "observaciones": []
-  },
-
-  "incidencias": [],
-
-  "trazabilidad": {
-    "version_schema": "1.0",
-    "version_motor": "1.0",
-    "version_prompt": null,
-    "fecha_creacion": null,
-    "fecha_actualizacion": null,
-    "historial": []
-  }
+  "estado_landing": null
 }
 
----
+Este ejemplo no implica que la oportunidad deba CREAR.
 
-68. REGLA MULTISERVICIO
-
-Este esquema debe poder utilizarse para cualquier servicio del proyecto.
-
-Ejemplos:
-
-fontanero
-electricista
-carpintero
-pintor
-jardinero
-abogado
-reformas
-
-No debe crearse un esquema diferente para cada servicio.
-
-Las diferencias específicas deben incorporarse mediante:
-
-- datos sectoriales;
-- reglas sectoriales;
-- bloques específicos;
-- criterios específicos;
-- fuentes específicas.
+La decisión debe proceder del motor.
 
 ---
 
-69. ESCALABILIDAD
+# 55. PRINCIPIO FINAL
 
-El mismo esquema debe poder representar:
+El sistema debe seguir esta secuencia:
 
-1 oportunidad
-5 oportunidades
-100 oportunidades
-1.000 oportunidades
-10.000 oportunidades
+INVESTIGACIÓN
 
-sin cambiar su estructura fundamental.
-
----
-
-70. RELACIÓN CON LA ARQUITECTURA DE URLs
-
-La arquitectura de URLs utiliza este esquema para determinar:
-
-tipo_pagina
-url_tipo
-url
-parent_url
-profundidad
-
-Pero la decisión de crear la página siempre procede previamente del motor.
-
----
-
-71. RELACIÓN CON LA ARQUITECTURA DE LANDING
-
-La arquitectura de landing utiliza:
-
-identidad
-intencion
-datos
-bloques
-
-para determinar la composición de la página.
-
----
-
-72. RELACIÓN CON LA IA
-
-La IA recibe:
-
-identidad
-localizacion
-intencion
-decision_seo
-arquitectura
-datos
-bloques
-restricciones
-
-y devuelve:
-
-contenido
-imagenes
-enlazado
-schema
-incidencias
-
-sin modificar las decisiones estructurales.
-
----
-
-73. RELACIÓN CON N8N
-
-N8N utilizará el esquema como contrato de datos entre:
-
-fuentes
 ↓
-investigación
+
+DECISIÓN
+
 ↓
-motor
+
+ARQUITECTURA
+
 ↓
-arquitectura
+
+DATOS
+
 ↓
+
+BLOQUES
+
+↓
+
 IA
+
 ↓
-validación
+
+VALIDACIÓN
+
 ↓
-WordPress
+
+N8N
+
+↓
+
+WORDPRESS
+
+↓
+
+PUBLICACIÓN
+
+La IA nunca debe saltarse las capas anteriores.
+
+La prioridad del sistema es:
+
+1. veracidad;
+2. trazabilidad;
+3. coherencia;
+4. utilidad;
+5. escalabilidad.
 
 ---
 
-74. REGLA DE ORO
+# 56. CONTROL DE VERSIONES
 
-El sistema debe distinguir siempre:
+Versión:
 
-QUÉ ES LA OPORTUNIDAD
+1.1
 
-QUÉ DECIDIÓ EL MOTOR
+Fecha:
 
-DÓNDE ESTÁ LA OPORTUNIDAD EN EL PROCESO
+2026-08-23
 
-QUÉ LANDING SE ESTÁ CONSTRUYENDO
+Motivo:
 
-QUÉ HA DEVUELTO LA IA
+Consolidación del modelo de datos canónico y alineación con:
 
-SI LA LANDING HA SIDO VALIDADA
+- sistema de bloques;
+- estados del sistema;
+- arquitectura de landing;
+- contrato IA → N8N.
 
-QUÉ SE HA PUBLICADO
+Cambios principales:
 
-No se deben mezclar estos conceptos.
-
----
-
-75. ESTADO DEL DOCUMENTO
-
-CONSOLIDADO
-
-Este esquema debe considerarse el contrato de datos común del proyecto.
-
-Cualquier documento posterior que necesite nuevos campos debe:
-
-1. justificar el campo;
-2. mantener la nomenclatura existente;
-3. evitar duplicar información;
-4. mantener la separación entre decisión, estados y validación;
-5. actualizar este documento si el nuevo campo pasa a formar parte del modelo común.
+- arquitectura agrupada bajo `arquitectura`;
+- canonical y URL claramente separados de contenido;
+- mapa oficial de bloques incorporado;
+- separación estricta de estados;
+- eliminación de ambigüedad entre decisión SEO y estado REVIEW;
+- reglas explícitas de no invención;
+- trazabilidad de versiones;
+- estructura preparada para IA → N8N.
