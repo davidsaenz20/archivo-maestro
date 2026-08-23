@@ -1,386 +1,770 @@
-# ARCHIVO MAESTRO — PROYECTO
+ARCHIVO MAESTRO — PROYECTO
 
-## 1. FUNCIÓN DE ESTE ARCHIVO
+1. FUNCIÓN DE ESTE ARCHIVO
 
-Este archivo es la fuente principal de verdad del proyecto.
+Este archivo es la fuente central de verdad y referencia actual del proyecto.
 
-Debe contener:
+Contiene:
+
 - Decisiones tomadas.
 - Objetivos.
 - Reglas de funcionamiento.
-- Arquitectura del proyecto.
+- Arquitectura actual.
 - Información importante que no debemos perder.
+- Estado real del proyecto.
 - Próximos pasos.
-- Cambios y decisiones futuras.
+- Historial resumido de cambios importantes.
 
-Cuando exista una contradicción entre una suposición y este archivo, prevalece este archivo.
-
-Antes de tomar decisiones importantes sobre el proyecto, se debe consultar este archivo.
+"maestro.md" debe mantenerse actualizado durante toda la vida del proyecto.
 
 ---
 
-# 2. OBJETIVO DEL PROYECTO
+2. REGLA FUNDAMENTAL DE ACTUALIZACIÓN
+
+El contenido de "maestro.md" representa el estado actual del proyecto, no una versión histórica inmutable.
+
+Por tanto, una información antigua del maestro NO tiene prioridad automática sobre información posterior encontrada o desarrollada en otro documento.
+
+Cuando exista una contradicción entre documentos:
+
+1. No se debe borrar automáticamente el trabajo nuevo.
+2. Se debe comprobar la fecha de cada información.
+3. Se debe comprobar si la información posterior fue una propuesta, una prueba, una hipótesis o una decisión.
+4. Se debe comprobar si ha sido validada.
+5. Si la información posterior representa una decisión nueva y válida, debe sustituir a la información anterior.
+6. El maestro debe actualizarse para reflejar esa nueva decisión.
+7. El documento especializado debe conservar el desarrollo detallado.
+8. Si no está claro cuál información debe prevalecer, se debe consultar al usuario antes de eliminar o invalidar trabajo.
+
+Regla resumida
+
+INFORMACIÓN MÁS RECIENTE + VALIDADA + DECISIÓN TOMADA = ESTADO ACTUAL
+
+Nunca se debe perder trabajo simplemente porque contradiga una versión anterior del maestro.
+
+---
+
+3. HISTORIAL DE ACTUALIZACIONES
+
+Este apartado registra únicamente cambios importantes.
+
+No es necesario registrar cada conversación o cada pequeño cambio.
+
+Formato:
+
+FECHA — CAMBIO — MOTIVO
+
+2026-08-23
+
+- Se establece GitHub como sistema documental permanente del proyecto.
+- Se confirma "maestro.md" como documento central.
+- Se establece que los documentos especializados amplían y desarrollan el maestro.
+- Se crea "proyecto/seo/arquitectura-seo.md".
+- Se establece la arquitectura conceptual basada en servicio + localidad + intención + información local.
+- Se establece que la arquitectura ya está definida conceptualmente, aunque todavía debe validarse mediante una prueba real.
+- Se establece el motor de decisión como componente central para decidir qué combinaciones deben convertirse en páginas.
+- Se establece una nueva regla documental: las decisiones nuevas y validadas deben actualizar el maestro aunque contradigan información anterior.
+- Se establece que las contradicciones deben resolverse teniendo en cuenta fecha, validación y decisión tomada, y no simplemente dando prioridad al archivo maestro antiguo.
+
+---
+
+4. ESTRUCTURA DOCUMENTAL
+
+El proyecto utiliza diferentes niveles de documentación.
+
+"maestro.md"
+
+Documento central.
+
+Contiene:
+
+- Visión general.
+- Decisiones principales.
+- Estado actual.
+- Arquitectura resumida.
+- Reglas.
+- Relaciones entre documentos.
+- Próximos pasos.
+- Historial de cambios importantes.
+
+Documentos especializados
+
+Desarrollan en profundidad áreas concretas.
+
+Ejemplo:
+
+"proyecto/seo/arquitectura-seo.md"
+
+Estos documentos:
+
+- Amplían el maestro.
+- Contienen detalles técnicos o estratégicos.
+- Pueden contener investigaciones.
+- Pueden evolucionar antes de que una decisión quede consolidada.
+- Deben actualizar el maestro cuando una decisión importante quede validada.
+
+Importante
+
+Un documento especializado puede contener información más reciente que "maestro.md".
+
+En ese caso no se debe descartar automáticamente.
+
+Primero se analiza y, si corresponde, se actualiza el maestro.
+
+---
+
+5. OBJETIVO DEL PROYECTO
 
 Crear un negocio online basado en una gran plataforma de servicios profesionales.
 
-La plataforma debe poder ofrecer servicios como:
+La plataforma podrá incluir:
 
-- Fontaneros
-- Electricistas
-- Carpinteros
-- Pintores
-- Jardineros
-- Reformas
-- Abogados
-- Otros profesionales y servicios locales
+- Fontaneros.
+- Electricistas.
+- Carpinteros.
+- Pintores.
+- Jardineros.
+- Empresas de reformas.
+- Abogados.
+- Climatización.
+- Cerrajería.
+- Otros servicios profesionales.
 
-La idea NO es crear únicamente una web general.
+La idea NO es crear solamente una web general.
 
-La diferencia principal será crear automáticamente muchas páginas específicas combinando:
+La diferencia principal será poder crear páginas específicas combinando:
 
 SERVICIO + LOCALIDAD
 
 Ejemplos:
 
-- Fontanero Marbella
-- Fontanero Estepona
-- Electricista Marbella
-- Electricista Málaga
-- Pintor Estepona
-- Abogado Marbella
+- Fontanero Marbella.
+- Fontanero Estepona.
+- Electricista Marbella.
+- Electricista Málaga.
+- Pintor Estepona.
+- Abogado Marbella.
 
-El objetivo es poder generar cientos o miles de páginas específicas de forma automatizada.
+El objetivo final es poder generar cientos o miles de páginas específicas de forma controlada y automatizada.
 
 ---
 
-# 3. MODELO DE NEGOCIO
+6. MODELO DE NEGOCIO
 
-El proyecto debe buscar:
+Principios:
 
-- Coste inicial muy bajo.
-- Máxima automatización.
-- Posibilidad de gestionarlo principalmente desde el móvil.
-- Poco tiempo diario necesario.
+- Coste inicial reducido.
+- Máxima automatización posible.
+- Gestión principalmente desde móvil cuando sea viable.
+- Poco tiempo diario.
 - Escalabilidad.
-- Capacidad de generar ingresos de forma recurrente.
-- Validar primero el negocio antes de realizar una gran inversión.
+- Ingresos recurrentes.
+- Validación antes de realizar grandes inversiones.
 
-No se debe construir una infraestructura compleja sin comprobar previamente que existe demanda y posibilidad real de monetización.
+No se debe construir una infraestructura compleja sin comprobar primero que existe una oportunidad comercial real.
 
 ---
 
-# 4. PRINCIPIOS DEL PROYECTO
+7. PRINCIPIOS DEL PROYECTO
 
-## Validación antes de construcción
-
-No desarrollar grandes cantidades de páginas, automatizaciones o infraestructura simplemente porque técnicamente sea posible.
+Validación antes de construcción
 
 Primero validar:
 
 1. Demanda.
 2. Competencia.
 3. Posibilidad de posicionamiento.
-4. Forma de captar clientes.
-5. Forma de monetización.
-6. Coste real.
-7. Tiempo necesario para mantenerlo.
+4. Captación.
+5. Monetización.
+6. Costes.
+7. Tiempo de mantenimiento.
 
-## Simplicidad
+Después escalar.
 
-Priorizar siempre:
+Simplicidad
+
+Priorizar:
 
 - Soluciones sencillas.
-- Gratuitas o muy económicas.
-- Fáciles de mantener.
-- Automatizables.
-- Escalables.
+- Bajo coste.
+- Facilidad de mantenimiento.
+- Automatización.
+- Escalabilidad.
 
-Evitar complejidad técnica innecesaria.
+Tecnología al servicio del negocio
 
-## Tecnología ≠ negocio
-
-Una automatización técnicamente interesante no significa necesariamente que sea un negocio rentable.
-
-Cada desarrollo debe justificar su utilidad económica.
+Una automatización técnicamente interesante no significa necesariamente que exista un negocio rentable.
 
 ---
 
-# 5. PERFIL Y RECURSOS DISPONIBLES
+8. RECURSOS Y CONOCIMIENTOS
 
 Conocimientos actuales:
 
-- WordPress
-- HTML
-- CSS
-- Excel / Google Sheets
-- Conceptos de automatización
-- Interés y aprendizaje de IA, APIs y n8n
+- WordPress.
+- HTML.
+- CSS.
+- Excel / Google Sheets.
+- Automatización.
+- IA.
+- APIs.
+- n8n.
 
-Preferencia:
+Preferencias:
 
-- Trabajar principalmente desde móvil cuando sea posible.
-- Evitar depender de herramientas de pago.
-- Presupuesto inicial reducido.
+- Trabajar desde móvil cuando sea posible.
+- Evitar herramientas innecesariamente caras.
+- Mantener bajo el presupuesto inicial.
 
 ---
 
-# 6. AUTOMATIZACIÓN
+9. AUTOMATIZACIÓN
 
 Se estudiará la utilización de:
 
-- IA
-- APIs
-- Google Sheets
-- GitHub
-- Automatizaciones
-- n8n cuando sea posible y conveniente
-- WordPress u otros CMS
-- Generación automática de contenido y páginas
+- IA.
+- APIs.
+- Google Sheets.
+- GitHub.
+- n8n.
+- WordPress.
+- Bases de datos.
+- Automatización de contenidos.
+- Automatización de publicación.
+- Sistemas de clasificación y decisión.
 
-Pero ninguna herramienta es obligatoria.
+Ninguna herramienta está considerada obligatoria.
 
-La herramienta se elegirá en función de:
-- coste,
-- facilidad,
-- límites,
-- escalabilidad,
-- mantenimiento.
+La herramienta definitiva se elegirá según:
+
+- Coste.
+- Facilidad.
+- Límites.
+- Escalabilidad.
+- Mantenimiento.
+- Utilidad real.
 
 ---
 
-# 7. ESTRUCTURA DE PÁGINAS
+10. ARQUITECTURA GENERAL
 
-La estructura prevista consiste en combinar:
+La arquitectura conceptual del proyecto está definida.
+
+El modelo principal será:
+
+SERVICIO + LOCALIDAD + INTENCIÓN + INFORMACIÓN LOCAL
+
+La generación de páginas estará controlada mediante un motor de decisión.
+
+El sistema deberá permitir:
+
+- Investigación.
+- Clasificación.
+- Decisión.
+- Obtención de datos.
+- Generación de contenido.
+- Publicación.
+- Enlazado.
+- Seguimiento.
+- Automatización.
+- Escalado.
+
+Importante
+
+La arquitectura está definida conceptualmente.
+
+Eso NO significa que esté demostrado que el modelo funciona comercialmente.
+
+Todavía debe pasar por una prueba real.
+
+---
+
+11. ARQUITECTURA SEO
+
+Documento especializado:
+
+"proyecto/seo/arquitectura-seo.md"
+
+La estrategia SEO se basa en combinaciones como:
 
 SERVICIO + LOCALIDAD
 
-Ejemplo conceptual:
+Ejemplos:
 
-/fontanero/marbella/
-/fontanero/estepona/
-/electricista/marbella/
-/pintor/estepona/
+- Fontanero Marbella.
+- Fontanero Estepona.
+- Electricista Marbella.
+- Pintor Estepona.
 
-Cada página deberá tener contenido útil y diferenciado.
+Pero no todas las combinaciones deben generar una página.
 
-No se debe generar contenido masivo de baja calidad únicamente para aumentar el número de URLs.
-
-La prioridad debe ser:
-
-CALIDAD + UTILIDAD + SEO + CONVERSIÓN.
+Cada combinación debe pasar por el motor de decisión.
 
 ---
 
-# 8. SEO
+12. CALIDAD DE LAS PÁGINAS
 
-El SEO es una parte fundamental del proyecto.
+No se deben generar miles de páginas idénticas.
 
-La estrategia debe estudiar:
+Cada página debe aportar valor real.
 
-- Búsquedas locales.
-- Intención de búsqueda.
+Una página local puede incluir:
+
+- Zonas atendidas.
+- Características del municipio.
+- Tipos de viviendas.
+- Problemas habituales.
+- Servicios relevantes.
+- Contexto turístico.
+- Tipo de cliente.
+- Horarios.
+- Urgencias.
+- Información comercial.
+- Preguntas frecuentes.
+- Datos específicos del servicio.
+
+La localización no debe consistir simplemente en cambiar el nombre de una ciudad dentro de una plantilla.
+
+---
+
+13. MOTOR DE DECISIÓN
+
+El motor determinará qué combinaciones merecen páginas propias.
+
+Debe valorar:
+
+- Existencia del servicio.
+- Demanda.
+- Intención.
+- Relevancia local.
+- Especialización.
+- Diferenciación.
+- Información local disponible.
+- Tipo de cliente.
+- Competencia.
+- Potencial comercial.
+- Conversión.
+- Riesgo de contenido pobre.
+- Redundancia.
+
+Debe decidir:
+
+1. Si la combinación es válida.
+2. Si merece página.
+3. Qué tipo de página.
+4. Qué información local necesita.
+5. Qué profundidad territorial requiere.
+6. Qué contenido debe evitarse.
+7. Qué combinaciones deben descartarse.
+
+Posteriormente podrá implementarse mediante:
+
+N8N + IA + base de datos + sistema de publicación
+
+---
+
+14. ESTRUCTURA TERRITORIAL
+
+El sistema podrá trabajar con:
+
+- País.
+- Comunidad autónoma.
+- Provincia.
+- Ciudad.
+- Municipio.
+- Localidad.
+- Zona.
+- Barrio cuando exista información suficiente.
+
+La profundidad no será idéntica para todos los servicios.
+
+---
+
+15. TIPOS DE PÁGINAS
+
+Servicio general
+
+Ejemplo:
+
+Fontanería.
+
+Servicio + localidad
+
+Ejemplo:
+
+Fontanero Marbella.
+
+Especialidad + localidad
+
+Ejemplo:
+
+Desatascos Marbella.
+
+Urgencia + localidad
+
+Ejemplo:
+
+Fontanero urgente Marbella.
+
+Servicio especializado + localidad
+
+Ejemplo:
+
+Instalación de termos Marbella.
+
+El motor decidirá cuáles deben existir.
+
+---
+
+16. FONTANERÍA COMO PRIMER PILAR
+
+Fontanería es el primer sector utilizado para investigar y validar el sistema.
+
+Servicios iniciales:
+
+- Fontanería general.
+- Reparación de fugas.
+- Desatascos.
+- Tuberías.
+- Agua caliente.
+- Termos.
+- Urgencias.
+- Instalaciones.
+- Mantenimiento.
+- Otros servicios relacionados.
+
+La lista puede evolucionar durante la validación.
+
+Fontanería será el primer caso de prueba antes de replicar la arquitectura en otros sectores.
+
+---
+
+17. ESCALABILIDAD
+
+La arquitectura podrá reutilizarse para:
+
+- Electricidad.
+- Carpintería.
+- Pintura.
+- Jardinería.
+- Reformas.
+- Abogados.
+- Climatización.
+- Cerrajería.
+- Otros sectores.
+
+Cada sector tendrá investigación propia.
+
+No se asumirán automáticamente las mismas reglas para todos.
+
+---
+
+18. SEO
+
+Se estudiará:
+
+- Búsqueda local.
+- Intención.
 - Servicio + localidad.
 - Competencia.
 - Arquitectura web.
 - Enlazado interno.
-- Contenido útil.
+- Contenido.
 - Indexación.
-- Páginas programáticas.
+- SEO programático.
 - Posicionamiento local.
+- Diferenciación.
 
-No asumir que crear miles de páginas automáticamente producirá tráfico.
+Crear muchas páginas no garantiza tráfico.
 
-Hay que comprobar primero qué combinaciones tienen demanda real.
+Primero hay que demostrar qué combinaciones funcionan.
 
 ---
 
-# 9. POSIBLE MONETIZACIÓN
+19. MONETIZACIÓN
 
-La monetización todavía debe validarse.
+Modelos a estudiar:
 
-Posibles modelos a estudiar:
-
-- Cobro por contacto/leads.
+- Venta de leads.
+- Cobro por contacto.
 - Suscripción de profesionales.
-- Comisión por servicio.
+- Comisión.
 - Publicidad.
 - Destacar profesionales.
-- Generación y venta de leads.
-- Servicios adicionales para profesionales.
+- Servicios adicionales.
 
-No se considera decidido un modelo definitivo hasta validar cuál funciona mejor.
+No existe todavía un modelo definitivo validado.
 
 ---
 
-# 10. IA
+20. IA
 
-La IA puede utilizarse para:
+La IA podrá utilizarse para:
 
-- Generación de contenido.
-- Clasificación de servicios.
-- Creación de estructuras.
 - Investigación.
+- Clasificación.
+- Generación de contenido.
+- Decisiones.
 - Automatización.
-- Atención al cliente.
-- Generación de textos.
-- Análisis de datos.
-- Procesamiento de información.
+- Análisis.
+- Atención.
+- Procesamiento de datos.
 
-Pero el uso de IA debe estar subordinado al objetivo del negocio.
+Pero siempre estará subordinada al objetivo comercial.
+
+No se utilizará para generar contenido masivo sin control.
 
 ---
 
-# 11. ARCHIVO MAESTRO Y GITHUB
-
-El archivo maestro se almacenará online en GitHub.
+21. GITHUB
 
 Repositorio:
 
-davidsaenz20/archivo-maestro
+"davidsaenz20/archivo-maestro"
 
-Archivo:
+Archivo central:
 
-maestro.md
+"maestro.md"
 
-GitHub se utilizará como almacenamiento externo del archivo maestro.
+GitHub será el sistema permanente de almacenamiento y organización documental.
 
-ChatGPT puede consultar actualmente el archivo mediante la conexión de GitHub.
-
-La conexión disponible permite:
-
-- Leer el archivo: SÍ.
-- Modificar el archivo directamente desde ChatGPT: NO.
-
-La modificación directa devuelve error 403.
-
-Por tanto, actualmente:
-
-ChatGPT → LEE maestro.md
-
-Usuario → MODIFICA maestro.md desde GitHub
+Los archivos especializados estarán organizados dentro del repositorio.
 
 ---
 
-# 12. FORMA DE TRABAJO CON EL MAESTRO
+22. REGLA DE CONFLICTO ENTRE INFORMACIONES
 
-Cuando el usuario diga:
+Cuando aparezcan dos informaciones diferentes:
 
-"Lee el maestro"
+Paso 1
 
-o
+Comprobar fechas.
 
-"Consulta el maestro"
+Paso 2
 
-se debe consultar la versión actual de:
+Determinar cuál es más reciente.
 
-maestro.md
+Paso 3
 
-antes de continuar.
+Determinar si la información nueva es:
 
-Cuando se tome una decisión importante, ChatGPT debe indicar qué debe añadirse o modificarse en el maestro.
+- Hipótesis.
+- Propuesta.
+- Investigación.
+- Prueba.
+- Resultado.
+- Decisión.
 
-El usuario podrá copiar ese contenido en GitHub y hacer Commit.
+Paso 4
 
-No se deben considerar permanentes las decisiones que todavía no estén incorporadas al archivo maestro.
+Si es una decisión posterior y validada:
+
+La información nueva sustituye a la anterior.
+
+Paso 5
+
+Actualizar "maestro.md".
+
+Paso 6
+
+Conservar el desarrollo detallado en el documento especializado.
+
+Paso 7
+
+Registrar el cambio importante en el historial de actualizaciones.
+
+Regla absoluta
+
+Nunca descartar información posterior simplemente porque contradiga al maestro antiguo.
 
 ---
 
-# 13. ESTADO ACTUAL
+23. ESTADO ACTUAL
 
-Estado:
+DEFINIDO
 
-FASE DE DISEÑO Y VALIDACIÓN.
+- Objetivo.
+- Modelo servicio + localidad.
+- Arquitectura conceptual.
+- Arquitectura SEO.
+- Principios de calidad.
+- Motor de decisión como componente central.
+- Información local como elemento diferenciador.
+- Sistema documental en GitHub.
+- Fontanería como primer pilar.
 
-Actualmente estamos estableciendo:
+PENDIENTE DE VALIDAR
 
-- Arquitectura.
-- Modelo de negocio.
-- Sistema de almacenamiento de información.
+- Demanda real.
+- Posicionamiento.
+- Conversión.
+- Monetización.
+- Costes.
+- Primera prueba.
+- Escalabilidad.
+
+PENDIENTE DE IMPLEMENTAR
+
+- Motor técnico.
+- Base de datos.
 - Automatización.
-- Estrategia SEO.
-- Sistema de generación de páginas.
-- Forma de monetización.
-
-Todavía NO se debe asumir que la arquitectura definitiva está decidida.
+- N8N si finalmente se selecciona.
+- IA integrada.
+- Generación de páginas.
+- Publicación.
+- CMS definitivo.
+- Analítica.
 
 ---
 
-# 14. DECISIONES PENDIENTES
-
-Pendiente determinar:
+24. DECISIONES PENDIENTES
 
 - CMS definitivo.
-- Arquitectura definitiva.
-- Base de datos definitiva.
-- Sistema de generación automática.
-- Sistema de publicación automática.
-- Estrategia SEO definitiva.
-- Primer servicio a lanzar.
-- Primera localidad a atacar.
-- Modelo de monetización.
-- Sistema de captación de profesionales.
-- Sistema de captación de clientes.
+- Arquitectura técnica definitiva.
+- Base de datos.
+- Sistema de generación.
+- Sistema de publicación.
+- Automatización.
+- Herramientas.
+- Primera localidad.
+- Tamaño de prueba.
+- Monetización.
+- Captación de profesionales.
+- Captación de clientes.
 - Costes reales.
-- Nivel de automatización necesario.
+- Nivel definitivo de automatización.
 
 ---
 
-# 15. REGLA PRINCIPAL
-
-NO construir por construir.
-
-Primero:
+25. ORDEN DE TRABAJO
 
 IDEA
-↓
-VALIDACIÓN
-↓
-MODELO DE NEGOCIO
-↓
-PRUEBA PEQUEÑA
-↓
-RESULTADOS
-↓
-AUTOMATIZACIÓN
-↓
-ESCALADO
 
-La prioridad es crear un negocio viable, no simplemente una infraestructura tecnológica.
+↓
+
+INVESTIGACIÓN
+
+↓
+
+ARQUITECTURA
+
+↓
+
+MOTOR DE DECISIÓN
+
+↓
+
+PRUEBA PEQUEÑA
+
+↓
+
+RESULTADOS
+
+↓
+
+OPTIMIZACIÓN
+
+↓
+
+AUTOMATIZACIÓN
+
+↓
+
+ESCALADO
 
 ---
 
-# 16. PRÓXIMO OBJETIVO
+26. REGLA PRINCIPAL
 
-Definir una primera prueba pequeña y económica que permita comprobar si el modelo:
+NO CONSTRUIR POR CONSTRUIR.
 
-SERVICIO + LOCALIDAD
+La tecnología debe estar al servicio del negocio.
 
-puede generar tráfico, contactos y posteriormente ingresos.
+El objetivo es demostrar que el modelo funciona y después escalarlo.
 
-A partir de los resultados de esa prueba se decidirá si merece la pena escalar.
+---
 
-## REGLA DE ACTUALIZACIÓN DE ARCHIVOS
+27. PRÓXIMO OBJETIVO
 
-ChatGPT no modifica directamente los archivos del repositorio.
+Terminar de formalizar el motor de decisión utilizando la investigación de fontanería.
 
-Cuando sea necesario actualizar un archivo:
+Después:
 
-1. ChatGPT debe leer primero la versión actual.
-2. Integrar la nueva información.
-3. Entregar el contenido COMPLETO del archivo actualizado.
-4. Indicar claramente la ruta del archivo.
-5. El usuario sustituirá el contenido completo en GitHub y hará el Commit.
+1. Diseñar una prueba pequeña.
+2. Ejecutarla.
+3. Medir resultados.
+4. Optimizar.
+5. Automatizar.
+6. Escalar.
 
-No se entregarán únicamente fragmentos de modificación cuando sea posible entregar el archivo completo.
+---
 
-Antes de crear un archivo nuevo, comprobar que existe información suficiente para justificarlo.
+28. REGLA DE ACTUALIZACIÓN
 
-Cuando una información sea importante pero todavía no requiera crear un archivo nuevo, se guardará en el archivo correspondiente ya existente.
+Cuando una decisión importante cambie:
 
-ChatGPT debe avisar siempre con:
+1. Consultar "maestro.md".
+2. Consultar documentos relacionados.
+3. Comparar fechas.
+4. Identificar la información más reciente.
+5. Determinar si está validada.
+6. Integrar la nueva decisión.
+7. Actualizar el maestro.
+8. Registrar el cambio en el historial.
+9. Mantener el detalle en el documento especializado.
 
-GUARDAR EN GITHUB: SÍ
-ARCHIVO: [ruta]
-ACCIÓN: sustituir contenido completo
+Cuando se actualice un archivo, se debe proporcionar el contenido completo del archivo que deba sustituirse siempre que sea posible.
 
-El usuario será responsable de realizar físicamente la actualización en GitHub.
+---
+
+29. REGLA PARA EL USUARIO
+
+Cuando haya que modificar un archivo en GitHub, indicar:
+
+ARCHIVO: ruta exacta.
+
+ACCIÓN: crear / sustituir.
+
+CONTENIDO: contenido completo.
+
+El usuario realizará físicamente el cambio desde GitHub.
+
+---
+
+30. REGLA DE SEGURIDAD DEL CONOCIMIENTO
+
+El conocimiento del proyecto debe ser acumulativo.
+
+Ante cualquier contradicción:
+
+NO BORRAR
+
+↓
+
+COMPARAR
+
+↓
+
+COMPROBAR FECHAS
+
+↓
+
+COMPROBAR VALIDACIÓN
+
+↓
+
+DETERMINAR DECISIÓN ACTUAL
+
+↓
+
+INTEGRAR
+
+↓
+
+ACTUALIZAR MAESTRO
+
+↓
+
+REGISTRAR EN HISTORIAL
+
+El objetivo es que el proyecto nunca pierda trabajo útil por mantener una versión antigua de la información.
