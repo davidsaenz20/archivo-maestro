@@ -1,6 +1,6 @@
 MAESTRO DEL PROYECTO
 
-1. FUNCIÓN DEL DOCUMENTO
+1. FUNCIÓN
 
 Este archivo es el documento maestro de control del proyecto.
 
@@ -10,115 +10,108 @@ Su función es mantener una visión general y actualizada de:
 - Qué principios lo gobiernan.
 - Cómo está organizado.
 - Qué documentos existen.
-- Qué fase está completada.
-- Qué fase está en curso.
-- Qué queda pendiente.
+- En qué fase estamos.
+- Qué está completado.
+- Qué está en validación.
+- Qué está pendiente.
 - Qué decisiones importantes se han tomado.
-- Qué información debe prevalecer cuando existan contradicciones.
+- Qué información prevalece cuando existen contradicciones.
+- Cuál es el siguiente paso oficial.
 
 El maestro NO sustituye a los documentos especializados.
 
-Los documentos especializados contienen el detalle de cada área.
+Los documentos especializados contienen el detalle.
 
 ---
 
-2. PRINCIPIO DE FUENTE DE VERDAD
+2. FUENTE DE VERDAD
 
 El repositorio es la memoria persistente del proyecto.
 
-La memoria de la conversación de ChatGPT no sustituye a la documentación del repositorio.
+La memoria de la conversación de ChatGPT no sustituye a la documentación.
 
-Todo trabajo importante debe terminar documentado en el repositorio.
+Todo trabajo importante debe terminar documentado.
 
 Esto incluye:
 
 - Investigación.
 - Evidencias.
 - Matrices.
+- Oportunidades.
 - Reglas.
 - Decisiones.
-- Arquitectura.
 - URLs.
+- Arquitectura de landings.
 - Bloques.
-- Modelos de datos.
+- Modelo de datos.
 - Prompts.
 - Validaciones.
 - Automatizaciones.
+- Publicación.
 - Resultados.
+- Aprendizajes.
+
+Si una información importante solo existe en una conversación, todavía no está correctamente documentada.
 
 ---
 
-3. REGLA DE PRIORIDAD ENTRE DOCUMENTOS
-
-El maestro es el documento de control general.
-
-Los documentos especializados contienen la información detallada.
+3. REGLA DE PRIORIDAD
 
 Cuando exista una contradicción:
 
-1. Comprobar la fecha de cada información.
-2. Comprobar si existe una actualización posterior.
-3. Comprobar la evidencia que originó la decisión.
-4. Dar prioridad a la información posterior y mejor fundamentada.
-5. Actualizar los documentos afectados.
-6. Registrar el cambio.
+1. Comprobar la fecha.
+2. Identificar la versión del documento.
+3. Comprobar la evidencia.
+4. Determinar qué información está mejor fundamentada.
+5. Dar prioridad a la información posterior y mejor fundamentada.
+6. Actualizar los documentos afectados.
+7. Registrar el cambio.
 
-No se debe dar prioridad automática a una información antigua simplemente porque aparezca en "maestro.md".
+El maestro NO tiene prioridad automática sobre un documento especializado simplemente por ser el maestro.
 
-Una actualización posterior y suficientemente fundamentada puede sustituir una decisión anterior.
-
-El maestro debe actualizarse después para reflejar la nueva situación.
+El maestro refleja el estado consolidado del proyecto.
 
 ---
 
-4. SISTEMA DE ACTUALIZACIONES
+4. ACTUALIZACIONES
 
-Las decisiones importantes deben conservar historial.
+Las actualizaciones importantes deben conservar historial.
 
-Cada actualización relevante debe poder identificar:
+Toda actualización relevante debe poder identificar:
 
 - Fecha.
-- Documento afectado.
+- Documento.
 - Información anterior.
 - Nueva información.
 - Motivo.
 - Evidencia.
 - Consecuencia.
 
-Las actualizaciones posteriores prevalecen sobre la información anterior cuando exista contradicción y estén suficientemente justificadas.
+Una actualización posterior y suficientemente fundamentada puede sustituir una decisión anterior.
 
-No se debe borrar el historial de decisiones importantes.
+La información anterior no debe desaparecer cuando tenga valor histórico.
 
 ---
 
 5. OBJETIVO DEL PROYECTO
 
-Crear un sistema escalable para generar páginas SEO locales de servicios profesionales.
+Construir un sistema escalable para investigar y generar páginas SEO locales de servicios profesionales.
 
-El sistema debe permitir combinar:
+La unidad principal puede ser:
 
 SERVICIO × LOCALIDAD
 
-y, cuando esté justificado:
+o, cuando exista una intención suficientemente específica:
 
 SERVICIO × SUBSERVICIO × LOCALIDAD
 
-para detectar oportunidades y generar páginas útiles, diferenciadas y automatizables.
+El objetivo NO es generar miles de páginas automáticamente.
 
-El proyecto no pretende generar miles de páginas por volumen.
-
-Pretende identificar y crear únicamente páginas que tengan:
-
-- intención clara;
-- utilidad;
-- oportunidad;
-- diferenciación;
-- coherencia;
-- capacidad de aportar valor real.
+El objetivo es identificar únicamente combinaciones que puedan justificar una página útil, diferenciada y comercialmente válida.
 
 ---
 
-6. ARQUITECTURA GENERAL DEL SISTEMA
+6. ARQUITECTURA GENERAL
 
 El flujo oficial es:
 
@@ -126,11 +119,23 @@ INVESTIGACIÓN
 
 ↓
 
+EVIDENCIAS
+
+↓
+
 MATRICES
 
 ↓
 
+MATRIZ DE OPORTUNIDADES
+
+↓
+
 MOTOR DE DECISIÓN
+
+↓
+
+DECISIÓN
 
 ↓
 
@@ -172,17 +177,19 @@ MEDICIÓN
 
 APRENDIZAJE
 
-Ninguna fase debe saltarse sin justificación.
+Este es el flujo oficial.
+
+No debe saltarse una fase sin justificación.
 
 ---
 
 7. ARQUITECTURA DOCUMENTAL
 
-CONTROL GENERAL
+CONTROL
 
 "maestro.md"
 
-Control general del proyecto.
+Control general.
 
 ---
 
@@ -190,7 +197,7 @@ METODOLOGÍA
 
 "proyecto/metodologia.md"
 
-Define cómo se trabaja y en qué orden.
+Define cómo se trabaja.
 
 ---
 
@@ -202,136 +209,142 @@ Arquitectura SEO
 
 "proyecto/seo/arquitectura-seo.md"
 
-Define la arquitectura SEO general.
+Define los principios SEO.
 
 Arquitectura de URLs
 
 "proyecto/seo/arquitectura-urls.md"
 
-Define cómo se transforma una oportunidad aprobada en una URL.
+Define las estructuras de URL permitidas.
 
-Estructuras base:
+Actualmente:
 
 "/{servicio}/{localidad}/"
 
 "/{servicio}/{subservicio}/{localidad}/"
 
-La IA no decide libremente la estructura de URL.
-
 Motor de decisión
 
 "proyecto/seo/motor-decision.md"
 
-Define cómo se decide:
+Define las reglas de decisión:
 
 - CREAR.
 - AGRUPAR.
 - INVESTIGAR.
 - NO CREAR.
 
-Investigación de fontanería
+Investigación
 
 "proyecto/seo/investigacion-fontaneria.md"
 
-Contiene la investigación realizada sobre el sector.
+Conserva el análisis y conclusiones de la investigación sectorial.
 
-Matriz de servicios de fontanería
+Evidencias
+
+"proyecto/seo/evidencias-fontaneria.md"
+
+Conserva las fuentes y observaciones concretas.
+
+Matriz de servicios
 
 "proyecto/seo/matriz-servicios-fontaneria.md"
 
-Contiene la estructura de servicios y subservicios investigados.
+Define servicios y subservicios.
 
 Matriz de localidades
 
 "proyecto/seo/matriz-localidades.md"
 
-Contiene la información territorial utilizada para las decisiones.
+Define la estructura territorial.
 
----
+Matriz de oportunidades
 
-8. DOCUMENTOS FUTUROS
+"proyecto/seo/matriz-oportunidades-fontaneria.md"
 
-Todavía deberán crearse o definirse los documentos necesarios para:
-
-Arquitectura de landing
-
-Definirá la estructura lógica de las páginas.
-
-Sistema de bloques
-
-Definirá los bloques reutilizables.
-
-Modelo de datos
-
-Definirá los datos necesarios para construir cada página.
-
-Sistema de contenido / IA
-
-Definirá prompts, reglas y restricciones de generación.
-
-Validación
-
-Definirá las comprobaciones antes de publicar.
+Cruza servicios, subservicios, localidades y evidencias para crear oportunidades evaluables.
 
 Registro de decisiones
 
-Conservará las decisiones concretas tomadas sobre combinaciones reales.
+"proyecto/seo/registro-decisiones.md"
 
-Automatización
+Conserva las decisiones obtenidas al aplicar el motor.
 
-Documentará N8N y sus workflows.
+---
 
-Publicación
+8. DOCUMENTOS DE CONSTRUCCIÓN
 
-Documentará la integración con WordPress u otra plataforma.
+Después de validar la parte de decisión se crearán:
 
-Medición
+"proyecto/seo/arquitectura-landing.md"
 
-Documentará métricas, resultados y aprendizaje.
+"proyecto/seo/sistema-bloques.md"
 
-Estos documentos no deben crearse antes de que llegue su fase correspondiente, salvo que exista una razón documentada.
+"proyecto/seo/modelo-datos.md"
+
+"proyecto/seo/sistema-contenido-ia.md"
+
+"proyecto/seo/validacion.md"
+
+"proyecto/seo/automatizacion-n8n.md"
+
+"proyecto/seo/publicacion-wordpress.md"
+
+"proyecto/seo/medicion-aprendizaje.md"
+
+Estos documentos NO sustituyen a los anteriores.
+
+Representan las siguientes capas del sistema.
 
 ---
 
 9. METODOLOGÍA
 
-La metodología oficial está definida en:
+La metodología oficial está en:
 
 "proyecto/metodologia.md"
 
-El orden de trabajo es:
+El orden es:
 
 1. Investigación.
-2. Matrices.
-3. Motor.
-4. Arquitectura de URLs.
-5. Arquitectura de landing.
-6. Bloques.
-7. Modelo de datos.
-8. IA/contenido.
-9. Validación.
-10. N8N.
-11. Publicación.
-12. Medición.
-13. Aprendizaje.
-
-La metodología debe ser aplicable posteriormente a otros servicios.
+2. Evidencias.
+3. Matrices.
+4. Oportunidades.
+5. Motor.
+6. Decisiones.
+7. URLs.
+8. Landing.
+9. Bloques.
+10. Modelo de datos.
+11. IA.
+12. Validación.
+13. N8N.
+14. Publicación.
+15. Medición.
+16. Aprendizaje.
 
 ---
 
 10. MOTOR DE DECISIÓN
 
-El motor utiliza variables como:
+El motor actual es:
 
-- Demanda.
+v1.0
+
+Estado:
+
+DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
+
+Variables principales:
+
 - Intención.
+- Demanda.
 - Potencial comercial.
 - Relevancia territorial.
 - Competencia.
 - Diferenciación.
 - Información disponible.
 - Riesgo de duplicación.
-- Utilidad potencial.
 
 Resultados:
 
@@ -343,15 +356,19 @@ INVESTIGAR
 
 NO CREAR
 
-El motor está:
+El motor v1.0 utiliza reglas y evidencia.
 
-DEFINIDO
+No deben inventarse puntuaciones numéricas.
 
-pero:
+Si falta evidencia:
 
-PENDIENTE DE VALIDACIÓN REAL
+DESCONOCIDO
 
-No se considera definitivamente validado hasta probarlo con datos reales.
+o:
+
+INVESTIGAR
+
+El motor solo se considerará validado después de probarlo con casos reales.
 
 ---
 
@@ -363,7 +380,7 @@ Estructura principal:
 
 "/{servicio}/{localidad}/"
 
-Estructura secundaria:
+Estructura específica:
 
 "/{servicio}/{subservicio}/{localidad}/"
 
@@ -373,94 +390,23 @@ Ejemplos:
 
 "/fontanero/desatascos/marbella/"
 
-La existencia de una combinación no implica automáticamente la creación de una URL.
+La existencia de una combinación no implica automáticamente crear una URL.
 
-La combinación debe pasar primero por el motor.
+Primero:
 
-La arquitectura está:
+MOTOR → DECISIÓN
 
-DEFINIDA
+Después:
 
-pero:
+DECISIÓN → URL
 
-PENDIENTE DE VALIDACIÓN CON EL MOTOR
-
----
-
-12. RELACIÓN MOTOR → URL
-
-El flujo correcto es:
-
-DATOS
-
-↓
-
-MOTOR
-
-↓
-
-DECISIÓN
-
-↓
-
-URL
-
-Ejemplo conceptual:
-
-SERVICIO = fontanero
-SUBSERVICIO = desatascos
-LOCALIDAD = Marbella
-
-DECISIÓN = CREAR
-
-URL = /fontanero/desatascos/marbella/
-
-La IA recibe posteriormente esta información.
-
-La IA no debe decidir libremente si existe una página ni qué URL utilizar.
+La IA no decide libremente la URL.
 
 ---
 
-13. INVESTIGACIÓN DE FONTANERÍA
+12. TRAZABILIDAD
 
-La investigación inicial de fontanería está documentada.
-
-Incluye:
-
-- Observaciones del mercado.
-- Patrones encontrados.
-- Servicios.
-- Subservicios.
-- Localidades.
-- Competencia.
-- SERP.
-- Hipótesis.
-- Conclusiones.
-
-Esta investigación sirve como base para validar el sistema.
-
-No debe tratarse como una verdad universal para otros sectores.
-
----
-
-14. MATRICES
-
-Las matrices son la representación estructurada de la investigación.
-
-Actualmente se dispone de:
-
-- Matriz de servicios de fontanería.
-- Matriz de localidades.
-
-Las matrices deben mantenerse actualizadas cuando aparezca información nueva suficientemente fundamentada.
-
-No deben sobrescribirse decisiones anteriores sin conservar el historial cuando el cambio sea relevante.
-
----
-
-15. REGLA DE TRAZABILIDAD
-
-Cada decisión importante debería poder relacionarse con:
+Cada decisión importante debe poder reconstruirse:
 
 EVIDENCIA
 
@@ -471,6 +417,10 @@ DATO
 ↓
 
 MATRIZ
+
+↓
+
+OPORTUNIDAD
 
 ↓
 
@@ -488,111 +438,123 @@ URL
 
 LANDING
 
-Esto permitirá reconstruir posteriormente por qué se creó una página.
+Esto permite saber por qué se creó, agrupó, investigó o descartó una combinación.
 
 ---
 
-16. REGISTRO DE DECISIONES
+13. INVESTIGACIÓN DE FONTANERÍA
 
-Las decisiones concretas que se obtengan durante la validación se documentarán en un archivo específico.
+La investigación de fontanería constituye el primer caso de estudio del sistema.
 
-Ese archivo será independiente del motor.
+Contiene:
+
+- Servicios.
+- Subservicios.
+- Localidades.
+- Competencia.
+- SERP.
+- Patrones.
+- Conclusiones.
+- Hipótesis.
+
+No debe tratarse como una verdad universal para otros sectores.
+
+Cuando se investigue otro servicio se repetirá la metodología.
+
+---
+
+14. MATRICES
+
+Las matrices actuales son:
+
+- Servicios.
+- Localidades.
+- Oportunidades.
+
+Las evidencias proporcionan el soporte documental.
+
+Las matrices no sustituyen a las evidencias.
+
+Las oportunidades no sustituyen al motor.
+
+---
+
+15. REGISTRO DE DECISIONES
+
+"proyecto/seo/registro-decisiones.md"
+
+contiene los resultados concretos del motor.
 
 El motor contiene:
 
 REGLAS
 
-El registro de decisiones contiene:
+El registro contiene:
 
-RESULTADOS DE APLICAR LAS REGLAS
+DECISIONES
 
-Ejemplo:
-
-Fecha:
-2026-08-23
-
-Servicio:
-Fontanero
-
-Subservicio:
-Desatascos
-
-Localidad:
-Marbella
-
-Datos utilizados:
-...
-
-Resultado del motor:
-CREAR
-
-URL:
- /fontanero/desatascos/marbella/
-
-Motivo:
-...
-
-Versión del motor:
-...
-
-Evidencia:
-...
-
-Esto evita mezclar reglas generales con resultados concretos.
+Nunca deben mezclarse ambas funciones.
 
 ---
 
-17. REGLA DE CONSERVACIÓN
+16. IA
 
-Todo trabajo de investigación que produzca una conclusión, matriz, decisión, regla, URL, estructura o criterio debe quedar documentado.
+La IA no decide estratégicamente por su cuenta.
 
-No debemos depender de:
+La IA recibe:
 
-- memoria de la IA;
-- historial de conversación;
-- recuerdos personales;
-- reconstrucciones posteriores.
+- Datos.
+- Reglas.
+- URL.
+- Bloques.
+- Evidencias.
+- Restricciones.
 
-El repositorio debe contener la información necesaria para continuar el proyecto.
+Y genera contenido dentro de esos límites.
 
----
+No debe inventar:
 
-18. AUDITORÍA DOCUMENTAL
-
-Antes de avanzar entre fases se debe comprobar:
-
-- Que los documentos sean coherentes.
-- Que no existan contradicciones.
-- Que el maestro refleje el estado real.
-- Que las decisiones importantes estén documentadas.
-- Que las matrices estén disponibles.
-- Que las reglas utilizadas estén identificadas.
-- Que la información no esté duplicada innecesariamente.
-- Que el siguiente paso esté definido.
-
-Si existe una pérdida documental relevante, se detiene el avance y se corrige primero.
+- Empresas.
+- Precios.
+- Direcciones.
+- Teléfonos.
+- Certificaciones.
+- Testimonios.
+- Disponibilidad.
+- Cobertura.
+- Datos locales no verificados.
 
 ---
 
-19. REGLA PARA NUEVOS SERVICIOS
+17. N8N
 
-Cuando se trabaje con un nuevo servicio, no se copiarán automáticamente las conclusiones de fontanería.
+N8N será la capa de orquestación.
 
-Se reutilizará:
+No debe sustituir al motor.
 
-- La metodología.
-- La arquitectura general.
-- El sistema documental.
-- Las reglas generales.
-- El modelo técnico.
+No debe decidir estratégicamente qué páginas existen.
 
-Pero se realizará una investigación específica del nuevo sector.
+Su función será ejecutar el proceso previamente definido.
+
+---
+
+18. REGLA PARA NUEVOS SERVICIOS
+
+La metodología y arquitectura general son reutilizables.
+
+Las conclusiones sectoriales NO.
 
 Ejemplo:
 
 ABOGADOS
 
+↓
+
 Investigación específica.
+
+↓
+
+Evidencias.
 
 ↓
 
@@ -604,7 +566,11 @@ Matriz territorial.
 
 ↓
 
-Adaptación del motor.
+Oportunidades.
+
+↓
+
+Motor adaptado.
 
 ↓
 
@@ -612,19 +578,11 @@ Validación.
 
 ↓
 
-Arquitectura URL.
+URLs.
 
 ↓
 
-Landing.
-
-↓
-
-Bloques.
-
-↓
-
-Datos.
+Landings.
 
 ↓
 
@@ -634,155 +592,158 @@ IA.
 
 Automatización.
 
----
-
-20. PRINCIPIO DE IA
-
-La IA es una herramienta de ejecución y generación.
-
-No debe sustituir las decisiones estratégicas previamente definidas.
-
-La IA no debe decidir arbitrariamente:
-
-- Qué servicios existen.
-- Qué páginas deben crearse.
-- Qué URLs utilizar.
-- Qué localidades inventar.
-- Qué datos comerciales utilizar.
-- Qué afirmaciones realizar.
-
-La IA recibe datos y reglas y trabaja dentro de ellas.
+Por tanto, el sistema será reutilizable sin copiar hipótesis de fontanería a otros sectores.
 
 ---
 
-21. PRINCIPIO DE AUTOMATIZACIÓN
+19. AUDITORÍA ANTES DE AVANZAR
 
-N8N debe ejecutar el proceso definido.
+Antes de cambiar de fase debe comprobarse:
 
-No debe utilizarse para ocultar decisiones todavía no resueltas.
+- Coherencia entre documentos.
+- Evidencias disponibles.
+- Matrices actualizadas.
+- Reglas identificadas.
+- Decisiones documentadas.
+- Ausencia de contradicciones importantes.
+- Siguiente fase definida.
 
-La automatización completa se realizará cuando estén suficientemente definidas:
+Si existe una pérdida documental importante:
 
-- Investigación.
-- Matrices.
-- Motor.
-- URLs.
-- Landing.
-- Bloques.
-- Datos.
-- IA.
-- Validación.
+SE DETIENE EL AVANCE Y SE DOCUMENTA PRIMERO.
 
 ---
 
-22. ESTADO ACTUAL
+20. ESTADO ACTUAL
 
 COMPLETADO
 
+- Arquitectura general del proyecto.
+- Metodología.
+- Arquitectura SEO.
+- Arquitectura de URLs.
 - Investigación inicial de fontanería.
 - Matriz de servicios.
 - Matriz de localidades.
-- Arquitectura SEO.
-- Motor de decisión definido.
-- Arquitectura de URLs definida.
-- Metodología actualizada.
-- Arquitectura documental definida.
+- Sistema de evidencias.
+- Matriz de oportunidades.
+- Motor de decisión v1.0.
+- Registro de decisiones.
 
 EN VALIDACIÓN
 
+- Evidencias de la investigación inicial.
+- Oportunidades reales.
 - Motor de decisión.
 - Arquitectura de URLs.
 
-PENDIENTE
+SIGUIENTE BLOQUE
 
-- Registro de decisiones.
+Construcción de:
+
 - Arquitectura de landing.
 - Sistema de bloques.
 - Modelo de datos.
 - Sistema de contenido/IA.
-- Validación automática.
-- Automatización N8N.
-- Integración WordPress.
-- Publicación controlada.
+- Validación.
+
+DESPUÉS
+
+- N8N.
+- WordPress.
+- Publicación.
 - Medición.
 - Aprendizaje.
+- Escalado.
 
 ---
 
-23. SIGUIENTE PASO OFICIAL
+21. SIGUIENTE PASO OFICIAL
 
-El siguiente paso es:
+El siguiente paso inmediato es:
 
-VALIDAR EL MOTOR DE DECISIÓN Y LA ARQUITECTURA DE URL CON DATOS REALES
+VALIDAR OPORTUNIDADES REALES DE FONTANERÍA
 
-Se utilizarán combinaciones reales procedentes de las matrices de fontanería.
+Para cada oportunidad:
 
-Para cada combinación se comprobará:
+1. Identificar datos.
+2. Identificar evidencias.
+3. Aplicar motor.
+4. Registrar decisión.
+5. Determinar URL si procede.
+6. Comprobar si existe suficiente información para construir una landing.
 
-1. Datos de entrada.
-2. Puntuación.
-3. Decisión.
-4. Justificación.
-5. Riesgo de duplicación.
-6. URL resultante.
-7. Si merece una landing independiente.
-8. Si existe información suficiente para construirla.
+Cuando exista un conjunto suficiente de decisiones reales, se pasará a:
 
-Los resultados se documentarán en el futuro:
-
-"proyecto/seo/registro-decisiones.md"
-
-No se debe diseñar todavía la arquitectura definitiva de landing hasta completar esta validación.
+ARQUITECTURA DE LANDING
 
 ---
 
-24. REGLA DE NO AVANZAR POR IMPULSO
+22. REGLA CONTRA LA DERIVA DEL PROYECTO
 
-El proyecto debe avanzar por fases.
+Antes de crear o modificar cualquier documento se debe responder:
 
-No se debe crear un archivo simplemente porque parezca útil en ese momento.
+- ¿Qué función cumple?
+- ¿Qué información contiene?
+- ¿De qué documentos depende?
+- ¿Qué documentos dependen de él?
+- ¿Existe ya esa información?
+- ¿En qué fase estamos?
+- ¿Es necesario modificarlo ahora?
 
-Antes de crear un documento nuevo hay que determinar:
-
-- Qué función tiene.
-- Qué información contendrá.
-- De qué documentos depende.
-- Qué documentos dependen de él.
-- Si esa información ya existe.
-- Dónde encaja dentro de la metodología.
-
-Esto evita:
-
-- duplicaciones;
-- contradicciones;
-- pérdida de información;
-- archivos innecesarios;
-- arquitectura documental desordenada.
+No se crearán documentos simplemente porque parezcan útiles en ese momento.
 
 ---
 
-25. REGISTRO DE ACTUALIZACIONES
+23. REGLA CONTRA LA PÉRDIDA DE INFORMACIÓN
+
+Si durante una conversación se realiza:
+
+- investigación;
+- análisis;
+- descubrimiento;
+- decisión;
+- modificación de una regla;
+- creación de una matriz;
+- definición de una arquitectura;
+
+esa información deberá incorporarse al repositorio antes de considerarse cerrada.
+
+La memoria conversacional nunca se considera almacenamiento definitivo.
+
+---
+
+24. REGISTRO DE ACTUALIZACIÓN
 
 2026-08-23
 
-Se actualiza el documento maestro para sincronizarlo con la metodología y la arquitectura actual del proyecto.
+Se consolida la arquitectura documental del proyecto.
 
-Se incorpora explícitamente:
+Se incorporan explícitamente:
 
-- Arquitectura de URLs.
-- Relación Motor → URL.
-- Sistema de trazabilidad.
-- Registro futuro de decisiones.
-- Auditoría documental.
-- Regla de conservación de información.
-- Separación entre reglas del motor y resultados del motor.
+EVIDENCIAS
 
-Se establece oficialmente:
+y:
 
-INVESTIGACIÓN → MATRICES → MOTOR → URL → LANDING → BLOQUES → DATOS → IA → VALIDACIÓN → N8N → PUBLICACIÓN → MEDICIÓN → APRENDIZAJE
+MATRIZ DE OPORTUNIDADES
 
-Se establece que el motor y la arquitectura de URLs están definidos pero pendientes de validación real.
+al flujo oficial.
 
-Se establece que el siguiente paso es validar ambos utilizando datos reales de las matrices de fontanería.
+Se consolida la separación entre:
 
-No se debe avanzar a arquitectura de landing hasta completar esta validación.
+- investigación;
+- evidencia;
+- matrices;
+- oportunidades;
+- reglas;
+- decisiones;
+- URLs;
+- construcción de landings.
+
+Se establece el motor v1.0 como sistema basado en reglas y evidencia, sin puntuaciones numéricas arbitrarias.
+
+Se incorpora el registro de decisiones como documento ya existente.
+
+Se establece como siguiente fase la validación real del motor con oportunidades de fontanería.
+
+A partir de esta actualización, la arquitectura documental queda considerada ESTABLE salvo que una prueba real demuestre la necesidad de modificarla.
