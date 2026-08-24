@@ -1,16 +1,24 @@
-PROTOCOLO DE EJECUCIÓN DEL PROYECTO
+Protocolo de ejecución del proyecto
 
-Versión: 2.0
+Versión: 3.0
 Estado: OBLIGATORIO
-Propósito: mantener una ejecución secuencial, controlada y orientada a resultados.
+Propósito: mantener una ejecución secuencial, controlada, verificable y orientada a resultados.
 
 ---
 
 1. OBJETIVO
 
-Este documento establece las reglas que deben seguirse durante la construcción y evolución del proyecto.
+Este documento establece las reglas operativas que deben seguirse durante la construcción y evolución del proyecto.
 
-Su finalidad es evitar desviaciones, rediseños innecesarios, retrocesos de fase y trabajo paralelo que no contribuya directamente al paso actual.
+Su finalidad es evitar:
+
+- desviaciones;
+- trabajo paralelo innecesario;
+- rediseños prematuros;
+- retrocesos injustificados;
+- duplicación de información;
+- pérdida del estado real del proyecto;
+- ejecución de tareas que no contribuyen al objetivo actual.
 
 El proyecto debe avanzar de forma:
 
@@ -22,111 +30,147 @@ El proyecto debe avanzar de forma:
 
 ---
 
-2. FUENTE DE VERDAD DEL ESTADO
+2. JERARQUÍA DE CONTROL
 
-El estado y el orden de ejecución del proyecto están determinados por:
+La información del proyecto debe interpretarse siguiendo esta jerarquía:
+
+1. "maestro.md"
+Contexto persistente, decisiones generales y reglas maestras.
+
+2. "proyecto/roadmap-fabrica-webs.md"
+Método universal y reutilizable de la fábrica.
+
+3. "proyecto/roadmap-proyecto.md"
+Orden concreto de ejecución del proyecto actual.
+
+4. Documentación técnica
+Define cómo debe construirse cada componente.
+
+5. Ejecución
+Implementa lo definido respetando las capas anteriores.
+
+Cada documento tiene una función diferente.
+
+Ningún documento técnico puede modificar por sí mismo el orden de ejecución.
+
+Una idea surgida durante una conversación tampoco modifica por sí misma el estado del proyecto.
+
+---
+
+3. FUENTE DE VERDAD DEL ESTADO
+
+La fuente de verdad del estado operativo es:
 
 "proyecto/roadmap-proyecto.md"
 
-Este documento NO determina qué fase o paso debe ejecutarse.
-
-El roadmap del proyecto determina siempre:
+Este documento determina:
 
 - fase actual;
 - paso actual;
-- objetivo del paso;
-- entregable esperado;
-- pasos completados;
-- siguiente paso;
-- bloqueos conocidos.
+- objetivo;
+- entregable;
+- estado;
+- bloqueos;
+- siguiente paso.
 
-"proyecto/roadmap-fabrica-webs.md" define el método general reutilizable.
+El protocolo establece cómo ejecutar, pero no establece cuál es el paso actual.
 
-"maestro.md" actúa como documento de control y obliga a recuperar el estado persistente antes de ejecutar.
+El roadmap universal establece el método general, pero tampoco sustituye al roadmap específico del proyecto.
 
-Los demás documentos contienen especificaciones técnicas y no pueden cambiar por sí mismos el orden de ejecución.
-
-Si un documento técnico propone un trabajo diferente al paso actual, esa propuesta no cambia el roadmap.
-
-Solo una decisión explícita registrada en el roadmap puede cambiar el orden de ejecución.
+"maestro.md" proporciona el contexto persistente necesario para interpretar correctamente el proyecto.
 
 ---
 
-3. REGLA PRINCIPAL: NO RETROCEDER SIN BLOQUEO REAL
-
-NO SE RETROCEDE A UNA FASE O PASO ANTERIOR SIN UN BLOQUEO REAL.
+4. REGLA PRINCIPAL: TRABAJAR SOBRE EL PASO ACTUAL
 
 Mientras exista un paso activo:
 
-1. se trabaja sobre ese paso;
-2. no se cambia de objetivo por iniciativa propia;
-3. no se rediseña una fase anterior;
-4. no se abre una nueva línea de trabajo porque aparezca una posible mejora.
+1. trabajar sobre ese paso;
+2. mantener su objetivo;
+3. completar su entregable;
+4. verificar el resultado;
+5. actualizar el estado;
+6. avanzar únicamente al siguiente paso definido.
 
-Una mejora, duda, contradicción o posible optimización no constituye automáticamente un bloqueo.
+No se debe cambiar de objetivo por iniciativa propia.
 
----
-
-4. QUÉ HACER CUANDO APARECE UN PROBLEMA
-
-Si durante la construcción aparece un problema:
-
-Paso 1 — Registrar
-
-Identificar y registrar el problema.
-
-Paso 2 — Determinar impacto
-
-Preguntar:
-
-«¿Este problema impide completar el paso actual?»
-
-Si NO bloquea
-
-- registrar el problema;
-- dejarlo pendiente;
-- continuar con el paso actual.
-
-Si SÍ bloquea
-
-- detener temporalmente la ejecución;
-- resolver únicamente el bloqueo;
-- comprobar que el bloqueo queda solucionado;
-- volver inmediatamente al paso original.
+No se debe abrir una nueva línea de trabajo simplemente porque aparezca una idea mejor.
 
 ---
 
-5. DEFINICIÓN DE BLOQUEO REAL
+5. NO RETROCEDER SIN BLOQUEO REAL
 
-Se considera bloqueo real únicamente un problema que impida materialmente continuar o completar el paso actual.
+No se retrocede a una fase o paso anterior salvo que exista un bloqueo real que impida completar el paso actual.
+
+Una mejora no es automáticamente un bloqueo.
+
+Una duda no es automáticamente un bloqueo.
+
+Una optimización no es automáticamente un bloqueo.
+
+Una documentación mejorable no es automáticamente un bloqueo.
+
+Una tecnología alternativa no es automáticamente un bloqueo.
+
+Una contradicción que no afecta al paso actual no es automáticamente un bloqueo.
+
+---
+
+6. DEFINICIÓN DE BLOQUEO REAL
+
+Existe un bloqueo real cuando un problema impide materialmente continuar o completar correctamente el paso actual.
 
 Ejemplos:
 
-- una dependencia técnica imprescindible no existe;
-- dos especificaciones incompatibles impiden implementar el componente;
-- falta un dato imprescindible para ejecutar la tarea;
+- falta una dependencia imprescindible;
+- falta un dato imprescindible;
+- existen especificaciones incompatibles que impiden implementar;
 - el diseño actual hace imposible cumplir un requisito obligatorio;
-- una implementación produciría un sistema incorrecto o inseguro.
+- continuar produciría un sistema incorrecto;
+- continuar produciría un sistema inseguro;
+- una decisión previa hace imposible completar el entregable actual.
 
-No son bloqueos por sí mismos:
-
-- una mejora futura;
-- una optimización;
-- una idea nueva;
-- una posible refactorización;
-- una contradicción que no afecta al paso actual;
-- una documentación que podría estar mejor;
-- una tecnología alternativa que podría ser mejor.
+Si el problema no impide completar el paso actual, no se considera bloqueo.
 
 ---
 
-6. NO REDISEÑAR DURANTE LA IMPLEMENTACIÓN
+7. PROCEDIMIENTO ANTE UN PROBLEMA
 
-Cuando un paso está en fase de construcción:
+Cuando aparezca un problema:
 
-primero se construye; después se evalúa.
+Paso 1 — Detectar
 
-No se debe interrumpir continuamente una implementación para rediseñar la arquitectura completa.
+Identificar exactamente qué ocurre.
+
+Paso 2 — Evaluar
+
+Determinar:
+
+¿Impide completar el paso actual?
+
+Si NO
+
+- registrar el problema;
+- mantenerlo pendiente;
+- continuar con el paso actual.
+
+Si SÍ
+
+- detener temporalmente la ejecución;
+- resolver únicamente el bloqueo;
+- verificar la solución;
+- volver al paso original;
+- continuar desde donde se interrumpió.
+
+No se debe aprovechar un bloqueo para rediseñar partes no relacionadas del sistema.
+
+---
+
+8. NO REDISEÑAR DURANTE LA IMPLEMENTACIÓN
+
+Cuando un paso está en construcción:
+
+primero construir → después verificar → después corregir.
 
 Si aparece una mejora estructural que no bloquea:
 
@@ -144,15 +188,17 @@ DETECTAR
 ↓
 DETENER TODO
 ↓
-REDISEÑAR
+REDISEÑAR TODO
 ↓
-VOLVER ATRÁS
+RETROCEDER
+↓
+NO TERMINAR EL PASO
 
 ---
 
-7. TRABAJO SECUENCIAL
+9. EJECUCIÓN SECUENCIAL
 
-Cada paso debe tener:
+La secuencia normal de cada paso es:
 
 PASO ACTUAL
 ↓
@@ -164,54 +210,64 @@ IMPLEMENTACIÓN
 ↓
 VERIFICACIÓN
 ↓
+CORRECCIÓN
+↓
+VALIDACIÓN
+↓
 COMPLETADO
+↓
+ACTUALIZACIÓN DEL ESTADO
 ↓
 SIGUIENTE PASO
 
-No se debe trabajar simultáneamente en varios pasos salvo que exista una dependencia técnica justificada.
+No se deben ejecutar simultáneamente varios pasos independientes.
+
+Solo se permite trabajo paralelo cuando exista una dependencia técnica real que lo justifique.
 
 ---
 
-8. DEFINICIÓN DEL PASO ANTES DE TRABAJAR
+10. DEFINICIÓN DEL PASO ANTES DE EJECUTAR
 
-Antes de comenzar un paso debe quedar claro:
+Antes de comenzar un paso se debe identificar:
 
 FASE ACTUAL:
 PASO ACTUAL:
 OBJETIVO:
 ENTREGABLE:
+DEPENDENCIAS:
 BLOQUEOS CONOCIDOS:
+CRITERIO DE FINALIZACIÓN:
 SIGUIENTE PASO:
 
-Esta información debe recuperarse del:
+La información debe recuperarse del:
 
 "proyecto/roadmap-proyecto.md"
 
-Esto permite comprobar en todo momento si el trabajo que se está realizando pertenece realmente al paso actual.
+Si esa información no está clara, primero debe recuperarse el estado.
+
+No se debe comenzar trabajo sustancial basándose en una suposición sobre el estado.
 
 ---
 
-9. CRITERIO PARA DECIDIR SI UNA TAREA PERTENECE AL PASO
+11. CRITERIO PARA INICIAR UNA TAREA
 
-Antes de iniciar una tarea nueva se debe preguntar:
+Antes de iniciar una tarea nueva:
 
-«¿Esta tarea contribuye directamente a completar el paso actual?»
-
-Si la respuesta es:
+¿Contribuye directamente a completar el paso actual?
 
 SÍ
 
-→ realizarla.
-
-Si la respuesta es:
+Ejecutarla.
 
 NO
 
-→ no iniciar esa tarea salvo que sea necesaria para resolver un bloqueo real.
+No ejecutarla ahora, salvo que sea necesaria para resolver un bloqueo real.
+
+La tarea puede registrarse para evaluarla posteriormente.
 
 ---
 
-10. CAMBIOS DE ALCANCE
+12. CONTROL DEL ALCANCE
 
 No se debe ampliar el alcance durante un paso sin una razón objetiva.
 
@@ -225,36 +281,57 @@ NO INTERRUMPIR
 ↓
 EVALUAR POSTERIORMENTE
 
-Las nuevas funcionalidades pasan a formar parte de futuros pasos si se aprueban.
+Si se aprueba, deberá incorporarse al roadmap en el punto correspondiente.
+
+Una funcionalidad nueva no pasa automáticamente a formar parte del paso actual.
 
 ---
 
-11. RELACIÓN CON LA DOCUMENTACIÓN
+13. GESTIÓN DE CAMBIOS
+
+Cuando una decisión cambie una parte relevante del proyecto, debe quedar registrada en la fuente documental correspondiente.
+
+La modificación debe hacerse en el documento que sea responsable de esa información.
+
+No se debe duplicar la misma decisión innecesariamente en varios documentos.
+
+La regla es:
+
+una información → una fuente de autoridad.
+
+Los demás documentos pueden hacer referencia a ella, pero no deben mantener copias contradictorias.
+
+---
+
+14. RELACIÓN CON LA DOCUMENTACIÓN
 
 La documentación sirve para:
 
 - definir;
+- especificar;
 - registrar;
 - justificar;
 - controlar.
 
-No debe convertirse en una actividad paralela que retrase indefinidamente la construcción.
+No debe convertirse en una actividad paralela infinita.
 
-Una vez que una decisión está suficientemente definida:
+Cuando una decisión está suficientemente definida:
 
 se implementa.
 
-No se sigue documentando indefinidamente la misma decisión.
+No se debe continuar documentando indefinidamente una decisión que ya permite ejecutar.
 
-La documentación técnica tampoco puede modificar por iniciativa propia el orden del roadmap.
+La documentación técnica explica cómo construir.
+
+El roadmap determina qué construir y cuándo.
+
+El protocolo determina cómo ejecutar el trabajo.
 
 ---
 
-12. RELACIÓN CON LAS PRUEBAS
+15. RELACIÓN CON LAS PRUEBAS
 
-Las pruebas deben utilizarse para verificar componentes reales.
-
-No se deben crear pruebas artificiales indefinidamente antes de construir el sistema cuando el objetivo del paso sea precisamente construirlo.
+Las pruebas deben verificar componentes reales.
 
 La secuencia preferente es:
 
@@ -268,123 +345,205 @@ CORREGIR
 ↓
 VALIDAR
 
+No se deben crear pruebas artificiales indefinidamente si el objetivo del paso es construir primero el componente.
+
+La validación debe producir evidencia suficiente para considerar el entregable completado.
+
 ---
 
-13. REVISIÓN DEL REPOSITORIO
+16. REVISIÓN DEL REPOSITORIO
 
-Antes de comenzar un nuevo paso:
+Antes de comenzar una nueva sesión de trabajo relevante:
 
 1. revisar "maestro.md";
-2. leer "proyecto/roadmap-fabrica-webs.md";
-3. leer "proyecto/roadmap-proyecto.md";
-4. leer "proyecto/checklist-arranque.md";
-5. identificar el paso actual;
-6. revisar únicamente los documentos técnicos necesarios para ese paso;
+2. recuperar el método universal;
+3. revisar "proyecto/roadmap-proyecto.md";
+4. comprobar el estado actual;
+5. identificar el paso activo;
+6. revisar únicamente la documentación técnica necesaria;
 7. comprobar dependencias;
-8. comenzar la ejecución.
+8. ejecutar.
 
-No es necesario volver a rediseñar todo el proyecto en cada sesión.
-
-Una revisión completa del repositorio debe realizarse cuando:
-
-- comienza una fase importante;
-- existe un bloqueo;
-- se detecta una contradicción que afecta al paso actual;
-- se solicita explícitamente una auditoría completa.
+No es necesario rediseñar todo el proyecto en cada sesión.
 
 ---
 
-14. REGLA CONTRA LA DESVIACIÓN
+17. CUÁNDO REALIZAR UNA AUDITORÍA COMPLETA
 
-El asistente debe evitar especialmente este patrón:
+Una auditoría completa del repositorio se realizará cuando:
+
+- comience una fase importante;
+- exista un bloqueo estructural;
+- aparezca una contradicción que afecte al paso actual;
+- exista una modificación importante de arquitectura;
+- se solicite explícitamente una auditoría completa.
+
+Una auditoría no debe convertirse en una excusa para retrasar indefinidamente la ejecución.
+
+Una vez finalizada, sus conclusiones deben convertirse en acciones concretas.
+
+---
+
+18. ACTUALIZACIÓN DEL ESTADO
+
+Al completar un paso:
+
+1. marcarlo como completado;
+2. registrar brevemente qué se ha ejecutado;
+3. registrar los problemas pendientes;
+4. registrar las decisiones relevantes;
+5. establecer el siguiente paso;
+6. actualizar el estado general.
+
+La actualización operativa debe realizarse en:
+
+"proyecto/roadmap-proyecto.md"
+
+No se debe utilizar este protocolo como sustituto del estado del proyecto.
+
+---
+
+19. CONTROL CONTINUO DEL ESTADO
+
+En cualquier momento debe poder responderse:
+
+¿DÓNDE ESTAMOS?
+
+¿QUÉ ESTAMOS CONSTRUYENDO?
+
+¿QUÉ FALTA?
+
+¿QUÉ BLOQUEOS EXISTEN?
+
+¿QUÉ VIENE DESPUÉS?
+
+La respuesta operativa debe obtenerse del:
+
+"proyecto/roadmap-proyecto.md"
+
+Si alguna respuesta no está clara, se debe recuperar primero el estado persistente.
+
+---
+
+20. REGLA CONTRA LA DESVIACIÓN
+
+Debe evitarse este patrón:
 
 PASO ACTUAL
 ↓
-ENCUENTRA PROBLEMA SECUNDARIO
+PROBLEMA SECUNDARIO
 ↓
-ABRE NUEVA TAREA
+NUEVA TAREA
 ↓
-ENCUENTRA OTRO PROBLEMA
+OTRO PROBLEMA
 ↓
-RETROCEDE
+RETROCESO
 ↓
-REDISEÑA
+REDISEÑO
 ↓
-NO TERMINA EL PASO
+NO SE TERMINA EL PASO
 
-Debe utilizar:
+Debe utilizarse:
 
 PASO ACTUAL
 ↓
 PROBLEMA
 ↓
 ¿BLOQUEA?
-├── NO → REGISTRAR → CONTINUAR
-└── SÍ → RESOLVER → VOLVER AL PASO
+
+NO → REGISTRAR → CONTINUAR
+
+SÍ → RESOLVER → VOLVER AL PASO
+
 ↓
 COMPLETAR
+
 ↓
 ACTUALIZAR ESTADO
+
 ↓
 SIGUIENTE PASO
 
 ---
 
-15. ACTUALIZACIÓN DEL ESTADO
+21. REGLA DE PRIORIDAD
 
-Al completar un paso:
+Cuando exista conflicto entre:
 
-1. marcar el paso como COMPLETADO;
-2. registrar brevemente qué se ha construido;
-3. registrar problemas pendientes;
-4. establecer el siguiente paso;
-5. actualizar el estado general del proyecto.
+- una idea surgida durante la conversación;
+- una mejora potencial;
+- una tarea secundaria;
+- una nueva funcionalidad;
+- y el paso actual;
 
-El estado debe actualizarse en:
-
-"proyecto/roadmap-proyecto.md"
-
-No se debe utilizar "maestro.md" como fuente alternativa del paso actual.
+tiene prioridad el paso actual definido en "proyecto/roadmap-proyecto.md", salvo que exista un bloqueo real.
 
 ---
 
-16. CONTROL DE ESTADO
+22. PRINCIPIO DE EJECUCIÓN
 
-En cualquier momento, el proyecto debe poder responder claramente:
+El objetivo no es producir documentación continuamente.
 
-¿DÓNDE ESTAMOS?
+El objetivo es producir progreso real, verificable y acumulativo.
 
-¿QUÉ ESTAMOS CONSTRUYENDO?
+La secuencia fundamental es:
 
-¿QUÉ FALTA PARA TERMINARLO?
-
-¿QUÉ BLOQUEOS EXISTEN?
-
-¿QUÉ VIENE DESPUÉS?
-
-La respuesta debe obtenerse del:
-
-"proyecto/roadmap-proyecto.md"
-
-Si alguna de estas respuestas no está clara, primero se debe recuperar el estado persistente antes de continuar.
+CONSTRUIR
+↓
+VERIFICAR
+↓
+CORREGIR
+↓
+VALIDAR
+↓
+COMPLETAR
+↓
+ACTUALIZAR ESTADO
+↓
+AVANZAR
 
 ---
 
-17. PROMPT OPERATIVO OBLIGATORIO
+23. REGLA DE REUTILIZACIÓN
 
-Antes de actuar sobre el proyecto, aplicar mentalmente estas instrucciones:
+Este protocolo forma parte del núcleo reutilizable de la fábrica.
 
-««Trabaja siempre sobre el paso actual definido en "proyecto/roadmap-proyecto.md".
+Debe poder utilizarse para:
+
+- webs de servicios;
+- webs locales;
+- directorios;
+- sistemas de ayudas y subvenciones;
+- sistemas de generación automática;
+- otros proyectos de automatización.
+
+El protocolo no depende de un sector concreto.
+
+El método universal define el proceso general.
+
+El roadmap del proyecto define el orden específico.
+
+La documentación técnica define la construcción de cada componente.
+
+La ejecución implementa esas decisiones.
+
+---
+
+24. PROMPT OPERATIVO OBLIGATORIO
+
+Antes de actuar sobre el proyecto, aplicar estas instrucciones:
+
+«Trabaja siempre sobre el paso actual definido en "proyecto/roadmap-proyecto.md".
 
 No cambies de paso por iniciativa propia.
 
-No retrocedas a una fase o paso anterior salvo que exista un bloqueo real que impida completar el paso actual.
+No retrocedas salvo que exista un bloqueo real que impida completar el paso actual.
 
-Si encuentras un problema, regístralo y determina si bloquea el paso.
+Si encuentras un problema, determina primero si bloquea.
 
-Si no bloquea, continúa.
+Si no bloquea, regístralo y continúa.
 
-Si bloquea, detén la ejecución, resuelve únicamente el bloqueo y vuelve al paso original.
+Si bloquea, resuelve únicamente el bloqueo y vuelve al paso original.
 
 Una mejora futura no es un bloqueo.
 
@@ -394,80 +553,17 @@ Una optimización no es un bloqueo.
 
 Una contradicción que no afecta al paso actual no es un bloqueo.
 
-No rediseñes el sistema mientras estás implementando un paso.
+No rediseñes el sistema completo durante una implementación.
 
 No crees documentación innecesaria.
 
-No cambies la arquitectura por iniciativa propia durante una implementación.
+No dupliques información que ya tiene una fuente de autoridad.
 
 Avanza de forma secuencial, verificable y acumulativa.
 
-Cuando un paso termine, actualiza "proyecto/roadmap-proyecto.md" y pasa al siguiente paso definido.»»
+Cuando un paso termine, actualiza "proyecto/roadmap-proyecto.md".
 
----
-
-18. REGLA DE PRIORIDAD
-
-Cuando exista conflicto entre:
-
-- una idea surgida durante la conversación;
-- una mejora potencial;
-- una tarea secundaria;
-- y el paso actual definido en "proyecto/roadmap-proyecto.md";
-
-el paso actual tiene prioridad, salvo que exista un bloqueo real.
-
----
-
-19. PRINCIPIO FINAL
-
-CONSTRUIR
-↓
-VERIFICAR
-↓
-CORREGIR
-↓
-COMPLETAR
-↓
-ACTUALIZAR ESTADO
-↓
-AVANZAR
-
-No:
-
-DISEÑAR
-↓
-REDISEÑAR
-↓
-DOCUMENTAR
-↓
-REDISEÑAR
-↓
-VOLVER ATRÁS
-
-El objetivo del protocolo es que cada sesión produzca progreso real y acumulativo hacia el sistema final.
-
----
-
-20. REGLA DE REUTILIZACIÓN
-
-Este protocolo forma parte del núcleo reutilizable de la fábrica.
-
-Debe poder utilizarse para:
-
-- webs de servicios;
-- webs locales;
-- directorios;
-- ayudas y subvenciones;
-- otros sistemas de generación automática.
-
-El protocolo no depende de un sector concreto.
-
-El roadmap universal define el método general.
-
-El roadmap del proyecto define el orden específico.
-
-La documentación técnica define cómo construir cada componente.
+Después pasa únicamente al siguiente paso definido.»
 
 ---
 
