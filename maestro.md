@@ -21,12 +21,12 @@ NO SE RETROCEDE SIN BLOQUEO REAL.
 
 Si aparece un problema durante la ejecución:
 
-- si NO bloquea el hito → registrar y continuar;
-- si SÍ bloquea el hito → detener, resolver el bloqueo y volver al hito original.
+- si NO bloquea el paso actual → registrar y continuar;
+- si SÍ bloquea el paso actual → detener, resolver el bloqueo y volver al paso original.
 
 Una mejora, optimización, duda, contradicción secundaria o posible rediseño no constituye un bloqueo real.
 
-El asistente no debe cambiar de hito por iniciativa propia.
+El asistente no debe cambiar de paso por iniciativa propia.
 
 REGLA PARA "SIGUE"
 
@@ -36,7 +36,7 @@ Cuando el usuario indique:
 
 significa:
 
-«Continuar desde el HITO ACTUAL establecido en este maestro, aplicando previamente el protocolo de arranque.»
+«Continuar desde el PASO ACTUAL establecido en proyecto/roadmap-proyecto.md, aplicando previamente el protocolo de arranque.»
 
 No significa comenzar una nueva línea de trabajo ni revisar/rediseñar fases anteriores salvo bloqueo real.
 
