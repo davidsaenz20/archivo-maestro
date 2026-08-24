@@ -1,1245 +1,1419 @@
-SISTEMA DE BLOQUES
+SISTEMA DE BLOQUES WORDPRESS
 
-Versión: 3.0
-Estado: PREPARADO PARA PILOTO DE MINIWEB
-Proyecto: Plataforma de miniwebs locales automatizadas
+Versión: 4.0
+Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
+Función: definir el sistema lógico de bloques que utilizará la plataforma para construir, actualizar y renderizar automáticamente páginas SEO locales y miniwebs.
 
 ---
 
 1. FUNCIÓN
 
-Este documento define los bloques lógicos que pueden utilizarse para construir las páginas de una miniweb local.
+Este documento define los bloques lógicos disponibles para las páginas generadas por el sistema.
 
-No define solamente una landing.
+Los bloques representan componentes funcionales de contenido.
 
-Define el sistema reutilizable para:
+No definen directamente:
 
-- página principal;
-- páginas de servicios;
-- páginas de subservicios;
-- páginas comerciales;
-- contacto;
-- otras páginas autorizadas.
+- diseño visual;
+- colores;
+- tipografías;
+- CSS;
+- maquetación final;
+- HTML específico;
+- plantilla concreta de WordPress.
 
-El sistema debe permitir construir una miniweb completa manteniendo una estructura común y evitando contenido artificial.
+El sistema separa:
+
+CONTENIDO Y FUNCIÓN
+
+de:
+
+PRESENTACIÓN VISUAL
+
+La IA genera los datos de los bloques.
+
+N8N transporta y sincroniza esos datos.
+
+WordPress renderiza los bloques.
 
 ---
 
 2. PRINCIPIO FUNDAMENTAL
 
-Los bloques no existen para rellenar páginas.
+Una página no tiene un número fijo de bloques.
 
-Cada bloque debe tener una función.
+La arquitectura determina qué bloques están autorizados.
 
-Puede servir para:
+La IA puede utilizar los bloques autorizados que resulten necesarios para responder correctamente a la intención.
 
-- explicar un servicio;
-- resolver una necesidad;
-- aportar información local;
-- facilitar la conversión;
-- mejorar la navegación;
-- generar confianza;
-- responder preguntas;
-- mostrar información comercial;
-- mostrar información visual;
-- diferenciar una página.
+No existe una estructura obligatoria de cinco bloques ni de un número fijo de bloques.
 
-Si un bloque no aporta valor o no dispone de información suficiente:
+El objetivo es:
 
-SE OMITE.
-
----
-
-3. FLUJO GENERAL
-
-INVESTIGACIÓN
-↓
-MOTOR DE DECISIÓN
-↓
-MINIWEB
-↓
-MAPA DE PÁGINAS
-↓
-ARQUITECTURA DE URL
-↓
-SELECCIÓN DE BLOQUES
-↓
-DATOS
-↓
-IA
-↓
-VALIDACIÓN
-↓
-N8N
-↓
-WORDPRESS
-↓
-PUBLICACIÓN
-
----
-
-4. UNIDAD DE TRABAJO
-
-El sistema trabaja sobre una página concreta.
-
-Cada página pertenece a una miniweb.
-
-Ejemplo:
-
-miniweb:
-FONTANERO-MARBELLA
-
-página:
-INICIO
-
-url:
-/fontanero-marbella/
-
-Otra página:
-
-miniweb:
-FONTANERO-MARBELLA
-
-página:
-DESATASCOS
-
-url:
-/fontanero-marbella/desatascos/
-
-Los bloques se seleccionan para cada página.
-
----
-
-5. CATEGORÍAS
-
-5.1 BLOQUES ESTRUCTURALES
-
-- B01 Header
-- B02 Navegación
-- B06 Footer
-
-5.2 BLOQUES DE CONTENIDO
-
-- B03 Hero
-- B04 Contenido principal
-- B07 Subservicio
-- B08 Problemas / necesidades
-- B09 Información local
-- B10 Zonas / cobertura
-- B11 Proceso
-- B12 Elementos de confianza
-- B13 Diferenciación
-- B14 FAQ
-- B18 Testimonios
-- B19 Casos / ejemplos
-- B20 Galería
-- B21 Precio / tarifas
-- B22 Horarios
-- B23 Mapa / ubicación
-
-5.3 BLOQUES DE CONVERSIÓN / NAVEGACIÓN / DATOS
-
-- B05 CTA
-- B15 Servicios relacionados
-- B16 Localidades relacionadas
-- B17 Datos estructurados
-
----
-
-6. IDENTIFICADORES OFICIALES
-
-Los identificadores son:
-
-B01
-B02
-B03
-B04
-B05
-B06
-B07
-B08
-B09
-B10
-B11
-B12
-B13
-B14
-B15
-B16
-B17
-B18
-B19
-B20
-B21
-B22
-B23
-
-Son identificadores estables.
-
-No deben modificarse durante el piloto.
-
-La IA no puede inventar nuevos identificadores.
-
-N8N debe rechazar identificadores desconocidos.
-
----
-
-7. B01 — HEADER
-
-Función
-
-Proporcionar identidad global de la miniweb.
-
-Puede contener:
-
-- logo;
-- nombre;
-- navegación;
-- CTA global.
-
-Datos
-
-- identidad;
-- marca cuando exista;
-- URLs autorizadas;
-- CTA autorizado.
-
-Restricciones
-
-El header pertenece a la plantilla visual de la miniweb.
-
-No debe generarse un header completamente diferente para cada localidad salvo que el sistema visual lo determine.
-
----
-
-8. B02 — NAVEGACIÓN
-
-Función
-
-Permitir acceder a las páginas principales de la miniweb.
-
-Puede enlazar a:
-
-- Inicio;
-- Servicios;
-- subservicios;
-- páginas comerciales;
-- Contacto.
-
-Datos
-
-- URL;
-- anchor;
-- prioridad;
-- página destino.
-
-Restricciones
-
-Solo enlaza a páginas autorizadas.
-
-No crea URLs.
-
-No debe utilizarse para generar miles de enlaces SEO.
-
----
-
-9. B03 — HERO
-
-Función
-
-Identificar inmediatamente:
-
-- qué servicio;
-- para quién;
-- dónde;
-- qué acción puede realizar.
-
-Puede contener:
-
-- H1;
-- subtítulo;
-- CTA;
-- elemento visual.
-
-Datos
-
-- servicio;
-- subservicio;
-- localidad;
-- intención;
-- CTA autorizado.
-
-Restricciones
-
-No inventar afirmaciones comerciales.
-
----
-
-10. B04 — CONTENIDO PRINCIPAL
-
-Función
-
-Explicar la necesidad principal de la página.
-
-Puede incluir:
-
-- descripción;
-- alcance;
-- situaciones;
-- problemas;
-- beneficios;
-- información útil.
-
-Regla
-
-No se utiliza para alcanzar una longitud determinada.
-
-La prioridad es:
-
-UTILIDAD > LONGITUD
-
----
-
-11. B05 — CTA PRINCIPAL
-
-Función
-
-Facilitar una acción.
-
-Puede utilizar:
-
-phone
-whatsapp
-email
-contact
-quote
-appointment
-
-Solo se utilizan canales existentes.
-
-Restricciones
-
-Nunca inventar:
-
-- teléfono;
-- WhatsApp;
-- email;
-- precio;
-- disponibilidad;
-- tiempo de respuesta.
-
-Si no existe un canal válido:
-
-OMITIR CTA DE ESE TIPO.
-
----
-
-12. B06 — FOOTER
-
-Función
-
-Cerrar la página y proporcionar navegación global.
-
-Puede incluir:
-
-- navegación;
-- servicios;
-- contacto;
-- información legal;
-- enlaces estratégicos.
-
-Restricciones
-
-No utilizarlo para crear una red masiva de enlaces SEO.
-
----
-
-13. B07 — SUBSERVICIO
-
-Función
-
-Explicar un servicio específico.
-
-Ejemplo:
-
-Fontanero
-↓
-Desatascos
-
-Puede utilizarse en:
-
-"/fontanero-marbella/desatascos/"
-
-Condición
-
-Debe existir una intención específica suficientemente justificada.
-
----
-
-14. B08 — PROBLEMAS / NECESIDADES
-
-Función
-
-Explicar problemas que el servicio puede resolver.
-
-Ejemplo:
-
-- fregadero atascado;
-- desagüe obstruido;
-- tubería bloqueada.
-
-Condición
-
-Debe existir evidencia o conocimiento suficientemente válido.
-
-No se generan problemas únicamente para introducir keywords.
-
----
-
-15. B09 — INFORMACIÓN LOCAL
-
-Función
-
-Aportar información específica de la localidad.
-
-Puede incluir:
-
-- características territoriales;
-- contexto residencial;
-- urbanizaciones;
-- tipos de vivienda;
-- necesidades locales;
-- características relevantes.
-
-Condición
-
-Debe existir información real.
-
-El simple nombre de la localidad no constituye información local.
-
----
-
-16. B10 — ZONAS / COBERTURA
-
-Función
-
-Mostrar dónde se presta realmente el servicio.
-
-Puede incluir:
-
-- barrios;
-- urbanizaciones;
-- zonas;
-- municipios;
-- localidades cercanas.
-
-Restricciones
-
-Solo utilizar información verificada.
-
-No crear listas artificiales para SEO.
-
----
-
-17. B11 — PROCESO
-
-Función
-
-Explicar cómo funciona realmente el servicio.
-
-Ejemplo:
-
-Contacto
-↓
-Evaluación
-↓
-Actuación
-↓
-Resolución
-
-No se inventan pasos.
-
----
-
-18. B12 — ELEMENTOS DE CONFIANZA
-
-Puede incluir:
-
-- experiencia;
-- certificaciones;
-- garantías;
-- reseñas;
-- horarios;
-- cobertura;
-- datos comerciales.
-
-Solo si están respaldados.
-
-Nunca inventar señales de confianza.
-
----
-
-19. B13 — DIFERENCIACIÓN
-
-Función
-
-Aportar información que justifique que la página tenga valor propio.
-
-Puede proceder de:
-
-- intención;
-- servicio;
-- subservicio;
-- problema;
-- información local;
-- tipo de cliente;
-- cobertura;
-- datos reales;
-- características verificadas.
-
-Cambiar únicamente:
-
-- localidad;
-- título;
-- URL;
-- sinónimos;
-- orden de párrafos;
-
-no constituye diferenciación.
-
----
-
-20. B14 — FAQ
-
-Función
-
-Responder preguntas relevantes.
-
-Las preguntas pueden proceder de:
-
-- investigación;
-- intención;
-- preguntas reales;
-- información comercial;
-- conocimiento válido.
-
-No se crean FAQ artificiales únicamente para SEO.
-
----
-
-21. B15 — SERVICIOS RELACIONADOS
-
-Función
-
-Conectar la página con otros servicios relevantes de la misma miniweb.
-
-Ejemplo:
-
-Desatascos
-↓
-Fugas
-↓
-Reparación de tuberías
-
-Solo enlaza a páginas existentes o previamente autorizadas.
-
----
-
-22. B16 — LOCALIDADES RELACIONADAS
-
-Función
-
-Facilitar navegación hacia otras miniwebs o localidades cuando corresponda.
-
-Debe utilizarse de forma limitada.
-
-No se genera una lista masiva de municipios.
-
----
-
-23. B17 — DATOS ESTRUCTURADOS
-
-Función
-
-Representar información estructurada cuando proceda.
-
-Puede incluir información sobre:
-
-- negocio;
-- servicio;
-- ubicación;
-- FAQ;
-- otros tipos compatibles.
-
-Restricciones
-
-Nunca inventar datos estructurados.
-
-La información estructurada debe corresponder con los datos reales de la página.
-
----
-
-24. B18 — TESTIMONIOS
-
-Solo cuando existan testimonios reales y autorizados.
-
-Datos posibles:
-
-- texto;
-- autor;
-- fecha;
-- fuente.
-
-Nunca generar testimonios ficticios.
-
----
-
-25. B19 — CASOS / EJEMPLOS
-
-Puede mostrar:
-
-- problema;
-- contexto;
-- actuación;
-- resultado.
-
-Solo cuando exista información suficiente.
-
-No presentar casos inventados como reales.
-
----
-
-26. B20 — GALERÍA
-
-Puede mostrar imágenes relevantes.
-
-Datos:
-
-- URL;
-- ALT;
-- título;
-- fuente;
-- licencia;
-- relación con la página.
-
-No se atribuyen imágenes a un negocio si no corresponde.
-
----
-
-27. B21 — PRECIO / TARIFAS
-
-Solo cuando exista información comercial real.
-
-Datos:
-
-- precio;
-- moneda;
-- unidad;
-- condiciones.
-
-Nunca inventar precios.
-
----
-
-28. B22 — HORARIOS
-
-Solo cuando existan horarios reales.
-
-Datos:
-
-- días;
-- apertura;
-- cierre;
-- excepciones.
-
-Si no existen:
-
-OMITIR.
-
----
-
-29. B23 — MAPA / UBICACIÓN
-
-Puede incluir:
-
-- dirección;
-- coordenadas;
-- mapa;
-- zona de atención.
-
-Solo si existe información válida.
-
-No inventar una ubicación física.
-
----
-
-30. BLOQUES OBLIGATORIOS DE UNA PÁGINA
-
-Como base:
-
-B01 HEADER
-B02 NAVEGACIÓN
-B03 HERO
-B04 CONTENIDO PRINCIPAL
-B06 FOOTER
-
-B05 CTA será obligatorio cuando exista un canal de conversión válido.
-
----
-
-31. BLOQUES CONDICIONALES
-
-Se seleccionan según la página.
-
-Ejemplo para:
-
-"/fontanero-marbella/desatascos/"
-
-podrían utilizarse:
-
-B03 HERO
-B04 CONTENIDO
-B07 SUBSERVICIO
-B08 PROBLEMAS
-B09 INFORMACIÓN LOCAL
-B10 COBERTURA
-B11 PROCESO
-B13 DIFERENCIACIÓN
-B14 FAQ
-B15 SERVICIOS RELACIONADOS
-B05 CTA
-
-No tienen que utilizarse todos.
-
----
-
-32. BLOQUES DE LA MINIWEB COMPLETA
-
-La miniweb no debe depender de una única landing.
-
-Ejemplo:
-
-FONTANERO MARBELLA
-
-INICIO
-B01
-B02
-B03
-B04
-B15
-B05
-B06
-
-SERVICIOS
-B01
-B02
-B03
-B04
-B15
-B06
-
-DESATASCOS
-B01
-B02
-B03
-B04
-B07
-B08
-B09
-B10
-B11
-B13
-B14
-B15
-B05
-B06
-
-24 HORAS
-B01
-B02
-B03
-B04
-B08
-B11
-B13
-B14
-B05
-B06
-
-CONTACTO
-B01
-B02
-B04
-B05
-B23
-B06
-
-Esta estructura es orientativa.
-
-Los bloques definitivos dependerán de los datos disponibles.
-
----
-
-33. REGLA DE SELECCIÓN
-
-Para cada página se debe determinar:
-
-page_id
-↓
-tipo_pagina
-↓
-intención
-↓
-datos disponibles
-↓
-bloques necesarios
-↓
-bloques opcionales
-↓
-bloques omitidos
-
-La selección debe quedar registrada antes de generar el contenido.
-
----
-
-34. REGLA DE OMISIÓN
-
-Un bloque se omite cuando:
-
-- no aporta valor;
-- no existe información;
-- la información es insuficiente;
-- generaría contenido genérico;
-- aumenta el riesgo de duplicación;
-- obliga a inventar;
-- no corresponde a la intención.
-
-OMITIR ES CORRECTO.
-
----
-
-35. REGLA DE FALLBACK
-
-Cuando un bloque no pueda construirse:
-
-DATOS ESPECÍFICOS
-↓
-VERSIÓN GENERAL SEGURA
-↓
-OMITIR
-↓
-REVISIÓN
+«utilizar todos los bloques que aporten valor real y omitir los que no estén justificados.»
 
 Nunca:
 
-DATOS INSUFICIENTES
-↓
-INVENTAR
+«añadir bloques únicamente para aumentar longitud.»
 
 ---
 
-36. DIFERENCIACIÓN ENTRE PÁGINAS
+3. BLOQUES OFICIALES
 
-Dos páginas pueden utilizar los mismos bloques.
+Los bloques oficiales son:
 
-Eso no significa que deban tener el mismo contenido.
+ID| TYPE
+B01| header
+B02| navigation
+B03| hero
+B04| main_content
+B05| cta
+B06| footer
+B07| subservice
+B08| problems
+B09| local_context
+B10| coverage
+B11| process
+B12| trust
+B13| differentiation
+B14| faq
+B15| related_services
+B16| related_locations
+B17| structured_data
+B18| testimonials
+B19| cases
+B20| gallery
+B21| pricing
+B22| opening_hours
+B23| map
+
+No pueden crearse IDs adicionales sin modificar previamente este documento y el resto de documentación dependiente.
+
+---
+
+4. REGLA ID → TYPE
+
+Cada bloque debe respetar exactamente esta correspondencia.
+
+B01 → header
+B02 → navigation
+B03 → hero
+B04 → main_content
+B05 → cta
+B06 → footer
+B07 → subservice
+B08 → problems
+B09 → local_context
+B10 → coverage
+B11 → process
+B12 → trust
+B13 → differentiation
+B14 → faq
+B15 → related_services
+B16 → related_locations
+B17 → structured_data
+B18 → testimonials
+B19 → cases
+B20 → gallery
+B21 → pricing
+B22 → opening_hours
+B23 → map
+
+Si el ID y el TYPE no coinciden:
+
+ERROR
+
+---
+
+5. ESTRUCTURA GENERAL
+
+Todo bloque debe seguir una estructura compatible con:
+
+{
+  "id": "B03",
+  "type": "hero",
+  "enabled": true,
+  "data": {}
+}
+
+Campos oficiales:
+
+- "id"
+- "type"
+- "enabled"
+- "data"
+
+No deben añadirse campos arbitrarios.
+
+---
+
+6. ID
+
+El ID identifica el tipo de bloque.
 
 Ejemplo:
 
-Desatascos Marbella
+"id": "B03"
 
-y:
+Los IDs son globales y estables.
 
-Desatascos Cártama
-
-pueden utilizar:
-
-- Hero;
-- contenido;
-- problemas;
-- FAQ;
-- CTA.
-
-Pero la información específica debe proceder de cada contexto.
-
-Si no existe diferenciación suficiente:
-
-AGRUPAR / NO CREAR
-
-según el motor.
+No deben modificarse durante una actualización.
 
 ---
 
-37. REGLA DE NO RELLENO
+7. TYPE
 
-No se crean bloques para aumentar:
+Define la función del bloque.
 
-- palabras;
-- keywords;
-- headings;
-- enlaces;
-- longitud.
+Ejemplo:
 
-Cada bloque debe responder:
+"type": "hero"
 
-¿Qué aporta al usuario?
-
-Si no existe una respuesta clara:
-
-OMITIR.
+Debe coincidir exactamente con el ID.
 
 ---
 
-38. ESTRUCTURA LÓGICA
+8. ENABLED
 
-Cada bloque tendrá conceptualmente:
+Valores:
 
-id
-type
-position
-enabled
-data
-conditions
-restrictions
-fallback
+true
+
+o:
+
+false
+
+Cuando "enabled = false", el renderizador no debe mostrar el bloque.
+
+El sistema puede conservar el bloque para futuras actualizaciones.
+
+---
+
+9. DATA
+
+"data" contiene exclusivamente la información necesaria para representar el bloque.
 
 Ejemplo:
 
 {
   "id": "B03",
   "type": "hero",
-  "position": 3,
   "enabled": true,
   "data": {
-    "h1": "Fontanero en Marbella",
-    "subtitle": null,
+    "title": "",
+    "subtitle": "",
     "cta": null
   }
 }
 
+La estructura exacta de "data" depende del bloque.
+
 ---
 
-39. RELACIÓN CON EL CONTRATO IA
+10. B01 — HEADER
 
-La IA recibe:
+Función:
 
-- page_id;
-- miniweb_id;
-- tipo de página;
-- URL;
+Representar la identidad principal de la página o sitio.
+
+Estructura:
+
+{
+  "id": "B01",
+  "type": "header",
+  "enabled": true,
+  "data": {
+    "brand_name": "",
+    "logo_url": null,
+    "logo_alt": null
+  }
+}
+
+No se inventa:
+
+- nombre de empresa;
+- logotipo;
+- teléfono;
+- dirección;
+- información comercial.
+
+Si todavía no existe empresa real:
+
+"brand_name": null
+
+---
+
+11. B02 — NAVIGATION
+
+Función:
+
+Representar la navegación principal.
+
+Estructura:
+
+{
+  "id": "B02",
+  "type": "navigation",
+  "enabled": true,
+  "data": {
+    "items": [
+      {
+        "label": "",
+        "url": "",
+        "type": "internal"
+      }
+    ]
+  }
+}
+
+Las URLs deben estar autorizadas por la arquitectura.
+
+No se crean enlaces hacia páginas inexistentes.
+
+---
+
+12. B03 — HERO
+
+Función:
+
+Presentar inmediatamente:
+
+- servicio;
+- localidad;
+- propuesta principal;
+- acción principal cuando exista.
+
+Estructura:
+
+{
+  "id": "B03",
+  "type": "hero",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "cta": null,
+    "image": null
+  }
+}
+
+El contenido debe corresponder con la intención de la página.
+
+---
+
+13. B04 — MAIN_CONTENT
+
+Función:
+
+Contener el contenido principal de la página.
+
+Estructura:
+
+{
+  "id": "B04",
+  "type": "main_content",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "sections": [
+      {
+        "heading": "",
+        "content": ""
+      }
+    ]
+  }
+}
+
+El bloque puede contener varias secciones cuando sean necesarias.
+
+No debe utilizarse para introducir texto artificial.
+
+---
+
+14. B05 — CTA
+
+Función:
+
+Facilitar una acción comercial.
+
+Estructura:
+
+{
+  "id": "B05",
+  "type": "cta",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "text": "",
+    "label": "",
+    "action": "contact",
+    "target": null
+  }
+}
+
+La IA puede generar el texto.
+
+Los datos reales de contacto deben proceder del modelo de datos.
+
+---
+
+15. B06 — FOOTER
+
+Función:
+
+Representar información común de navegación y sitio.
+
+Estructura:
+
+{
+  "id": "B06",
+  "type": "footer",
+  "enabled": true,
+  "data": {
+    "links": [],
+    "copyright": null,
+    "contact": null
+  }
+}
+
+No se inventan datos comerciales.
+
+---
+
+16. B07 — SUBSERVICE
+
+Función:
+
+Presentar un subservicio autorizado.
+
+Estructura:
+
+{
+  "id": "B07",
+  "type": "subservice",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "description": "",
+    "items": []
+  }
+}
+
+Los subservicios deben proceder de la arquitectura o del modelo de datos autorizado.
+
+---
+
+17. B08 — PROBLEMS
+
+Función:
+
+Explicar problemas o necesidades relacionados con la intención.
+
+Estructura:
+
+{
+  "id": "B08",
+  "type": "problems",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": [
+      {
+        "problem": "",
+        "description": ""
+      }
+    ]
+  }
+}
+
+Los problemas deben ser relevantes para el servicio.
+
+No deben inventarse situaciones específicas de una empresa.
+
+---
+
+18. B09 — LOCAL_CONTEXT
+
+Función:
+
+Aportar contexto local real.
+
+Estructura:
+
+{
+  "id": "B09",
+  "type": "local_context",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "content": "",
+    "areas": []
+  }
+}
+
+Solo se incluye información local respaldada.
+
+No se inventan:
+
+- barrios;
+- urbanizaciones;
+- calles;
+- características;
+- problemas;
+- tiempos;
+- cobertura.
+
+Mencionar repetidamente el nombre del municipio no constituye contexto local.
+
+---
+
+19. B10 — COVERAGE
+
+Función:
+
+Representar zonas de cobertura verificadas.
+
+Estructura:
+
+{
+  "id": "B10",
+  "type": "coverage",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "areas": []
+  }
+}
+
+Las zonas deben existir en los datos autorizados.
+
+No se generan listas artificiales de localidades.
+
+---
+
+20. B11 — PROCESS
+
+Función:
+
+Explicar el proceso de contratación o prestación del servicio.
+
+Estructura:
+
+{
+  "id": "B11",
+  "type": "process",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "steps": [
+      {
+        "number": 1,
+        "title": "",
+        "description": ""
+      }
+    ]
+  }
+}
+
+El proceso debe basarse en información real cuando represente un proceso específico de empresa.
+
+---
+
+21. B12 — TRUST
+
+Función:
+
+Representar señales verificables de confianza.
+
+Puede incluir:
+
+- experiencia;
+- certificaciones;
+- garantías;
+- reseñas verificadas;
+- datos comerciales;
+- cobertura;
+- otros elementos documentados.
+
+Estructura:
+
+{
+  "id": "B12",
+  "type": "trust",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": []
+  }
+}
+
+Nunca se inventan señales de confianza.
+
+---
+
+22. B13 — DIFFERENTIATION
+
+Función:
+
+Explicar una diferenciación real.
+
+Estructura:
+
+{
+  "id": "B13",
+  "type": "differentiation",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "content": "",
+    "items": []
+  }
+}
+
+La diferenciación debe estar respaldada por datos.
+
+No constituye diferenciación:
+
+- cambiar frases;
+- cambiar sinónimos;
+- cambiar el municipio;
+- reordenar párrafos.
+
+---
+
+23. B14 — FAQ
+
+Función:
+
+Responder preguntas relevantes.
+
+Estructura:
+
+{
+  "id": "B14",
+  "type": "faq",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": [
+      {
+        "question": "",
+        "answer": ""
+      }
+    ]
+  }
+}
+
+Las preguntas deben proceder de:
+
 - intención;
-- datos;
-- evidencias;
-- bloques autorizados;
-- restricciones.
+- investigación;
+- conocimiento válido;
+- datos disponibles.
 
-La IA puede generar contenido dentro de esos límites.
-
-No puede:
-
-- crear nuevos bloques;
-- modificar IDs;
-- cambiar URL;
-- cambiar localidad;
-- cambiar servicio;
-- crear páginas adicionales;
-- cambiar la arquitectura.
+No deben generarse únicamente para introducir keywords.
 
 ---
 
-40. RELACIÓN CON N8N
+24. B15 — RELATED_SERVICES
 
-N8N transportará:
+Función:
 
-miniweb
-↓
-página
-↓
-bloques
-↓
-datos
-↓
-contenido
+Enlazar servicios relacionados existentes y autorizados.
 
-Debe validar:
+Estructura:
 
-- ID de página;
-- ID de bloque;
-- URL;
-- datos obligatorios;
-- restricciones.
+{
+  "id": "B15",
+  "type": "related_services",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": [
+      {
+        "label": "",
+        "url": "",
+        "description": null
+      }
+    ]
+  }
+}
 
-Si aparece un bloque desconocido:
-
-ERROR
-
-La página no debe publicarse automáticamente.
+Las URLs deben existir o estar autorizadas por arquitectura.
 
 ---
 
-41. RELACIÓN CON WORDPRESS
+25. B16 — RELATED_LOCATIONS
 
-WordPress será responsable de representar visualmente los bloques.
+Función:
 
-Conceptualmente:
+Conectar páginas de localidades relacionadas dentro de la arquitectura global.
 
-B03
-↓
-COMPONENTE HERO
+Este bloque es especialmente importante para el modelo de expansión territorial.
 
-B08
-↓
-COMPONENTE PROBLEMAS
+Estructura:
 
-B14
-↓
-COMPONENTE FAQ
+{
+  "id": "B16",
+  "type": "related_locations",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": [
+      {
+        "label": "",
+        "url": "",
+        "description": null
+      }
+    ]
+  }
+}
 
-El bloque lógico y el componente visual pueden ser diferentes internamente.
+Las localidades relacionadas deben proceder de la arquitectura autorizada.
 
-Esto permite cambiar el diseño sin modificar el sistema lógico.
+No se crea una red indiscriminada.
 
 ---
 
-42. MENÚ Y NAVEGACIÓN
+26. B17 — STRUCTURED_DATA
 
-La navegación forma parte de la miniweb.
+Función:
 
-N8N podrá construir el menú a partir de las páginas autorizadas.
+Representar los datos necesarios para generar posteriormente datos estructurados.
+
+Estructura:
+
+{
+  "id": "B17",
+  "type": "structured_data",
+  "enabled": true,
+  "data": {
+    "entities": [],
+    "properties": {}
+  }
+}
+
+No se inventan:
+
+- ratings;
+- reviews;
+- precios;
+- horarios;
+- direcciones;
+- empresas;
+- personas.
+
+El JSON-LD final será generado por el sistema de renderizado.
+
+---
+
+27. B18 — TESTIMONIALS
+
+Función:
+
+Representar testimonios reales disponibles.
+
+Estructura:
+
+{
+  "id": "B18",
+  "type": "testimonials",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": []
+  }
+}
+
+Si no existen testimonios reales:
+
+"enabled": false
+
+No se generan testimonios ficticios.
+
+---
+
+28. B19 — CASES
+
+Función:
+
+Representar casos reales documentados.
+
+Estructura:
+
+{
+  "id": "B19",
+  "type": "cases",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": []
+  }
+}
+
+No se inventan casos.
+
+---
+
+29. B20 — GALLERY
+
+Función:
+
+Representar imágenes reales disponibles.
+
+Estructura:
+
+{
+  "id": "B20",
+  "type": "gallery",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "images": []
+  }
+}
+
+Cada imagen debe proceder de un recurso real.
+
+---
+
+30. B21 — PRICING
+
+Función:
+
+Representar precios reales.
+
+Estructura:
+
+{
+  "id": "B21",
+  "type": "pricing",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "items": []
+  }
+}
+
+No se inventan precios.
+
+Si no existen:
+
+"enabled": false
+
+---
+
+31. B22 — OPENING_HOURS
+
+Función:
+
+Representar horarios reales.
+
+Estructura:
+
+{
+  "id": "B22",
+  "type": "opening_hours",
+  "enabled": true,
+  "data": {
+    "title": "",
+    "schedule": []
+  }
+}
+
+No se inventan horarios.
+
+---
+
+32. B23 — MAP
+
+Función:
+
+Representar ubicación o mapa cuando exista información válida.
+
+Estructura:
+
+{
+  "id": "B23",
+  "type": "map",
+  "enabled": true,
+  "data": {
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "embed_url": null
+  }
+}
+
+No se inventa una dirección.
+
+---
+
+33. REGLA DE BLOQUES OBLIGATORIOS
+
+No existe un número fijo de bloques.
+
+Una página funcional debe poder representar como mínimo:
+
+- identidad;
+- navegación;
+- contenido principal;
+- CTA cuando exista una acción válida;
+- footer.
+
+En términos de bloques:
+
+- B01;
+- B02;
+- B04;
+- B05 cuando proceda;
+- B06.
+
+La arquitectura puede determinar excepciones justificadas.
+
+---
+
+34. REGLA DE BLOQUES CONDICIONALES
+
+Los bloques siguientes son condicionales:
+
+- B07;
+- B08;
+- B09;
+- B10;
+- B11;
+- B12;
+- B13;
+- B14;
+- B15;
+- B16;
+- B17;
+- B18;
+- B19;
+- B20;
+- B21;
+- B22;
+- B23.
+
+Se incluyen cuando aporten valor y exista información suficiente.
+
+---
+
+35. REGLA "MÁXIMA COBERTURA → DESCARTE"
+
+La arquitectura puede comenzar con un conjunto amplio de bloques potencialmente útiles.
+
+Durante la investigación y generación se deben descartar los bloques que:
+
+- no aporten valor;
+- no estén respaldados;
+- sean redundantes;
+- no correspondan a la intención;
+- no tengan información suficiente;
+- aumenten el riesgo de contenido artificial.
+
+Por tanto:
+
+por defecto se evalúa la posibilidad de utilizar todos los bloques autorizados.
+
+Después:
+
+se descartan los innecesarios.
+
+No se debe asumir una página mínima de cinco bloques.
+
+---
+
+36. ORDEN DE BLOQUES
+
+El orden lógico recomendado es:
+
+1. B01 — header
+2. B02 — navigation
+3. B03 — hero
+4. B04 — main_content
+5. B07 — subservice
+6. B08 — problems
+7. B09 — local_context
+8. B10 — coverage
+9. B11 — process
+10. B12 — trust
+11. B13 — differentiation
+12. B14 — faq
+13. B15 — related_services
+14. B16 — related_locations
+15. B18 — testimonials
+16. B19 — cases
+17. B20 — gallery
+18. B21 — pricing
+19. B22 — opening_hours
+20. B23 — map
+21. B05 — cta
+22. B06 — footer
+
+La arquitectura puede modificar este orden cuando exista una razón funcional.
+
+B17 — structured_data no representa necesariamente un bloque visual.
+
+---
+
+37. BLOQUES NO VISUALES
+
+B17 puede existir como componente lógico aunque no sea visible directamente.
+
+Su función es proporcionar información para el renderizador.
+
+Por tanto:
+
+"enabled": true
+
+no implica necesariamente representación visual.
+
+---
+
+38. BLOQUES REPETIBLES
+
+Algunos bloques pueden contener múltiples elementos.
+
+Ejemplos:
+
+B07:
+
+"items": []
+
+B08:
+
+"items": []
+
+B14:
+
+"items": []
+
+B15:
+
+"items": []
+
+B16:
+
+"items": []
+
+B18:
+
+"items": []
+
+B19:
+
+"items": []
+
+B20:
+
+"images": []
+
+El número de elementos debe depender de la información disponible y de la utilidad real.
+
+---
+
+39. INTERLINKING
+
+Los bloques B15 y B16 permiten representar parte del enlazado interno.
+
+Además, cada página puede contener:
+
+"internal_links": []
+
+Estos enlaces deben ser posteriormente validados contra la arquitectura.
+
+Nunca se crean enlaces hacia URLs inexistentes.
+
+---
+
+40. INTERLINKING ENTRE LOCALIDADES
+
+Cuando existan varias localidades autorizadas dentro del mismo sistema, puede utilizarse B16 para conectar páginas territorialmente relacionadas.
 
 Ejemplo:
 
-Inicio
-Servicios
-Desatascos
-24 horas
-Fugas
-Contacto
+Fontanero Estepona
+      ↓
+Fontanero Manilva
+Fontanero Casares
+Fontanero San Pedro
 
-El menú no debe incluir automáticamente todas las páginas existentes.
+Pero el sistema no debe enlazar todas las localidades con todas.
 
-La selección dependerá de:
-
-- importancia;
-- navegación;
-- conversión;
-- experiencia de usuario.
+Debe buscar una estructura razonable y útil.
 
 ---
 
-43. VALIDACIÓN
+41. INTERLINKING ENTRE SERVICIOS
 
-Antes de publicar:
+Cuando exista arquitectura que conecte diferentes servicios, pueden utilizarse B15 o enlaces internos autorizados.
 
-- IDs válidos;
-- páginas válidas;
-- URLs válidas;
+Ejemplo:
+
+Fontanero
+   ↓
+Electricista
+   ↓
+Pintor
+   ↓
+Carpintero
+
+Esto solo debe realizarse cuando exista una relación lógica para el usuario.
+
+No se debe crear una red artificial de enlaces únicamente para manipular SEO.
+
+---
+
+42. INTERLINKING CONTEXTUAL
+
+Los enlaces internos pueden aparecer dentro del contenido cuando tengan sentido.
+
+Ejemplo:
+
+Un contenido sobre una reforma puede enlazar hacia:
+
+- fontanería;
+- electricidad;
+- pintura;
+- carpintería.
+
+El anchor debe ser natural y describir correctamente la página destino.
+
+---
+
+43. REGLA DE ANCHORS
+
+Los anchors deben ser:
+
+- descriptivos;
+- naturales;
+- relevantes;
+- comprensibles.
+
+No se debe repetir artificialmente exactamente la misma keyword en todos los enlaces.
+
+---
+
+44. REGLA DE URLs
+
+Todas las URLs utilizadas por bloques o enlaces deben pertenecer a una de estas categorías:
+
+1. URL de la propia página;
+2. URL autorizada por la arquitectura;
+3. URL existente registrada en el sistema.
+
+Si no cumple una de ellas:
+
+ERROR
+
+---
+
+45. DATOS FICTICIOS DE PILOTO
+
+Durante las pruebas se permite utilizar datos ficticios claramente identificados como:
+
+TEST_DATA
+
+Estos datos nunca deben pasar a producción.
+
+En producción:
+
+los datos deben proceder del modelo de datos real.
+
+---
+
+46. DATOS PENDIENTES DE CLIENTE
+
+El sistema debe permitir crear una página sin datos comerciales definitivos.
+
+Ejemplo:
+
+{
+  "brand_name": null,
+  "phone": null,
+  "whatsapp": null,
+  "email": null
+}
+
+Los CTA pueden quedar preparados para recibir posteriormente esos datos.
+
+Esto permite construir activos SEO antes de disponer de un cliente alquilado.
+
+---
+
+47. ACTUALIZACIÓN
+
+Los bloques deben poder actualizarse individualmente.
+
+Ejemplo:
+
+Si cambia:
+
+B12 — trust
+
+no es necesario regenerar:
+
+B03 — hero
+
+ni:
+
+B04 — main_content.
+
+N8N debe identificar la página y actualizar únicamente los elementos afectados cuando sea posible.
+
+---
+
+48. IDEMPOTENCIA
+
+Cada página debe tener un identificador estable.
+
+Cada bloque debe tener un ID estable.
+
+El sistema debe poder ejecutar nuevamente una generación sin duplicar bloques.
+
+La identificación principal será:
+
+opportunity_id
++
+page_id
++
+block_id
+
+---
+
+49. RENDERIZADO WORDPRESS
+
+WordPress recibe los bloques lógicos y los transforma en representación visual.
+
+Flujo:
+
+IA
+↓
+JSON
+↓
+VALIDADOR
+↓
+N8N
+↓
+WORDPRESS
+↓
+RENDERIZADOR
+↓
+PÁGINA
+
+La IA no genera HTML final como contrato principal.
+
+---
+
+50. SEPARACIÓN ENTRE CONTENIDO Y DISEÑO
+
+Los datos de un bloque deben poder representarse mediante diferentes diseños.
+
+Por ejemplo:
+
+B03 puede renderizarse como:
+
+- hero clásico;
+- hero minimalista;
+- hero con imagen;
+- hero con CTA;
+- hero dividido.
+
+El contenido lógico no debe depender del diseño.
+
+---
+
+51. VARIACIONES VISUALES
+
+Las variaciones visuales pertenecen a WordPress.
+
+Por tanto:
+
+B03
+
+define:
+
+qué información existe
+
+pero WordPress decide:
+
+cómo se muestra.
+
+Esto permite utilizar diferentes plantillas sin cambiar la lógica SEO.
+
+---
+
+52. REUTILIZACIÓN
+
+Los mismos bloques pueden utilizarse en:
+
+- páginas de servicio;
+- páginas servicio + localidad;
+- subservicios;
+- páginas de problemas;
+- páginas de contacto;
+- otras páginas autorizadas.
+
+La arquitectura decide qué combinación corresponde a cada caso.
+
+---
+
+53. REGLA CONTRA PÁGINAS CLÓNICAS
+
+Dos páginas no deben convertirse en copias con únicamente:
+
+- localidad distinta;
+- H1 distinto;
+- title distinto.
+
+La arquitectura y los bloques deben permitir introducir diferencias reales cuando existan.
+
+Si no existen diferencias suficientes:
+
+la oportunidad debe reconsiderarse antes de crear la página.
+
+---
+
+54. RELACIÓN CON EL MOTOR DE DECISIÓN
+
+El sistema de bloques no decide:
+
+- CREAR;
+- AGRUPAR;
+- INVESTIGAR;
+- NO CREAR.
+
+Eso corresponde al:
+
+"motor-decision-seo.md"
+
+---
+
+55. RELACIÓN CON ARQUITECTURA
+
+La arquitectura determina:
+
+- páginas;
+- URLs;
+- profundidad;
 - bloques autorizados;
-- datos correctos;
-- servicio correcto;
-- localidad correcta;
-- intención correcta;
-- CTA válido;
-- imágenes válidas;
-- FAQ válida;
-- datos estructurados válidos;
-- ausencia de invenciones;
-- ausencia de duplicación evidente.
+- relaciones.
 
-Si existe un error crítico:
+Este documento determina:
 
-NO PUBLICAR.
+- qué significa cada bloque;
+- qué estructura tiene;
+- qué datos puede contener;
+- cómo debe comportarse.
 
 ---
 
-44. ESCALABILIDAD
+56. RELACIÓN CON CONTRATO IA
 
-El mismo sistema debe permitir:
+La IA debe devolver bloques compatibles con este documento.
 
-1 miniweb
-↓
-10 miniwebs
-↓
-100 miniwebs
-↓
-1.000 miniwebs
+Si la IA devuelve:
 
-manteniendo:
+B99
 
-- calidad;
-- trazabilidad;
-- estructura;
-- utilidad;
-- diferenciación;
-- control.
+el validador debe rechazarlo.
 
-La automatización permite escalar un sistema validado.
+Si devuelve:
 
-No sustituye la validación.
+B03 + type "faq"
+
+el validador debe rechazarlo.
 
 ---
 
-45. COMPATIBILIDAD MULTISECTORIAL
+57. RELACIÓN CON N8N
 
-Los bloques son reutilizables para:
+N8N debe:
 
-- fontaneros;
-- electricistas;
-- abogados;
-- carpinteros;
-- pintores;
-- jardineros;
-- reformas;
-- otros servicios.
-
-La estructura general permanece.
-
-Los datos cambian según:
-
-- sector;
-- servicio;
-- localidad;
-- intención;
-- evidencia.
+1. recibir bloques;
+2. validar IDs;
+3. validar tipos;
+4. validar datos;
+5. validar autorización;
+6. localizar página;
+7. crear o actualizar bloques;
+8. enviar a WordPress;
+9. registrar resultado.
 
 ---
 
-46. PILOTO FONTANERO MARBELLA
+58. VALIDACIÓN
 
-El primer piloto debe comprobar una miniweb completa:
+El validador debe comprobar:
 
-FONTANERO MARBELLA
-│
-├── Inicio
-├── Servicios
-├── Desatascos
-├── 24 horas
-├── Fugas
-├── Reparación de tuberías
-├── Sobre nosotros
-└── Contacto
-
-El sistema debe ser capaz de seleccionar bloques diferentes para cada página.
-
-No se debe asumir que todas las páginas utilizan la misma plantilla de contenido.
+- ID válido;
+- TYPE válido;
+- correspondencia ID/TYPE;
+- estructura correcta;
+- datos compatibles;
+- bloque autorizado;
+- URLs autorizadas;
+- ausencia de datos inventados;
+- ausencia de estructuras arbitrarias;
+- ausencia de duplicados.
 
 ---
 
-47. REGLA DE NO INVENCIÓN
+59. ERRORES
 
-Está prohibido inventar:
+Ejemplos:
 
-- empresas;
-- profesionales;
+UNKNOWN_BLOCK_ID
+
+BLOCK_TYPE_MISMATCH
+
+UNAUTHORIZED_BLOCK
+
+UNAUTHORIZED_URL
+
+INVALID_BLOCK_STRUCTURE
+
+MISSING_REQUIRED_DATA
+
+UNVERIFIED_DATA
+
+DUPLICATE_BLOCK
+
+---
+
+60. PRINCIPIO DE NO INVENCIÓN
+
+Los bloques no pueden utilizarse para introducir datos inexistentes.
+
+Especialmente:
+
 - teléfonos;
 - WhatsApp;
 - emails;
 - direcciones;
 - precios;
 - horarios;
-- disponibilidad;
-- cobertura;
-- garantías;
+- reseñas;
+- testimonios;
 - certificaciones;
 - experiencia;
-- testimonios;
-- reseñas;
 - casos;
+- cobertura;
 - imágenes;
-- datos territoriales;
-- URLs.
+- mapas.
 
-Los datos desconocidos serán:
+Cuando el dato no existe:
 
-"null"
+null
 
-o provocarán:
+o:
 
-"REVISAR"
+"enabled": false
 
-cuando sean imprescindibles.
-
----
-
-48. VALIDACIÓN DEL SISTEMA
-
-El sistema no se considera validado por estar documentado.
-
-El piloto debe comprobar:
-
-1. selección de bloques;
-2. omisión;
-3. fallback;
-4. diferenciación;
-5. generación de varias páginas;
-6. navegación;
-7. menú;
-8. URLs;
-9. datos;
-10. IA;
-11. N8N;
-12. WordPress.
+según corresponda.
 
 ---
 
-49. REGLA DE MODIFICACIÓN
-
-Si el piloto detecta un error:
-
-1. registrar el caso;
-2. identificar el bloque afectado;
-3. identificar la regla responsable;
-4. modificar la documentación;
-5. incrementar versión;
-6. repetir la prueba;
-7. registrar el cambio.
-
-No se modifica el sistema para forzar un resultado.
-
----
-
-50. ESTADO ACTUAL
-
-Versión: 3.0
-
-Estado: PREPARADO PARA PILOTO DE MINIWEB
-
-El sistema de bloques queda preparado para trabajar no solo con landings individuales, sino con miniwebs completas y sus páginas internas.
-
-Los IDs B01–B23 permanecen estables.
-
-La selección depende de:
-
-- página;
-- intención;
-- datos;
-- evidencias;
-- utilidad;
-- diferenciación;
-- restricciones.
-
----
-
-51. REGISTRO DE ACTUALIZACIÓN
-
-2026-08-24
-
-Se actualiza el sistema de bloques a la versión 3.0.
-
-Cambios principales:
-
-- adaptación del sistema de bloques al concepto de miniweb;
-- diferenciación entre página principal y páginas internas;
-- incorporación explícita del concepto de "page_id" y "miniweb_id";
-- definición de selección de bloques por página;
-- preparación para construcción de menú y navegación;
-- preparación para generación de varias páginas;
-- alineación con arquitectura de URLs v3.0;
-- mantenimiento de los identificadores B01–B23;
-- refuerzo de las reglas de omisión y fallback;
-- preparación para el piloto completo de Fontanero Marbella;
-- separación entre bloque lógico y componente visual de WordPress.
-
----
-
-FIN DEL SISTEMA DE BLOQUES
+6
