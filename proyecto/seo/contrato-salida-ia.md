@@ -1,6 +1,6 @@
 CONTRATO DE SALIDA IA → N8N
 
-Versión: 3.1
+Versión: 4.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 Función: definir el contrato estructural que debe cumplir toda salida de IA destinada a N8N para generar y mantener una miniweb SEO local.
 
@@ -20,63 +20,126 @@ La salida debe ser:
 - compatible con el modelo de datos;
 - compatible con WordPress;
 - independiente del diseño visual;
-- capaz de representar una página individual o una miniweb completa.
+- capaz de representar una página individual o una miniweb completa;
+- capaz de representar un número variable de páginas y bloques.
 
-La IA genera contenido.
+La IA genera contenido y estructura lógica dentro de los límites recibidos.
 
 La IA no decide libremente qué páginas existen.
 
 La arquitectura previamente autorizada determina:
 
-- qué páginas forman parte del sitio;
-- qué URLs tienen;
+- qué páginas pueden existir;
+- qué URLs pueden utilizarse;
 - qué relación existe entre ellas;
-- qué bloques puede utilizar cada página;
+- qué bloques pueden utilizar cada página;
+- qué oportunidades han sido descartadas;
 - qué páginas pueden enlazarse.
 
 ---
 
-2. PRINCIPIO FUNDAMENTAL DE LA VERSIÓN 3.1
+2. CAMBIO FUNDAMENTAL DE LA VERSIÓN 4.0
 
-La salida se considera un SITE_PACKAGE.
+La versión 4.0 elimina cualquier supuesto de que una miniweb deba tener un número fijo de páginas.
 
-Un SITE_PACKAGE representa una unidad completa de generación o actualización.
+No existe un número predeterminado de páginas.
 
-Puede contener:
+Una miniweb puede contener:
 
-- una sola página;
-- varias páginas pertenecientes a una misma miniweb;
-- navegación común;
-- relaciones entre páginas;
-- bloques específicos por página;
-- información SEO por página;
-- datos compartidos del sitio.
+- 1 página;
+- 2 páginas;
+- 5 páginas;
+- 10 páginas;
+- 20 páginas;
+- o cualquier otro número que resulte de la arquitectura y de las reglas de validación.
 
-La IA nunca puede ampliar el SITE_PACKAGE por iniciativa propia.
+El sistema debe partir de un universo amplio de posibilidades y permitir descartar aquellas que:
+
+- no tengan intención propia;
+- no aporten suficiente valor;
+- no tengan información suficiente;
+- produzcan duplicación;
+- no sean competitivas;
+- no tengan justificación comercial;
+- no estén respaldadas por la investigación;
+- no sean necesarias para la arquitectura.
+
+Por tanto:
+
+POSIBILIDADES
+↓
+EVALUACIÓN
+↓
+DESCARTE
+↓
+PÁGINAS AUTORIZADAS
+↓
+GENERACIÓN
+
+No:
+
+5 PÁGINAS POR DEFECTO
+↓
+RELLENAR
 
 ---
 
-3. FLUJO OFICIAL
+3. PRINCIPIO DE NÚMERO VARIABLE
+
+El contrato no contiene ningún número fijo de páginas.
+
+"page_count" debe ser siempre:
+
+count(pages[])
+
+Nunca debe utilizarse:
+
+page_count = 5
+
+como regla de generación.
+
+La cantidad final dependerá exclusivamente de:
+
+- arquitectura;
+- oportunidades detectadas;
+- intención;
+- demanda;
+- potencial comercial;
+- competencia;
+- diferenciación;
+- información disponible;
+- riesgo de duplicación;
+- utilidad para el usuario.
+
+---
+
+4. FLUJO OFICIAL
 
 INVESTIGACIÓN
 ↓
 MOTOR DE DECISIÓN
 ↓
-DECISIÓN = CREAR
+OPORTUNIDADES
 ↓
 ARQUITECTURA SEO
 ↓
-ARQUITECTURA DE MINIWEB
+UNIVERSO DE PÁGINAS POSIBLES
 ↓
-MODELO DE DATOS
+DESCARTE / AGRUPACIÓN
 ↓
-BLOQUES AUTORIZADOS
+PÁGINAS AUTORIZADAS
+↓
+ARQUITECTURA DE LANDING
+↓
+UNIVERSO DE BLOQUES POSIBLES
+↓
+DESCARTE DE BLOQUES NO ÚTILES
 ↓
 IA
 ↓
 SITE_PACKAGE JSON
 ↓
-VALIDADOR EXTERNO
+VALIDADOR
 ↓
 N8N
 ↓
@@ -86,7 +149,7 @@ MINIWEB PUBLICADA
 
 ---
 
-4. REGLA DE AUTORIDAD
+5. REGLA DE AUTORIDAD
 
 La IA recibe información protegida.
 
@@ -94,41 +157,34 @@ No puede modificarla.
 
 Campos protegidos:
 
-- "opportunity_id"
-- "sector"
-- "service"
-- "subservice"
-- "country"
-- "province"
-- "municipality"
-- "decision_seo"
-- "site_type"
-- "root_url"
-- "authorized_pages"
-- "authorized_blocks"
-- "restrictions"
-
-Los datos de arquitectura de cada página también están protegidos:
-
-- "page_id"
-- "page_type"
-- "url"
-- "canonical"
-- "parent_url"
-- "depth"
-- "authorized_blocks"
+- "opportunity_id";
+- "sector";
+- "service";
+- "subservice";
+- "municipality";
+- "province";
+- "country";
+- "decision_seo";
+- "site_type";
+- "page_type";
+- "url";
+- "canonical";
+- "parent_url";
+- "depth";
+- "authorized_pages";
+- "authorized_blocks";
+- "restrictions".
 
 Si existe una contradicción:
 
 1. conservar el dato recibido;
 2. no sustituirlo;
 3. registrar la incidencia;
-4. establecer "REVIEW";
-5. impedir la publicación hasta resolverla.
+4. establecer "REVIEW" cuando corresponda.
 
 ---
 
-5. FORMATO DE SALIDA
+6. FORMATO DE SALIDA
 
 La salida oficial es:
 
@@ -152,82 +208,70 @@ La respuesta debe poder ser procesada automáticamente por N8N.
 
 ---
 
-6. ESTRUCTURA PRINCIPAL
+7. ESTRUCTURA PRINCIPAL
 
 La estructura oficial es:
 
 {
-  "schema_version": "3.1",
+  "schema_version": "4.0",
   "opportunity_id": "",
   "status": "READY",
   "site": {},
   "identity": {},
   "architecture": {},
   "pages": [],
+  "seo": {},
   "menu": {},
-  "internal_links": [],
+  "blocks": [],
   "images": [],
+  "internal_links": [],
   "schema": {},
   "validation": {},
   "issues": {},
   "traceability": {}
 }
 
-Los contenidos de una página pertenecen a "pages[]".
-
-No existe un "blocks[]" global obligatorio.
-
-Los bloques pertenecen exclusivamente a la página que los utiliza.
-
-Esto evita duplicaciones y facilita que N8N procese cada página de forma independiente.
-
 ---
 
-7. SCHEMA VERSION
+8. SCHEMA VERSION
 
 Versión actual:
 
-"3.1"
+4.0
 
 N8N debe comprobar la versión antes de procesar la respuesta.
 
 Si la versión no es compatible:
 
-"ERROR"
+ERROR
 
 No se debe intentar interpretar una estructura desconocida.
 
 ---
 
-8. STATUS
+9. STATUS
 
 Valores permitidos:
 
-"READY"
-
-"REVIEW"
-
-"ERROR"
+READY
+REVIEW
+ERROR
 
 READY
 
-La salida cumple el contrato y puede continuar al proceso de validación/publicación.
+La salida cumple el contrato y puede continuar.
 
 REVIEW
 
 Existe una incidencia que requiere revisión humana.
 
-La salida no debe publicarse automáticamente.
-
 ERROR
 
 La salida no puede procesarse correctamente.
 
-N8N debe detener el procesamiento.
-
 ---
 
-9. SITE
+10. SITE
 
 El objeto "site" representa la miniweb completa.
 
@@ -236,28 +280,28 @@ Ejemplo:
 {
   "site": {
     "type": "local_service_site",
-    "name": "Fontanero en Marbella",
-    "root_url": "/fontanero/marbella/",
-    "page_count": 4
+    "name": "Fontaneros en Fuengirola",
+    "root_url": "/fontaneros/fuengirola/",
+    "page_count": 11
   }
 }
 
-El nombre, tipo, URL raíz y número de páginas deben coincidir con la arquitectura autorizada.
+"page_count" debe coincidir exactamente con el número real de elementos de "pages[]".
 
-La IA no puede crear una miniweb arbitraria.
+La IA no puede inventar una estructura de sitio independiente de la arquitectura.
 
 ---
 
-10. IDENTITY
+11. IDENTITY
 
-Representa la identidad común del SITE_PACKAGE.
+Representa la identidad común del sitio.
 
 {
   "identity": {
     "sector": "fontaneria",
     "service": "fontanero",
     "subservice": null,
-    "municipality": "Marbella",
+    "municipality": "Fuengirola",
     "province": "Málaga",
     "country": "España"
   }
@@ -267,94 +311,91 @@ Los valores deben coincidir con la entrada autorizada.
 
 La IA no puede cambiar:
 
-- sector;
-- servicio;
-- subservicio;
+- localidad;
 - municipio;
 - provincia;
-- país.
+- servicio;
+- sector.
 
 ---
 
-11. ARCHITECTURE
+12. ARCHITECTURE
 
-Representa la arquitectura previamente autorizada.
+Representa la arquitectura previamente determinada.
 
 {
   "architecture": {
     "site_type": "local_service_site",
-    "root_url": "/fontanero/marbella/",
+    "root_url": "/fontaneros/fuengirola/",
     "authorized_pages": [],
     "authorized_blocks": []
   }
 }
 
-"authorized_pages" contiene las páginas que pueden existir.
+La IA no decide la arquitectura.
 
-"authorized_blocks" contiene los bloques que pueden utilizarse dentro del SITE_PACKAGE.
-
-La IA no puede modificar estos valores.
+La arquitectura debe existir antes de la generación.
 
 ---
 
-12. AUTHORIZED PAGES
+13. UNIVERSO DE PÁGINAS
 
-Cada página autorizada debe definirse antes de la generación.
+La arquitectura puede proporcionar un conjunto amplio de oportunidades de página.
 
-Ejemplo conceptual:
+Estas oportunidades pueden incluir:
 
-{
-  "page_id": "FON-MARB-P01",
-  "page_type": "service_locality",
-  "url": "/fontanero/marbella/",
-  "canonical": "/fontanero/marbella/",
-  "parent_url": null,
-  "depth": 1,
-  "authorized_blocks": [
-    "B01",
-    "B02",
-    "B03",
-    "B04",
-    "B05",
-    "B06",
-    "B08",
-    "B09",
-    "B14"
-  ]
-}
+- servicio principal;
+- variantes del servicio;
+- subservicios;
+- problemas;
+- necesidades;
+- servicios urgentes;
+- servicios especializados;
+- tipos de cliente;
+- páginas comerciales;
+- contacto;
+- presupuesto;
+- otras intenciones relevantes.
 
-La arquitectura puede autorizar otras páginas.
+La existencia de una posibilidad no significa que deba publicarse.
 
-Por ejemplo:
-
-P01 Inicio
-P02 Desatascos
-P03 24 horas
-P04 Contacto
-
-Pero una página como "24-horas" solo podrá existir si ha sido previamente autorizada y respaldada por la investigación y el motor.
+Cada posibilidad debe superar las reglas correspondientes.
 
 ---
 
-13. PÁGINAS GENERADAS
+14. DESCARTE DE PÁGINAS
 
-"pages[]" representa únicamente las páginas que la IA debe generar en esta ejecución.
+Una página candidata debe descartarse cuando:
 
-Cada página debe corresponder exactamente a una página autorizada.
+- no tiene intención propia;
+- duplica otra intención;
+- no aporta valor;
+- no existe información suficiente;
+- no existe diferenciación;
+- genera riesgo elevado de contenido repetitivo;
+- no tiene justificación comercial;
+- no está respaldada por la investigación;
+- no es necesaria dentro de la arquitectura.
 
-Regla:
+El descarte debe prevalecer sobre la generación artificial.
 
-AUTHORIZED PAGE
-↓
-GENERACIÓN
-↓
-PAGE
+---
 
-Nunca:
+15. REGLA DE NO CREACIÓN DE PÁGINAS POR LA IA
 
-IDEA DE IA
-↓
-NUEVA PAGE
+La IA no puede crear una URL simplemente porque detecte:
+
+- una keyword;
+- un sinónimo;
+- un servicio relacionado;
+- una idea comercial;
+- una pregunta;
+- una localidad;
+- una posible oportunidad.
+
+La IA solo puede generar páginas que formen parte de:
+
+authorized_pages
 
 Si una página no está autorizada:
 
@@ -362,9 +403,40 @@ NO SE GENERA.
 
 ---
 
-14. ESTRUCTURA DE UNA PÁGINA
+16. PÁGINAS
 
-Cada elemento de "pages[]" debe contener:
+El objeto "pages" representa todas las páginas finalmente autorizadas que forman parte de la miniweb.
+
+Ejemplo:
+
+{
+  "pages": [
+    {
+      "page_id": "FUE-FON-P01",
+      "page_type": "service_locality",
+      "url": "/fontaneros/fuengirola/",
+      "canonical": "/fontaneros/fuengirola/",
+      "parent_url": null,
+      "depth": 1
+    },
+    {
+      "page_id": "FUE-FON-P02",
+      "page_type": "subservice_locality",
+      "url": "/fontaneros/fuengirola/desatascos/",
+      "canonical": "/fontaneros/fuengirola/desatascos/",
+      "parent_url": "/fontaneros/fuengirola/",
+      "depth": 2
+    }
+  ]
+}
+
+No existe un límite artificial de páginas.
+
+---
+
+17. ESTRUCTURA DE UNA PÁGINA
+
+Cada página puede contener:
 
 {
   "page_id": "",
@@ -375,73 +447,13 @@ Cada elemento de "pages[]" debe contener:
   "depth": 1,
   "identity": {},
   "seo": {},
+  "menu": {},
   "authorized_blocks": [],
   "blocks": [],
-  "internal_links": [],
-  "status": "READY",
-  "issues": []
+  "internal_links": []
 }
 
-Los campos estructurales son protegidos.
-
-La IA puede completar los campos de contenido, pero no modificar la arquitectura recibida.
-
----
-
-15. IDENTIFICACIÓN ESTABLE DE PÁGINAS
-
-Cada página debe disponer de un "page_id" estable.
-
-Ejemplo:
-
-FON-MARB-P01
-FON-MARB-P02
-FON-MARB-P03
-FON-MARB-P04
-
-El "page_id" debe mantenerse estable durante las actualizaciones.
-
-No debe cambiar porque se modifique el contenido.
-
-No se deben crear nuevos identificadores para una página existente.
-
----
-
-16. URL
-
-La URL debe coincidir exactamente con la arquitectura autorizada.
-
-Ejemplo:
-
-/fontanero/marbella/
-
-/fontanero/marbella/desatascos/
-
-La IA no puede modificar:
-
-- slug;
-- estructura;
-- profundidad;
-- parent_url;
-- URL.
-
-Si detecta que la URL autorizada parece incorrecta:
-
-"REVIEW"
-
-No la modifica por iniciativa propia.
-
----
-
-17. CANONICAL
-
-El canonical debe coincidir con el canonical autorizado.
-
-No puede modificarse para resolver problemas detectados durante la generación.
-
-Si existe contradicción:
-
-"REVIEW"
+Cada página es una unidad independiente dentro del "SITE_PACKAGE".
 
 ---
 
@@ -459,15 +471,13 @@ Cada página puede contener:
 
 El contenido debe corresponder con la intención concreta de esa página.
 
-Cada página indexable tendrá un único H1.
-
-No se debe generar contenido prácticamente idéntico entre páginas.
+No se debe generar contenido prácticamente idéntico entre páginas con intenciones diferentes.
 
 ---
 
 19. MENU
 
-El menú representa la navegación autorizada de la miniweb.
+La salida debe permitir construir la navegación de la miniweb.
 
 Ejemplo:
 
@@ -475,43 +485,50 @@ Ejemplo:
   "menu": {
     "items": [
       {
-        "label": "Inicio",
-        "url": "/fontanero/marbella/",
+        "label": "Fontaneros en Fuengirola",
+        "url": "/fontaneros/fuengirola/",
         "type": "internal"
       },
       {
         "label": "Desatascos",
-        "url": "/fontanero/marbella/desatascos/",
+        "url": "/fontaneros/fuengirola/desatascos/",
         "type": "internal"
       },
       {
-        "label": "24 horas",
-        "url": "/fontanero/marbella/24-horas/",
+        "label": "Fontanero 24 horas",
+        "url": "/fontaneros/fuengirola/24-horas/",
+        "type": "internal"
+      },
+      {
+        "label": "Presupuesto",
+        "url": "/fontaneros/fuengirola/presupuesto/",
         "type": "internal"
       },
       {
         "label": "Contacto",
-        "url": "/fontanero/marbella/contacto/",
+        "url": "/fontaneros/fuengirola/contacto/",
         "type": "internal"
       }
     ]
   }
 }
 
-Todas las URLs del menú deben existir en "authorized_pages".
+Este ejemplo no implica que esas páginas deban existir.
 
-La IA puede generar los textos de los elementos del menú, pero no puede crear nuevas páginas para completar el menú.
+Todas las URLs deben estar previamente autorizadas.
+
+La IA no puede inventar páginas para completar el menú.
 
 ---
 
-20. BLOQUES POR PÁGINA
+20. BLOQUES
 
-Los bloques pertenecen a una página.
+Los bloques pertenecen a una página concreta.
 
 Ejemplo:
 
 {
-  "page_id": "FON-MARB-P01",
+  "page_id": "FUE-FON-P01",
   "blocks": [
     {
       "id": "B03",
@@ -561,11 +578,44 @@ El "type" debe corresponder exactamente al "id".
 
 ---
 
-22. AUTHORIZED BLOCKS
+22. UNIVERSO DE BLOQUES
 
-Cada página debe indicar qué bloques puede utilizar.
+Para cada página, la arquitectura puede autorizar un conjunto amplio de bloques posibles.
 
-Ejemplo:
+El sistema debe considerar inicialmente todos los bloques compatibles con:
+
+- tipo de página;
+- intención;
+- sector;
+- información disponible;
+- restricciones.
+
+Posteriormente deben descartarse aquellos que no aporten valor.
+
+No existe una obligación de utilizar todos los bloques.
+
+---
+
+23. DESCARTE DE BLOQUES
+
+Un bloque debe omitirse cuando:
+
+- no aporta valor;
+- no existe información suficiente;
+- la información es demasiado débil;
+- produciría contenido genérico;
+- aumenta el riesgo de duplicación;
+- obliga a inventar información;
+- no corresponde a la intención;
+- no es útil para el usuario.
+
+La ausencia de un bloque es una salida válida.
+
+---
+
+24. BLOQUES AUTORIZADOS POR PÁGINA
+
+Cada página debe indicar:
 
 {
   "authorized_blocks": [
@@ -583,31 +633,31 @@ Ejemplo:
 
 La IA solo puede utilizar esos bloques.
 
-Si intenta utilizar un bloque no autorizado:
+El número de bloques puede variar entre páginas.
 
-"ERROR"
+No existe una cantidad fija de bloques por página.
 
 ---
 
-23. BLOQUES OBLIGATORIOS
+25. BLOQUES OBLIGATORIOS
 
 Cuando la arquitectura determine una página funcional, como mínimo debe poder representar:
 
 - identidad;
-- navegación;
 - contenido principal;
-- CTA cuando exista un canal válido;
-- footer.
+- navegación cuando corresponda;
+- CTA cuando exista canal válido;
+- cierre/navegación global cuando corresponda.
 
 No se debe inventar información para completar un bloque.
 
 ---
 
-24. BLOQUES CONDICIONALES
+26. BLOQUES CONDICIONALES Y OPCIONALES
 
-Los bloques condicionales pueden omitirse cuando no exista información suficiente.
+Los bloques pueden omitirse cuando no exista información suficiente o cuando no aporten valor.
 
-Ejemplos:
+Esto incluye:
 
 - B07;
 - B08;
@@ -626,20 +676,20 @@ Ejemplos:
 - B22;
 - B23.
 
-La omisión es válida.
+La selección final debe depender de la información y de la intención.
 
 ---
 
-25. CONTENIDO
+27. CONTENIDO
 
 El contenido debe ser:
 
 - específico;
 - útil;
 - coherente con la intención;
-- basado en datos recibidos;
+- basado en los datos recibidos;
 - compatible con las restricciones;
-- diferenciado cuando la intención o los datos sean diferentes.
+- suficientemente diferenciado cuando la intención lo requiera.
 
 No debe generarse contenido únicamente para aumentar:
 
@@ -651,55 +701,38 @@ No debe generarse contenido únicamente para aumentar:
 
 ---
 
-26. DIFERENCIACIÓN ENTRE PÁGINAS
+28. DIFERENCIACIÓN ENTRE PÁGINAS
 
-Las páginas de una misma miniweb pueden compartir:
+Las páginas pueden compartir:
 
 - header;
 - navegación;
 - footer;
-- diseño;
-- determinados bloques.
+- estilo;
+- componentes;
+- determinadas estructuras.
 
 Pero cada página debe responder a su propia intención.
 
-Ejemplo:
+Por ejemplo:
 
-/fontanero/marbella/
+/fontaneros/fuengirola/
 
-responde a la intención general.
+puede responder a la intención general.
 
-/fontanero/marbella/desatascos/
+/fontaneros/fuengirola/desatascos/
 
-responde a la intención específica de desatascos.
+puede responder a una necesidad específica.
 
-/fontanero/marbella/24-horas/
+/fontaneros/fuengirola/presupuesto/
 
-solo responde a esa intención si está respaldada.
+puede responder a una intención comercial concreta, si ha sido autorizada.
 
-/fontanero/marbella/contacto/
-
-responde a la intención de contacto.
-
-No deben convertirse todas las páginas en la misma landing cambiando únicamente el título.
+No deben convertirse todas las páginas en una misma landing cambiando únicamente el título.
 
 ---
 
-27. REGLA DE DATOS INSUFICIENTES
-
-Cuando una página esté autorizada pero no exista información suficiente para generar contenido fiable:
-
-status = REVIEW
-
-La IA debe registrar la incidencia.
-
-No debe rellenar la página con contenido inventado.
-
-La página no debe publicarse automáticamente.
-
----
-
-28. NO INVENCIÓN
+29. NO INVENCIÓN
 
 Está prohibido inventar:
 
@@ -725,23 +758,25 @@ Está prohibido inventar:
 - estadísticas;
 - datos comerciales.
 
-Cuando un dato no exista:
+Cuando un dato no existe:
 
-"null"
+null
 
 o:
 
-"REVIEW"
+REVIEW
 
-si es imprescindible para la página.
+si resulta imprescindible para publicar.
+
+Para el piloto podrán utilizarse datos ficticios únicamente cuando el entorno esté expresamente marcado como TEST y nunca deben confundirse con datos reales de producción.
 
 ---
 
-29. CTA
+30. CTA
 
 La IA puede generar el texto del CTA.
 
-No puede inventar el canal.
+No puede inventar el canal ni los datos de contacto.
 
 Ejemplo:
 
@@ -750,11 +785,21 @@ Ejemplo:
   "action": "contact"
 }
 
-Los datos reales de contacto deben proceder del modelo de datos.
+Los datos reales deben proceder del modelo de datos.
+
+En un entorno de producción, un CTA sin destino real debe:
+
+- omitirse;
+- quedar deshabilitado;
+- o marcarse como "REVIEW";
+
+según las reglas del sistema.
+
+Nunca debe publicarse un dato ficticio como si fuera un dato real.
 
 ---
 
-30. FAQ
+31. FAQ
 
 Formato:
 
@@ -784,7 +829,7 @@ No deben generarse únicamente para introducir keywords.
 
 ---
 
-31. INFORMACIÓN LOCAL
+32. INFORMACIÓN LOCAL
 
 Cuando exista B09, la información debe estar respaldada.
 
@@ -799,11 +844,11 @@ No se inventan:
 - tiempos;
 - particularidades.
 
-Repetir el nombre de la localidad no constituye información local.
+Repetir el nombre del municipio no constituye información local.
 
 ---
 
-32. COBERTURA
+33. COBERTURA
 
 Cuando exista B10:
 
@@ -817,7 +862,7 @@ No se generan listas masivas artificiales.
 
 ---
 
-33. CONFIANZA
+34. CONFIANZA
 
 B12 solo puede utilizar señales verificables:
 
@@ -833,7 +878,7 @@ Nunca se inventan señales de confianza.
 
 ---
 
-34. DIFERENCIACIÓN
+35. DIFERENCIACIÓN
 
 B13 solo puede utilizar información real que justifique la diferenciación.
 
@@ -848,7 +893,7 @@ No es suficiente:
 
 ---
 
-35. SERVICIOS RELACIONADOS
+36. SERVICIOS RELACIONADOS
 
 B15 solo puede enlazar servicios existentes y autorizados.
 
@@ -856,7 +901,7 @@ No se crean URLs nuevas desde la IA.
 
 ---
 
-36. LOCALIDADES RELACIONADAS
+37. LOCALIDADES RELACIONADAS
 
 B16 solo puede utilizar localidades existentes en la arquitectura.
 
@@ -864,7 +909,7 @@ No se genera una red masiva de enlaces únicamente para SEO.
 
 ---
 
-37. DATOS ESTRUCTURADOS
+38. DATOS ESTRUCTURADOS
 
 B17 y "schema" solo pueden utilizar datos verificables.
 
@@ -882,7 +927,7 @@ El JSON-LD final será responsabilidad del sistema de renderizado.
 
 ---
 
-38. IMÁGENES
+39. IMÁGENES
 
 Formato:
 
@@ -903,7 +948,7 @@ La IA no puede inventar imágenes ni URLs de imágenes.
 
 ---
 
-39. ENLACES INTERNOS
+40. ENLACES INTERNOS
 
 Formato:
 
@@ -920,11 +965,11 @@ Formato:
 
 Las URLs deben proceder de la arquitectura autorizada.
 
-No se permiten enlaces hacia páginas inexistentes o no autorizadas.
+No deben generarse enlaces hacia páginas descartadas.
 
 ---
 
-40. VALIDATION
+41. VALIDATION
 
 La IA puede devolver:
 
@@ -941,7 +986,7 @@ La IA no es la autoridad final.
 
 ---
 
-41. ISSUES
+42. ISSUES
 
 Formato:
 
@@ -963,7 +1008,7 @@ La IA debe registrar problemas detectados en lugar de ocultarlos.
 
 ---
 
-42. TRACEABILITY
+43. TRACEABILITY
 
 La salida debe permitir rastrear el origen.
 
@@ -973,7 +1018,7 @@ La salida debe permitir rastrear el origen.
     "source_version": "",
     "architecture_version": "",
     "blocks_version": "",
-    "contract_version": "3.1"
+    "contract_version": "4.0"
   }
 }
 
@@ -981,7 +1026,7 @@ Esto permite saber qué documentación y qué oportunidad originaron la salida.
 
 ---
 
-43. REGLAS DE INTEGRIDAD
+44. REGLAS DE INTEGRIDAD
 
 N8N debe rechazar la salida cuando:
 
@@ -1000,59 +1045,75 @@ N8N debe rechazar la salida cuando:
 - exista una modificación de campos protegidos;
 - existan estructuras incompatibles;
 - existan URLs no autorizadas;
-- exista información obligatoria ausente;
-- exista un "page_id" duplicado;
-- exista una misma URL en más de una página;
-- exista un bloque fuera de su página;
-- una página utilice un bloque que no figure en sus "authorized_blocks".
+- exista información obligatoria ausente.
 
 Resultado:
 
-"ERROR"
+ERROR
 
 o:
 
-"REVIEW"
+REVIEW
 
 según la naturaleza del problema.
 
 ---
 
-44. IDEMPOTENCIA
+45. REGLA DE CONSISTENCIA DEL NÚMERO DE PÁGINAS
 
-El contrato debe permitir que N8N procese varias veces la misma salida sin crear duplicados.
+El contrato debe comprobar:
 
-Los identificadores estables son:
+site.page_count == count(pages[])
 
-opportunity_id
-page_id
-url
+Si no coincide:
 
-El identificador principal de la oportunidad es:
+ERROR
 
-"opportunity_id"
-
-El identificador principal de una página es:
-
-"page_id"
-
-La URL debe permanecer asociada a la misma página mientras la arquitectura no cambie.
-
-Si una página ya existe:
-
-ACTUALIZAR
-
-Si no existe:
-
-CREAR
-
-Nunca se deben crear duplicados simplemente porque el flujo vuelva a ejecutarse.
-
-Si la arquitectura cambia, el cambio debe ser tratado como una modificación estructural y no como una simple actualización de contenido.
+La IA no puede indicar un número de páginas diferente al contenido real de "pages[]".
 
 ---
 
-45. WORDPRESS
+46. REGLA DE CONSISTENCIA DE BLOQUES
+
+Para cada página:
+
+blocks[].id ⊆ authorized_blocks[]
+
+Si un bloque no pertenece a los bloques autorizados:
+
+ERROR
+
+No se publica.
+
+---
+
+47. IDEMPOTENCIA
+
+El contrato debe permitir que N8N procese varias veces la misma salida sin crear duplicados.
+
+El identificador principal es:
+
+opportunity_id
+
+Cada página debe tener además:
+
+page_id
+
+N8N utilizará estos identificadores para localizar páginas existentes.
+
+Si una página ya existe:
+
+actualizar
+
+Si no existe:
+
+crear
+
+Nunca crear duplicados simplemente porque el flujo se ejecute nuevamente.
+
+---
+
+48. WORDPRESS
 
 La IA no genera directamente HTML final para WordPress.
 
@@ -1083,7 +1144,7 @@ La IA trabaja con contenido y estructura lógica.
 
 ---
 
-46. N8N
+49. N8N
 
 N8N será responsable de:
 
@@ -1092,7 +1153,6 @@ N8N será responsable de:
 - validar las páginas;
 - validar los bloques;
 - comprobar identificadores;
-- comprobar URLs;
 - comprobar existencia;
 - crear páginas;
 - actualizar páginas;
@@ -1106,41 +1166,45 @@ N8N no debe reinterpretar arbitrariamente las decisiones SEO.
 
 ---
 
-47. CREACIÓN DE MINIWEB
+50. CREACIÓN DE MINIWEB
 
-Cuando la arquitectura autorice varias páginas, el SITE_PACKAGE debe representar todas las páginas autorizadas incluidas en esta ejecución.
+Cuando la arquitectura autorice varias páginas, la salida debe representar todas ellas dentro del mismo "SITE_PACKAGE".
 
-Ejemplo:
+Ejemplo conceptual:
 
 SITE_PACKAGE
 │
 ├── PAGE 01
-│   └── /fontanero/marbella/
+│   └── /fontaneros/fuengirola/
 │
 ├── PAGE 02
-│   └── /fontanero/marbella/desatascos/
+│   └── /fontaneros/fuengirola/desatascos/
 │
 ├── PAGE 03
-│   └── /fontanero/marbella/24-horas/
+│   └── /fontaneros/fuengirola/24-horas/
 │
-└── PAGE 04
-    └── /fontanero/marbella/contacto/
+├── PAGE 04
+│   └── /fontaneros/fuengirola/presupuesto/
+│
+├── PAGE 05
+│   └── /fontaneros/fuengirola/reparaciones/
+│
+└── PAGE N
+    └── ...
 
-Importante:
+Este esquema es conceptual.
 
-El ejemplo no autoriza esas páginas.
+No existe un número fijo de páginas.
 
-Solo la arquitectura real puede autorizar su existencia.
+N8N debe poder recorrer:
 
-N8N debe recorrer:
+pages[]
 
-"pages[]"
-
-y procesar cada página independientemente.
+y procesar cada página de forma independiente.
 
 ---
 
-48. RELACIÓN ENTRE PÁGINAS
+51. RELACIÓN ENTRE PÁGINAS
 
 Cada página debe poder identificar:
 
@@ -1152,109 +1216,5 @@ Cada página debe poder identificar:
 Ejemplo:
 
 {
-  "page_id": "FON-MARB-P02",
-  "url": "/fontanero/marbella/desatascos/",
-  "parent_url": "/fontanero/marbella/",
-  "depth": 2
-}
-
-Esto permite construir una miniweb coherente y no un conjunto de páginas aisladas.
-
----
-
-49. ACTUALIZACIÓN DE UNA MINIWEB
-
-El mismo contrato sirve para crear y actualizar.
-
-Si una página cambia:
-
-N8N debe actualizar únicamente la página afectada cuando sea posible.
-
-Si cambia el contenido:
-
-actualización de contenido
-
-Si cambia la arquitectura:
-
-REVISIÓN DE ARQUITECTURA
-↓
-NUEVA AUTORIZACIÓN
-↓
-NUEVA GENERACIÓN
-
-La IA no puede alterar la arquitectura durante una actualización.
-
----
-
-50. REGLA DE NO CREACIÓN AUTOMÁTICA
-
-La IA no puede convertir automáticamente una idea en una página.
-
-Ejemplo:
-
-Si detecta:
-
-fontanero + Marbella + reparación de caldera
-
-no puede crear:
-
-/fontanero/marbella/reparacion-caldera/
-
-salvo que esa página esté previamente autorizada por la arquitectura.
-
----
-
-51. RELACIÓN CON EL SISTEMA DE BLOQUES
-
-El contrato utiliza exclusivamente los bloques definidos en:
-
-"proyecto/seo/sistema-bloques.md"
-
-El sistema de bloques define:
-
-qué bloques existen.
-
-Este contrato define:
-
-cómo debe devolverlos la IA.
-
-No deben existir IDs paralelos.
-
----
-
-52. RELACIÓN CON ARQUITECTURA DE LANDING
-
-"proyecto/seo/arquitectura-landing.md" determina la estructura funcional de cada página.
-
-La arquitectura de miniweb determina además:
-
-- qué páginas existen;
-- qué relación tienen;
-- qué URL tienen;
-- qué bloques están autorizados.
-
-Flujo:
-
-ARQUITECTURA
-↓
-AUTHORIZED PAGES
-↓
-AUTHORIZED BLOCKS
-↓
-IA
-↓
-JSON
-
----
-
-53. RELACIÓN CON MODELO DE DATOS
-
-El contrato no crea un modelo de datos paralelo.
-
-Los datos deben proceder del modelo canónico definido en:
-
-"proyecto/seo/esquema-datos.md"
-
-y de los documentos específicos que correspondan.
-
-No se deben invent
+  "page_id": "FUE-FON-P02",
+  "url": "/fontaneros/f
