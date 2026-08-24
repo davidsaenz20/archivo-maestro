@@ -1,1275 +1,1139 @@
 ESPECIFICACIÓN DE PLANTILLAS VISUALES
 
-Versión: 1.0
+Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: definir cómo deben diseñarse las plantillas visuales de WordPress que representan los bloques lógicos del sistema.
+Función: definir cómo WordPress representa visualmente los bloques lógicos del sistema sin acoplar la arquitectura a un tema concreto.
 
 ---
 
-1. FUNCIÓN
+1. PRINCIPIO FUNDAMENTAL
 
-Este documento define la especificación visual y funcional de las plantillas que utilizará WordPress para representar los bloques lógicos definidos por el proyecto.
-
-La implementación inicial utilizará:
-
-WordPress + Kadence
-
-Kadence es la implementación visual inicial, pero no forma parte del modelo lógico central.
-
-El sistema debe poder sustituir Kadence en el futuro sin modificar:
-
-- investigación;
-- motor de decisión;
-- arquitectura SEO;
-- modelo de datos;
-- contrato IA;
-- sistema de bloques;
-- interlinking;
-- N8N.
-
----
-
-2. PRINCIPIO FUNDAMENTAL
-
-El proyecto separa:
+El proyecto separa completamente:
 
 BLOQUE LÓGICO
 ↓
+DATOS
+↓
+RENDERER
+↓
 PLANTILLA VISUAL
+↓
+TEMA / CSS
+↓
+HTML FINAL
+
+El bloque lógico define qué es.
+
+Los datos definen qué contiene.
+
+El renderer decide cómo transformar esos datos.
+
+La plantilla define cómo se presenta.
+
+El tema aporta estilos globales y recursos visuales.
+
+---
+
+2. INDEPENDENCIA DEL TEMA
+
+La arquitectura no depende de:
+
+- Kadence;
+- Astra;
+- GeneratePress;
+- Elementor;
+- Divi;
+- Gutenberg;
+- cualquier otro constructor concreto.
+
+Kadence puede utilizarse durante el piloto como implementación visual, pero no debe formar parte del contrato lógico.
+
+Si posteriormente se cambia de tema:
+
+BLOQUES
 ↓
 DATOS
 ↓
-RENDERIZADO
+RENDERER
+
+deben permanecer intactos.
+
+Solo cambia:
+
+PLANTILLAS
++
+SISTEMA VISUAL
+
+---
+
+3. BLOQUES OFICIALES
+
+Las plantillas deben representar los 23 bloques definidos en:
+
+"proyecto/seo/sistema-bloques.md"
+
+B01 header
+B02 navigation
+B03 hero
+B04 main_content
+B05 cta
+B06 footer
+B07 subservice
+B08 problems
+B09 local_context
+B10 coverage
+B11 process
+B12 trust
+B13 differentiation
+B14 faq
+B15 related_services
+B16 related_locations
+B17 structured_data
+B18 testimonials
+B19 cases
+B20 gallery
+B21 pricing
+B22 opening_hours
+B23 map
+
+---
+
+4. NO ES NECESARIO CREAR 23 DISEÑOS COMPLETAMENTE INDEPENDIENTES
+
+Los 23 elementos son bloques lógicos.
+
+La implementación visual podrá utilizar:
+
+- plantillas independientes;
+- variantes;
+- componentes reutilizables;
+- patrones;
+- componentes compartidos;
+- bloques compuestos;
+- bloques sin representación visual.
+
+Por ejemplo:
+
+B07 subservice
+↓
+Service Card
+
+La misma tarjeta puede reutilizarse en diferentes contextos.
+
+---
+
+5. IDENTIDAD DE INSTANCIA
+
+Cada instancia visual recibirá:
+
+page_id
+block_instance_id
+block_version
+position
+enabled
+data
+
+Ejemplo:
+
+{
+  "page_id": "FON-EST-001",
+  "block_instance_id": "FON-EST-001-B03-01",
+  "block_id": "B03",
+  "block_version": 1,
+  "position": 3,
+  "enabled": true,
+  "data": {}
+}
+
+La plantilla no debe crear estas identidades.
+
+Las recibe del modelo.
+
+---
+
+6. BLOCK_INSTANCE_ID
+
+La plantilla debe poder utilizar el identificador para:
+
+- trazabilidad;
+- debugging;
+- actualizaciones;
+- identificación de errores;
+- pruebas.
+
+No debe modificarlo.
+
+---
+
+7. BLOCK_VERSION
+
+La plantilla debe ser compatible con la versión del bloque recibida.
 
 Ejemplo:
 
 B03
-↓
-Plantilla Hero
-↓
-title
-subtitle
-cta
-↓
-WordPress
+block_version = 1
 
-La plantilla define cómo se ve.
+Una nueva implementación visual puede soportar varias versiones si resulta necesario.
 
-Los datos definen qué se muestra.
+La versión visual no debe confundirse con:
 
----
+block_version
 
-3. 23 BLOQUES LÓGICOS
+ni con:
 
-Los bloques oficiales son:
-
-ID| TYPE
-B01| header
-B02| navigation
-B03| hero
-B04| main_content
-B05| cta
-B06| footer
-B07| subservice
-B08| problems
-B09| local_context
-B10| coverage
-B11| process
-B12| trust
-B13| differentiation
-B14| faq
-B15| related_services
-B16| related_locations
-B17| structured_data
-B18| testimonials
-B19| cases
-B20| gallery
-B21| pricing
-B22| opening_hours
-B23| map
-
-Este listado debe coincidir exactamente con:
-
-"proyecto/seo/sistema-bloques.md"
+schema_version
 
 ---
 
-4. PRINCIPIO DE REUTILIZACIÓN
+8. POSITION
 
-No se debe crear una plantilla diferente para cada localidad.
+El renderer debe respetar:
 
-Ejemplo:
+position
 
-B03 Hero
-│
-├── Fontanero Estepona
-├── Fontanero Manilva
-├── Fontanero Casares
-├── Fontanero Ronda
-├── Fontanero Cártama
-└── Fontanero Fuengirola
+para determinar el orden de representación.
 
-Todas utilizan la misma plantilla visual.
+La plantilla no debe alterar arbitrariamente el orden lógico.
 
-Cambian los datos.
+Puede existir una excepción si una plantilla de página define una composición específica aprobada.
 
 ---
 
-5. NO ES OBLIGATORIO CREAR 23 PLANTILLAS INDEPENDIENTES
+9. ENABLED
 
-Los 23 bloques son bloques lógicos.
-
-No significa que debamos construir obligatoriamente 23 diseños completamente diferentes.
-
-Podrán existir:
-
-- plantillas independientes;
-- variantes;
-- patrones reutilizables;
-- componentes compartidos;
-- bloques que se integren directamente en una plantilla de página;
-- bloques que no necesiten una representación visual independiente.
-
-La implementación real se decidirá durante el piloto.
-
----
-
-6. B01 — HEADER
-
-Tipo: header
-
-Función
-
-Representar la cabecera común de la web.
-
-Elementos posibles
-
-- logotipo;
-- nombre comercial;
-- información básica;
-- elemento de contacto cuando exista;
-- elementos visuales de identidad.
-
-Datos variables
-
-- logo;
-- nombre;
-- teléfono;
-- WhatsApp;
-- email;
-- URL.
-
-Regla
-
-Los datos comerciales deben proceder del modelo de datos.
-
-No se inventan.
-
-Implementación
-
-Preferentemente como elemento global de Kadence.
-
----
-
-7. B02 — NAVIGATION
-
-Tipo: navigation
-
-Función
-
-Representar la navegación principal.
-
-Datos
-
-menu.items[]
-
-Cada elemento tendrá:
-
-- label;
-- URL;
-- tipo;
-- orden.
-
-Regla
-
-No se crean elementos hacia páginas no autorizadas.
-
-Implementación
-
-Preferentemente mediante el sistema de menús de WordPress/Kadence.
-
----
-
-8. B03 — HERO
-
-Tipo: hero
-
-Función
-
-Presentar inmediatamente:
-
-- servicio;
-- localidad;
-- propuesta principal;
-- acción.
-
-Elementos
-
-- H1;
-- subtítulo;
-- CTA;
-- imagen opcional.
-
-Datos
-
-title
-subtitle
-cta
-image
-
-Reglas
-
-El H1 debe corresponder con la intención de la página.
-
-No debe utilizarse el mismo H1 para todas las páginas cambiando únicamente la localidad si la intención es diferente.
-
----
-
-9. B04 — MAIN CONTENT
-
-Tipo: main_content
-
-Función
-
-Contener el contenido principal.
-
-Elementos
-
-- título;
-- párrafos;
-- subtítulos;
-- listas;
-- contenido estructurado.
-
-Datos
-
-El contenido procederá de la IA y del modelo de datos.
-
-Regla
-
-No debe utilizarse para generar texto de relleno.
-
----
-
-10. B05 — CTA
-
-Tipo: cta
-
-Función
-
-Facilitar una acción.
-
-Elementos
-
-- título;
-- texto;
-- botón.
-
-Datos
-
-label
-action
-url
-
-Regla
-
-La IA puede generar el texto.
-
-No puede inventar el destino real.
-
----
-
-11. B06 — FOOTER
-
-Tipo: footer
-
-Función
-
-Pie común de la web.
-
-Elementos posibles
-
-- identidad;
-- navegación;
-- contacto;
-- información legal;
-- enlaces autorizados.
-
-Implementación
-
-Preferentemente global en Kadence.
-
----
-
-12. B07 — SUBSERVICE
-
-Tipo: subservice
-
-Función
-
-Presentar un subservicio relacionado con la página.
-
-Elementos
-
-- título;
-- descripción;
-- CTA;
-- enlace.
-
-Regla
-
-Solo puede utilizar subservicios autorizados.
-
----
-
-13. B08 — PROBLEMS
-
-Tipo: problems
-
-Función
-
-Explicar problemas o necesidades que el servicio puede resolver.
-
-Elementos
-
-- título;
-- lista de problemas;
-- explicación opcional.
-
-Regla
-
-Los problemas deben estar relacionados con la intención.
-
-No deben inventarse problemas locales.
-
----
-
-14. B09 — LOCAL CONTEXT
-
-Tipo: local_context
-
-Función
-
-Incorporar información territorial útil.
-
-Elementos
-
-- título;
-- contenido;
-- referencias locales verificadas.
-
-Regla crítica
-
-No debe utilizarse simplemente para repetir el nombre de la localidad.
-
-No se inventan:
-
-- barrios;
-- calles;
-- urbanizaciones;
-- características locales;
-- necesidades;
-- tiempos.
-
----
-
-15. B10 — COVERAGE
-
-Tipo: coverage
-
-Función
-
-Mostrar zonas de cobertura.
-
-Elementos
-
-- título;
-- lista de zonas;
-- enlaces opcionales.
-
-Regla
-
-Solo se incluyen zonas respaldadas por los datos.
-
-No se crean listas masivas artificiales.
-
----
-
-16. B11 — PROCESS
-
-Tipo: process
-
-Función
-
-Explicar el proceso de trabajo.
-
-Elementos
-
-- pasos;
-- títulos;
-- descripción.
-
-Regla
-
-Debe basarse en un proceso real o claramente definido para el proyecto.
-
-No se deben inventar certificaciones o procedimientos profesionales.
-
----
-
-17. B12 — TRUST
-
-Tipo: trust
-
-Función
-
-Mostrar señales verificables de confianza.
-
-Elementos posibles
-
-- experiencia;
-- certificaciones;
-- garantías;
-- reseñas;
-- cobertura;
-- datos comerciales.
-
-Regla crítica
-
-No se inventan señales de confianza.
-
----
-
-18. B13 — DIFFERENTIATION
-
-Tipo: differentiation
-
-Función
-
-Explicar por qué una empresa o servicio puede diferenciarse.
-
-Regla
-
-Debe existir una base real.
-
-No constituye diferenciación:
-
-- cambiar sinónimos;
-- cambiar localidad;
-- reordenar párrafos;
-- generar frases diferentes.
-
----
-
-19. B14 — FAQ
-
-Tipo: faq
-
-Elementos
-
-- título;
-- preguntas;
-- respuestas.
-
-Datos
-
-items[]
-
-Cada elemento:
-
-question
-answer
-
-Regla
-
-Las preguntas deben proceder de:
-
-- intención;
-- investigación;
-- conocimiento válido;
-- datos disponibles.
-
----
-
-20. B15 — RELATED SERVICES
-
-Tipo: related_services
-
-Función
-
-Mostrar servicios relacionados.
-
-Elementos
-
-- nombre;
-- descripción;
-- enlace.
-
-Regla
-
-Solo enlaces autorizados.
-
-No se inventan URLs.
-
----
-
-21. B16 — RELATED LOCATIONS
-
-Tipo: related_locations
-
-Función
-
-Conectar localidades relacionadas.
-
-Ejemplo:
-
-Fontanero Estepona
-↓
-Fontanero Manilva
-↓
-Fontanero Casares
-
-Regla
-
-Solo deben enlazarse páginas existentes y autorizadas.
-
----
-
-22. B17 — STRUCTURED DATA
-
-Tipo: structured_data
-
-Función
-
-Representar información lógica necesaria para datos estructurados.
-
-Regla
-
-No se muestran necesariamente como contenido visual.
-
-Puede ser procesado por el sistema de renderizado.
-
-Nunca se inventan:
-
-- reviews;
-- ratings;
-- precios;
-- empresas;
-- personas;
-- horarios;
-- direcciones.
-
----
-
-23. B18 — TESTIMONIALS
-
-Tipo: testimonials
-
-Función
-
-Mostrar testimonios reales cuando existan.
-
-Elementos
-
-- nombre;
-- texto;
-- valoración si está verificada.
-
-Regla crítica
-
-No se generan testimonios ficticios para producción.
-
----
-
-24. B19 — CASES
-
-Tipo: cases
-
-Función
-
-Mostrar casos reales.
-
-Elementos
-
-- título;
-- problema;
-- solución;
-- resultado.
-
-Regla
-
-Solo datos documentados.
-
----
-
-25. B20 — GALLERY
-
-Tipo: gallery
-
-Función
-
-Mostrar imágenes disponibles.
-
-Datos
-
-- URL;
-- alt;
-- título;
-- tipo.
-
-Regla
-
-No se inventan URLs.
-
----
-
-26. B21 — PRICING
-
-Tipo: pricing
-
-Función
-
-Mostrar precios cuando existan datos comerciales reales.
-
-Regla
-
-No se inventan precios.
-
-Si no existen:
+Si:
 
 enabled = false
 
-o:
+el bloque no debe renderizarse.
 
-data = null
+No debe dejar:
 
-según el contrato.
-
----
-
-27. B22 — OPENING HOURS
-
-Tipo: opening_hours
-
-Función
-
-Mostrar horarios.
-
-Regla
-
-Solo datos reales.
-
-No se inventan horarios.
+- contenedores vacíos;
+- espacios innecesarios;
+- títulos huérfanos;
+- separadores innecesarios.
 
 ---
 
-28. B23 — MAP
+10. DATOS OPCIONALES
 
-Tipo: map
-
-Función
-
-Mostrar ubicación cuando exista una ubicación válida.
-
-Regla
-
-No se inventan direcciones ni coordenadas.
-
----
-
-29. CAMPOS DINÁMICOS
-
-Cada plantilla debe identificar claramente qué campos recibe.
-
-Ejemplo B03:
-
-title
-subtitle
-cta.label
-cta.action
-cta.url
-image.url
-image.alt
-
-El diseño debe permanecer fijo.
-
----
-
-30. CAMPOS OPCIONALES
-
-Los elementos opcionales no deben romper el diseño.
+Las plantillas deben soportar datos ausentes.
 
 Ejemplo:
 
 image = null
 
-La plantilla debe poder renderizar el Hero sin imagen.
+Debe poder renderizarse:
+
+Hero sin imagen
+
+sin romper el diseño.
 
 ---
 
-31. CONDICIONES DE VISIBILIDAD
+11. DATOS NULOS
 
-Cada plantilla debe soportar:
+No se deben mostrar automáticamente:
 
-enabled = true
+null
+undefined
+N/A
+-
 
-o:
+cuando un campo no tenga valor.
+
+El renderer decide si:
+
+- oculta el elemento;
+- utiliza una variante alternativa;
+- muestra un fallback visual autorizado.
+
+---
+
+ESPECIFICACIÓN DE BLOQUES
+
+12. B01 — HEADER
+
+Función: cabecera principal.
+
+Puede contener:
+
+- logo;
+- nombre;
+- navegación secundaria;
+- contacto;
+- CTA.
+
+La plantilla no inventa datos comerciales.
+
+---
+
+13. B02 — NAVIGATION
+
+Función: navegación.
+
+Recibe:
+
+items[]
+
+Cada elemento puede contener:
+
+label
+url
+type
+position
+
+Solo se renderizan destinos autorizados.
+
+---
+
+14. B03 — HERO
+
+Función: presentación principal.
+
+Datos habituales:
+
+title
+subtitle
+description
+cta
+image
+
+Debe existir al menos una variante sin imagen.
+
+Variantes posibles:
+
+hero_default
+hero_split
+hero_image
+hero_minimal
+hero_cta
+
+Las variantes son visuales.
+
+No modifican el contrato lógico.
+
+---
+
+15. B04 — MAIN_CONTENT
+
+Función: contenido principal.
+
+Puede representar:
+
+- párrafos;
+- subtítulos;
+- listas;
+- contenido estructurado;
+- elementos destacados.
+
+El contenido no debe depender del diseño.
+
+La misma información debe poder renderizarse con diferentes estilos.
+
+---
+
+16. B05 — CTA
+
+Función: llamada a la acción.
+
+Datos:
+
+title
+text
+label
+action
+target
+
+La plantilla representa la acción.
+
+No determina el destino real.
+
+Variantes posibles:
+
+cta_inline
+cta_card
+cta_banner
+cta_section
+
+---
+
+17. B06 — FOOTER
+
+Función: pie global.
+
+Puede contener:
+
+- navegación;
+- contacto;
+- identidad;
+- enlaces legales;
+- información corporativa.
+
+Debe poder funcionar como componente global.
+
+---
+
+18. B07 — SUBSERVICE
+
+Función: mostrar subservicios.
+
+Puede utilizar:
+
+card
+list
+grid
+accordion
+
+según la variante visual.
+
+La información procede del sistema.
+
+---
+
+19. B08 — PROBLEMS
+
+Función: representar problemas o necesidades.
+
+Puede utilizar:
+
+problem_list
+problem_cards
+problem_grid
+
+No debe introducir afirmaciones locales no verificadas.
+
+---
+
+20. B09 — LOCAL_CONTEXT
+
+Función: presentar contexto territorial útil.
+
+Puede utilizar:
+
+- texto;
+- tarjetas;
+- referencias;
+- elementos geográficos.
+
+No debe utilizarse para generar contenido local artificial.
+
+---
+
+21. B10 — COVERAGE
+
+Función: representar zonas de cobertura.
+
+Puede visualizarse como:
+
+coverage_list
+coverage_grid
+coverage_cards
+
+Las zonas proceden de datos autorizados.
+
+---
+
+22. B11 — PROCESS
+
+Función: representar pasos.
+
+Variantes:
+
+process_steps
+process_timeline
+process_cards
+
+Debe funcionar correctamente con distinto número de pasos.
+
+---
+
+23. B12 — TRUST
+
+Función: mostrar señales de confianza.
+
+Puede visualizar:
+
+- experiencia;
+- certificaciones;
+- garantías;
+- datos verificables.
+
+Cada elemento debe poder ocultarse individualmente si falta información.
+
+---
+
+24. B13 — DIFFERENTIATION
+
+Función: mostrar diferenciadores reales.
+
+Variantes:
+
+differentiation_cards
+differentiation_list
+differentiation_feature
+
+No debe utilizarse como generador automático de ventajas ficticias.
+
+---
+
+25. B14 — FAQ
+
+Función: preguntas frecuentes.
+
+Debe soportar:
+
+faq_list
+faq_accordion
+faq_cards
+
+La cantidad de preguntas puede variar.
+
+La plantilla debe adaptarse automáticamente.
+
+---
+
+26. B15 — RELATED_SERVICES
+
+Función: mostrar servicios relacionados.
+
+Debe utilizar componentes de enlace reutilizables.
+
+Cada elemento debe poder representar:
+
+label
+description
+url
+
+No se generan URLs.
+
+---
+
+27. B16 — RELATED_LOCATIONS
+
+Función: mostrar localidades relacionadas.
+
+Puede utilizar:
+
+location_grid
+location_list
+location_cards
+
+Solo destinos existentes o autorizados.
+
+---
+
+28. B17 — STRUCTURED_DATA
+
+Este bloque puede no tener representación visual.
+
+Su función principal es proporcionar datos al sistema de renderizado.
+
+Ejemplo:
+
+B17
+↓
+Structured Data Renderer
+↓
+JSON-LD
+↓
+<head>
+
+No debe convertirse automáticamente en contenido visible.
+
+---
+
+29. B18 — TESTIMONIALS
+
+Función: representar testimonios reales.
+
+Variantes:
+
+testimonial_cards
+testimonial_list
+testimonial_slider
+
+No se generan testimonios ficticios.
+
+---
+
+30. B19 — CASES
+
+Función: representar casos reales.
+
+Puede utilizar:
+
+case_cards
+case_list
+case_feature
+
+Los datos deben proceder de casos documentados.
+
+---
+
+31. B20 — GALLERY
+
+Función: mostrar imágenes.
+
+Variantes:
+
+gallery_grid
+gallery_masonry
+gallery_slider
+gallery_feature
+
+La plantilla debe soportar:
+
+0 imágenes
+1 imagen
+varias imágenes
+
+sin romperse.
+
+---
+
+32. B21 — PRICING
+
+Función: mostrar precios reales.
+
+Variantes:
+
+pricing_cards
+pricing_table
+pricing_list
+
+Si no existen precios:
 
 enabled = false
 
-Cuando está desactivada:
-
-no se renderiza.
+No se generan precios ficticios.
 
 ---
 
-32. RESPONSIVE
+33. B22 — OPENING_HOURS
 
-Todas las plantillas deben funcionar correctamente en:
+Función: mostrar horarios reales.
+
+Variantes:
+
+hours_list
+hours_table
+hours_card
+
+No se inventan horarios.
+
+---
+
+34. B23 — MAP
+
+Función: representar ubicación.
+
+Puede utilizar:
+
+map_embed
+map_card
+map_with_address
+
+La ubicación debe proceder de datos válidos.
+
+No se inventan coordenadas.
+
+---
+
+SISTEMA VISUAL
+
+35. DESIGN SYSTEM
+
+El sistema visual debe centralizar:
+
+colors
+typography
+spacing
+buttons
+cards
+containers
+icons
+forms
+shadows
+borders
+breakpoints
+
+Los bloques no deben definir valores globales duplicados.
+
+---
+
+36. COMPONENTES COMPARTIDOS
+
+Componentes reutilizables:
+
+Container
+Section
+Heading
+Text
+Button
+Card
+Grid
+List
+Icon
+Image
+Link
+Badge
+
+Los bloques los utilizan.
+
+No los reinventan.
+
+---
+
+37. VARIANTES
+
+Una variante visual debe identificarse independientemente del bloque.
+
+Ejemplo:
+
+{
+  "block_id": "B03",
+  "variant": "hero_split"
+}
+
+La variante no modifica:
+
+block_id
+block_instance_id
+page_id
+
+---
+
+38. FALLBACK
+
+Si una variante no está disponible:
+
+variant solicitada
+↓
+variant no disponible
+↓
+fallback autorizado
+
+Nunca:
+
+variant no disponible
+↓
+crear diseño improvisado
+
+---
+
+39. RESPONSIVE
+
+Todas las plantillas deben funcionar en:
 
 - móvil;
 - tablet;
 - escritorio.
 
-La prioridad inicial será:
+Prioridad:
 
-móvil primero.
-
----
-
-33. CONSISTENCIA
-
-Las plantillas deben compartir:
-
-- tipografía;
-- colores;
-- botones;
-- espaciado;
-- bordes;
-- sombras;
-- ancho de contenido;
-- comportamiento responsive.
-
-No debe parecer que cada bloque pertenece a una web diferente.
+MOBILE FIRST
 
 ---
 
-34. SISTEMA DE DISEÑO
+40. ACCESIBILIDAD
 
-Antes de crear todas las plantillas se definirá:
+Las plantillas deben contemplar:
 
-- paleta;
-- tipografías;
-- tamaños;
-- botones;
-- espaciados;
-- contenedores;
-- imágenes;
-- iconografía.
-
-Kadence será utilizado para mantener estos elementos globales.
-
----
-
-35. COMPONENTES COMPARTIDOS
-
-Cuando varios bloques utilicen los mismos componentes:
-
-BOTÓN
-TARJETA
-ICONO
-CONTENEDOR
-TÍTULO
-LISTA
-
-deben reutilizarse.
-
-No se deben recrear manualmente.
+- HTML semántico;
+- jerarquía correcta de headings;
+- contraste suficiente;
+- navegación por teclado;
+- labels;
+- alt de imágenes;
+- foco visible;
+- botones reales;
+- enlaces comprensibles.
 
 ---
 
-36. ESTRUCTURA DE UNA PÁGINA
+41. SEO TÉCNICO
 
-Una página podrá representarse conceptualmente como:
+La plantilla debe respetar:
 
-HEADER
-NAVIGATION
-        ↓
-HERO
-        ↓
-MAIN CONTENT
-        ↓
-PROBLEMS
-        ↓
-LOCAL CONTEXT
-        ↓
-SERVICES
-        ↓
-FAQ
-        ↓
-CTA
-        ↓
-FOOTER
+- un H1 principal;
+- jerarquía correcta de headings;
+- enlaces HTML válidos;
+- imágenes optimizadas;
+- atributos alt;
+- canonical gestionada por la capa correspondiente;
+- datos estructurados gestionados por el renderer.
 
-Pero el orden exacto dependerá de la arquitectura autorizada.
+El bloque visual no debe duplicar automáticamente metadatos SEO.
 
 ---
 
-37. NO CREACIÓN DE BLOQUES POR LA IA
+42. HTML
 
-La IA nunca podrá decir:
+El HTML final pertenece a la capa de renderizado.
 
-B24
+La IA no debe ser responsable del HTML final.
 
-si B24 no existe.
+Esto permite cambiar:
 
-El validador deberá rechazarlo.
+renderer
+tema
+CSS
+plantilla
 
----
-
-38. NO CREACIÓN DE PLANTILLAS POR LA IA
-
-La IA tampoco podrá crear una nueva plantilla visual.
-
-Si necesita algo que no existe:
-
-REVIEW
-
-La nueva plantilla deberá ser creada y aprobada por el sistema documental.
+sin modificar el contenido generado.
 
 ---
 
-39. INTERLINKING
+43. SEGURIDAD
 
-Las plantillas que muestran enlaces deben recibir las URLs desde los datos.
+Las plantillas deben escapar y sanitizar los datos antes de mostrarlos.
 
-Ejemplo:
+No debe permitirse:
 
-B15
+<script>
+javascript:
+iframe no autorizado
+event handlers
+HTML peligroso
+
+---
+
+44. IMÁGENES
+
+Las imágenes deben procesarse mediante una capa común.
+
+Debe contemplarse:
+
+src
+alt
+width
+height
+loading
+
+cuando corresponda.
+
+El sistema debe evitar saltos de diseño producidos por imágenes sin dimensiones.
+
+---
+
+45. VELOCIDAD
+
+Las plantillas deben priorizar:
+
+- poco JavaScript;
+- CSS eficiente;
+- imágenes optimizadas;
+- carga diferida cuando corresponda;
+- evitar plugins innecesarios;
+- evitar componentes visuales pesados.
+
+---
+
+46. COMPONENTES GLOBALES
+
+Los elementos comunes de todo el sitio podrán ser:
+
+Header
+Navigation
+Footer
+Global CTA
+Cookie / consent
+Legal
+
+Su gestión debe estar separada de las landings individuales cuando corresponda.
+
+---
+
+47. PLANTILLA DE PÁGINA
+
+Una plantilla de página será responsable de:
+
+1. recibir el "page_id";
+2. cargar las instancias;
+3. ordenarlas por "position";
+4. comprobar "enabled";
+5. seleccionar renderer;
+6. seleccionar variante;
+7. pasar "data";
+8. generar HTML.
+
+Conceptualmente:
+
+PAGE
 ↓
-related_services[]
-
-o:
-
-B16
+BLOCK INSTANCES
 ↓
-related_locations[]
-
-La plantilla únicamente representa los enlaces.
-
----
-
-40. ANCHOR TEXT
-
-El texto del enlace puede ser dinámico.
-
-Ejemplo:
-
-Desatascos en Estepona
-
-El destino debe estar autorizado.
-
----
-
-41. ACTUALIZACIONES
-
-Una plantilla debe poder actualizarse sin destruir el contenido.
-
-Ejemplo:
-
-Plantilla B03 v1
+SORT POSITION
 ↓
-Plantilla B03 v2
-
-Las páginas que utilizan B03 deben poder beneficiarse de la actualización cuando la implementación elegida permita esa reutilización.
+ENABLED?
+↓
+BLOCK RENDERER
+↓
+VARIANT
+↓
+HTML
 
 ---
 
-42. DATOS COMERCIALES
+48. RENDERER
 
-Los datos comerciales deben estar separados del diseño.
+Cada bloque debe tener un renderer lógico.
 
 Ejemplo:
 
-empresa
-logo
-phone
-whatsapp
-email
-address
-opening_hours
-
-Esto permite que una web creada inicialmente como activo del proyecto pueda ser posteriormente adaptada a un cliente real.
-
----
-
-43. MODO TEST
-
-El sistema debe poder trabajar con datos ficticios durante el desarrollo.
-
-Debe existir una identificación clara:
-
-environment = TEST
-
-Los datos ficticios no pueden llegar accidentalmente a producción.
-
----
-
-44. MODO PRODUCCIÓN
-
-En producción:
-
-environment = PRODUCTION
-
-Los datos comerciales deben proceder del modelo de datos real.
-
----
-
-45. CAMBIO DE CLIENTE
-
-Una misma estructura visual podrá reutilizarse para distintos clientes.
-
-Ejemplo:
-
-Plantillas
-+
-Cliente A
-
-y:
-
-Plantillas
-+
-Cliente B
-
-El diseño no debe estar ligado a una empresa concreta.
-
----
-
-46. GENERACIÓN MASIVA
-
-El sistema debe permitir utilizar las mismas plantillas para:
-
-Fontanero Málaga
-Fontanero Marbella
-Fontanero Estepona
-Fontanero Manilva
-...
-
-sin duplicar manualmente el diseño.
-
----
-
-47. CONTROL DE CALIDAD VISUAL
-
-Antes de escalar:
-
-comprobar:
-
-- móvil;
-- escritorio;
-- legibilidad;
-- botones;
-- enlaces;
-- imágenes;
-- espacios;
-- jerarquía visual;
-- navegación;
-- accesibilidad básica;
-- velocidad razonable.
-
----
-
-48. CONTROL DE CALIDAD SEO
-
-Las plantillas no deben:
-
-- ocultar contenido importante;
-- crear headings innecesarios;
-- duplicar títulos;
-- generar texto automáticamente sin datos;
-- crear enlaces no autorizados;
-- generar contenido invisible.
-
----
-
-49. RENDIMIENTO
-
-Las plantillas deben evitar:
-
-- scripts innecesarios;
-- imágenes excesivamente pesadas;
-- CSS duplicado;
-- elementos visuales innecesarios;
-- dependencias excesivas.
-
-El objetivo es mantener páginas rápidas.
-
----
-
-50. PORTABILIDAD
-
-El sistema lógico no debe depender exclusivamente de Kadence.
-
-La documentación debe poder traducirse en el futuro a:
-
-- otro tema;
-- otro constructor;
-- bloques nativos de WordPress;
-- un sistema propio de renderizado.
-
----
-
-51. IMPLEMENTACIÓN INICIAL
-
-La implementación inicial recomendada es:
-
-WordPress
-+
-Kadence
-+
-plantillas/patrones reutilizables
-+
-datos dinámicos
-
-No se recomienda inicialmente:
-
-plugin visual complejo
-+
-HTML generado por IA
-+
-CSS generado automáticamente
-
----
-
-52. ORDEN DE CONSTRUCCIÓN
-
-No se deben construir las 23 plantillas de golpe.
-
-Orden recomendado:
-
-FASE 1
-
-Construir:
-
-- B01 Header;
-- B02 Navigation;
-- B03 Hero;
-- B04 Main Content;
-- B05 CTA;
-- B06 Footer.
-
-FASE 2
-
-Construir:
-
-- B07 Subservice;
-- B08 Problems;
-- B09 Local Context;
-- B10 Coverage;
-- B11 Process.
-
-FASE 3
-
-Construir:
-
-- B12 Trust;
-- B13 Differentiation;
-- B14 FAQ;
-- B15 Related Services;
-- B16 Related Locations.
-
-FASE 4
-
-Construir según necesidad real:
-
-- B17 Structured Data;
-- B18 Testimonials;
-- B19 Cases;
-- B20 Gallery;
-- B21 Pricing;
-- B22 Opening Hours;
-- B23 Map.
-
----
-
-53. PRIMER PILOTO
-
-El primer piloto debe utilizar una página real de prueba.
-
-Ejemplo:
-
-Fontanero en Estepona
-
-Debe comprobar:
-
-B01
-B02
 B03
-B04
-B05
-B06
-
-Después se añadirán bloques condicionales.
-
----
-
-54. SEGUNDO PILOTO
-
-Después:
-
-Fontanero en Estepona
-+
-Desatascos
-+
-FAQ
-+
-Local Context
-+
-Related Services
-+
-Related Locations
-
-Se comprobará que la arquitectura y el sistema visual continúan funcionando.
-
----
-
-55. TERCER PILOTO
-
-Crear varias localidades utilizando las mismas plantillas:
-
-Estepona
-Manilva
-Casares
-Ronda
-Cártama
-Fuengirola
-
-El objetivo será demostrar que:
-
-los datos cambian, pero el sistema visual se reutiliza.
-
----
-
-56. NO ESCALAR TODAVÍA
-
-Aunque el sistema permita generar cientos de páginas, no se debe comenzar con cientos.
-
-Primero:
-
-1
 ↓
-3
+HeroRenderer
 ↓
-10
-
-Después evaluar.
-
-Solo entonces:
-
-50
+HeroVariant
 ↓
-100
-↓
-500+
+HTML
+
+Esto evita que N8N tenga que conocer detalles visuales.
 
 ---
 
-57. CRITERIO DE ÉXITO
+49. N8N NO DEBE MAQUETAR
 
-El sistema será considerado correcto cuando pueda:
+N8N debe encargarse de:
 
-1. recibir datos;
-2. seleccionar bloques autorizados;
-3. utilizar las plantillas correctas;
-4. rellenarlas;
-5. crear una página;
-6. generar enlaces funcionales;
-7. generar navegación;
-8. actualizar la página;
-9. mantener el diseño;
-10. evitar duplicados.
+- generación;
+- validación;
+- transformación;
+- sincronización;
+- actualización;
+- logs.
+
+N8N no debe contener la lógica completa del diseño visual.
 
 ---
 
-58. RELACIÓN CON N8N
+50. WORDPRESS
 
-N8N no debe controlar el diseño.
+WordPress debe recibir una estructura de datos limpia.
 
-N8N debe transportar:
+El contenido almacenado debe permitir reconstruir la página.
+
+No depender exclusivamente de HTML generado manualmente.
+
+---
+
+51. CAMBIO DE TEMA
+
+Para cambiar de tema:
+
+Tema A
+↓
+Renderer / templates
+↓
+Tema B
+
+Los datos permanecen iguales.
+
+El objetivo es que el coste del cambio sea principalmente visual.
+
+---
+
+52. VERSIONADO VISUAL
+
+Las plantillas podrán tener versiones.
+
+Ejemplo:
+
+HeroRenderer v1
+HeroRenderer v2
+
+La versión visual puede evolucionar sin cambiar el contrato lógico.
+
+---
+
+53. TESTING VISUAL
+
+Cada bloque debe probarse con:
+
+- datos completos;
+- datos parciales;
+- datos nulos;
+- muchas instancias;
+- una instancia;
+- "enabled=false";
+- móvil;
+- tablet;
+- escritorio.
+
+---
+
+54. TESTING DE CONTENIDO
+
+Debe comprobarse que:
+
+mismo JSON
++
+misma plantilla
+=
+resultado determinista
+
+salvo elementos explícitamente dinámicos.
+
+---
+
+55. TESTING DE CAMBIO DE TEMA
+
+Durante el piloto se debe comprobar que el modelo lógico no contiene referencias obligatorias al tema.
+
+Una prueba futura consistirá en:
+
+Renderer/Tema A
+↓
+misma página
+↓
+Renderer/Tema B
+
+sin modificar:
 
 page_id
 block_id
+block_instance_id
 data
 
-WordPress/Kadence se encargará de la representación visual.
+---
+
+56. NO DUPLICACIÓN
+
+No crear una plantilla distinta para:
+
+Fontanero Estepona
+Fontanero Manilva
+Fontanero Casares
+
+si únicamente cambian los datos.
+
+La plantilla es reutilizable.
 
 ---
 
-59. RELACIÓN CON LA IA
+57. ESCALABILIDAD
 
-La IA no diseña.
+El sistema debe poder representar:
 
-La IA genera contenido y estructura lógica.
+1 página
+10 páginas
+100 páginas
+1.000 páginas
+10.000 páginas
 
-La IA no decide:
-
-- colores;
-- CSS;
-- tipografías;
-- tamaños;
-- layout visual;
-- animaciones.
+sin crear manualmente una plantilla nueva por página.
 
 ---
 
-60. PRINCIPIO FINAL
+58. MANTENIMIENTO
 
-El sistema debe funcionar como:
+Una modificación visual de un componente compartido debe poder propagarse a todas las páginas que lo utilizan.
+
+Ejemplo:
+
+Button v1
+↓
+Button v2
+↓
+todas las plantillas compatibles
+
+---
+
+59. NO ACOPLAMIENTO A KADENCE
+
+Cualquier referencia a Kadence debe limitarse a:
+
+IMPLEMENTACIÓN DEL PILOTO
+
+Nunca debe aparecer como requisito del modelo lógico.
+
+---
+
+60. IMPLEMENTACIÓN DEL PILOTO
+
+La implementación inicial puede utilizar el sistema visual que resulte más rápido y estable para construir el primer prototipo.
+
+La decisión del tema es una decisión de implementación.
+
+No modifica:
+
+- arquitectura;
+- datos;
+- bloques;
+- contrato IA;
+- validador;
+- interlinking;
+- motor SEO.
+
+---
+
+61. ARQUITECTURA FINAL
+
+DATOS
+  ↓
+BLOQUES LÓGICOS
+  ↓
+VALIDADOR
+  ↓
+N8N
+  ↓
+WORDPRESS
+  ↓
+RENDERER
+  ↓
+PLANTILLAS
+  ↓
+DESIGN SYSTEM
+  ↓
+TEMA
+  ↓
+HTML
+
+---
+
+62. REGLA MAESTRA
+
+La plataforma nunca debe confundir:
 
 CONTENIDO
-+
-ESTRUCTURA
-+
-PLANTILLAS
-=
-PÁGINA
 
-y no como:
+con:
 
-IA
-↓
-HTML libre
-↓
-CSS libre
-↓
-Página
+DISEÑO
 
-La primera arquitectura es más controlable, escalable y mantenible.
+ni:
+
+BLOQUE LÓGICO
+
+con:
+
+IMPLEMENTACIÓN VISUAL
+
+Esta separación es la que permite escalar y cambiar de tema en el futuro.
 
 ---
 
-61. ESTADO DEL DOCUMENTO
+63. ESTADO
 
-Versión: 1.0
-
+Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
-Fecha: 2026-08-24
+Siguiente fase
 
-Implementación visual inicial: WordPress + Kadence
+ESPECIFICACIÓN DE PLANTILLAS
+↓
+MODELO DE RENDERIZADO WORDPRESS
+↓
+INTEGRACIÓN N8N ↔ WORDPRESS
+↓
+CONSTRUCCIÓN REAL DE BLOQUES
+↓
+PRIMERA LANDING
+↓
+PRUEBAS
 
-Siguiente fase: construcción y prueba de las primeras plantillas visuales en WordPress.
-
----
-
-FIN DE ESPECIFICACIÓN DE PLANTILLAS VISUALES
+FIN
