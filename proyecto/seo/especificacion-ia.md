@@ -80,6 +80,7 @@ Como mínimo:
 
 {
   "opportunity_id": "",
+  "sector": "",
   "servicio": "",
   "subservicio": null,
   "municipio": "",
@@ -103,6 +104,7 @@ Son la especificación que la IA debe respetar.
 La IA no puede modificar:
 
 - opportunity_id
+- sector
 - servicio
 - subservicio
 - municipio
@@ -275,6 +277,7 @@ No debe limitarse a sustituir el nombre del municipio dentro de un texto genéri
 
 La IA debe utilizar:
 
+- sector;
 - servicio;
 - subservicio cuando exista;
 - municipio;
