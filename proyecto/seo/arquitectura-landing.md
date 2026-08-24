@@ -1,57 +1,97 @@
-ARQUITECTURA DE LANDING / MINIWEB SEO LOCAL
+ARQUITECTURA DE LANDING SEO
 
-Versión: 3.0
+Versión: 4.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: definir la arquitectura funcional de una landing o miniweb SEO local después de que el Motor de Decisión haya autorizado su creación.
+Función: determinar la arquitectura óptima de páginas, URLs, navegación y bloques para cada oportunidad SEO local.
 
 ---
 
 1. FUNCIÓN
 
-Este documento define cómo transformar una oportunidad SEO aprobada en una arquitectura web concreta.
+Este documento define cómo transformar una oportunidad SEO previamente investigada y aprobada en una arquitectura web coherente.
 
-Determina:
+La arquitectura determina:
 
-- qué páginas forman parte del activo;
-- qué URL tiene cada página;
-- qué relación existe entre páginas;
-- qué página es principal;
-- qué páginas son subpáginas;
+- qué páginas pueden existir;
+- qué URLs pueden existir;
+- qué páginas dependen de otras;
 - qué profundidad tiene cada página;
-- qué páginas aparecen en la navegación;
-- qué bloques están autorizados en cada página;
-- qué enlaces internos pueden existir;
-- qué páginas deben omitirse.
+- qué intenciones cubre cada página;
+- qué subservicios merecen página propia;
+- qué páginas deben agruparse;
+- qué páginas deben descartarse;
+- qué bloques puede utilizar cada página;
+- cómo se relacionan las páginas entre sí;
+- cómo se construye la navegación.
 
-Este documento no decide si una oportunidad debe existir.
+La arquitectura no genera contenido.
 
-La decisión corresponde a:
+La arquitectura no publica páginas.
 
-"proyecto/seo/motor-decision.md"
+La arquitectura no inventa datos comerciales.
 
-La arquitectura tampoco genera contenido.
-
-El contenido será generado posteriormente por la IA mediante:
-
-"proyecto/seo/contrato-salida-ia.md"
+La arquitectura no decide libremente qué oportunidades existen.
 
 ---
 
-2. FLUJO OFICIAL
+2. CAMBIO FUNDAMENTAL DE LA VERSIÓN 4.0
+
+La versión 4.0 elimina cualquier número predeterminado de páginas.
+
+No existe:
+
+- número mínimo de páginas;
+- número máximo de páginas por defecto;
+- plantilla fija de 5 páginas;
+- plantilla fija de 3 subservicios;
+- estructura obligatoria de servicios;
+- obligación de crear una página de contacto;
+- obligación de crear una página de presupuesto.
+
+El número final de páginas será el resultado de la investigación y evaluación de las distintas intenciones.
+
+Una miniweb puede tener:
+
+- 1 página;
+- 2 páginas;
+- 5 páginas;
+- 8 páginas;
+- 12 páginas;
+- 20 páginas;
+
+o cualquier otro número que esté justificado.
+
+---
+
+3. NUEVO PRINCIPIO DE ARQUITECTURA
+
+El sistema utilizará una estrategia de:
+
+DESCUBRIMIENTO AMPLIO + PODA INTELIGENTE
+
+Flujo:
 
 INVESTIGACIÓN
 ↓
-MOTOR DE DECISIÓN
+DESCUBRIR INTENCIONES
 ↓
-DECISIÓN = CREAR
+DESCUBRIR SUBSERVICIOS
 ↓
-ARQUITECTURA SEO
+DESCUBRIR VARIANTES
 ↓
-ARQUITECTURA MINIWEB
+DESCUBRIR NECESIDADES
+↓
+DESCUBRIR POSIBLES PÁGINAS
+↓
+EVALUAR CADA OPORTUNIDAD
+↓
+AGRUPAR CUANDO PROCEDA
+↓
+DESCARTAR CUANDO PROCEDA
+↓
+ARQUITECTURA FINAL
 ↓
 SISTEMA DE BLOQUES
-↓
-MODELO DE DATOS
 ↓
 CONTRATO IA
 ↓
@@ -60,1264 +100,1038 @@ VALIDACIÓN
 N8N
 ↓
 WORDPRESS
-↓
-MINIWEB
+
+La arquitectura final debe ser el resultado de la poda de un universo inicial de posibilidades.
 
 ---
 
-3. PRINCIPIO FUNDAMENTAL
+4. REGLA DE DESCUBRIMIENTO AMPLIO
 
-Una oportunidad aprobada no implica que haya que crear muchas páginas.
+Durante la fase de investigación se deben descubrir tantas intenciones relevantes como sea razonablemente posible.
 
-La arquitectura debe crear el mínimo conjunto de páginas necesario para resolver las intenciones autorizadas.
+Pueden aparecer:
+
+- servicio principal;
+- subservicios;
+- variantes del servicio;
+- problemas;
+- necesidades;
+- urgencias;
+- servicios específicos;
+- servicios complementarios;
+- tipos de cliente;
+- contextos de uso;
+- búsquedas relacionadas;
+- intenciones transaccionales;
+- intenciones informativas con valor comercial;
+- páginas funcionales;
+- oportunidades locales específicas.
+
+El sistema no debe limitar artificialmente el descubrimiento para conseguir una web pequeña.
+
+---
+
+5. REGLA DE TODAS LAS POSIBILIDADES
+
+Cuando la investigación identifique posibles páginas relevantes, inicialmente deben entrar en el conjunto de candidatos.
+
+Ejemplo:
+
+FONTANERO + FUENGIROLA
+
+Puede descubrir:
+
+- fontanero;
+- desatascos;
+- desatascos urgentes;
+- fontanero urgente;
+- fontanero 24 horas;
+- fugas de agua;
+- reparación de fugas;
+- reparación de tuberías;
+- instalación de termos;
+- reparación de termos;
+- reparación de cisternas;
+- grifos;
+- sanitarios;
+- presupuestos;
+- contacto;
+- etc.
+
+El descubrimiento de estas posibilidades no significa que todas vayan a convertirse en URLs finales.
+
+Significa que todas deben poder ser evaluadas.
+
+---
+
+6. UNIVERSO DE CANDIDATOS
+
+La arquitectura debe distinguir entre:
+
+CANDIDATE_PAGES
+
+y:
+
+AUTHORIZED_PAGES
+
+CANDIDATE_PAGES:
+
+conjunto amplio de páginas potencialmente válidas detectadas durante la investigación.
+
+AUTHORIZED_PAGES:
+
+conjunto final de páginas que han superado la evaluación y pueden pasar a generación.
+
+Flujo:
+
+CANDIDATE_PAGES
+↓
+EVALUACIÓN
+↓
+AGRUPACIÓN
+↓
+DESCARTE
+↓
+AUTHORIZED_PAGES
+
+---
+
+7. NÚMERO DE PÁGINAS
+
+El número de páginas no debe fijarse antes de la investigación.
+
+Nunca debe existir una regla como:
+
+"crear exactamente 5 páginas".
+
+Tampoco:
+
+"crear siempre 3 subservicios".
+
+Tampoco:
+
+"crear siempre una página de contacto".
+
+Tampoco:
+
+"crear siempre una página de presupuesto".
+
+El sistema debe permitir que la investigación determine el tamaño real de la arquitectura.
+
+---
+
+8. EJEMPLO DE ARQUITECTURA PEQUEÑA
+
+Una localidad con poca oportunidad puede terminar en:
+
+/fontanero/pueblo/
+
+Una sola página puede ser suficiente si no existen intenciones independientes suficientemente fuertes.
+
+---
+
+9. EJEMPLO DE ARQUITECTURA MEDIA
+
+Otra localidad puede terminar en:
+
+/fontanero/ciudad/
+
+/fontanero/ciudad/desatascos/
+/fontanero/ciudad/fugas-de-agua/
+/fontanero/ciudad/24-horas/
+/fontanero/ciudad/termos/
+/fontanero/ciudad/contacto/
+
+---
+
+10. EJEMPLO DE ARQUITECTURA AMPLIA
+
+Una localidad con muchas oportunidades puede terminar en:
+
+/fontanero/ciudad/
+
+/fontanero/ciudad/desatascos/
+/fontanero/ciudad/desatascos-urgentes/
+/fontanero/ciudad/fontanero-urgente/
+/fontanero/ciudad/24-horas/
+/fontanero/ciudad/fugas-de-agua/
+/fontanero/ciudad/reparacion-de-tuberias/
+/fontanero/ciudad/reparacion-de-termos/
+/fontanero/ciudad/instalacion-de-termos/
+/fontanero/ciudad/reparacion-de-cisternas/
+/fontanero/ciudad/reparacion-de-grifos/
+/fontanero/ciudad/presupuesto/
+/fontanero/ciudad/contacto/
+
+Solo se mantendrán aquellas que superen la evaluación.
+
+---
+
+11. DESCUBRIMIENTO NO EQUIVALE A CREACIÓN
+
+La regla fundamental es:
+
+DESCUBRIR TODO LO RAZONABLE
+
+pero:
+
+CREAR SOLO LO JUSTIFICADO
 
 Por tanto:
 
-«La arquitectura no maximiza el número de URLs.»
+CANDIDATO ≠ URL AUTORIZADA
 
-Maximiza:
+y:
 
-- utilidad;
-- cobertura de intención;
-- diferenciación;
-- navegación;
-- coherencia;
-- capacidad comercial;
-- posibilidad de posicionamiento;
-- capacidad de alquiler del activo.
+URL AUTORIZADA ≠ PUBLICACIÓN AUTOMÁTICA
+
+La publicación requiere superar todas las capas posteriores.
 
 ---
 
-4. LANDING VS MINIWEB
+12. EVALUACIÓN DE CADA CANDIDATO
 
-El sistema permite dos tipos principales de activo:
+Cada candidato debe evaluarse individualmente.
 
-LANDING
-
-Una única página que resuelve una intención.
-
-Ejemplo:
-
-/fontanero/manilva/
-
-MINIWEB
-
-Conjunto pequeño y coherente de páginas relacionadas.
-
-Ejemplo:
-
-/fontanero/marbella/
-├── desatascos/
-├── 24-horas/
-└── contacto/
-
-Una miniweb no debe convertirse en un conjunto arbitrario de páginas.
-
-Cada subpágina debe tener una función.
-
----
-
-5. REGLA DE MÍNIMO VIABLE
-
-La arquitectura debe comenzar siempre con:
-
-PÁGINA PRINCIPAL
-
-Después debe preguntarse:
-
-«¿Existe alguna intención adicional suficientemente justificada para crear otra página?»
-
-Si la respuesta es no:
-
-MINIWEB = 1 PÁGINA
-
-Si existen intenciones adicionales válidas:
-
-MINIWEB = PÁGINA PRINCIPAL + SUBPÁGINAS JUSTIFICADAS
-
----
-
-6. PÁGINA PRINCIPAL
-
-La página principal representa la intención principal de la oportunidad.
-
-Ejemplo:
-
-/fontanero/marbella/
-
-Debe responder principalmente a:
-
-Fontanero en Marbella
-
-La página puede cubrir:
-
-- servicio principal;
-- necesidades principales;
-- contexto local;
-- cobertura;
-- proceso;
-- confianza;
-- servicios relacionados;
-- FAQ;
-- conversión.
-
-No debe convertirse en una página genérica que intente posicionar todas las intenciones secundarias.
-
----
-
-7. SUBPÁGINA
-
-Una subpágina solo puede crearse cuando exista una intención propia.
-
-Debe cumplir simultáneamente:
-
-- intención diferenciable;
-- utilidad para el usuario;
-- relevancia comercial;
-- información suficiente;
-- posibilidad de diferenciación;
-- coherencia con la arquitectura;
-- riesgo de duplicación aceptable.
-
-Ejemplo:
-
-/fontanero/marbella/desatascos/
-
-Tiene una intención distinta de:
-
-/fontanero/marbella/
-
-Por tanto puede justificarse como subpágina.
-
----
-
-8. REGLA DE NO CREACIÓN DE SUBPÁGINAS
-
-No crear una subpágina simplemente porque exista una combinación:
-
-servicio + localidad + keyword
-
-Tampoco crearla porque:
-
-- parezca interesante;
-- la IA pueda escribir contenido;
-- exista un sinónimo;
-- exista una variación gramatical;
-- queramos aumentar URLs;
-- queramos aumentar palabras;
-- queramos aumentar enlaces.
-
-La pregunta es:
-
-«¿El usuario tiene una intención suficientemente diferente que justifique otra página?»
-
-Si no:
-
-AGRUPAR
-
----
-
-9. EVALUACIÓN INDIVIDUAL DE CADA SUBPÁGINA
-
-Cada posible subpágina debe evaluarse antes de incorporarse a la arquitectura.
-
-Debe poder responderse:
-
-¿Qué busca el usuario?
-¿Qué problema quiere resolver?
-¿Por qué necesita una página específica?
-¿Qué información diferente necesita?
-¿Existe suficiente información?
-¿Existe potencial comercial?
-¿Podemos aportar valor?
-¿Podemos diferenciarla?
-
-Si las respuestas son débiles:
-
-NO CREAR SUBPÁGINA
-
----
-
-10. TIPOS DE PÁGINA AUTORIZADOS
-
-La arquitectura puede utilizar, entre otros, los siguientes tipos:
-
-service_locality
-subservice_locality
-service_variant
-problem_intent
-contact
-
-La lista puede ampliarse mediante versionado documental.
-
-La IA no puede inventar nuevos tipos.
-
----
-
-11. SERVICE_LOCALITY
-
-Representa el servicio principal asociado a una localidad.
-
-Ejemplo:
-
-/fontanero/marbella/
-
-Datos conceptuales:
-
-service = fontanero
-municipality = Marbella
-page_type = service_locality
-depth = 1
-
-Normalmente constituye la página principal de la miniweb.
-
----
-
-12. SUBSERVICE_LOCALITY
-
-Representa un subservicio con intención propia.
-
-Ejemplo:
-
-/fontanero/marbella/desatascos/
-
-Datos:
-
-service = fontanero
-subservice = desatascos
-municipality = Marbella
-page_type = subservice_locality
-depth = 2
-
-Debe existir evidencia suficiente para justificarla.
-
----
-
-13. SERVICE_VARIANT
-
-Representa una variante del servicio con intención diferenciada.
-
-Ejemplo:
-
-/fontanero/marbella/24-horas/
-
-Pero solo se autoriza cuando:
-
-- existe intención propia;
-- el servicio realmente existe;
-- la disponibilidad está respaldada;
-- la página aporta información específica.
-
-No se puede crear una página "24 horas" si no existe realmente ese servicio.
-
----
-
-14. PROBLEM_INTENT
-
-Puede utilizarse cuando una necesidad concreta tenga suficiente entidad para constituir una página independiente.
-
-Ejemplo conceptual:
-
-/fontanero/marbella/atasco-fregadero/
-
-Solo debe crearse cuando la intención y la información disponible lo justifiquen.
-
-No crear páginas para cada pequeño problema.
-
----
-
-15. CONTACT
-
-La página de contacto puede formar parte de la miniweb cuando resulte útil para:
-
-- conversión;
-- navegación;
-- confianza;
-- información comercial.
-
-Ejemplo:
-
-/fontanero/marbella/contacto/
-
-No necesita competir necesariamente por una keyword.
-
-Su función principal es facilitar el contacto.
-
----
-
-16. REGLA SOBRE CONTACTO
-
-La existencia de una página de contacto no debe interpretarse como una obligación SEO.
-
-Puede existir porque mejora el activo.
-
-Puede omitirse cuando:
-
-- no aporta utilidad;
-- no existe información de contacto válida;
-- la plantilla ya resuelve correctamente el contacto.
-
----
-
-17. ARQUITECTURA BASE DE UNA MINIWEB
-
-La arquitectura mínima posible es:
-
-/fontanero/marbella/
-
-Una arquitectura ampliada podría ser:
-
-/fontanero/marbella/
-├── desatascos/
-├── 24-horas/
-└── contacto/
-
-Otra podría ser:
-
-/fontanero/manilva/
-├── desatascos/
-└── contacto/
-
-La diferencia entre ambas debe proceder de la investigación.
-
----
-
-18. NO EXISTE UNA ESTRUCTURA FIJA
-
-No todas las localidades deben tener exactamente las mismas páginas.
-
-Esto es fundamental para evitar:
-
-MARBELLA
-↓
-copiar estructura
-↓
-MANILVA
-↓
-copiar estructura
-↓
-ESTEPONA
-↓
-copiar estructura
-
-La arquitectura debe adaptarse a cada oportunidad.
-
----
-
-19. EJEMPLO
-
-Marbella podría justificar:
-
-/fontanero/marbella/
-/fontanero/marbella/desatascos/
-/fontanero/marbella/24-horas/
-/fontanero/marbella/contacto/
-
-Mientras que Manilva podría justificar:
-
-/fontanero/manilva/
-/fontanero/manilva/desatascos/
-/fontanero/manilva/contacto/
-
-Y otra localidad podría justificar solamente:
-
-/fontanero/localidad/
-
-Esto es correcto.
-
----
-
-20. REGLA DE DIFERENCIACIÓN
-
-Dos arquitecturas no tienen que ser iguales.
-
-Incluso si utilizan el mismo servicio y sector.
-
-La arquitectura puede cambiar según:
+Como mínimo:
 
 - intención;
 - demanda;
-- competencia;
-- SERP;
-- subservicios;
-- necesidades;
-- información local;
 - potencial comercial;
-- diferenciación.
+- relevancia local;
+- competencia;
+- calidad SERP;
+- fortaleza de competidores;
+- diferenciación;
+- información disponible;
+- riesgo de duplicación;
+- utilidad para el usuario;
+- relación con otras páginas;
+- posibilidad de agrupación;
+- coste/complejidad;
+- coherencia con el modelo de negocio.
 
 ---
 
-21. PROFUNDIDAD
+13. RESULTADOS DE LA EVALUACIÓN
 
-Cada página debe tener una profundidad definida.
+Cada candidato puede terminar como:
+
+KEEP
+
+GROUP
+
+DROP
+
+RESEARCH
+
+KEEP:
+
+se mantiene como página independiente.
+
+GROUP:
+
+se agrupa con otra intención en una página existente.
+
+DROP:
+
+se descarta.
+
+RESEARCH:
+
+requiere más investigación antes de decidir.
+
+---
+
+14. REGLA DE AGRUPACIÓN
+
+No todas las keywords o variaciones necesitan páginas independientes.
 
 Ejemplo:
+
+- fontanero Fuengirola;
+- fontaneros Fuengirola;
+- fontanería Fuengirola;
+- servicio de fontanería Fuengirola.
+
+Si representan la misma intención:
+
+se agrupan.
+
+Una página puede cubrir todas esas variantes.
+
+---
+
+15. REGLA DE NO AGRUPAR INTENCIONES DIFERENTES
+
+No se deben agrupar automáticamente dos búsquedas diferentes.
+
+Ejemplo:
+
+"fontanero Fuengirola"
+
+y:
+
+"desatascos Fuengirola"
+
+pueden requerir páginas diferentes si la investigación demuestra intenciones distintas.
+
+La decisión debe basarse en la intención real, no solamente en similitud lingüística.
+
+---
+
+16. REGLA DE SUBSERVICIOS
+
+Todo subservicio relevante descubierto durante la investigación debe entrar inicialmente en el conjunto de candidatos.
+
+Ejemplo:
+
+FONTANERO
+
+Puede producir candidatos como:
+
+- desatascos;
+- fugas;
+- termos;
+- tuberías;
+- cisternas;
+- grifos;
+- sanitarios;
+- instalaciones;
+- reparaciones.
+
+Posteriormente se evaluará cada uno.
+
+---
+
+17. REGLA DE SUBSERVICIOS ESPECÍFICOS
+
+También deben poder descubrirse niveles adicionales.
+
+Ejemplo:
+
+/desatascos/
+    ↓
+/desatascos-urgentes/
+
+o:
+
+/termos/
+    ↓
+/reparacion-de-termos/
+/instalacion-de-termos/
+
+No existe un límite artificial de profundidad.
+
+La profundidad debe depender de:
+
+- intención;
+- arquitectura;
+- utilidad;
+- demanda;
+- diferenciación;
+- relación jerárquica.
+
+---
+
+18. REGLA DE PROFUNDIDAD
+
+La profundidad no se determina por una plantilla.
+
+Debe existir una relación lógica:
 
 Página principal
-depth = 1
+↓
+Servicio
+↓
+Subservicio
+↓
+Intención específica
 
-Subpágina
-depth = 2
+Solo se profundiza cuando existe una razón real.
 
-Se recomienda evitar estructuras innecesariamente profundas.
-
-Ejemplo no recomendado:
-
-/fontanero/marbella/servicios/desatascos/urgentes/24-horas/
-
-salvo que exista una justificación excepcional.
+No crear profundidad únicamente para aumentar URLs.
 
 ---
 
-22. PARENT_URL
+19. REGLA DE PÁGINAS FUNCIONALES
 
-Cada subpágina debe identificar su página padre.
-
-Ejemplo:
-
-{
-  "url": "/fontanero/marbella/desatascos/",
-  "parent_url": "/fontanero/marbella/"
-}
-
-Esto permite construir correctamente:
-
-- breadcrumbs;
-- navegación;
-- jerarquía;
-- enlazado interno.
-
----
-
-23. PAGE_ID
-
-Cada página debe tener un identificador estable.
-
-Ejemplo:
-
-FON-MARB-P01
-FON-MARB-P02
-FON-MARB-P03
-
-No deben reutilizarse IDs para páginas diferentes.
-
----
-
-24. URL
-
-Las URLs deben proceder exclusivamente de la arquitectura autorizada.
-
-Ejemplo:
-
-/fontanero/marbella/
-/fontanero/marbella/desatascos/
-/fontanero/marbella/contacto/
-
-No se permiten:
-
-- URLs improvisadas;
-- URLs creadas por la IA;
-- URLs creadas por N8N;
-- URLs creadas solamente por keywords.
-
----
-
-25. CANONICAL
-
-Cada página debe tener canonical definido.
-
-Por defecto:
-
-canonical = URL propia
-
-Ejemplo:
-
-URL:
-/fontanero/marbella/desatascos/
-
-Canonical:
-/fontanero/marbella/desatascos/
-
-La IA no puede modificar el canonical autorizado.
-
----
-
-26. NAVEGACIÓN GLOBAL
-
-La miniweb debe poder disponer de un menú coherente.
-
-Ejemplo:
-
-Inicio
-Desatascos
-24 horas
-Contacto
-
-Pero solo se muestran páginas autorizadas.
-
-No se debe llenar el menú con todas las URLs existentes del proyecto.
-
----
-
-27. MENÚ COMO ELEMENTO DE UX
-
-El menú no debe diseñarse únicamente para SEO.
-
-Debe responder:
-
-«¿Qué necesita encontrar rápidamente un usuario que entra en esta miniweb?»
-
-Por tanto:
-
-- pocos elementos;
-- claros;
-- útiles;
-- jerarquizados.
-
----
-
-28. FOOTER
-
-El footer puede incluir:
+Pueden existir páginas funcionales como:
 
 - contacto;
-- navegación;
-- servicios relevantes;
-- información legal;
-- localidades estratégicas.
+- presupuesto;
+- solicitud de servicio;
+- cita;
+- información comercial.
 
-No debe utilizarse para crear una red masiva de enlaces SEO.
+Pero no deben convertirse automáticamente en páginas SEO.
+
+Debe distinguirse entre:
+
+PÁGINA SEO
+
+y:
+
+PÁGINA FUNCIONAL
+
+Una página de presupuesto puede existir por conversión aunque no tenga una intención SEO independiente.
 
 ---
 
-29. ENLAZADO INTERNO
+20. CONTACTO
 
-Las páginas de una miniweb deben estar conectadas de forma lógica.
+La página de contacto no debe ser obligatoria por sistema.
+
+Puede crearse cuando:
+
+- mejora la experiencia;
+- forma parte de la arquitectura;
+- existe información suficiente;
+- es útil para la conversión;
+- el modelo de negocio lo requiere.
+
+No debe existir simplemente para completar un número predeterminado de páginas.
+
+---
+
+21. PRESUPUESTO
+
+La página:
+
+/presupuesto/
+
+solo se crea cuando:
+
+- existe una función comercial real;
+- aporta valor;
+- existe una razón para separarla;
+- la arquitectura la contempla.
+
+Si únicamente necesitamos un botón:
+
+"Solicitar presupuesto"
+
+no es necesario crear una página SEO independiente.
+
+---
+
+22. REGLA DE BLOQUES
+
+La arquitectura debe comenzar con un conjunto amplio de bloques candidatos.
+
+La IA y el sistema de bloques no deben estar condicionados a utilizar únicamente 5 o 6 bloques.
+
+Para cada página se pueden considerar todos los bloques autorizados:
+
+B01–B23.
+
+Después se evalúa cuáles deben mantenerse.
+
+---
+
+23. DESCUBRIMIENTO AMPLIO DE BLOQUES
+
+Por defecto, una página debe poder considerar todos los bloques compatibles con su tipo.
 
 Ejemplo:
 
-Principal
-   ↓
-Desatascos
-   ↓
-Contacto
-
-Y:
-
-Principal → 24 horas
-Desatascos → Principal
-24 horas → Principal
-
-Los enlaces deben existir por utilidad.
-
----
-
-30. REGLA DE ENLACES
-
-Un enlace interno debe responder:
-
-«¿Por qué este enlace ayuda al usuario?»
-
-Si la respuesta es:
-
-"porque queremos pasar autoridad"
-
-no es suficiente como justificación única.
-
----
-
-31. BLOQUES POR PÁGINA
-
-Cada página debe tener una lista de bloques autorizados.
-
-Ejemplo:
-
-{
-  "page_id": "FON-MARB-P01",
-  "authorized_blocks": [
-    "B01",
-    "B02",
-    "B03",
-    "B04",
-    "B08",
-    "B09",
-    "B10",
-    "B11",
-    "B12",
-    "B13",
-    "B14",
-    "B05",
-    "B06"
-  ]
-}
-
-La selección final de bloques se realizará según:
-
-"proyecto/seo/sistema-bloques.md"
-
----
-
-32. BLOQUES DE SUBPÁGINAS
-
-Una subpágina no debe recibir automáticamente todos los bloques de la principal.
-
-Ejemplo:
-
-Desatascos podría utilizar:
-
-B03
-B04
-B07
-B08
-B11
-B12
-B14
-B05
-
-Contacto podría utilizar:
-
+B01
+B02
 B03
 B04
 B05
 B06
+B07
+B08
+B09
+B10
+B11
+B12
+B13
+B14
+B15
+B16
+B17
+B18
+B19
+B20
+B21
+B22
+B23
 
-La estructura depende de la intención.
+Esto es un conjunto de candidatos, no una obligación de publicar los 23.
 
 ---
 
-33. REGLA DE OMISIÓN
+24. PODA DE BLOQUES
 
-Una página puede tener menos bloques que otra.
+Cada bloque debe evaluarse.
 
-Esto es correcto.
+Se conserva cuando:
 
-No se debe añadir contenido únicamente para igualar el número de bloques.
+- aporta valor;
+- existen datos;
+- corresponde a la intención;
+- mejora la experiencia;
+- existe información suficiente;
+- no genera contenido artificial.
+
+Se descarta cuando:
+
+- no aporta valor;
+- no existen datos;
+- obligaría a inventar;
+- produce contenido repetitivo;
+- no corresponde a la página;
+- no es necesario.
 
 ---
 
-34. MINIWEB Y DIFERENCIACIÓN
+25. REGLA DE BLOQUES POR DEFECTO
 
-La miniweb debe funcionar como un sistema.
+El sistema no debe comenzar preguntando:
 
-Cada página tiene una función distinta.
+"¿Qué pocos bloques necesitamos?"
+
+Debe comenzar preguntando:
+
+"¿Qué bloques podrían aportar valor a esta página?"
+
+Después:
+
+"¿Cuáles deben eliminarse?"
+
+La secuencia será:
+
+TODOS LOS BLOQUES COMPATIBLES
+↓
+EVALUACIÓN
+↓
+DESCARTE
+↓
+BLOQUES FINALES
+
+---
+
+26. DIFERENCIACIÓN ENTRE PÁGINAS
+
+Dos páginas pueden comenzar con los mismos bloques candidatos.
+
+Pero después de la evaluación pueden terminar con estructuras diferentes.
 
 Ejemplo:
 
-INICIO
-↓
-intención general
+Home:
 
-DESATASCOS
-↓
-intención específica
+B03 + B04 + B09 + B10 + B11 + B12 + B13 + B14 + B05
 
-24 HORAS
-↓
-intención urgente
+Desatascos:
 
-CONTACTO
-↓
-conversión
+B03 + B04 + B07 + B08 + B11 + B13 + B14 + B05
 
-No:
+Presupuesto:
 
-INICIO
-↓
-misma información
+B03 + B04 + B05
 
-DESATASCOS
-↓
-misma información
+Contacto:
 
-24 HORAS
-↓
-misma información
+B03 + B04 + B05
 
-CONTACTO
-↓
-misma información
+No existe obligación de que todas las páginas tengan la misma cantidad de bloques.
 
 ---
 
-35. REGLA DE CONTENIDO COMPARTIDO
+27. REGLA DE NO RELLENO
 
-Puede compartirse información global cuando sea necesario.
+La estrategia de descubrimiento amplio no autoriza el relleno.
 
-Ejemplos:
+No se debe crear un bloque simplemente porque está disponible.
 
-- marca;
-- navegación;
-- datos de contacto;
-- footer;
-- información legal.
+No se debe crear una página simplemente porque puede crearse.
 
-Pero el contenido principal debe responder a la intención específica de cada página.
+No se debe crear una URL simplemente porque existe una keyword.
+
+No se debe crear contenido simplemente porque existe un hueco.
 
 ---
 
-36. REGLA DE INFORMACIÓN LOCAL
+28. REGLA DE CALIDAD
 
-La información local debe utilizarse cuando realmente aporte valor.
+La arquitectura óptima no es:
 
-Puede variar entre localidades:
+"la que tiene más páginas".
 
-Marbella
-Manilva
-Estepona
-Málaga
+Tampoco es:
 
-No se debe crear automáticamente un bloque B09 para cada municipio.
+"la que tiene menos páginas".
 
----
+Es:
 
-37. REGLA DE COBERTURA
-
-Una página de cobertura solo debe existir o mostrar zonas cuando existan datos reales.
-
-No crear:
-
-Todos los barrios de Marbella
-
-si no existe evidencia de que el servicio los atienda.
+la que cubre el mayor número de intenciones relevantes con el menor nivel posible de duplicación y contenido artificial.
 
 ---
 
-38. REGLA DE SERVICIOS
+29. OBJETIVO DE COBERTURA
 
-Los servicios relacionados pueden formar parte de la navegación cuando estén autorizados.
+El sistema debe intentar maximizar:
 
-Ejemplo:
+COBERTURA DE INTENCIONES ÚTILES
 
-Fontanero
-Desatascos
-Fontanero 24 horas
+y minimizar:
 
-Pero cada servicio adicional debe tener justificación propia si se convierte en página.
-
----
-
-39. REGLA DE ESCALABILIDAD
-
-El sistema está diseñado para poder generar muchas miniwebs.
-
-Pero:
-
-ESCALABILIDAD ≠ CLONACIÓN
-
-La estructura técnica puede repetirse.
-
-La arquitectura funcional debe adaptarse a cada oportunidad.
+- duplicación;
+- thin content;
+- páginas innecesarias;
+- canibalización;
+- URLs artificiales;
+- contenido inventado.
 
 ---
 
-40. REGLA DE COMPETENCIA
+30. MODELO DE PODA
 
-La arquitectura debe considerar la competencia detectada por el Motor de Decisión.
+Conceptualmente:
 
-Si la página principal es muy competitiva pero existe una intención secundaria abordable:
+UNIVERSO DE OPORTUNIDADES
+        ↓
+CANDIDATOS
+        ↓
+┌───────────────────────────┐
+│ Evaluación individual     │
+├───────────────────────────┤
+│ KEEP                      │
+│ GROUP                     │
+│ RESEARCH                  │
+│ DROP                      │
+└───────────────────────────┘
+        ↓
+ARQUITECTURA FINAL
 
-puede ser razonable construir:
+---
 
-principal
+31. REGLA CONTRA EL MOLDE DE CINCO PÁGINAS
+
+Queda expresamente prohibido utilizar como patrón:
+
+HOME
 +
-subpágina específica
+3 SERVICIOS
++
+CONTACTO
 
-Pero nunca se debe crear una subpágina únicamente para intentar esquivar la competencia.
+como arquitectura predeterminada.
 
-Debe existir una intención real.
+Este patrón puede aparecer como resultado de una investigación.
+
+Pero nunca puede ser impuesto por el sistema.
 
 ---
 
-41. REGLA DE MINIWEB COMPETITIVA
+32. REGLA CONTRA EL MOLDE DE TRES SERVICIOS
 
-Una miniweb competitiva no significa tener muchas páginas.
+No existe una cantidad predeterminada de servicios.
+
+Puede haber:
+
+- 0;
+- 1;
+- 2;
+- 3;
+- 5;
+- 8;
+- 15;
+
+según las oportunidades descubiertas y validadas.
+
+---
+
+33. REGLA CONTRA EL MOLDE DE CONTACTO
+
+Contacto no es una página obligatoria.
+
+Puede existir:
+
+CTA → formulario
+
+sin:
+
+/contacto/
+
+O puede existir una página de contacto cuando aporte valor.
+
+---
+
+34. REGLA CONTRA EL MOLDE DE PRESUPUESTO
+
+Presupuesto no es una página obligatoria.
 
 Puede ser:
 
-1 página excelente
+CTA → formulario
 
 o:
 
-1 página principal
-+
-2 subpáginas excelentes
+CTA → WhatsApp
 
 o:
 
-1 página principal
-+
-4 subpáginas útiles
+/presupuesto/
 
-La cantidad dependerá de la oportunidad.
+según la arquitectura.
 
 ---
 
-42. REGLA DE CALIDAD
+35. REGLA DE LOCALIDAD
 
-Antes de autorizar una página debe poder responderse:
+Cada localidad debe tener una arquitectura propia.
 
-«¿Esta página mejora el activo?»
+No se debe copiar automáticamente:
 
-Si la respuesta es no:
+Fuengirola
+↓
+misma arquitectura que Marbella
 
-NO CREAR
+La investigación de Fuengirola determina su arquitectura.
 
----
+La investigación de Marbella determina otra.
 
-43. ESTRUCTURA DE DATOS
+La investigación de Casares determina otra.
 
-Cada página debe poder representarse conceptualmente como:
-
-{
-  "page_id": "",
-  "page_type": "",
-  "url": "",
-  "canonical": "",
-  "parent_url": null,
-  "depth": 1,
-  "identity": {},
-  "seo": {},
-  "authorized_blocks": [],
-  "blocks": [],
-  "internal_links": []
-}
+La arquitectura puede coincidir parcialmente, pero no se presupone que sea idéntica.
 
 ---
 
-44. ESTRUCTURA DE LA MINIWEB
+36. REGLA DE ESCALABILIDAD
 
-La arquitectura completa debe poder representarse como:
-
-{
-  "site_type": "local_service_site",
-  "root_url": "/fontanero/marbella/",
-  "pages": []
-}
-
----
-
-45. EJEMPLO COMPLETO
-
-SITE
-│
-├── P01
-│   └── /fontanero/marbella/
-│
-├── P02
-│   └── /fontanero/marbella/desatascos/
-│
-├── P03
-│   └── /fontanero/marbella/24-horas/
-│
-└── P04
-    └── /fontanero/marbella/contacto/
-
-Relaciones:
-
-P01
-├── P02
-├── P03
-└── P04
-
----
-
-46. EJEMPLO MANILVA
-
-Después de analizar una oportunidad como:
-
-Fontanero + Manilva
-
-podría determinarse:
-
-P01
-/fontanero/manilva/
-
-P02
-/fontanero/manilva/desatascos/
-
-P03
-/fontanero/manilva/contacto/
-
-Si la investigación no justifica una página "24 horas":
-
-no se crea.
-
-Esto es correcto aunque Marbella sí tenga una página equivalente.
-
----
-
-47. EJEMPLO MARBELLA
-
-Para:
-
-Fontanero + Marbella
-
-podría determinarse:
-
-P01
-/fontanero/marbella/
-
-P02
-/fontanero/marbella/desatascos/
-
-P03
-/fontanero/marbella/24-horas/
-
-P04
-/fontanero/marbella/contacto/
-
-Pero únicamente si cada página supera la evaluación correspondiente.
-
-La arquitectura no debe asumir automáticamente que estas cuatro páginas son válidas.
-
----
-
-48. PÁGINAS AUTORIZADAS
-
-La arquitectura debe generar explícitamente:
-
-authorized_pages[]
+El sistema debe poder procesar miles de localidades sin imponer una arquitectura uniforme.
 
 Ejemplo:
 
-{
-  "authorized_pages": [
-    {
-      "page_id": "FON-MARB-P01",
-      "url": "/fontanero/marbella/",
-      "page_type": "service_locality",
-      "parent_url": null,
-      "depth": 1
-    },
-    {
-      "page_id": "FON-MARB-P02",
-      "url": "/fontanero/marbella/desatascos/",
-      "page_type": "subservice_locality",
-      "parent_url": "/fontanero/marbella/",
-      "depth": 2
-    }
-  ]
-}
+Pueblo A → 1 página
+Pueblo B → 4 páginas
+Pueblo C → 9 páginas
+Ciudad D → 18 páginas
+Ciudad E → 27 páginas
 
-La IA solo podrá trabajar con estas páginas.
+Todos son resultados válidos.
 
 ---
 
-49. ESTADO DE LAS PÁGINAS
+37. REGLA DE APRENDIZAJE
 
-Cada página puede tener:
+Cuando una localidad demuestre que determinados tipos de páginas:
 
-AUTHORIZED
-REVIEW
-OMITTED
+- funcionan;
+- no aportan;
+- generan duplicación;
+- tienen buena demanda;
+- tienen mala competencia;
 
-AUTHORIZED
+esa información puede utilizarse para mejorar futuras investigaciones.
 
-Puede pasar a generación.
-
-REVIEW
-
-Existe una duda que debe resolverse antes de generar.
-
-OMITTED
-
-La oportunidad fue analizada pero no justifica una página independiente.
+Pero nunca debe convertirse automáticamente en una regla rígida.
 
 ---
 
-50. REGLA DE SEGURIDAD
+38. RELACIÓN CON MOTOR DE DECISIÓN
 
-Si existe una contradicción entre:
+El motor de decisión determina si existe una oportunidad.
 
-- motor;
-- arquitectura;
-- datos;
-- bloques;
+La arquitectura amplía el análisis para determinar:
 
-debe prevalecer la capa superior.
+qué páginas podrían cubrir esa oportunidad.
 
-Orden:
+Flujo:
 
 MOTOR
 ↓
-ARQUITECTURA
+CREAR
 ↓
-DATOS
+DESCUBRIMIENTO AMPLIO
 ↓
-BLOQUES
+CANDIDATOS
 ↓
-IA
-
-La IA nunca puede resolver unilateralmente una contradicción modificando la arquitectura.
+EVALUACIÓN
+↓
+PODA
+↓
+ARQUITECTURA FINAL
 
 ---
 
-51. RELACIÓN CON EL CONTRATO IA
+39. RELACIÓN CON SISTEMA DE BLOQUES
 
-La arquitectura proporciona al contrato IA:
+El sistema de bloques define qué bloques existen.
+
+La arquitectura determina qué bloques son candidatos para cada página.
+
+Después se realiza la poda.
+
+Flujo:
+
+B01–B23
+↓
+BLOQUES COMPATIBLES
+↓
+EVALUACIÓN
+↓
+BLOQUES FINALES
+
+---
+
+40. RELACIÓN CON CONTRATO IA
+
+La IA recibe únicamente:
 
 - páginas autorizadas;
-- IDs;
-- URLs;
-- canonicals;
-- parent_url;
-- depth;
-- tipos de página;
+- URLs autorizadas;
 - bloques autorizados;
-- relaciones.
+- datos disponibles;
+- restricciones.
 
-La IA proporciona:
+La IA no puede volver a ampliar la arquitectura.
 
-- contenido;
-- datos de bloques;
-- SEO;
-- navegación concreta dentro de los límites;
-- enlaces internos autorizados.
+La ampliación ocurre antes de la IA.
 
 ---
 
-52. RELACIÓN CON N8N
+41. RELACIÓN CON N8N
 
-N8N debe recibir una arquitectura ya validada.
+N8N procesa únicamente la arquitectura final autorizada.
 
-Debe utilizarla para:
+No debe crear páginas adicionales.
+
+No debe interpretar keywords para crear URLs.
+
+No debe añadir subservicios por iniciativa propia.
+
+Su función es ejecutar la arquitectura aprobada.
+
+---
+
+42. RELACIÓN CON WORDPRESS
+
+WordPress recibe la arquitectura final y los datos correspondientes.
+
+Debe poder:
 
 - crear páginas;
 - actualizar páginas;
-- mantener URLs;
-- construir relaciones;
-- construir menús;
-- evitar duplicados.
+- crear relaciones;
+- construir navegación;
+- renderizar bloques;
+- activar/desactivar elementos comerciales.
 
-N8N no debe crear páginas que no estén en:
-
-authorized_pages[]
+No decide qué URLs existen.
 
 ---
 
-53. IDEMPOTENCIA
+43. PREALQUILER
 
-Cada página debe tener un identificador estable.
+Una web puede construirse antes de disponer de cliente.
 
-Ejemplo:
+En ese caso:
 
-FON-MARB-P01
+SITE_STATUS = PREALQUILER
 
-Si N8N procesa nuevamente la misma arquitectura:
+La arquitectura SEO puede estar completamente construida.
 
-PÁGINA EXISTE
-↓
-ACTUALIZAR
+Los datos comerciales inexistentes deben permanecer:
 
-Si no existe:
+null
 
-CREAR
+o:
 
-Nunca:
+unconfigured
 
-CREAR DUPLICADO
+No se deben inventar datos empresariales.
 
 ---
 
-54. VALIDACIÓN
+44. CAPA SEO Y CAPA NEGOCIO
 
-Antes de pasar la arquitectura al contrato IA se debe comprobar:
+La arquitectura debe distinguir:
 
-- decisión = CREAR;
-- site_type válido;
-- root_url válida;
-- páginas autorizadas;
-- page_id único;
-- URLs únicas;
-- canonical válido;
-- parent_url válido;
-- depth coherente;
-- page_type válido;
-- bloques autorizados;
-- enlaces autorizados;
-- ausencia de páginas innecesarias;
-- ausencia de duplicación evidente.
+CAPA SEO
 
-Si falla una condición crítica:
-
-REVIEW
-
----
-
-55. PRINCIPIO DE NO INVENCIÓN
-
-La arquitectura nunca debe inventar:
-
-- servicios;
-- subservicios;
-- cobertura;
-- páginas;
-- URLs;
-- empresas;
-- profesionales;
-- teléfonos;
-- precios;
-- horarios;
-- datos comerciales.
-
-La arquitectura trabaja con oportunidades y evidencias ya investigadas.
-
----
-
-56. PRINCIPIO DE APRENDIZAJE
-
-La arquitectura debe poder evolucionar cuando las pruebas reales demuestren que una estructura:
-
-- no aporta valor;
-- genera contenido repetitivo;
-- dificulta la conversión;
-- no responde a la intención;
-- produce miniwebs demasiado grandes;
-- produce miniwebs demasiado pobres;
-- genera problemas técnicos.
-
-Cuando se detecte:
-
-1. registrar el caso;
-2. analizarlo;
-3. modificar la regla;
-4. aumentar versión;
-5. repetir las pruebas afectadas.
-
----
-
-57. PRINCIPIO DE NEGOCIO
-
-La arquitectura debe tener en cuenta que el producto final no es únicamente una página SEO.
-
-El activo puede convertirse en:
-
-- landing alquilable;
-- miniweb alquilable;
-- fuente de leads;
-- activo digital;
-- página comercial para un profesional.
-
-Por tanto, una arquitectura útil debe permitir:
-
-SEO
-+
-UX
-+
-CONVERSIÓN
-+
-ALQUILER
-
-sin sacrificar la calidad SEO.
-
----
-
-58. REGLA DE MINIWEB ALQUILABLE
-
-Una miniweb destinada potencialmente a alquiler debe parecer y funcionar como un activo web real.
-
-Debe poder disponer de:
-
+- servicio;
+- localidad;
+- intención;
+- subservicio;
+- información útil;
 - navegación;
-- página principal;
-- páginas de servicios relevantes;
-- contacto;
-- estructura coherente;
-- enlazado interno;
-- identidad visual;
-- CTA.
+- FAQ;
+- contenido local respaldado.
 
-No debe parecer:
+CAPA NEGOCIO
 
-una colección de páginas SEO independientes.
+- empresa;
+- logo;
+- teléfono;
+- WhatsApp;
+- email;
+- horarios;
+- precios;
+- cobertura;
+- reseñas;
+- testimonios;
+- imágenes propias;
+- certificaciones;
+- garantías.
 
-Debe parecer:
-
-un pequeño sitio profesional especializado.
+La capa negocio puede estar vacía durante el prealquiler.
 
 ---
 
-59. SEPARACIÓN ENTRE SEO Y PRODUCTO
+45. REGLA DE PREALQUILER
 
-Una página puede existir por SEO.
+La ausencia de datos comerciales no debe impedir construir una arquitectura SEO válida.
 
-Pero la miniweb debe además funcionar como producto.
+Pero sí debe impedir afirmar datos comerciales inexistentes.
+
+Ejemplo válido:
+
+/fontanero/fuengirola/desatascos/
+
+Ejemplo no válido:
+
+"Desatascos realizados por Empresa X desde 2008"
+
+si todavía no existe Empresa X.
+
+---
+
+46. VALIDACIÓN DE ARQUITECTURA
+
+Antes de pasar a IA deben comprobarse:
+
+- URLs únicas;
+- intención definida;
+- ausencia de duplicación innecesaria;
+- parent_url correcto;
+- profundidad correcta;
+- páginas agrupadas correctamente;
+- candidatos descartados correctamente;
+- páginas funcionales diferenciadas de páginas SEO;
+- bloques compatibles;
+- navegación coherente;
+- ausencia de páginas creadas por plantilla;
+- ausencia de número predeterminado de páginas.
+
+---
+
+47. CRITERIO DE FINALIZACIÓN
+
+La arquitectura está terminada cuando:
+
+no existen candidatos relevantes sin evaluar
+
+y:
+
+no existen páginas autorizadas cuya existencia no esté justificada.
+
+No se considera terminada simplemente porque tenga cinco páginas.
+
+---
+
+48. EJEMPLO DE RESULTADO VARIABLE
+
+Para una oportunidad:
+
+FONTANERO + FUENGIROLA
+
+el sistema podría descubrir inicialmente:
+
+20 candidatos
+
+Después de evaluar:
+
+8 KEEP
+5 GROUP
+4 DROP
+3 RESEARCH
+
+Tras resolver la investigación:
+
+10 páginas autorizadas
+
+Otra localidad podría terminar con:
+
+3 páginas
+
+Y otra:
+
+15 páginas
+
+---
+
+49. PRINCIPIO DE OPTIMIZACIÓN
+
+La arquitectura debe buscar un equilibrio entre:
+
+COBERTURA
+
+y:
+
+CALIDAD
+
+No se debe maximizar simplemente el número de URLs.
+
+La función conceptual es:
+
+VALOR ARQUITECTÓNICO
+=
+COBERTURA DE INTENCIONES
++
+UTILIDAD
++
+DIFERENCIACIÓN
++
+POTENCIAL COMERCIAL
+-
+DUPLICACIÓN
+-
+THIN CONTENT
+-
+COMPLEJIDAD INNECESARIA
+
+---
+
+50. REGLA FINAL DE PODA
+
+El sistema parte de una visión amplia.
+
+Después elimina.
+
+Nunca debe partir de una web pequeña y añadir páginas únicamente porque falten.
 
 Por tanto:
 
-SEO
-↓
-determina oportunidades e intenciones
+MEJOR DESCUBRIR 20 POSIBILIDADES Y DESCARTAR 12
 
-ARQUITECTURA
-↓
-organiza el activo
+que:
 
-UX
-↓
-organiza la experiencia
-
-CONVERSIÓN
-↓
-facilita el contacto
-
-ALQUILER
-↓
-convierte el activo en producto comercial
+CREAR 5 PÁGINAS POR DEFECTO Y NO DESCUBRIR 15 OPORTUNIDADES REALES.
 
 ---
 
-60. PRINCIPIO FINAL
+51. PRINCIPIO FINAL
 
-El Motor de Decisión responde:
+La pregunta de la arquitectura no es:
 
-«¿Merece la pena construir?»
+"¿Cuántas páginas debemos crear?"
 
-La Arquitectura responde:
+Es:
 
-«¿Qué páginas necesita realmente este activo?»
+"¿Qué conjunto de páginas cubre de forma óptima las intenciones relevantes de esta oportunidad?"
 
-El Sistema de Bloques responde:
-
-«¿Qué componentes lógicos necesita cada página?»
-
-El Contrato IA responde:
-
-«¿Cómo devuelve la IA la información?»
-
-N8N responde:
-
-«¿Cómo se crea y sincroniza?»
-
-WordPress responde:
-
-«¿Cómo se renderiza?»
-
-La arquitectura debe impedir que:
-
-KEYWORD
-↓
-PÁGINAS MASIVAS
-↓
-CONTENIDO CLÓNICO
-
-sustituya a:
-
-INTENCIÓN
-↓
-EVIDENCIA
-↓
-ARQUITECTURA
-↓
-PÁGINAS ÚTILES
-↓
-MINIWEB COHERENTE
+El resultado puede tener cualquier tamaño.
 
 ---
 
-61. ESTADO DEL DOCUMENTO
+52. ESTADO DEL DOCUMENTO
 
-Versión: 3.0
+Versión: 4.0
 
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
@@ -1325,29 +1139,27 @@ Fecha: 2026-08-24
 
 Cambios principales:
 
-- adaptación completa de landing individual a miniweb;
-- incorporación formal de subpáginas;
-- evaluación individual de subpáginas;
-- arquitectura variable según oportunidad;
-- separación entre página principal y páginas secundarias;
-- incorporación de page_id;
-- incorporación de parent_url;
-- incorporación de depth;
-- incorporación de page_type;
-- incorporación de authorized_pages;
-- incorporación de estados de página;
-- refuerzo de navegación;
-- refuerzo de enlazado interno;
-- protección contra creación masiva de subpáginas;
-- adaptación a activos potencialmente alquilables;
-- separación entre SEO y producto;
-- refuerzo de diferenciación entre localidades;
-- integración con Sistema de Bloques;
-- integración con Contrato IA;
-- integración con N8N;
-- refuerzo de idempotencia;
-- refuerzo de validación.
+- eliminación del patrón predeterminado de cinco páginas;
+- eliminación del patrón predeterminado de tres subservicios;
+- eliminación de la obligatoriedad de contacto;
+- eliminación de la obligatoriedad de presupuesto;
+- incorporación de descubrimiento amplio;
+- incorporación de CANDIDATE_PAGES;
+- incorporación de AUTHORIZED_PAGES;
+- incorporación de KEEP / GROUP / DROP / RESEARCH;
+- incorporación de poda arquitectónica;
+- incorporación de descubrimiento amplio de subservicios;
+- incorporación de descubrimiento amplio de bloques;
+- separación entre descubrimiento y autorización;
+- arquitectura variable por localidad;
+- arquitectura variable por oportunidad;
+- separación entre páginas SEO y páginas funcionales;
+- incorporación formal del modelo PREALQUILER;
+- separación entre capa SEO y capa negocio;
+- refuerzo contra arquitecturas clónicas;
+- refuerzo contra generación masiva artificial;
+- mantenimiento de la diferenciación como criterio central.
 
 ---
 
-FIN DE ARQUITECTURA DE LANDING / MINIWEB SEO LOCAL
+FIN DE ARQUITECTURA DE LANDING SEO
