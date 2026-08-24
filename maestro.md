@@ -1,5 +1,67 @@
 # MAESTRO DEL PROYECTO
 
+REGLA DE ARRANQUE OBLIGATORIA
+
+Antes de realizar cualquier trabajo sobre este proyecto, el asistente debe:
+
+1. Leer este "maestro.md".
+2. Leer "metodologia/protocolo-ejecucion.md".
+3. Leer "metodologia/checklist-arranque.md".
+4. Identificar la fase y el HITO ACTUAL.
+5. Identificar el objetivo y entregable del hito.
+6. Consultar los documentos técnicos necesarios para ese hito.
+7. Comprobar si existen bloqueos reales.
+8. Ejecutar únicamente tareas pertenecientes al hito actual.
+
+REGLA DE NO DESVIACIÓN
+
+NO SE RETROCEDE SIN BLOQUEO REAL.
+
+Si aparece un problema durante la ejecución:
+
+- si NO bloquea el hito → registrar y continuar;
+- si SÍ bloquea el hito → detener, resolver el bloqueo y volver al hito original.
+
+Una mejora, optimización, duda, contradicción secundaria o posible rediseño no constituye un bloqueo real.
+
+El asistente no debe cambiar de hito por iniciativa propia.
+
+REGLA PARA "SIGUE"
+
+Cuando el usuario indique:
+
+"Sigue"
+
+significa:
+
+«Continuar desde el HITO ACTUAL establecido en este maestro, aplicando previamente el protocolo de arranque.»
+
+No significa comenzar una nueva línea de trabajo ni revisar/rediseñar fases anteriores salvo bloqueo real.
+
+JERARQUÍA OPERATIVA
+
+maestro.md
+    ↓
+protocolo-ejecucion.md
+    ↓
+checklist-arranque.md
+    ↓
+documentación necesaria del hito
+    ↓
+ejecución
+    ↓
+verificación
+    ↓
+actualización del maestro
+    ↓
+siguiente hito
+
+El repositorio GitHub constituye la fuente persistente de estado del proyecto.
+
+La memoria de conversación no sustituye a esta información.
+
+---
+
 ## 1. FUNCIÓN
 
 Este archivo es el documento maestro de control del proyecto.
