@@ -2,20 +2,13 @@ CONTRATO DE SALIDA IA → N8N
 
 Versión: 4.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: definir el contrato estructural que debe cumplir toda salida de IA destinada a N8N para generar y mantener páginas y miniwebs SEO locales.
+Función: definir el contrato estructural que debe cumplir toda salida de IA destinada a N8N para generar y mantener miniwebs SEO locales.
 
 ---
 
 1. FUNCIÓN
 
-Este documento define exactamente qué debe devolver la IA después de recibir:
-
-- una oportunidad previamente validada;
-- una decisión SEO autorizada;
-- una arquitectura autorizada;
-- un modelo de datos válido;
-- bloques autorizados;
-- relaciones de interlinking autorizadas.
+Este documento define exactamente qué debe devolver la IA después de recibir una oportunidad previamente validada, una arquitectura autorizada y las relaciones de interlinking permitidas.
 
 La salida debe ser:
 
@@ -29,46 +22,53 @@ La salida debe ser:
 - independiente del diseño visual;
 - capaz de representar una página individual;
 - capaz de representar una miniweb completa;
-- capaz de representar relaciones entre páginas;
-- capaz de representar interlinking entre localidades;
-- capaz de representar interlinking entre servicios;
-- capaz de representar interlinking entre pilares.
+- capaz de representar relaciones internas entre páginas autorizadas.
 
-La IA genera contenido y propone relaciones autorizadas.
+La IA genera contenido y estructura lógica.
 
-La IA no decide libremente qué páginas existen.
+La IA no decide libremente:
+
+- qué páginas existen;
+- qué URLs existen;
+- qué servicios deben crearse;
+- qué localidades deben crearse;
+- qué relaciones de interlinking existen.
+
+La arquitectura y el sistema de interlinking tienen autoridad sobre esas decisiones.
 
 ---
 
 2. PRINCIPIO FUNDAMENTAL
 
-La arquitectura tiene autoridad sobre las páginas.
+El contrato debe separar:
 
-El sistema de bloques tiene autoridad sobre los bloques.
+DECISIÓN
 
-El modelo de datos tiene autoridad sobre las entidades y relaciones.
+de:
 
-La IA tiene autoridad únicamente sobre la generación del contenido y sobre la propuesta de relaciones dentro de los límites recibidos.
+ARQUITECTURA
 
-N8N tiene autoridad sobre el procesamiento.
+de:
 
-WordPress tiene autoridad sobre el renderizado.
+CONTENIDO
 
----
+de:
 
-3. FLUJO OFICIAL
+INTERLINKING
+
+La IA no puede modificar una capa superior.
+
+Flujo:
 
 INVESTIGACIÓN
 ↓
 MOTOR DE DECISIÓN
 ↓
-DECISIÓN = CREAR
-↓
-ARQUITECTURA SEO
+ARQUITECTURA
 ↓
 MODELO DE DATOS
 ↓
-RELACIONES AUTORIZADAS
+INTERLINKING AUTORIZADO
 ↓
 BLOQUES AUTORIZADOS
 ↓
@@ -86,7 +86,7 @@ MINIWEB PUBLICADA
 
 ---
 
-4. FORMATO DE SALIDA
+3. FORMATO DE SALIDA
 
 La salida oficial es:
 
@@ -105,11 +105,13 @@ No se permite:
 - estructuras no definidas;
 - páginas no autorizadas;
 - URLs no autorizadas;
-- relaciones no autorizadas.
+- enlaces no autorizados.
+
+La respuesta debe poder ser procesada automáticamente por N8N.
 
 ---
 
-5. ESTRUCTURA PRINCIPAL
+4. ESTRUCTURA PRINCIPAL
 
 La estructura oficial es:
 
@@ -126,9 +128,7 @@ La estructura oficial es:
   "blocks": [],
   "images": [],
   "internal_links": [],
-  "territorial_relations": [],
-  "service_relations": [],
-  "pillar_relations": [],
+  "interlinking": {},
   "schema": {},
   "validation": {},
   "issues": {},
@@ -137,7 +137,7 @@ La estructura oficial es:
 
 ---
 
-6. SCHEMA VERSION
+5. SCHEMA VERSION
 
 Versión actual:
 
@@ -153,7 +153,7 @@ No se debe intentar interpretar una estructura desconocida.
 
 ---
 
-7. STATUS
+6. STATUS
 
 Valores permitidos:
 
@@ -177,19 +177,43 @@ La salida no puede procesarse correctamente.
 
 ---
 
-8. OPPORTUNITY_ID
+7. REGLA DE AUTORIDAD
 
-Debe conservar exactamente el identificador recibido.
+La IA recibe información protegida.
 
-Ejemplo:
+No puede modificarla.
 
-"opportunity_id": "FON-EST-001"
+Campos protegidos:
 
-La IA no puede modificarlo.
+- "opportunity_id"
+- "sector"
+- "service"
+- "subservice"
+- "municipality"
+- "province"
+- "country"
+- "decision_seo"
+- "site_type"
+- "page_type"
+- "url"
+- "canonical"
+- "parent_url"
+- "depth"
+- "authorized_pages"
+- "authorized_blocks"
+- "authorized_internal_links"
+- "restrictions"
+
+Si existe una contradicción:
+
+1. conservar el dato recibido;
+2. no sustituirlo;
+3. registrar la incidencia;
+4. establecer "REVIEW" cuando corresponda.
 
 ---
 
-9. SITE
+8. SITE
 
 El objeto "site" representa la miniweb completa.
 
@@ -197,21 +221,31 @@ Ejemplo:
 
 {
   "site": {
-    "site_id": "SITE-FON-EST-001",
     "type": "local_service_site",
-    "name": "Fontaneros en Estepona",
-    "root_url": "/fontaneros/estepona/",
+    "name": "Fontanero en Estepona",
+    "root_url": "/fontanero/estepona/",
     "page_count": 8
   }
 }
 
-El número de páginas debe coincidir con las páginas autorizadas y generadas.
+El número de páginas debe proceder de la arquitectura autorizada.
 
-La IA no puede inventar una arquitectura nueva.
+La IA no puede fijar por defecto un número determinado de páginas.
+
+No existe ninguna regla que establezca:
+
+- 5 páginas;
+- 3 servicios;
+- 1 contacto;
+- cualquier otro número fijo.
+
+La cantidad de páginas debe depender de la arquitectura autorizada.
 
 ---
 
-10. IDENTITY
+9. IDENTITY
+
+Representa la identidad común del sitio.
 
 {
   "identity": {
@@ -224,38 +258,74 @@ La IA no puede inventar una arquitectura nueva.
   }
 }
 
-Los campos protegidos deben coincidir exactamente con la entrada.
+Los valores deben coincidir con la entrada.
 
 La IA no puede cambiar:
 
-- sector;
-- servicio;
-- subservicio;
+- localidad;
 - municipio;
 - provincia;
-- país.
+- servicio;
+- sector.
 
 ---
 
-11. ARCHITECTURE
+10. ARCHITECTURE
 
 Representa la arquitectura previamente determinada.
 
 {
   "architecture": {
     "site_type": "local_service_site",
-    "root_url": "/fontaneros/estepona/",
+    "root_url": "/fontanero/estepona/",
     "authorized_pages": [],
     "authorized_blocks": [],
-    "authorized_relations": []
+    "authorized_internal_links": []
   }
 }
 
-La IA no decide libremente la arquitectura.
+La IA no decide la arquitectura.
+
+La arquitectura debe existir antes de la generación.
 
 ---
 
-12. AUTHORIZED_PAGES
+11. PÁGINAS
+
+El objeto "pages" representa todas las páginas autorizadas.
+
+No existe un número mínimo o máximo fijo de páginas.
+
+Ejemplo:
+
+{
+  "pages": [
+    {
+      "page_id": "FON-EST-P01",
+      "page_type": "service_locality",
+      "url": "/fontanero/estepona/",
+      "canonical": "/fontanero/estepona/",
+      "parent_url": null,
+      "depth": 1
+    },
+    {
+      "page_id": "FON-EST-P02",
+      "page_type": "subservice_locality",
+      "url": "/fontanero/estepona/desatascos/",
+      "canonical": "/fontanero/estepona/desatascos/",
+      "parent_url": "/fontanero/estepona/",
+      "depth": 2
+    }
+  ]
+}
+
+Cada página debe tener un identificador estable.
+
+Los identificadores no se reutilizan.
+
+---
+
+12. REGLA DE PÁGINAS AUTORIZADAS
 
 La IA solo puede generar páginas incluidas en:
 
@@ -264,16 +334,24 @@ La IA solo puede generar páginas incluidas en:
 No puede:
 
 - crear páginas adicionales;
-- crear URLs arbitrarias;
-- crear páginas por iniciativa propia;
+- crear URLs por iniciativa propia;
 - crear páginas únicamente porque exista una keyword;
-- ampliar el número de páginas durante la generación.
+- crear páginas únicamente para aumentar el número de URLs;
+- crear páginas que no estén justificadas por la arquitectura.
+
+Si una página no está autorizada:
+
+NO SE GENERA.
+
+La arquitectura puede contener inicialmente un conjunto amplio de posibilidades.
+
+El proceso de decisión podrá descartar posteriormente las páginas que no superen los criterios establecidos.
 
 ---
 
-13. PÁGINAS
+13. ESTRUCTURA DE UNA PÁGINA
 
-Cada elemento de "pages" debe contener:
+Cada elemento de "pages" puede contener:
 
 {
   "page_id": "",
@@ -290,121 +368,62 @@ Cada elemento de "pages" debe contener:
   "internal_links": []
 }
 
-Cada página debe tener un "page_id" estable.
+La página es una unidad independiente dentro del "SITE_PACKAGE".
 
 ---
 
-14. PAGE_ID
-
-El "page_id" debe proceder de la arquitectura.
-
-Ejemplo:
-
-FON-EST-P01
-FON-EST-P02
-FON-EST-P03
-
-La IA no debe reutilizar identificadores.
-
----
-
-15. URL
-
-La URL debe coincidir exactamente con la arquitectura autorizada.
-
-La IA no puede modificar:
-
-- slug;
-- estructura;
-- profundidad;
-- dominio lógico;
-- parent_url.
-
----
-
-16. CANONICAL
-
-El canonical debe coincidir exactamente con el canonical autorizado.
-
-Ejemplo:
-
-"canonical": "/fontaneros/estepona/desatascos/"
-
----
-
-17. PARENT_URL
-
-La relación jerárquica debe conservar la arquitectura.
-
-Ejemplo:
-
-{
-  "url": "/fontaneros/estepona/desatascos/",
-  "parent_url": "/fontaneros/estepona/",
-  "depth": 2
-}
-
----
-
-18. SEO DE CADA PÁGINA
+14. SEO DE CADA PÁGINA
 
 Cada página puede contener:
 
 {
   "seo": {
-    "primary_keyword": "",
-    "secondary_keywords": [],
     "title": "",
     "meta_description": "",
     "h1": ""
   }
 }
 
-El contenido debe corresponder con la intención concreta de la página.
+El contenido debe corresponder con la intención concreta de esa página.
+
+No se debe generar contenido prácticamente idéntico entre páginas.
 
 ---
 
-19. DIFERENCIACIÓN
+15. MENU
 
-Cada página debe responder a su propia intención.
+La salida debe permitir construir la navegación de la miniweb.
 
-No se permite crear páginas prácticamente idénticas cambiando únicamente:
-
-- municipio;
-- keyword;
-- H1;
-- título;
-- algunas frases.
-
-La diferenciación debe basarse en los datos disponibles y en la intención autorizada.
-
----
-
-20. MENU
-
-La navegación debe utilizar únicamente páginas autorizadas.
+Ejemplo:
 
 {
   "menu": {
     "items": [
       {
         "label": "Inicio",
-        "url": "/fontaneros/estepona/",
+        "url": "/fontanero/estepona/",
+        "type": "internal"
+      },
+      {
+        "label": "Desatascos",
+        "url": "/fontanero/estepona/desatascos/",
         "type": "internal"
       }
     ]
   }
 }
 
-No se pueden añadir URLs que no existan en "pages".
+Todas las URLs deben estar previamente autorizadas.
+
+La IA no puede inventar páginas para completar el menú.
 
 ---
 
-21. BLOQUES
+16. BLOQUES
 
-Los bloques deben corresponder al sistema oficial.
+Los bloques deben pertenecer a una página concreta.
 
-Formato:
+Ejemplo:
 
 {
   "page_id": "FON-EST-P01",
@@ -418,19 +437,15 @@ Formato:
   ]
 }
 
----
+Los identificadores deben corresponder exactamente con:
 
-22. BLOQUES AUTORIZADOS
+"proyecto/seo/sistema-bloques.md"
 
-La IA solo puede utilizar bloques incluidos en:
-
-"authorized_blocks"
-
-No puede inventar nuevos IDs.
+La IA no puede inventar nuevos IDs.
 
 ---
 
-23. MAPA OFICIAL DE BLOQUES
+17. MAPA OFICIAL DE BLOQUES
 
 ID| TYPE
 B01| header
@@ -457,9 +472,55 @@ B21| pricing
 B22| opening_hours
 B23| map
 
+El "type" debe corresponder exactamente al ID.
+
 ---
 
-24. BLOQUES OBLIGATORIOS
+18. BLOQUES POR PÁGINA
+
+Cada página debe indicar qué bloques está autorizada a utilizar.
+
+Ejemplo:
+
+{
+  "authorized_blocks": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "B09",
+    "B14",
+    "B05",
+    "B06"
+  ]
+}
+
+La IA solo puede utilizar esos bloques.
+
+No existe un número fijo de bloques por página.
+
+---
+
+19. REGLA DE BLOQUES
+
+La arquitectura puede autorizar inicialmente un conjunto amplio de bloques.
+
+La IA puede utilizar los bloques autorizados que tengan sentido para la intención y los datos disponibles.
+
+No debe rellenar bloques simplemente para aumentar la longitud.
+
+Un bloque autorizado pero innecesario puede permanecer:
+
+{
+  "enabled": false
+}
+
+o ser omitido cuando el contrato lo permita.
+
+---
+
+20. BLOQUES OBLIGATORIOS
 
 Cuando la arquitectura determine una página funcional, como mínimo debe poder representar:
 
@@ -473,9 +534,9 @@ No se debe inventar información para completar un bloque.
 
 ---
 
-25. BLOQUES CONDICIONALES
+21. BLOQUES CONDICIONALES
 
-Los bloques pueden omitirse cuando no exista información suficiente.
+Los bloques condicionales pueden omitirse cuando no exista información suficiente.
 
 Ejemplos:
 
@@ -496,19 +557,20 @@ Ejemplos:
 - B22;
 - B23.
 
+La omisión es válida.
+
 ---
 
-26. CONTENIDO
+22. CONTENIDO
 
 El contenido debe ser:
 
 - específico;
 - útil;
 - coherente con la intención;
-- basado en datos;
-- compatible con restricciones;
-- diferenciado;
-- verificable.
+- basado en los datos recibidos;
+- compatible con las restricciones;
+- diferente cuando la intención o los datos sean diferentes.
 
 No debe generarse contenido únicamente para aumentar:
 
@@ -520,7 +582,29 @@ No debe generarse contenido únicamente para aumentar:
 
 ---
 
-27. NO INVENCIÓN
+23. DIFERENCIACIÓN ENTRE PÁGINAS
+
+Las páginas de una misma miniweb pueden compartir:
+
+- header;
+- navegación;
+- footer;
+- estilo;
+- determinados bloques.
+
+Pero cada página debe responder a su propia intención.
+
+No deben convertirse todas las páginas en una misma landing cambiando solamente:
+
+- localidad;
+- H1;
+- título;
+- sinónimos;
+- algunas frases.
+
+---
+
+24. NO INVENCIÓN
 
 Está prohibido inventar:
 
@@ -541,22 +625,24 @@ Está prohibido inventar:
 - testimonios;
 - casos;
 - datos locales;
-- estadísticas;
 - imágenes;
 - URLs;
+- estadísticas;
 - datos comerciales.
 
 Cuando un dato no existe:
 
 "null"
 
-Si el dato es imprescindible:
+o:
 
 "REVIEW"
 
+si es imprescindible.
+
 ---
 
-28. CTA
+25. CTA
 
 La IA puede generar el texto del CTA.
 
@@ -571,9 +657,13 @@ Ejemplo:
 
 Los datos reales de contacto deben proceder del modelo de datos.
 
+Durante el piloto pueden utilizarse valores de prueba claramente identificados como datos ficticios.
+
+Nunca deben presentarse datos ficticios como datos reales.
+
 ---
 
-29. FAQ
+26. FAQ
 
 Formato:
 
@@ -599,11 +689,11 @@ Las preguntas deben proceder de:
 - conocimiento válido;
 - datos disponibles.
 
-No se generan únicamente para introducir keywords.
+No deben generarse únicamente para introducir keywords.
 
 ---
 
-30. INFORMACIÓN LOCAL
+27. INFORMACIÓN LOCAL
 
 Cuando exista B09, la información debe estar respaldada.
 
@@ -612,8 +702,8 @@ No se inventan:
 - barrios;
 - calles;
 - urbanizaciones;
-- necesidades;
 - características;
+- necesidades;
 - cobertura;
 - tiempos;
 - particularidades.
@@ -622,7 +712,7 @@ Repetir el nombre de una localidad no constituye información local.
 
 ---
 
-31. COBERTURA
+28. COBERTURA
 
 Cuando exista B10:
 
@@ -636,7 +726,7 @@ No se generan listas masivas artificiales.
 
 ---
 
-32. CONFIANZA
+29. CONFIANZA
 
 B12 solo puede utilizar señales verificables:
 
@@ -652,14 +742,247 @@ Nunca se inventan señales de confianza.
 
 ---
 
-33. IMÁGENES
+30. DIFERENCIACIÓN
+
+B13 solo puede utilizar información real que justifique la diferenciación.
+
+No es suficiente:
+
+- cambiar localidad;
+- cambiar sinónimos;
+- reordenar párrafos;
+- cambiar títulos;
+- generar texto diferente sin datos diferentes.
+
+---
+
+31. SERVICIOS RELACIONADOS
+
+B15 solo puede enlazar servicios existentes y autorizados.
+
+No se crean URLs nuevas desde la IA.
+
+---
+
+32. LOCALIDADES RELACIONADAS
+
+B16 solo puede utilizar localidades existentes y autorizadas en la arquitectura o en el sistema de interlinking.
+
+No se genera una red masiva de enlaces únicamente para SEO.
+
+---
+
+33. INTERLINKING
+
+El contrato incorpora un sistema explícito de interlinking.
+
+El interlinking debe distinguir entre:
+
+1. enlaces dentro de la misma miniweb;
+2. enlaces entre páginas de una misma localidad;
+3. enlaces entre localidades del mismo servicio;
+4. enlaces entre servicios diferentes;
+5. enlaces entre páginas relacionadas por intención.
+
+La IA puede materializar estos enlaces en el contenido únicamente cuando estén previamente autorizados.
+
+La IA no puede decidir libremente la red de enlaces.
+
+---
+
+34. AUTORIDAD DEL SISTEMA DE INTERLINKING
+
+Las relaciones válidas proceden de:
+
+"proyecto/seo/interlinking.md"
+
+y de las relaciones autorizadas en el modelo de datos.
+
+La IA recibe dichas relaciones como entrada.
+
+Ejemplo:
+
+{
+  "authorized_internal_links": [
+    {
+      "source_url": "/fontanero/estepona/",
+      "target_url": "/fontanero/san-pedro/",
+      "relation_type": "same_service_related_location"
+    }
+  ]
+}
+
+La IA no puede crear una relación que no aparezca en las relaciones autorizadas.
+
+---
+
+35. INTERLINKING ENTRE LOCALIDADES
+
+Puede existir enlazado entre páginas del mismo servicio en diferentes localidades.
+
+Ejemplo:
+
+/fontanero/estepona/
+/fontanero/san-pedro/
+/fontanero/casares/
+
+Una página puede enlazar a otra cuando el sistema haya autorizado la relación.
+
+No deben enlazarse todas las localidades con todas las demás automáticamente.
+
+El sistema debe controlar:
+
+- relevancia;
+- proximidad;
+- relación territorial;
+- prioridad;
+- número de enlaces;
+- riesgo de sobreoptimización.
+
+---
+
+36. INTERLINKING ENTRE SERVICIOS
+
+Puede existir enlazado entre diferentes pilares de servicios.
+
+Ejemplo:
+
+/fontanero/estepona/
+/carpintero/estepona/
+/pintor/estepona/
+
+Un enlace entre ellos puede existir si la relación está autorizada.
+
+La IA no debe crear enlaces arbitrarios simplemente porque los servicios pertenezcan a la misma web.
+
+Debe existir una relación lógica.
+
+---
+
+37. INTERLINKING ENTRE SUBSERVICIOS
+
+Los subservicios relacionados pueden enlazarse cuando estén autorizados.
+
+Ejemplo:
+
+/fontanero/estepona/
+/fontanero/estepona/desatascos/
+/fontanero/estepona/fugas-de-agua/
+
+Los enlaces deben respetar la arquitectura jerárquica.
+
+---
+
+38. ESTRUCTURA DE INTERNAL_LINKS
+
+Formato:
+
+{
+  "internal_links": [
+    {
+      "url": "/fontanero/san-pedro/",
+      "anchor": "Fontanero en San Pedro",
+      "target": "FON-SP-P01",
+      "reason": "same_service_related_location",
+      "relation_type": "same_service_related_location"
+    }
+  ]
+}
+
+Campos:
+
+- "url";
+- "anchor";
+- "target";
+- "reason";
+- "relation_type".
+
+El "target" debe corresponder a una página autorizada.
+
+---
+
+39. OBJETO INTERLINKING
+
+La salida puede contener:
+
+{
+  "interlinking": {
+    "enabled": true,
+    "links_generated": [],
+    "links_skipped": [],
+    "relations_used": []
+  }
+}
+
+Esto permite saber:
+
+- qué enlaces fueron generados;
+- qué enlaces fueron descartados;
+- qué relaciones fueron utilizadas.
+
+---
+
+40. ENLACES OMITIDOS
+
+Cuando exista una relación autorizada pero no tenga sentido colocarla en una página concreta, puede registrarse:
+
+{
+  "source_url": "/fontanero/estepona/",
+  "target_url": "/fontanero/casares/",
+  "reason": "no_contextual_placement",
+  "status": "SKIPPED"
+}
+
+No es obligatorio utilizar todas las relaciones autorizadas.
+
+La autorización significa que el enlace puede existir.
+
+No significa que deba aparecer siempre.
+
+---
+
+41. REGLA DE CALIDAD DEL INTERLINKING
+
+El objetivo no es maximizar el número de enlaces.
+
+El objetivo es crear una red útil para:
+
+- usuarios;
+- navegación;
+- descubrimiento de páginas;
+- arquitectura temática;
+- contexto territorial;
+- relación entre servicios.
+
+No se generan enlaces artificiales para aumentar el número de enlaces internos.
+
+---
+
+42. DATOS ESTRUCTURADOS
+
+B17 y "schema" solo pueden utilizar datos verificables.
+
+No se inventan:
+
+- ratings;
+- reviews;
+- precios;
+- horarios;
+- direcciones;
+- empresas;
+- personas.
+
+El JSON-LD final será responsabilidad del sistema de renderizado.
+
+---
+
+43. IMÁGENES
 
 Formato:
 
 {
   "images": [
     {
-      "image_id": "",
       "url": "",
       "alt": "",
       "title": "",
@@ -668,384 +991,13 @@ Formato:
   ]
 }
 
-La IA no puede inventar URLs de imágenes.
+La URL debe corresponder a un recurso real disponible.
+
+La IA no puede inventar imágenes ni URLs de imágenes.
 
 ---
 
-34. INTERLINKING
-
-El contrato 4.0 incorpora explícitamente el interlinking.
-
-La IA puede devolver relaciones únicamente dentro de las relaciones autorizadas.
-
-La IA no puede inventar destinos.
-
----
-
-35. INTERNAL_LINKS
-
-Formato:
-
-{
-  "internal_links": [
-    {
-      "link_id": "",
-      "source_page_id": "",
-      "target_page_id": "",
-      "relation": "",
-      "anchor": "",
-      "reason": "",
-      "location": "",
-      "priority": "MEDIUM",
-      "status": "PROPOSED"
-    }
-  ]
-}
-
----
-
-36. LINK_ID
-
-Cada enlace debe tener un identificador estable.
-
-Ejemplo:
-
-LINK-FON-EST-001
-
-No debe reutilizarse.
-
----
-
-37. SOURCE_PAGE_ID
-
-Debe corresponder a una página existente.
-
-La página fuente debe existir en "pages[]".
-
----
-
-38. TARGET_PAGE_ID
-
-Debe corresponder a una página existente y autorizada.
-
-La IA no puede crear un enlace hacia una página que no esté autorizada.
-
----
-
-39. RELATION
-
-Valores oficiales:
-
-- "parent_to_child"
-- "child_to_parent"
-- "related_location"
-- "related_service"
-- "related_subservice"
-- "territorial"
-- "contextual"
-- "navigation"
-
-No se permiten valores arbitrarios.
-
----
-
-40. ANCHOR
-
-Debe ser natural, descriptivo y útil para el usuario.
-
-No debe utilizarse siempre la keyword exacta.
-
-Ejemplo:
-
-"fontaneros en Casares"
-
----
-
-41. REASON
-
-Debe explicar la utilidad de la relación.
-
-Ejemplo:
-
-"Casares es una localidad cercana y forma parte de las relaciones territoriales autorizadas."
-
----
-
-42. LOCATION
-
-Valores:
-
-- "header"
-- "navigation"
-- "content"
-- "related_services"
-- "related_locations"
-- "footer"
-- "breadcrumb"
-- "cta"
-
----
-
-43. PRIORITY
-
-Valores:
-
-- "HIGH"
-- "MEDIUM"
-- "LOW"
-
-La prioridad permite controlar la densidad de enlaces.
-
-No es obligatorio enlazar todas las páginas entre sí.
-
----
-
-44. LINK STATUS
-
-Valores:
-
-- "AUTHORIZED"
-- "PROPOSED"
-- "VALIDATED"
-- "ACTIVE"
-- "DISABLED"
-- "ERROR"
-
-La IA normalmente utilizará:
-
-"PROPOSED"
-
-El validador podrá convertirlo en:
-
-"VALIDATED"
-
-N8N podrá convertirlo en:
-
-"ACTIVE"
-
----
-
-45. RELACIONES TERRITORIALES
-
-La salida puede contener:
-
-{
-  "territorial_relations": [
-    {
-      "relation_id": "",
-      "source_page_id": "",
-      "target_page_id": "",
-      "relation": "nearby",
-      "authorized": true
-    }
-  ]
-}
-
-Solo pueden utilizarse relaciones autorizadas.
-
----
-
-46. RELACIONES ENTRE SERVICIOS
-
-La salida puede contener:
-
-{
-  "service_relations": [
-    {
-      "relation_id": "",
-      "source_page_id": "",
-      "target_page_id": "",
-      "relation": "related_service",
-      "authorized": true
-    }
-  ]
-}
-
-Ejemplo conceptual:
-
-Fontanería Estepona
-        ↓
-Electricidad Estepona
-
-Esto solo será válido si la arquitectura y el modelo de datos lo autorizan.
-
----
-
-47. RELACIONES ENTRE PILARES
-
-La salida puede contener:
-
-{
-  "pillar_relations": [
-    {
-      "relation_id": "",
-      "source_page_id": "",
-      "target_page_id": "",
-      "relation": "related_service",
-      "authorized": true
-    }
-  ]
-}
-
-Ejemplo:
-
-FONTANERÍA
-    ↕
-ELECTRICIDAD
-    ↕
-CARPINTERÍA
-    ↕
-PINTURA
-
-No significa que todas las páginas deban enlazarse con todas las demás.
-
-La relación debe aportar utilidad real y estar autorizada.
-
----
-
-48. REGLA DE INTERLINKING
-
-El objetivo no es crear el mayor número posible de enlaces.
-
-El objetivo es construir una red:
-
-- útil;
-- coherente;
-- temática;
-- territorialmente lógica;
-- navegable;
-- no artificial.
-
----
-
-49. NO SPAM
-
-Está prohibido crear:
-
-- cientos de enlaces desde una página;
-- listas artificiales de localidades;
-- enlaces repetidos;
-- enlaces sin relación temática;
-- enlaces únicamente para manipular rankings;
-- enlaces entre pilares sin justificación.
-
----
-
-50. RELACIONES BIDIRECCIONALES
-
-No se exige que una relación sea bidireccional.
-
-Puede existir:
-
-Estepona → Casares
-
-sin que obligatoriamente exista:
-
-Casares → Estepona
-
-La arquitectura y el contexto determinarán la dirección adecuada.
-
----
-
-51. INTERLINKING ENTRE LOCALIDADES
-
-Cuando existan páginas autorizadas de localidades relacionadas, la IA puede proponer enlaces.
-
-Ejemplo:
-
-Fontaneros Estepona
-        ↓
-Fontaneros Casares
-        ↓
-Fontaneros Manilva
-
-Solo cuando estas páginas existan y la relación esté autorizada.
-
----
-
-52. INTERLINKING ENTRE SERVICIOS
-
-Cuando existan páginas relacionadas:
-
-Fontaneros Estepona
-        ↓
-Desatascos Estepona
-        ↓
-Fontaneros 24 horas Estepona
-
-La relación debe corresponder a la intención y a la arquitectura.
-
----
-
-53. INTERLINKING ENTRE PILARES
-
-Cuando el sistema disponga de varios pilares:
-
-Fontaneros Estepona
-        ↓
-Electricistas Estepona
-
-o:
-
-Fontaneros Estepona
-        ↓
-Carpinteros Estepona
-
-solo se utilizará cuando exista una relación autorizada.
-
----
-
-54. PÁGINAS HUÉRFANAS
-
-Si una página autorizada no dispone de ninguna relación lógica:
-
-la IA debe registrar:
-
-"REVIEW"
-
-cuando la ausencia de relaciones pueda perjudicar la arquitectura.
-
-No debe inventar enlaces únicamente para evitar una página huérfana.
-
----
-
-55. ACTUALIZACIÓN
-
-El mismo contrato sirve para:
-
-- creación;
-- actualización;
-- regeneración;
-- modificación de contenido;
-- modificación de enlaces.
-
-N8N debe utilizar:
-
-"opportunity_id"
-
-"site_id"
-
-"page_id"
-
-"link_id"
-
-para localizar entidades existentes.
-
----
-
-56. IDEMPOTENCIA
-
-Si N8N recibe dos veces la misma salida:
-
-no debe crear duplicados.
-
-Debe actualizar las entidades existentes.
-
-La misma salida procesada varias veces debe producir el mismo estado final.
-
----
-
-57. VALIDATION
+44. VALIDATION
 
 La IA puede devolver:
 
@@ -1058,9 +1010,11 @@ La IA puede devolver:
 
 Pero la validación definitiva corresponde al validador externo.
 
+La IA no es la autoridad final.
+
 ---
 
-58. ISSUES
+45. ISSUES
 
 Formato:
 
@@ -1082,9 +1036,9 @@ La IA debe registrar problemas detectados en lugar de ocultarlos.
 
 ---
 
-59. TRACEABILITY
+46. TRACEABILITY
 
-Formato:
+La salida debe permitir rastrear el origen.
 
 {
   "traceability": {
@@ -1092,49 +1046,16 @@ Formato:
     "source_version": "",
     "architecture_version": "",
     "blocks_version": "",
-    "data_schema_version": "2.0",
+    "interlinking_version": "",
     "contract_version": "4.0"
   }
 }
 
-Esto permite saber qué documentación originó la salida.
+Esto permite saber qué documentación y qué oportunidad originaron la salida.
 
 ---
 
-60. CAMPOS PROTEGIDOS
-
-La IA no puede modificar:
-
-- "opportunity_id";
-- "sector";
-- "service";
-- "subservice";
-- "municipality";
-- "province";
-- "country";
-- "decision_seo";
-- "site_type";
-- "page_type";
-- "page_id";
-- "url";
-- "canonical";
-- "parent_url";
-- "depth";
-- "authorized_pages";
-- "authorized_blocks";
-- "authorized_relations";
-- "restrictions".
-
-Si existe contradicción:
-
-1. conservar el dato recibido;
-2. no sustituirlo;
-3. registrar incidencia;
-4. establecer "REVIEW" cuando corresponda.
-
----
-
-61. REGLAS DE INTEGRIDAD
+47. REGLAS DE INTEGRIDAD
 
 N8N debe rechazar la salida cuando:
 
@@ -1150,122 +1071,81 @@ N8N debe rechazar la salida cuando:
 - el "type" no corresponda al ID;
 - la URL no coincida con la arquitectura;
 - el canonical no coincida con la arquitectura;
-- exista modificación de campos protegidos;
-- exista una relación no autorizada;
-- exista un destino inexistente;
-- exista un "link_id" duplicado;
-- exista una relación equivalente duplicada;
+- exista una modificación de campos protegidos;
 - existan estructuras incompatibles;
-- exista información obligatoria ausente.
+- existan URLs no autorizadas;
+- exista información obligatoria ausente;
+- exista un enlace interno no autorizado;
+- exista una relación de interlinking inexistente;
+- un enlace apunte a una página no autorizada.
 
----
+Resultado:
 
-62. PÁGINAS SIN CONTENIDO SUFICIENTE
+"ERROR"
 
-Si una página autorizada no dispone de información suficiente:
-
-la IA debe devolver:
+o:
 
 "REVIEW"
 
-No debe rellenarla con información inventada.
-
-La página no debe publicarse hasta resolver la incidencia.
+según la naturaleza del problema.
 
 ---
 
-63. REGLA DE NO CREACIÓN
+48. IDEMPOTENCIA
 
-La IA no puede convertir una oportunidad o keyword en una página.
+El contrato debe permitir que N8N procese varias veces la misma salida sin crear duplicados.
 
-La página debe existir previamente en:
+El identificador principal es:
 
-"authorized_pages"
+"opportunity_id"
 
----
+Cada página debe tener además:
 
-64. MINIWEB COMPLETA
+"page_id"
 
-Cuando la arquitectura autorice varias páginas:
+N8N utilizará estos identificadores para localizar páginas existentes.
 
-la salida debe representar todas las páginas dentro del mismo:
+Si una página ya existe:
 
-"SITE_PACKAGE"
+actualizar
 
-Ejemplo conceptual:
+Si no existe:
 
-SITE_PACKAGE
-│
-├── PAGE 01
-│   └── /fontaneros/estepona/
-│
-├── PAGE 02
-│   └── /fontaneros/estepona/desatascos/
-│
-├── PAGE 03
-│   └── /fontaneros/estepona/urgencias/
-│
-├── PAGE 04
-│   └── /fontaneros/estepona/servicios/
-│
-├── PAGE 05
-│   └── /fontaneros/estepona/24-horas/
-│
-└── ...
+crear
 
-El número no está limitado por defecto.
+Nunca crear duplicados simplemente porque el flujo se ejecute nuevamente.
 
-La arquitectura determina qué páginas existen.
+Lo mismo debe aplicarse a las relaciones de interlinking.
 
 ---
 
-65. PRINCIPIO DE AMPLITUD
+49. ACTUALIZACIÓN
 
-El sistema debe partir de la arquitectura autorizada completa.
+El contrato sirve tanto para:
 
-No debe existir un límite artificial de cinco páginas.
+- creación;
+- actualización;
+- mantenimiento.
 
-Si existen diez páginas autorizadas y justificadas:
+Si una página cambia:
 
-la IA debe poder generar las diez.
+N8N debe actualizar únicamente la página afectada cuando sea posible.
 
-Si existen veinte:
+Si cambia una relación de interlinking:
 
-debe poder generar las veinte.
+N8N debe actualizar únicamente las páginas afectadas.
 
-Si solo existen cuatro:
+Si cambia la arquitectura:
 
-debe generar cuatro.
+la modificación debe pasar primero por el sistema documental correspondiente.
 
-El número de páginas no debe estar fijado en el contrato.
-
----
-
-66. PRINCIPIO DE BLOQUES
-
-El mismo principio se aplica a los bloques.
-
-No existe un número fijo de bloques por página.
-
-Cada página debe utilizar todos los bloques autorizados que sean pertinentes y para los que exista información suficiente.
-
-Los bloques innecesarios o sin información suficiente pueden omitirse.
+La IA no puede alterar la arquitectura durante una actualización.
 
 ---
 
-67. PRINCIPIO DE CALIDAD
+50. WORDPRESS
 
-La IA no debe rellenar todos los bloques obligatoriamente con texto artificial.
-
-Debe utilizar los bloques cuando aporten valor.
-
-La amplitud estructural no significa generación indiscriminada.
-
----
-
-68. WORDPRESS
-
-La IA no genera HTML final.
+La IA no genera directamente HTML final para WordPress.
 
 Flujo:
 
@@ -1281,7 +1161,7 @@ MODELO WORDPRESS
 ↓
 RENDERIZADO
 
-WordPress representa visualmente:
+WordPress será responsable de representar visualmente:
 
 - páginas;
 - menú;
@@ -1290,59 +1170,45 @@ WordPress representa visualmente:
 - imágenes;
 - datos estructurados.
 
+La IA trabaja con contenido y estructura lógica.
+
 ---
 
-69. N8N
+51. N8N
 
 N8N será responsable de:
 
 - recibir el JSON;
 - validar la versión;
-- validar páginas;
-- validar bloques;
-- validar relaciones;
+- validar las páginas;
+- validar los bloques;
+- validar los enlaces;
 - comprobar identificadores;
+- comprobar relaciones;
 - comprobar existencia;
 - crear páginas;
 - actualizar páginas;
-- crear enlaces;
-- actualizar enlaces;
-- desactivar enlaces;
+- construir relaciones;
 - construir navegación;
-- sincronizar WordPress;
+- sincronizar interlinking;
+- enviar datos a WordPress;
 - registrar errores;
 - registrar resultados.
 
-N8N no debe reinterpretar arbitrariamente las decisiones SEO.
+N8N no debe reinterpretar arbitrariamente las decisiones SEO ni las relaciones autorizadas.
 
 ---
 
-70. PUBLICACIÓN
+52. CREACIÓN DE MINIWEB
 
-La publicación requiere:
+Cuando la arquitectura autorice varias páginas, la salida debe representar todas ellas dentro del mismo "SITE_PACKAGE".
 
-DECISIÓN
-↓
-ARQUITECTURA
-↓
-DATOS
-↓
-BLOQUES
-↓
-IA
-↓
-VALIDACIÓN
-↓
-N8N
-↓
-WORDPRESS
+Ejemplo:
 
-La IA nunca publica directamente.
-
----
-
-71. ACTUALIZACIÓN DE INTERLINKING
-
-Cuando una nueva página sea publicada:
-
-N8N debe comprobar automáticamen
+SITE_PACKAGE
+│
+├── PAGE 01
+│   └── /fontanero/estepona/
+│
+├── PAGE 02
+│   └── /fon
