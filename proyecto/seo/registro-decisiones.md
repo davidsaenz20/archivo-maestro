@@ -16,14 +16,21 @@ Su función es conservar el resultado de aplicar esas reglas a una oportunidad c
 
 ---
 
-2. ESTADOS
+2. DECISIONES SEO VÁLIDAS
 
-Las decisiones pueden ser:
+Las decisiones SEO que puede producir el motor son únicamente:
 
 CREAR
-NO CREAR
+
+AGRUPAR
+
 INVESTIGAR
-REVISAR
+
+NO CREAR
+
+"REVISAR" NO es una decisión SEO.
+
+"REVISAR" pertenece al estado operativo de una landing ya existente y no debe utilizarse como resultado del motor de decisión SEO.
 
 Una oportunidad "INVESTIGAR" no puede pasar a generación de landing.
 
@@ -75,7 +82,7 @@ Resultado: ALTA
 
 Se han identificado múltiples empresas y páginas específicas para la combinación:
 
-fontanero + Marbella
+"fontanero + Marbella"
 
 ---
 
@@ -122,15 +129,15 @@ Resultado: MEDIO/ALTO
 
 La intención general de fontanería contiene múltiples subintenciones:
 
-desatascos
-fugas
-reparaciones
-termos
-calderas
-grifería
-sanitarios
-instalaciones
-urgencias
+- desatascos;
+- fugas;
+- reparaciones;
+- termos;
+- calderas;
+- grifería;
+- sanitarios;
+- instalaciones;
+- urgencias.
 
 Por tanto, la landing general debe diferenciarse claramente de futuras landings de subservicio.
 
@@ -152,7 +159,7 @@ No deben inventarse datos locales.
 
 Las evidencias utilizadas están documentadas en:
 
-proyecto/seo/evidencias-fontaneria.md
+"proyecto/seo/evidencias-fontaneria.md"
 
 ---
 
@@ -160,7 +167,7 @@ proyecto/seo/evidencias-fontaneria.md
 
 Aplicando las reglas definidas en:
 
-proyecto/seo/motor-decision.md
+"proyecto/seo/motor-decision.md"
 
 el resultado actual es:
 
@@ -191,7 +198,7 @@ No se activa todavía la creación de la URL porque la decisión SEO todavía no
 
 No obstante, la arquitectura prevista para esta oportunidad sería:
 
-/fontanero/marbella/
+"/fontanero/marbella/"
 
 si finalmente se aprueba la creación.
 
@@ -234,21 +241,27 @@ Para desbloquear la oportunidad:
 OPP-001
 
 Estado:
+
 INVESTIGAR
 
 Landing:
+
 NO
 
 URL:
+
 PENDIENTE DE APROBACIÓN
 
 IA:
+
 NO EJECUTAR
 
 N8N:
+
 NO EJECUTAR
 
 WordPress:
+
 NO CREAR
 
 ---
@@ -261,10 +274,10 @@ No se debe borrar el razonamiento anterior.
 
 Debe quedar constancia de:
 
-fecha
-evidencia nueva
-cambio producido
-nueva decisión
+- fecha;
+- evidencia nueva;
+- cambio producido;
+- nueva decisión.
 
 ---
 
@@ -273,3 +286,7 @@ nueva decisión
 DECISIÓN #001: INVESTIGAR
 
 Esta es la primera decisión real registrada del sistema.
+
+---
+
+FIN DEL REGISTRO DE DECISIONES SEO
