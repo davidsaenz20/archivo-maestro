@@ -1,145 +1,211 @@
+
+
 INTEGRACIÓN N8N → WORDPRESS
 
-Versión: 1.1
-Estado: Diseño técnico
+Versión: 2.0
+Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 Proyecto: Plataforma de landings locales automatizadas
 
 ---
 
 1. OBJETIVO
 
-Definir la comunicación entre el sistema de generación/validación y WordPress.
+Definir la comunicación entre:
+
+ARQUITECTURA → IA → VALIDACIÓN → N8N → WORDPRESS → PLANTILLAS → PÁGINA
 
 N8N actúa como orquestador.
 
 WordPress actúa como sistema de almacenamiento y renderizado.
 
-N8N no debe delegar en WordPress decisiones estratégicas de SEO, arquitectura, bloques o contenido.
-
-Flujo:
-
-ARQUITECTURA
-↓
-CONTEXTO
-↓
-IA
-↓
-JSON
-↓
-VALIDADOR
-↓
-TRANSFORMADOR
-↓
-WORDPRESS
-↓
-VERIFICACIÓN
+La IA no controla directamente el diseño visual.
 
 ---
 
 2. CONTRATO DE ENTRADA
 
-N8N recibe una salida compatible con:
+N8N recibe exclusivamente una salida compatible con:
 
-contrato-salida-ia.md
+"contrato-salida-ia.md"
 
-Versión soportada:
+Versión actual del contrato IA:
 
-schema_version: "1.1"
+"4.0"
 
-La salida debe contener un objeto "landing".
+La salida debe contener un "SITE_PACKAGE" válido.
 
-No se procesa una salida que no cumpla el contrato.
+N8N no debe procesar una salida que no cumpla el contrato.
 
 ---
 
-3. IDENTIFICADOR
+3. IDENTIFICACIÓN
 
-La unidad de publicación se identifica mediante:
+La identidad lógica de una página será:
 
-landing_id
+site_id
+opportunity_id
+page_id
+url
 
-Ejemplo:
-
-LANDING-fontanero-marbella
-
-"landing_id" debe ser estable.
+"page_id" debe ser estable.
 
 No debe depender del ID interno de WordPress.
 
+Ejemplo:
+
+FON-EST-HOME
+
+El ID interno de WordPress será únicamente un dato técnico de almacenamiento.
+
 ---
 
-4. IDEMPOTENCIA
+4. IDENTIFICACIÓN DE BLOQUES
 
-Antes de crear una landing:
+Cada instancia de bloque tendrá:
 
-buscar landing_id
+block_id
+block_instance_id
+block_version
+enabled
+
+Ejemplo:
+
+block_id:
+B14
+
+block_instance_id:
+FON-EST-HOME-B14-01
+
+"block_id" identifica el tipo de bloque.
+
+"block_instance_id" identifica una instancia concreta dentro de una página.
+
+---
+
+5. IDEMPOTENCIA
+
+Antes de crear una página:
+
+BUSCAR page_id
 
 Si no existe:
 
-CREATE
+CREATE_PAGE
 
 Si existe:
 
-UPDATE
+UPDATE_PAGE
 
-Nunca se deben crear duplicados por ejecutar dos veces el mismo workflow.
+Nunca deben generarse duplicados por ejecutar dos veces el mismo workflow.
 
 ---
 
-5. WORKFLOW
+6. IDEMPOTENCIA DE BLOQUES
 
-El workflow conceptual será:
+Antes de crear una instancia:
+
+BUSCAR page_id + block_instance_id
+
+Si no existe:
+
+CREATE_BLOCK
+
+Si existe:
+
+UPDATE_BLOCK
+
+La ejecución repetida debe ser segura.
+
+---
+
+7. OPERACIONES
+
+N8N podrá enviar:
+
+CREATE_PAGE
+UPDATE_PAGE
+CREATE_BLOCK
+UPDATE_BLOCK
+ENABLE_BLOCK
+DISABLE_BLOCK
+DELETE_BLOCK
+UPDATE_LINKS
+UPDATE_MENU
+PUBLISH
+UNPUBLISH
+
+Las operaciones deben estar validadas antes de ejecutarse.
+
+---
+
+8. WORKFLOW PRINCIPAL
 
 01 TRIGGER
       ↓
-02 CARGAR CONTEXTO
+02 CARGAR OPORTUNIDAD
       ↓
-03 GENERAR IA
+03 CARGAR ARQUITECTURA
       ↓
-04 PARSEAR JSON
+04 CARGAR CONTEXTO
       ↓
-05 VALIDAR
+05 IA
       ↓
-06 ¿VALID?
+06 PARSEAR SITE_PACKAGE
+      ↓
+07 VALIDAR
+      ↓
+08 ¿VÁLIDO?
     ↙       ↘
    NO        SÍ
    ↓         ↓
  ERROR    TRANSFORMAR
              ↓
-       BUSCAR LANDING
+       BUSCAR PAGE_ID
+          ↙       ↘
+       NUEVA     EXISTENTE
+         ↓           ↓
+       CREATE      UPDATE
+          \         /
+           ↓       ↓
+          BLOQUES
              ↓
-        CREATE / UPDATE
+        INTERLINKING
              ↓
-       VERIFICAR RESULTADO
+            SEO
              ↓
-           LOG
+        VERIFICACIÓN
+             ↓
+             LOG
 
 ---
 
-6. NODOS
+9. NODO TRIGGER
 
-Nodo 01 — Trigger
+Puede iniciarse mediante:
 
-Inicia el proceso.
-
-Puede ser:
-
-- manual;
+- ejecución manual;
+- formulario;
 - webhook;
-- ejecución programada;
-- entrada desde otro workflow.
+- otro workflow;
+- listado de oportunidades;
+- ejecución programada.
+
+Para generación masiva, N8N deberá procesar las oportunidades individualmente o en lotes controlados.
 
 ---
 
-Nodo 02 — Contexto
+10. CARGA DE CONTEXTO
 
-Carga los datos necesarios para generar la landing:
+N8N recopilará:
 
-identidad
+site_id
+opportunity_id
 servicio
 localidad
 arquitectura
+páginas existentes
 bloques autorizados
+relaciones autorizadas
 datos disponibles
 restricciones
 
@@ -147,42 +213,61 @@ La IA no debe recibir información innecesaria.
 
 ---
 
-Nodo 03 — IA
+11. IA
 
-Genera exclusivamente la estructura definida por:
+La IA genera únicamente:
 
-contrato-salida-ia.md
+- contenido;
+- datos;
+- estructura;
+- bloques autorizados;
+- enlaces autorizados;
+- metadatos definidos por contrato.
 
 No genera HTML libre.
 
-No decide qué bloques existen.
+No genera CSS.
 
-No puede crear bloques fuera del catálogo.
+No crea nuevos tipos de bloque.
+
+No puede modificar la arquitectura por iniciativa propia.
 
 ---
 
-Nodo 04 — Parse JSON
+12. PARSEADO
 
-Convierte la respuesta de IA en objeto estructurado.
+N8N convierte la respuesta de IA en un objeto estructurado.
 
-Si el JSON es inválido:
+Si el JSON no es válido:
 
 ERROR
-→ no continuar
+↓
+STOP
+
+No se continúa hacia WordPress.
 
 ---
 
-Nodo 05 — Validador
+13. VALIDACIÓN
 
-Ejecuta las reglas de:
+La salida se valida mediante las reglas definidas en:
 
-validador.md
+"validador.md"
 
-Entrada:
+Debe comprobar como mínimo:
 
-JSON IA
+schema
+page_id
+URL
+bloques
+block_id
+block_instance_id
+datos obligatorios
+interlinking
+destinos
+SEO
 
-Salida:
+Resultado:
 
 valid
 errors
@@ -193,85 +278,66 @@ Si:
 
 valid = false
 
-se detiene el flujo de publicación.
+no se publica ni actualiza WordPress.
 
 ---
 
-Nodo 06 — IF VALID
+14. TRANSFORMADOR
 
-Condición:
+El transformador convierte:
 
-valid == true
-
-Rama TRUE:
-
-TRANSFORMAR
-
-Rama FALSE:
-
-ERROR HANDLER
-
----
-
-7. ERROR HANDLER
-
-Cuando la validación falla:
-
-guardar landing_id
-guardar errores
-guardar warnings
-guardar timestamp
-guardar versión
-
-No publicar.
-
-No actualizar WordPress.
-
-El error debe ser trazable.
-
----
-
-8. TRANSFORMADOR
-
-El transformador convierte la salida validada al modelo esperado por WordPress.
-
-Conceptualmente:
-
-IA JSON
+SITE_PACKAGE
 ↓
 MODELO COMÚN
 ↓
 MODELO WORDPRESS
 
-El transformador no debe modificar contenido semántico.
+No debe alterar el significado del contenido.
 
-Solo adapta estructura.
+Solo adapta la estructura necesaria para WordPress.
 
 ---
 
-9. DATOS WORDPRESS
+15. MODELO WORDPRESS
 
 La proyección debe respetar:
 
-modelo-datos-wordpress.md
+"modelo-renderizado-wordpress.md"
 
-Datos principales:
+La información principal será:
 
-landing_id
-identidad
-slug
-SEO
-bloques
-interlinking
+page_id
+url
+status
+version
+seo
+blocks
+links
+menu
 images
 schema
-estado
 
 ---
 
-10. BLOQUES
+16. PÁGINA
 
-El sistema utiliza exclusivamente el catálogo oficial:
+Ejemplo conceptual:
+
+{
+  "page_id": "FON-EST-HOME",
+  "url": "/fontanero/estepona/",
+  "version": 1,
+  "status": "draft",
+  "blocks": []
+}
+
+El "page_id" permanece estable aunque cambie el ID interno de WordPress.
+
+---
+
+17. BLOQUES
+
+Solo pueden utilizarse:
 
 B01
 B02
@@ -297,187 +363,400 @@ B21
 B22
 B23
 
-La definición funcional de cada bloque pertenece a:
+La definición funcional pertenece a:
 
-sistema-bloques.md
+"sistema-bloques.md"
 
-N8N no crea bloques nuevos.
+N8N no puede inventar bloques.
 
 ---
 
-11. CREATE
+18. PLANTILLAS
 
-Si "landing_id" no existe:
+WordPress tendrá plantillas visuales reutilizables.
 
-POST /wp-json/...
+La plantilla no se identifica por el nombre de un tema concreto.
 
-La implementación definitiva del endpoint dependerá de la API WordPress elegida.
+La relación lógica será:
+
+block_id
+↓
+renderer
+↓
+template
+↓
+data
+
+Kadence puede utilizarse durante el piloto, pero no forma parte del contrato lógico.
+
+---
+
+19. CREACIÓN
+
+Si "page_id" no existe:
+
+CREATE_PAGE
 
 Estado inicial:
 
 draft
 
-La primera fase de producción no debe publicar automáticamente.
+Después se crean las instancias de bloques necesarias.
 
 ---
 
-12. UPDATE
+20. ACTUALIZACIÓN COMPLETA
 
-Si "landing_id" existe:
+Si "page_id" existe y llega una nueva versión completa:
 
-UPDATE
+UPDATE_PAGE
 
-El contenido existente debe sustituirse únicamente después de que la nueva versión haya pasado el validador.
+Se actualizan los datos correspondientes.
 
-No actualizar parcialmente una landing con datos inválidos.
+Los identificadores existentes deben conservarse.
 
 ---
 
-13. WORDPRESS
+21. ACTUALIZACIÓN PARCIAL
 
-WordPress debe recibir datos estructurados.
-
-No debe recibir una página HTML completa generada arbitrariamente por IA.
-
-Conceptualmente:
+Si solamente cambia un bloque:
 
 {
-  "landing_id": "LANDING-fontanero-marbella",
-  "status": "draft",
-  "slug": "fontanero-marbella",
-  "seo": {},
-  "blocks": [],
-  "internal_links": [],
-  "images": [],
-  "schema": null
+  "operation": "UPDATE_BLOCK",
+  "page_id": "FON-EST-HOME",
+  "block_instance_id": "FON-EST-HOME-B14-01",
+  "data": {}
 }
 
----
+N8N debe localizar esa instancia y actualizarla.
 
-14. API
-
-La comunicación utilizará HTTPS.
-
-La autenticación deberá realizarse mediante credenciales almacenadas de forma segura en N8N.
-
-Nunca incluir:
-
-- contraseñas;
-- tokens;
-- claves API;
-
-dentro del contenido generado por IA.
+No debe reconstruir toda la página.
 
 ---
 
-15. SEGURIDAD
+22. DESACTIVACIÓN
 
-Las credenciales deben mantenerse fuera del JSON de contenido.
+Para ocultar temporalmente un bloque:
 
-N8N utilizará su sistema de credenciales.
+{
+  "operation": "DISABLE_BLOCK",
+  "page_id": "FON-EST-HOME",
+  "block_instance_id": "FON-EST-HOME-B14-01"
+}
 
-WordPress deberá aceptar únicamente solicitudes autenticadas para creación/actualización.
+La instancia permanece identificada.
+
+No se debe crear una nueva instancia al volver a activarla.
 
 ---
 
-16. VERIFICACIÓN POSTERIOR
+23. ELIMINACIÓN
 
-Después de crear o actualizar:
+"DELETE_BLOCK" solo debe utilizarse cuando la instancia deba eliminarse realmente.
 
-consultar WordPress
+Cuando sea suficiente ocultarla:
+
+DISABLE_BLOCK
+
+es preferible.
+
+---
+
+24. INTERLINKING
+
+Los enlaces forman parte del modelo de datos.
+
+Ejemplo:
+
+{
+  "source_page_id": "FON-EST-HOME",
+  "source_block_instance_id": "FON-EST-HOME-B16-01",
+  "target_page_id": "FON-MAN-HOME",
+  "anchor": "fontanero en Manilva",
+  "type": "related_location"
+}
+
+N8N no debe inventar destinos.
+
+---
+
+25. ACTUALIZACIÓN DE INTERLINKING
+
+Si cambia la red de enlaces:
+
+UPDATE_LINKS
+
+No es necesario regenerar todo el contenido de la página.
+
+Ejemplo:
+
+Estepona
+↓
+Manilva
+↓
+Casares
+
+podrá modificarse posteriormente a:
+
+Estepona
+↓
+Manilva
+↓
+Casares
+↓
+San Pedro
+
+si las páginas están autorizadas.
+
+---
+
+26. ENLACES ENTRE SERVICIOS
+
+También podrán existir relaciones como:
+
+Fontanero
+↓
+Electricista
+↓
+Pintor
+↓
+Carpintero
+
+si están autorizadas por la arquitectura.
+
+No se debe crear enlazado artificial únicamente para aumentar el número de enlaces.
+
+---
+
+27. DESTINOS INEXISTENTES
+
+Si un enlace apunta a una página que todavía no existe:
+
+REVIEW
+
+No se publica el enlace roto.
+
+Cuando la página destino exista, N8N podrá ejecutar:
+
+UPDATE_LINKS
+
+---
+
+28. MENÚ
+
+El menú podrá actualizarse independientemente.
+
+Cada elemento tendrá:
+
+label
+target_page_id
+url
+order
+enabled
+
+N8N podrá:
+
+CREATE
+UPDATE
+DELETE
+REORDER
+
+---
+
+29. SEO
+
+N8N transmitirá los datos SEO estructurados.
+
+Ejemplo:
+
+{
+  "title": "",
+  "meta_description": "",
+  "h1": ""
+}
+
+La implementación concreta dependerá del sistema SEO instalado en WordPress.
+
+---
+
+30. IMÁGENES
+
+Las imágenes deberán contener datos válidos:
+
+url
+alt
+title
+type
+
+No se deben inventar URLs.
+
+---
+
+31. DATOS ESTRUCTURADOS
+
+B17 contiene la información lógica.
+
+El transformador/renderizador será responsable de convertirla al formato compatible con WordPress.
+
+No se deben generar datos estructurados falsos.
+
+---
+
+32. VERIFICACIÓN
+
+Después de CREATE o UPDATE:
+
+CONSULTAR WORDPRESS
 
 Comprobar:
 
-landing_id
-slug
+page_id
+URL
 estado
+versión
 bloques
+block_instance_id
 SEO
+interlinking
 
-Si la respuesta no coincide:
+Si no coincide:
 
 ERROR
 
 ---
 
-17. LOG
+33. VERSIONADO
+
+Cada página tendrá:
+
+page_version
+
+Cada bloque:
+
+block_version
+
+Una actualización de bloque incrementa su versión.
+
+Una actualización completa de página incrementa la versión de página.
+
+---
+
+34. REGISTRO DE CAMBIOS
+
+N8N deberá registrar:
+
+page_id
+block_instance_id
+operation
+previous_version
+new_version
+timestamp
+result
+error
+
+Esto permitirá saber qué cambió y cuándo.
+
+---
+
+35. LOG GENERAL
 
 Cada ejecución deberá registrar:
 
-landing_id
-timestamp
+site_id
+opportunity_id
+page_id
+url
+operation
+block_id
+block_instance_id
 schema_version
 validator_version
-operation
 wordpress_id
 status
 result
 errors
 warnings
+timestamp
 
-No almacenar innecesariamente información sensible.
-
----
-
-18. RETRIES
-
-Los errores temporales de red pueden reintentarse.
-
-Los errores de validación NO deben reintentarse automáticamente sin cambiar la entrada.
-
-Separación:
-
-ERROR DE RED
-→ retry
-
-ERROR DE CONTRATO
-→ stop
-
-ERROR DE VALIDACIÓN
-→ stop
-
-ERROR WORDPRESS 4xx
-→ stop/revisión
-
-ERROR WORDPRESS 5xx
-→ retry controlado
+No almacenar información sensible innecesaria.
 
 ---
 
-19. IDEMPOTENCIA Y REINTENTOS
+36. ERRORES
 
-Una ejecución repetida con el mismo:
+Errores principales:
 
-landing_id
-version
-contenido
-
-no debe generar una segunda landing.
-
-El workflow debe poder ejecutarse de nuevo de forma segura.
+INVALID_JSON
+INVALID_CONTRACT
+VALIDATION_ERROR
+PAGE_NOT_FOUND
+BLOCK_UNKNOWN
+BLOCK_INSTANCE_NOT_FOUND
+TEMPLATE_NOT_FOUND
+INVALID_URL
+INVALID_DATA
+DUPLICATE_PAGE
+MISSING_REQUIRED_DATA
+WORDPRESS_ERROR
 
 ---
 
-20. ESTADO DEL WORKFLOW
+37. RETRIES
+
+Errores temporales:
+
+NETWORK_ERROR
+TIMEOUT
+WORDPRESS_5XX
+
+pueden reintentarse de forma controlada.
+
+Errores de contrato o validación:
+
+STOP
+
+No deben reintentarse automáticamente sin modificar la entrada.
+
+---
+
+38. SEGURIDAD
+
+Las credenciales de WordPress permanecerán en el sistema de credenciales de N8N.
+
+Nunca deberán aparecer dentro de:
+
+- prompts;
+- JSON generado;
+- logs;
+- contenido publicado.
+
+La comunicación deberá utilizar HTTPS.
+
+---
+
+39. ESTADOS
 
 Estados conceptuales:
 
 RECEIVED
 GENERATING
+PARSING
 VALIDATING
 VALIDATED
 TRANSFORMING
 CREATING
 UPDATING
+UPDATING_BLOCK
+UPDATING_LINKS
 VERIFYING
 COMPLETED
 FAILED
 
 ---
 
-21. REGLA DE PUBLICACIÓN
+40. PUBLICACIÓN
 
-Durante la fase inicial:
+Durante el piloto:
 
 IA
 ↓
@@ -489,49 +768,118 @@ WORDPRESS
 ↓
 DRAFT
 
-No se habilitará publicación automática hasta comprobar:
+No se habilitará publicación automática hasta validar:
 
-- validador;
+- contenido;
 - renderizado;
 - SEO;
-- URLs;
-- interlinking;
+- enlaces;
 - schema;
-- idempotencia.
+- idempotencia;
+- actualizaciones parciales.
 
 ---
 
-22. SEPARACIÓN DE RESPONSABILIDADES
+41. ESCALABILIDAD
 
-IA
+El sistema debe poder trabajar progresivamente:
 
-Genera contenido estructurado.
+1
+↓
+3
+↓
+10
+↓
+50
+↓
+100
+↓
+1.000+
 
-Validador
+No se recomienda lanzar inicialmente cientos de generaciones simultáneas.
 
-Determina si cumple las reglas.
-
-N8N
-
-Orquesta.
-
-Transformador
-
-Adapta estructura.
-
-WordPress
-
-Almacena y renderiza.
-
-Plantilla
-
-Presenta los datos.
-
-Ningún componente debe asumir responsabilidades de otro.
+N8N deberá utilizar procesamiento por lotes y límites de concurrencia.
 
 ---
 
-23. FUENTES DE VERDAD
+42. CREACIÓN MASIVA
+
+La entrada puede ser:
+
+SERVICIO
++
+LISTA DE LOCALIDADES
+
+Ejemplo:
+
+fontanero
+
+Estepona
+Manilva
+Casares
+Ronda
+Cártama
+Fuengirola
+...
+
+N8N convierte cada combinación en una oportunidad independiente.
+
+Ejemplo:
+
+fontanero + Estepona
+fontanero + Manilva
+fontanero + Casares
+
+Cada una obtiene su propio:
+
+opportunity_id
+page_id
+
+---
+
+43. CONTROL DE CONCURRENCIA
+
+N8N debe poder limitar cuántas oportunidades procesa simultáneamente.
+
+Esto será especialmente importante cuando se utilicen APIs de IA gratuitas o con límites.
+
+Ejemplo conceptual:
+
+LISTA 100 LOCALIDADES
+↓
+QUEUE
+↓
+1–3 GENERACIONES SIMULTÁNEAS
+↓
+VALIDACIÓN
+↓
+WORDPRESS
+
+El límite será configurable.
+
+---
+
+44. CAMBIO DE TEMA
+
+El contenido y los identificadores no deben depender de Kadence.
+
+Si posteriormente se cambia el tema:
+
+MISMA DATA
++
+MISMO page_id
++
+MISMOS block_id
+↓
+NUEVAS PLANTILLAS
+
+Las páginas no necesitan regenerarse semánticamente.
+
+---
+
+45. FUENTES DE VERDAD
+
+Este documento debe coordinarse con:
 
 modelo-datos.md
 sistema-bloques.md
@@ -539,43 +887,95 @@ contrato-salida-ia.md
 validador.md
 arquitectura-wordpress.md
 modelo-datos-wordpress.md
+modelo-renderizado-wordpress.md
+interlinking.md
 
-Este documento define exclusivamente la integración.
+Cada documento debe tener una responsabilidad concreta.
 
 ---
 
-24. VERSIONADO
+46. REGLA DE NO DUPLICACIÓN
 
-Actualmente:
+No se deben crear dos sistemas diferentes para resolver la misma función.
 
-integración: 1.1
-contrato IA: 1.1
+Especialmente:
 
-Cualquier cambio de contrato debe revisarse contra:
+page_id
+block_instance_id
+versionado
+interlinking
 
-validador
-transformador
+deben tener una única definición oficial.
+
+---
+
+47. PRINCIPIO DE ACTUALIZACIÓN
+
+La arquitectura permite dos niveles:
+
+Actualización completa
+
+UPDATE_PAGE
+
+Actualización parcial
+
+UPDATE_BLOCK
+UPDATE_LINKS
+UPDATE_MENU
+
+Siempre que sea posible se utilizará la actualización parcial.
+
+---
+
+48. PRINCIPIO FINAL
+
+IA
+↓
+genera datos estructurados.
+
+VALIDADOR
+↓
+comprueba que son correctos.
+
 N8N
-WordPress
+↓
+orquesta y sincroniza.
+
+WORDPRESS
+↓
+almacena y renderiza.
+
+PLANTILLAS
+↓
+definen la presentación.
+
+TEMA
+↓
+aporta el sistema visual.
 
 ---
 
-25. SIGUIENTE PASO
+49. SIGUIENTE FASE
 
-Una vez guardada esta versión, se deja de ampliar la documentación.
+Una vez actualizado este documento:
 
-El siguiente trabajo será construir:
+1. Validar integración.
+2. Definir el workflow N8N V1.
+3. Definir el transformador.
+4. Definir la estructura exacta de WordPress.
+5. Crear las primeras plantillas.
+6. Probar una landing.
+7. Probar actualización completa.
+8. Probar actualización de un bloque.
+9. Probar actualización de interlinking.
+10. Probar 3 landings.
+11. Escalar progresivamente.
 
-N8N WORKFLOW V1
+---
 
-con los nodos definidos anteriormente.
+50. ESTADO
 
-Después:
+Versión: 2.0
+Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
-VALIDADOR V1
-↓
-WORDPRESS API
-↓
-PLANTILLA
-↓
-PRIMERA LANDING
+Fin del documento.
