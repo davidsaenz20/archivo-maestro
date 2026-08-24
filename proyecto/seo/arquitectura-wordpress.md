@@ -1,4 +1,4 @@
-ARQUITECTURA WORDPRESS
+MODELO DE DATOS WORDPRESS
 
 Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
@@ -6,684 +6,605 @@ Proyecto: Plataforma de landings locales automatizadas
 
 ---
 
-1. OBJETIVO
+1. FUNCIÓN
 
-WordPress será la capa de presentación y publicación del sistema.
+Este documento define la proyección del modelo de datos común hacia WordPress.
 
-No debe decidir:
+No sustituye a:
 
-- qué bloques utiliza una landing;
-- qué contenido genera la IA;
-- qué arquitectura SEO corresponde;
-- qué enlaces internos deben existir;
-- qué estructura debe tener cada localidad.
+- "proyecto/seo/modelo-datos.md"
+- "proyecto/seo/sistema-bloques.md"
+- "proyecto/seo/contrato-salida-ia.md"
+- "proyecto/seo/arquitectura-wordpress.md"
 
-Esas decisiones pertenecen al motor de arquitectura, al contrato de salida de IA y a N8N.
+WordPress almacena y renderiza una landing previamente decidida y validada.
 
-WordPress debe recibir un modelo de landing previamente validado y renderizarlo mediante una plantilla controlada y reutilizable.
+No decide:
 
----
+- la estrategia SEO;
+- la creación de una página;
+- la arquitectura de URL;
+- los bloques que corresponden;
+- el contenido que debe generar la IA.
 
-2. FLUJO GENERAL
+Flujo:
 
-DATOS DEL NEGOCIO
+MODELO DE DATOS COMÚN
         ↓
-INVESTIGACIÓN
-        ↓
-MOTOR DE DECISIÓN
-        ↓
-DECISIÓN = CREAR
+DECISIÓN SEO
         ↓
 ARQUITECTURA
         ↓
-SELECCIÓN DE BLOQUES
-        ↓
-DATOS
-        ↓
-IA
-        ↓
-CONTENIDO ESTRUCTURADO
+CONTRATO IA
         ↓
 VALIDACIÓN
         ↓
 N8N
         ↓
-WORDPRESS
+MODELO WORDPRESS
         ↓
-PLANTILLA LANDING
+PLANTILLA
         ↓
 HTML FINAL
 
-La IA no decide libremente la estructura de la página.
+---
 
-La IA rellena únicamente los bloques y campos autorizados.
+2. PRINCIPIO DE PROYECCIÓN
+
+No todo el modelo común debe almacenarse como campo público de WordPress.
+
+Se separan tres grupos:
+
+1. Datos necesarios para renderizar.
+2. Datos necesarios para SEO/publicación.
+3. Datos de trazabilidad o control interno.
+
+Los datos de investigación, evidencias y razonamiento del motor no deben exponerse innecesariamente en la página pública.
 
 ---
 
-3. PRINCIPIO FUNDAMENTAL
+3. ENTIDAD PRINCIPAL
 
-Debe existir una separación estricta entre:
-
-Arquitectura
-
-Define:
-
-- qué página se crea;
-- servicio;
-- subservicio;
-- localidad;
-- intención;
-- URL;
-- canonical;
-- bloques autorizados;
-- interlinking;
-- estructura SEO.
-
-Contenido
-
-Define:
-
-- títulos;
-- textos;
-- listas;
-- preguntas;
-- respuestas;
-- CTAs;
-- elementos de cada bloque.
-
-Presentación
-
-Define:
-
-- HTML;
-- CSS;
-- diseño;
-- componentes;
-- responsive;
-- navegación.
-
-WordPress pertenece principalmente a la tercera capa.
-
-La lógica de decisión y generación debe permanecer fuera de WordPress siempre que sea posible.
-
----
-
-4. TIPO DE CONTENIDO
-
-La implementación inicial utilizará un tipo de contenido específico para las landings locales.
-
-Nombre conceptual:
+Tipo conceptual:
 
 "Landing"
 
-Slug técnico recomendado:
+Implementación prevista:
 
-"landing"
+"Custom Post Type: landing"
 
-La implementación definitiva del CPT podrá concretarse durante la fase de desarrollo.
+Cada registro representa una única landing.
 
-La plantilla será única y reutilizable.
+La decisión definitiva del CPT y del sistema de campos se realizará durante la implementación técnica.
 
-No se creará una plantilla diferente para cada localidad.
+La implementación debe permitir:
 
-Ejemplos:
-
-- Fontanero Marbella.
-- Fontanero Estepona.
-- Fontanero Fuengirola.
-- Electricista Marbella.
-
-Todas podrán utilizar la misma plantilla.
+- creación;
+- actualización;
+- identificación estable;
+- renderizado mediante una plantilla común;
+- publicación controlada.
 
 ---
 
-5. MODELO DE UNA LANDING
+4. IDENTIFICACIÓN
 
-Cada landing deberá poder representarse conceptualmente así:
+Campo| Tipo| Origen| Almacenamiento| Público
+"landing_id"| string| motor/N8N| meta| no
+"opportunity_id"| string| investigación/motor| meta| no
+"version"| string| sistema| meta| no
+"estado_landing"| enum| workflow| meta| no
 
-LANDING
-│
-├── IDENTIDAD
-│   ├── servicio
-│   ├── subservicio
-│   ├── localidad
-│   ├── provincia
-│   └── país
-│
-├── ARQUITECTURA
-│   ├── page_type
-│   ├── url
-│   ├── canonical
-│   ├── parent_url
-│   └── depth
-│
-├── SEO
-│   ├── title
-│   ├── meta_description
-│   ├── h1
-│   ├── robots
-│   └── schema
-│
-├── CONTENIDO
-│   ├── bloques[]
-│   ├── FAQ[]
-│   └── CTA
-│
-├── INTERLINKING
-│   ├── enlaces entrantes
-│   └── enlaces salientes
-│
-├── IMÁGENES
-│   └── images[]
-│
-└── PUBLICACIÓN
-    ├── estado
-    └── fecha
+"landing_id" debe ser estable e idempotente.
+
+La IA no puede modificarlo.
 
 ---
 
-6. BLOQUES
+5. IDENTIDAD
 
-Los bloques B01–B23 son bloques lógicos oficiales del sistema.
+Campo| Tipo| Origen| Almacenamiento| Renderizado
+"sector"| string| modelo común| estructurado| indirecto
+"servicio"| string| motor| estructurado| sí
+"subservicio"| string/null| motor| estructurado| condicional
+"pais"| string| modelo común| estructurado| condicional
+"comunidad_autonoma"| string| modelo común| estructurado| condicional
+"provincia"| string| modelo común| estructurado| condicional
+"municipio"| string| motor| estructurado| sí
+"localidad"| string| motor| estructurado| sí
+"intencion"| enum| motor| meta/control| indirecto
 
-WordPress no debe interpretar arbitrariamente su significado.
+La identidad de la landing procede de la arquitectura validada.
 
-Cada bloque autorizado llegará acompañado de sus datos correspondientes.
-
-Conceptualmente:
-
-{
-  "blocks": [
-    {
-      "id": "B01",
-      "data": {}
-    },
-    {
-      "id": "B07",
-      "data": {}
-    }
-  ]
-}
-
-La plantilla será responsable de transformar cada bloque lógico en su componente visual correspondiente.
-
-La definición funcional de los bloques se encuentra en:
-
-"proyecto/seo/sistema-bloques.md"
-
-No se deben crear identificadores paralelos.
+No puede ser modificada libremente por la IA.
 
 ---
 
-7. SEPARACIÓN BLOQUE / COMPONENTE
+6. URL
 
-Un bloque lógico no tiene por qué equivaler exactamente a un bloque Gutenberg.
+Campo| Tipo| Origen| Almacenamiento| Función
+"slug"| string| arquitectura URL| post slug| URL
+"url"| string| arquitectura URL| derivada/validada| URL
+"canonical"| URL| arquitectura SEO| meta/SEO| head
+"url_tipo"| enum| arquitectura URL| meta| control
+
+WordPress no debe recalcular una URL estratégica de forma autónoma.
+
+La URL debe proceder de la arquitectura validada.
+
+---
+
+7. SEO
+
+Campo| Tipo| Origen| Función
+"seo_title"| string| IA dentro de reglas| "<title>"
+"meta_description"| string| IA dentro de reglas| "<meta>"
+"h1"| string| contrato IA| encabezado principal
+"robots"| enum/string| sistema| head
+"canonical"| URL| arquitectura| head
+
+El mecanismo concreto de almacenamiento SEO dependerá de la solución WordPress elegida.
+
+No se permitirá que WordPress o la IA alteren arbitrariamente elementos SEO protegidos.
+
+---
+
+8. BLOQUES
+
+Campo principal:
+
+"bloques[]"
+
+Cada elemento debe conservar como mínimo:
+
+id
+position
+data
 
 Ejemplo:
 
-B03
-↓
-Componente Hero
+{
+  "id": "B03",
+  "position": 3,
+  "data": {
+    "h1": "Fontanero en Marbella",
+    "subtitulo": "...",
+    "cta": {}
+  }
+}
 
-Otro bloque puede ser:
+Los identificadores B01–B23 son los definidos por:
 
-B17
-↓
-Información estructurada
-↓
-No necesariamente componente visual
+"proyecto/seo/sistema-bloques.md"
 
-Por tanto:
+La IA no puede introducir identificadores no autorizados.
 
-BLOQUE LÓGICO
-      ↓
-REGLA DE RENDERIZADO
-      ↓
-COMPONENTE WORDPRESS
-
-Esto permite mantener estable la arquitectura aunque posteriormente cambie el diseño visual.
+WordPress resolverá cada identificador mediante el componente correspondiente.
 
 ---
 
-8. PLANTILLA ÚNICA
+9. MAPA B01–B23 → DATOS
 
-La plantilla de landing será reutilizable.
-
-Conceptualmente:
-
-"single-landing.php"
-
-o equivalente según la tecnología WordPress finalmente seleccionada.
-
-La plantilla recibirá los datos de la landing y ejecutará el renderizado correspondiente.
-
-No se debe crear código específico para cada localidad.
+Bloque| Datos principales
+B01 Header| marca, logo, navegación, CTA global
+B02 Navegación| URLs globales y estratégicas validadas
+B03 Hero| h1, subtítulo, CTA, confianza disponible
+B04 Contenido principal| títulos, textos, problemas, alcance
+B05 CTA principal| tipo, texto, canal/destino validado
+B06 Footer| navegación, contacto, legal, enlaces globales
+B07 Subservicio| servicio, subservicio, contenido específico
+B08 Problemas/necesidades| elementos respaldados
+B09 Información local| datos locales verificados
+B10 Zonas/cobertura| zonas y cobertura confirmada
+B11 Proceso| pasos reales del servicio
+B12 Confianza| experiencia, certificaciones, garantías, reseñas válidas
+B13 Diferenciación| información específica y verificable
+B14 FAQ| preguntas y respuestas
+B15 Servicios relacionados| URL, anchor, relación
+B16 Localidades relacionadas| localidad, URL, relación
+B17 Datos estructurados| schema válido
+B18 Testimonios| testimonios reales/autorizados
+B19 Casos/ejemplos| casos reales/documentados
+B20 Galería| recursos de imagen reales
+B21 Precio/tarifas| precio autorizado
+B22 Horarios| horarios reales
+B23 Mapa/ubicación| ubicación válida
 
 ---
 
-9. DATOS DINÁMICOS
+10. FAQ
 
-Los datos no deben estar escritos directamente en la plantilla.
+Campo:
 
-La plantilla debe obtenerlos desde el modelo de datos.
+"faq[]"
+
+Estructura:
+
+question
+answer
+
+Las FAQ deben proceder del contenido validado.
+
+No pueden inventar:
+
+- precios;
+- horarios;
+- servicios;
+- condiciones;
+- garantías;
+- datos comerciales.
+
+---
+
+11. CTA
+
+Estructura conceptual:
+
+cta:
+  type
+  text
+  destination
+
+Tipos posibles:
+
+whatsapp
+phone
+contact
+quote
+appointment
+
+El destino debe ser real y previamente validado.
+
+No se almacenará un teléfono, email o WhatsApp inventado.
+
+---
+
+12. DATOS COMERCIALES
+
+Los datos comerciales públicos deben estar separados y validados.
 
 Ejemplos:
 
-hero.title
-hero.subtitle
-hero.cta
+empresa
+marca
+telefono
+whatsapp
+email
+direccion
+horarios
+precio
+garantia
+experiencia
+certificaciones
 
-services[]
-benefits[]
-problems[]
-process[]
-faq[]
+Regla:
 
-internal_links[]
-images[]
-schema
+ausencia de dato
+        ↓
+null / omitido
 
-Esto permite generar muchas páginas sin duplicar plantillas.
-
----
-
-10. CAMPOS FRENTE A HTML LIBRE
-
-Se priorizarán datos estructurados frente a grandes bloques de HTML generado por IA.
-
-Preferido
-
-title
-subtitle
-items[]
-questions[]
-answers[]
-cta
-
-No preferido
-
-html_completo_generado_por_ia
-
-La IA no debe controlar directamente el HTML final.
-
-La presentación debe estar controlada por WordPress.
-
----
-
-11. SEO
-
-WordPress deberá recibir y almacenar los elementos SEO necesarios:
-
-seo.title
-seo.meta_description
-seo.h1
-seo.canonical
-seo.robots
-
-El sistema deberá impedir duplicidades accidentales.
-
-El canonical deberá corresponder exactamente a la URL definitiva de la landing.
-
-La URL no debe ser generada libremente por WordPress ni por la IA.
-
----
-
-12. SCHEMA
-
-El schema será tratado como información estructurada.
-
-Conceptualmente:
-
-schema[]
-
-La implementación final deberá generar JSON-LD válido en el HTML.
-
-WordPress no deberá modificar arbitrariamente el contenido estructurado recibido.
-
-El tipo de schema deberá corresponder con la información realmente disponible y validada.
-
-No se deben generar datos estructurados con información inventada.
+Nunca se debe inferir o inventar un dato comercial.
 
 ---
 
 13. INTERLINKING
 
-Los enlaces internos forman parte de la arquitectura.
+Campo:
 
-No deben depender de la creatividad de la IA.
+"internal_links[]"
 
-N8N podrá enviar:
-
-internal_links[]
-
-Cada enlace deberá contener como mínimo:
+Cada enlace deberá contener:
 
 url
 anchor
 target
+reason
 
 Ejemplo:
 
 {
   "url": "/fontanero/estepona/",
   "anchor": "Fontanero en Estepona",
-  "target": "localidad"
+  "target": "localidad",
+  "reason": "localidad relacionada"
 }
 
-La plantilla podrá utilizar estos datos para generar los enlaces correspondientes.
+Solo se almacenarán URLs existentes o previamente validadas.
 
-No se crearán enlaces hacia páginas que no existan o no estén autorizadas.
+La plantilla utilizará estos datos para renderizar los enlaces correspondientes.
 
----
-
-14. MENÚS
-
-Los menús deberán tratarse separadamente del contenido de cada landing.
-
-No se debe crear un menú nuevo de WordPress para cada página.
-
-El sistema utilizará una estructura de navegación reutilizable.
-
-Cuando corresponda, N8N podrá indicar qué elementos deben incorporarse a determinadas estructuras de navegación.
-
-La IA no podrá crear arbitrariamente URLs de navegación.
+La IA no puede inventar URLs.
 
 ---
 
-15. IMÁGENES
+14. IMÁGENES
 
-Las imágenes deberán tratarse como recursos independientes.
+Campo:
 
-El modelo podrá contener:
+"images[]"
 
-images[]
+Estructura conceptual:
 
-con información como:
-
+id
 url
 alt
 title
 type
+source
+license
 
-La IA podrá proporcionar información descriptiva.
+WordPress podrá convertir los recursos válidos en IDs de Media Library durante la implementación.
 
-N8N y WordPress serán responsables de gestionar el recurso real.
+La URL del recurso debe ser real.
 
-No se deben publicar imágenes inexistentes ni inventar atributos que no correspondan al recurso.
+No se publicarán imágenes inexistentes.
 
 ---
 
-16. ESTADOS DE PUBLICACIÓN
+15. SCHEMA
 
-La primera publicación automatizada deberá utilizar:
+Campo:
+
+"schema"
+
+Debe contener únicamente datos estructurados válidos y derivados de información autorizada.
+
+La salida final será JSON-LD en el HTML.
+
+No se permitirá completar campos del schema con información ficticia.
+
+El tipo de schema debe corresponder con la información realmente disponible.
+
+---
+
+16. DATOS INTERNOS
+
+No deben formar parte del contenido público salvo que una regla lo determine expresamente:
+
+fuentes
+evidencias
+confianza
+decision
+restricciones
+errores internos
+logs
+fecha_generacion
+fecha_validacion
+
+Pueden almacenarse para:
+
+- trazabilidad;
+- administración;
+- auditoría;
+- automatización;
+- diagnóstico.
+
+Estos datos no deben mezclarse con el contenido público de la landing.
+
+---
+
+17. VALIDACIÓN
+
+Antes de crear o actualizar una landing, N8N debe comprobar como mínimo:
+
+- "landing_id" válido;
+- identidad coherente;
+- URL y slug válidos;
+- bloques autorizados;
+- datos obligatorios presentes;
+- ausencia de datos prohibidos;
+- URLs internas válidas;
+- schema válido;
+- CTA y datos comerciales autorizados;
+- idempotencia.
+
+WordPress no sustituye al validador previo.
+
+Si la validación falla:
+
+NO PUBLICAR
+
+y el sistema deberá registrar el error correspondiente.
+
+---
+
+18. RENDERIZADO
+
+La plantilla seguirá esta lógica conceptual:
+
+Landing
+   ↓
+leer identidad / SEO
+   ↓
+leer bloques[]
+   ↓
+resolver componente por ID
+   ↓
+pasar data del bloque
+   ↓
+renderizar HTML
+   ↓
+insertar interlinking
+   ↓
+insertar schema
+
+La IA no genera directamente el HTML final de la página.
+
+El HTML final pertenece a la capa de presentación de WordPress.
+
+---
+
+19. REGLA DE COMPONENTES
+
+Existirá una correspondencia lógica:
+
+B01 → Header
+B02 → Navigation
+B03 → Hero
+...
+B23 → Map
+
+La implementación podrá utilizar:
+
+- PHP;
+- bloques dinámicos;
+- componentes;
+- campos estructurados;
+- combinación de varias soluciones.
+
+Pero la interfaz lógica permanecerá basada en los identificadores B01–B23.
+
+Esto permite cambiar la presentación sin cambiar la arquitectura lógica.
+
+---
+
+20. CREAR / ACTUALIZAR
+
+N8N utilizará "landing_id" para determinar la operación.
+
+no existe landing_id
+        ↓
+CREATE
+
+existe landing_id
+        ↓
+UPDATE
+
+La operación debe ser idempotente.
+
+Ejecutar dos veces la misma información no debe crear dos landings.
+
+Durante la primera fase, la creación automática deberá utilizar:
 
 "draft"
 
-o equivalente seguro.
-
-Flujo recomendado:
-
-GENERAR
- ↓
-VALIDAR
- ↓
-CREAR DRAFT
- ↓
-REVISAR
- ↓
-PUBLICAR
-
-La publicación automática definitiva se habilitará únicamente después de superar las pruebas del sistema.
+hasta completar las pruebas.
 
 ---
 
-17. CREACIÓN Y ACTUALIZACIÓN
+21. FIXTURE DE PRUEBA
 
-N8N deberá poder distinguir entre:
+Se utilizará una primera landing de prueba para validar el modelo.
 
-CREATE
-UPDATE
+Ejemplo conceptual:
 
-No se deberán crear duplicados si una landing ya existe.
+landing_id: LANDING-fontanero-marbella
+servicio: fontanero
+subservicio: null
+pais: España
+comunidad_autonoma: Andalucía
+provincia: Málaga
+municipio: Marbella
+localidad: Marbella
+slug: fontanero-marbella
 
-La identificación deberá basarse en un identificador estable.
+Los datos comerciales no disponibles permanecerán vacíos/null.
+
+No se deben inventar:
+
+- teléfono;
+- WhatsApp;
+- dirección;
+- precio;
+- horarios;
+- certificaciones;
+- experiencia;
+- reseñas.
+
+El fixture permitirá comprobar:
+
+MODELO
+   ↓
+VALIDACIÓN
+   ↓
+N8N
+   ↓
+WORDPRESS
+   ↓
+PLANTILLA
+   ↓
+LANDING
+
+---
+
+22. IDEMPOTENCIA
+
+La identidad de la landing debe permanecer estable.
+
+Una combinación ya creada debe poder localizarse posteriormente para actualizarla.
 
 Conceptualmente:
 
 landing_id
-
-o equivalente derivado de la identidad estable de la oportunidad.
-
-Por ejemplo:
-
-servicio + subservicio + localidad + variante
-
-La identidad exacta deberá quedar determinada por el modelo de datos definitivo.
-
----
-
-18. IDEMPOTENCIA
-
-Ejecutar dos veces el mismo proceso no debe generar dos landings.
-
-Ejemplo:
-
-Fontanero + Marbella
-
-debe corresponder siempre a una única entidad.
-
-Si ya existe:
-
-UPDATE
-
-Si no existe:
-
-CREATE
-
-Esta regla es obligatoria para permitir automatizaciones seguras.
-
----
-
-19. VALIDACIÓN ANTES DE WORDPRESS
-
-WordPress no será el primer lugar donde se detecten errores.
-
-Antes de enviar los datos:
-
-IA
- ↓
-VALIDADOR
- ↓
-N8N
- ↓
-WORDPRESS
-
-El validador deberá comprobar como mínimo:
-
-- campos obligatorios;
-- tipos de datos;
-- bloques autorizados;
-- estructura;
-- SEO;
-- URLs;
-- canonical;
-- interlinking;
-- schema;
-- imágenes;
-- ausencia de campos prohibidos;
-- coherencia con la arquitectura.
-
-Si la validación falla, WordPress no debe recibir la publicación como válida.
-
----
-
-20. WORDPRESS COMO CAPA DE PRESENTACIÓN
-
-Principio fundamental:
-
-WORDPRESS NO PIENSA.
-WORDPRESS RENDERIZA.
-
-La lógica de negocio permanece fuera de WordPress siempre que sea posible.
-
-Esto permitirá:
-
-- cambiar de plantilla;
-- cambiar de tema;
-- cambiar componentes;
-- modificar CSS;
-- modificar el diseño;
-- evolucionar la presentación;
-
-sin tener que reconstruir el motor de generación.
-
----
-
-21. RESPONSABILIDADES DE N8N
-
-N8N será responsable de:
-
-- recibir el contenido validado;
-- transformar el modelo cuando sea necesario;
-- localizar la landing correspondiente;
-- determinar si debe crear o actualizar;
-- enviar los campos;
-- gestionar imágenes;
-- gestionar enlaces;
-- establecer el estado de publicación;
-- registrar errores;
-- devolver el resultado del proceso.
-
-N8N no debe modificar arbitrariamente decisiones SEO protegidas.
-
----
-
-22. RESPONSABILIDADES DE WORDPRESS
-
-WordPress será responsable principalmente de:
-
-- almacenar la landing;
-- almacenar los datos recibidos;
-- aplicar la plantilla;
-- renderizar los bloques;
-- generar el HTML final;
-- aplicar CSS y diseño responsive;
-- mostrar navegación;
-- mostrar contenido;
-- servir la página al usuario.
-
-WordPress no será responsable de decidir si una oportunidad SEO debe existir.
-
----
-
-23. RESPONSABILIDADES DE LA IA
-
-La IA será responsable de generar contenido dentro de los límites definidos por:
-
-- arquitectura;
-- modelo de datos;
-- bloques autorizados;
-- restricciones;
-- contrato de salida.
-
-La IA no podrá:
-
-- inventar URLs;
-- inventar bloques;
-- modificar la arquitectura;
-- convertir hipótesis en hechos;
-- inventar datos comerciales;
-- crear información local no respaldada;
-- modificar identificadores protegidos.
-
----
-
-24. MODELO DE AUTORIDAD
-
-Cuando existan contradicciones, se aplicará el siguiente orden:
-
-REGLAS DEL PROYECTO
         ↓
-DECISIÓN SEO
+identidad estable
         ↓
-ARQUITECTURA
-        ↓
-DATOS VALIDADOS
-        ↓
-CONTRATO IA
-        ↓
-IA
-        ↓
-N8N
-        ↓
-WORDPRESS
+CREATE / UPDATE
 
-Las capas inferiores no pueden modificar unilateralmente las decisiones de las capas superiores.
+No se debe utilizar una identificación temporal generada por cada ejecución.
 
 ---
 
-25. PILOTO
+23. DECISIONES TÉCNICAS PENDIENTES
 
-Antes de construir el sistema completo se realizará una primera landing piloto.
+Todavía no se fija:
 
-Ejemplo:
+- plugin de campos;
+- ACF u otra solución;
+- estructura exacta de meta fields;
+- tablas personalizadas;
+- endpoints REST definitivos;
+- autenticación;
+- tema;
+- constructor visual;
+- implementación concreta de cada componente.
 
-Fontanero + Hispan
+Estas decisiones pertenecen a la fase de implementación técnica.
 
-La landing piloto servirá para comprobar:
-
-- creación del contenido;
-- selección de bloques;
-- funcionamiento de la plantilla;
-- renderizado;
-- SEO;
-- enlaces;
-- schema;
-- imágenes;
-- comunicación N8N → WordPress;
-- creación y actualización;
-- validación;
-- experiencia visual.
-
-No se debe escalar el sistema hasta comprobar que el piloto funciona correctamente.
+El modelo lógico debe permanecer estable aunque posteriormente cambie la tecnología utilizada para implementarlo.
 
 ---
 
-26. ESCALABILIDAD
+24. FUENTES DE VERDAD
 
-La arquitectura deberá permitir que una misma plantilla pueda utilizarse para múltiples combinaciones.
+modelo-datos.md
+        ↓
+modelo común
 
-Ejemplos:
+sistema-bloques.md
+        ↓
+B01–B23
 
-Fontanero Marbella
-Fontanero Estepona
-Fontanero Fuengirola
-Electricista Marbella
-Abogado Marbella
+contrato-salida-ia.md
+        ↓
+salida de IA
 
-La plantilla no cambia.
+arquitectura-wordpress.md
+        ↓
+arquitectura de WordPress
 
-Cambian:
+modelo-datos-wordpress.md
+        ↓
+proyección del modelo dentro de WordPress
 
-- identidad;
-- arquitectura;
-- datos;
-- bloques autorizados;
-- contenido;
-- enlaces;
-- recursos.
+Si aparece una contradicción:
+
+1. Identificar qué documento es propietario de la decisión.
+2. Corregir ese documento.
+3. Actualizar las dependencias.
+4. Evitar resolver la contradicción mediante memoria informal.
+
+El repositorio debe actuar como fuente de verdad del proyecto.
 
 ---
 
-27. MANTENIMIENTO Y ACTUALIZACIÓN
+25. RELACIÓN CON N8N
 
-El sistema deberá permitir actualizar una landing existente sin crear otra.
+N8N será responsable de transformar y transportar los datos validados hacia WordPress.
 
-Flujo:
+Conceptualmente:
 
-NUEVA INFORMACIÓN
- ↓
-INVESTIGACIÓN / DETECCIÓN
+DATOS
  ↓
 IA
  ↓
@@ -691,138 +612,131 @@ VALIDACIÓN
  ↓
 N8N
  ↓
-UPDATE WORDPRESS
+WORDPRESS
 
-Las actualizaciones deberán conservar la identidad estable de la landing.
+N8N no debe alterar decisiones SEO protegidas.
 
-No se debe generar una nueva página cuando corresponda actualizar una existente.
-
----
-
-28. SEGURIDAD DE PUBLICACIÓN
-
-Durante la fase inicial:
-
-IA
- ↓
-VALIDADOR
- ↓
-N8N
- ↓
-WORDPRESS DRAFT
- ↓
-REVISIÓN HUMANA
- ↓
-PUBLICACIÓN
-
-La publicación completamente automática será una fase posterior.
-
-Solo podrá habilitarse cuando:
-
-- el contrato esté validado;
-- el validador sea fiable;
-- la plantilla esté probada;
-- la idempotencia funcione;
-- los errores estén controlados;
-- las pruebas reales sean satisfactorias.
+WordPress no debe asumir funciones que corresponden al motor o al validador.
 
 ---
 
-29. RELACIÓN CON LA DOCUMENTACIÓN SEO
+26. RELACIÓN CON LA IA
 
-WordPress no sustituye los documentos de arquitectura.
+La IA genera únicamente los campos permitidos por el contrato de salida.
 
-Debe utilizar como referencia:
+No puede modificar:
 
-- "motor-decision.md"
-- "arquitectura-seo.md"
-- "arquitectura-urls.md"
-- "arquitectura-landing.md"
-- "sistema-bloques.md"
-- "esquema-datos.md"
-- "contrato-salida-ia.md"
+- "landing_id";
+- decisión SEO;
+- URL estratégica;
+- bloques no autorizados;
+- datos comerciales no disponibles;
+- información factual no respaldada.
 
-Cada documento tiene una función diferente.
-
-WordPress implementa la capa de presentación definida por esos documentos.
+La IA puede generar contenido, pero no puede convertir una hipótesis en un dato confirmado.
 
 ---
 
-30. ESTADO ACTUAL
+27. RELACIÓN CON LA ARQUITECTURA WORDPRESS
+
+"arquitectura-wordpress.md" define:
+
+- cómo se estructura WordPress;
+- responsabilidades;
+- plantilla;
+- componentes;
+- renderizado;
+- publicación;
+- escalabilidad.
+
+Este documento define:
+
+- qué datos recibe WordPress;
+- cómo se organizan;
+- qué campos existen;
+- cómo se representan los bloques;
+- qué información es pública;
+- qué información es interna.
+
+Ambos documentos deben mantenerse coherentes.
+
+---
+
+28. ESTADO ACTUAL
 
 Versión: v2.0
 
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
-La arquitectura conceptual de WordPress queda definida.
+El modelo lógico de datos WordPress queda definido.
 
-La implementación técnica concreta de:
-
-- CPT;
-- campos;
-- plantilla;
-- componentes;
-- CSS;
-- endpoints;
-- autenticación;
-- integración N8N;
-
-se realizará durante la fase de construcción y podrá ajustarse tras las pruebas del piloto.
+La implementación técnica concreta se realizará durante el piloto.
 
 ---
 
-31. SIGUIENTE PASO
+29. SIGUIENTE PASO
 
-El siguiente paso es:
+El siguiente paso será construir y validar una primera landing piloto.
 
-CONSTRUIR LA PRIMERA LANDING PILOTO EN WORDPRESS
+Flujo:
 
-Antes de automatizar múltiples páginas se deberá:
+MODELO
+ ↓
+DATOS DE PRUEBA
+ ↓
+VALIDACIÓN
+ ↓
+N8N
+ ↓
+WORDPRESS
+ ↓
+PLANTILLA
+ ↓
+RENDERIZADO
 
-1. Crear la estructura WordPress.
-2. Crear la plantilla.
-3. Crear los componentes necesarios.
-4. Conectar el modelo de datos.
-5. Preparar una primera landing.
-6. Validar el resultado visual y funcional.
-7. Conectar posteriormente N8N.
-8. Probar CREATE.
-9. Probar UPDATE.
-10. Corregir cualquier problema detectado.
-11. Documentar las modificaciones.
-12. Escalar.
+Primero se comprobará que una landing funciona correctamente.
 
-La construcción definitiva no debe comenzar sobre cientos de páginas.
+Después se probará:
 
-Primero debe funcionar correctamente una.
+- CREATE;
+- UPDATE;
+- idempotencia;
+- validación;
+- bloques;
+- SEO;
+- interlinking;
+- schema;
+- imágenes.
+
+Solo después se escalará el sistema.
 
 ---
 
-32. REGISTRO DE ACTUALIZACIÓN
+30. REGISTRO DE ACTUALIZACIÓN
 
 2026-08-24
 
-Se actualiza "arquitectura-wordpress.md" de la versión v1.0 — Diseño a v2.0 — Preparado para implementación piloto.
+Se actualiza "modelo-datos-wordpress.md" de la versión v1.0 — Diseño a v2.0 — Preparado para implementación piloto.
 
-Se consolida la separación entre:
+Se consolida la proyección del modelo común hacia WordPress.
 
-- arquitectura;
-- contenido;
-- presentación.
+Se refuerza:
 
-Se establece WordPress como capa de presentación y publicación.
+- identidad estable;
+- "landing_id";
+- idempotencia;
+- separación entre datos públicos e internos;
+- bloques B01–B23;
+- renderizado mediante componentes;
+- separación entre contenido y HTML;
+- validación previa;
+- operaciones CREATE/UPDATE;
+- publicación inicial mediante DRAFT;
+- control de datos comerciales;
+- control de URLs;
+- control de schema;
+- relación con N8N;
+- relación con la IA;
+- coherencia con la arquitectura WordPress.
 
-Se refuerza que:
-
-- WordPress no decide la arquitectura SEO;
-- WordPress no decide los bloques;
-- WordPress no genera la lógica de negocio;
-- la IA no controla directamente el HTML;
-- N8N gestiona la automatización;
-- el validador precede a WordPress;
-- las operaciones deben ser idempotentes;
-- CREATE y UPDATE deben diferenciarse;
-- la publicación inicial debe realizarse mediante DRAFT;
-- la primera implementación debe validarse mediante un piloto.
-
-La arquitectura queda preparada para comenzar la fase de construcción.
+El modelo queda preparado para su utilización durante la implementación del piloto.
