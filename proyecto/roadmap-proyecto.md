@@ -1,49 +1,65 @@
-ROADMAP DEL PROYECTO — FÁBRICA DE WEBS AUTOMÁTICAS
+ROADMAP DEL PROYECTO
 
-Versión: 2.0
-Proyecto: Sistema de generación automática de webs
-Estado: EN CONSTRUCCIÓN
-Roadmap universal: "proyecto/roadmap-fabrica-webs.md"
-
----
-
-1. PROPÓSITO
-
-Este documento define el orden oficial de construcción y el estado operativo del proyecto actual.
-
-El objetivo es construir una fábrica de webs capaz de generar páginas estructuradas, validadas y publicables de forma automática.
-
-El sistema debe poder utilizarse inicialmente para servicios profesionales/locales y posteriormente reutilizarse para otros verticales.
-
-Ejemplos:
-
-- Fontaneros.
-- Electricistas.
-- Carpinteros.
-- Pintores.
-- Jardineros.
-- Abogados.
-- Reformas.
-- Ayudas y subvenciones.
-- Otros proyectos de generación automática.
+Versión: 4.0
+Estado: DOCUMENTACIÓN BASE COMPLETADA — PREPARADO PARA IMPLEMENTACIÓN TÉCNICA
+Fecha: 2026-08-24
 
 ---
 
-2. OBJETIVO FINAL
+1. OBJETIVO DEL PROYECTO
 
-Construir un sistema en el que:
+Construir una plataforma escalable de activos SEO locales capaz de generar, mantener, actualizar y conectar páginas específicas de:
 
-DATOS / FUENTES
-↓
+SERVICIO × LOCALIDAD
+
+utilizando:
+
+- investigación SEO;
+- motor de decisión;
+- arquitectura SEO;
+- sistema de bloques;
+- contrato de salida IA;
+- plantillas visuales WordPress;
+- interlinking automático;
+- N8N;
+- inteligencia artificial;
+- WordPress;
+- sistema de validación;
+- posterior monetización mediante leads, alquiler de landings o miniwebs.
+
+El sistema debe priorizar:
+
+calidad > cantidad.
+
+---
+
+2. PRINCIPIO GENERAL
+
+El flujo oficial es:
+
 INVESTIGACIÓN
+↓
+EVIDENCIAS
 ↓
 OPORTUNIDAD
 ↓
-DECISIÓN
+EVALUACIÓN
+↓
+MOTOR DE DECISIÓN
+↓
+CREAR / AGRUPAR / INVESTIGAR / NO CREAR
 ↓
 ARQUITECTURA
 ↓
-GENERACIÓN IA
+BLOQUES
+↓
+DATOS
+↓
+CONTRATO IA
+↓
+PLANTILLAS WORDPRESS
+↓
+INTERLINKING
 ↓
 VALIDACIÓN
 ↓
@@ -51,819 +67,657 @@ N8N
 ↓
 WORDPRESS
 ↓
-LANDING REAL
+ACTUALIZACIÓN
 ↓
-QA
-↓
-PUBLICACIÓN
-↓
-ESCALADO
-
-pueda ejecutarse de forma repetible y con mínima intervención manual.
+MONETIZACIÓN
 
 ---
 
-3. PRINCIPIO DE CONSTRUCCIÓN
+3. ESTADO ACTUAL
 
-Este roadmap es secuencial.
+COMPLETADO DOCUMENTALMENTE
 
-No se abandona un paso antes de completarlo.
+Fase 1 — Fundamentos
 
-Si aparece un problema:
-
-¿BLOQUEA EL PASO?
-
-NO
-→ se registra y se continúa.
-
-SÍ
-→ se detiene temporalmente la ejecución, se resuelve el bloqueo y se vuelve al paso original.
-
-Una mejora, idea u optimización que no bloquee el paso actual no modifica el orden del roadmap.
-
----
-
-4. FUENTE DE VERDAD DEL ESTADO
-
-La fuente única de verdad del estado operativo del proyecto es este documento:
-
-"proyecto/roadmap-proyecto.md"
-
-Aquí deben quedar registrados:
-
-- fase actual;
-- paso actual;
 - objetivo;
-- entregable;
-- estado;
-- bloqueos;
-- decisiones relevantes;
-- siguiente paso.
+- modelo de negocio;
+- metodología general;
+- principios de calidad;
+- separación entre tecnología y negocio.
 
-El protocolo de ejecución establece cómo trabajar, pero no determina el paso actual.
-
-El roadmap universal establece el método general reutilizable, pero no sustituye al roadmap específico.
-
-La documentación técnica define cómo construir cada componente, pero no puede modificar por sí misma el orden de ejecución.
+ESTADO: COMPLETADO
 
 ---
 
-5. ESTADO ACTUAL
+Fase 2 — Investigación y evaluación
 
-FASE ACTUAL: Fase 2 — Modelo de negocio y oportunidades.
+Se han definido:
 
-PASO ACTUAL: 2.1 — Investigación de mercado.
-
-OBJETIVO: analizar y consolidar la demanda, competencia, intención, monetización y viabilidad de las oportunidades iniciales.
-
-ESTADO: EN EJECUCIÓN.
-
-BLOQUEOS: Ninguno conocido.
-
-ÚLTIMO HITO COMPLETADO: Fase 1 — Consolidación del sistema.
-
-SIGUIENTE PASO: 2.2 — Modelo de oportunidades.
-
----
-
-6. ROADMAP OFICIAL
-
-FASE 1 — CONSOLIDACIÓN DEL SISTEMA
-
-1.1 Auditoría del repositorio
-
-Revisar la documentación existente para:
-
-- conocer qué está definido;
-- detectar duplicidades;
-- detectar contradicciones;
-- identificar piezas incompletas;
-- distinguir arquitectura de implementación;
-- determinar la función de cada documento.
-
-Estado: COMPLETADO.
-
----
-
-1.2 Consolidar documentación
-
-Determinar qué documentos:
-
-- permanecen;
-- se actualizan;
-- se fusionan;
-- actúan como referencia;
-- quedan como documentación histórica.
-
-Estado: COMPLETADO.
-
----
-
-1.3 Definir autoridad documental
-
-Establecer la autoridad de cada capa:
-
-- "maestro.md" → contexto persistente y reglas maestras;
-- "proyecto/roadmap-fabrica-webs.md" → metodología universal;
-- "proyecto/roadmap-proyecto.md" → estado y orden del proyecto;
-- documentación técnica → especificaciones de construcción;
-- implementación → ejecución de las especificaciones.
-
-Estado: COMPLETADO.
-
----
-
-1.4 Establecer sistema de estado
-
-El estado operativo debe contener como mínimo:
-
-- fase;
-- paso;
-- objetivo;
-- entregable;
-- estado;
-- bloqueos;
-- decisiones relevantes;
-- siguiente paso.
-
-Estado: COMPLETADO.
-
----
-
-FASE 2 — MODELO DE NEGOCIO Y OPORTUNIDADES
-
-2.1 Investigación de mercado
-
-Analizar:
-
+- investigación de oportunidades;
+- análisis de intención;
 - demanda;
+- potencial comercial;
+- relevancia territorial;
 - competencia;
-- intención;
-- monetización;
-- viabilidad;
-- dificultad;
-- potencial de escalado.
+- calidad SERP;
+- fortaleza de competidores;
+- diferenciación;
+- riesgo de duplicación;
+- trazabilidad.
 
-Estado: EN EJECUCIÓN.
-
-Entregable: modelo consolidado de investigación de oportunidades.
+ESTADO: DOCUMENTALMENTE COMPLETADO
 
 ---
 
-2.2 Modelo de oportunidades
+Fase 3 — Motor de decisión SEO
 
-Definir cómo se representan las oportunidades.
+Se ha definido:
 
-Cada oportunidad deberá poder contener, como mínimo:
+- CREAR;
+- AGRUPAR;
+- INVESTIGAR;
+- NO CREAR;
+- PENDIENTE;
+- confidence;
+- decision_reason;
+- reglas de competencia;
+- reglas de diferenciación;
+- trazabilidad;
+- cambio de decisiones.
 
-- vertical;
-- servicio;
-- localidad;
-- demanda;
-- competencia;
-- intención;
-- potencial económico;
-- dificultad;
-- evidencia;
-- estado;
-- decisión.
-
-Estados posibles:
-
-CREAR
-REVISAR
-NO_CREAR
-
-Estado: PARCIALMENTE COMPLETADO.
+ESTADO: COMPLETADO
 
 ---
 
-2.3 Motor de decisión
+Fase 4 — Arquitectura SEO
 
-Definir las reglas que determinan cuándo una oportunidad debe:
+Se ha definido:
 
-CREAR
-
-REVISAR
-
-NO_CREAR
-
-Las decisiones deberán basarse en criterios objetivos y datos disponibles.
-
-Estado: PARCIALMENTE COMPLETADO.
-
----
-
-2.4 Matrices de decisión
-
-Completar las matrices necesarias para evaluar oportunidades de forma repetible.
-
-Estado: PARCIALMENTE COMPLETADO.
-
----
-
-FASE 3 — ARQUITECTURA SEO Y DE INFORMACIÓN
-
-3.1 Arquitectura de URLs
-
-Definir:
-
-- patrones;
+- estructura de páginas;
 - jerarquía;
-- canonical;
-- páginas objetivo;
-- reglas de indexación;
-- relación servicio/localidad;
-- estructura escalable.
+- URLs;
+- parent_url;
+- profundidad;
+- páginas de servicio;
+- subservicios;
+- páginas de localidad;
+- contacto;
+- arquitectura de miniweb;
+- agrupación.
 
-Estado: COMPLETADO / DOCUMENTADO.
-
----
-
-3.2 Arquitectura de landing
-
-Definir:
-
-- estructura;
-- bloques;
-- orden;
-- reglas;
-- contenido;
-- enlazado;
-- elementos obligatorios;
-- elementos opcionales.
-
-Estado: DOCUMENTADO.
+ESTADO: COMPLETADO DOCUMENTALMENTE
 
 ---
 
-3.3 Sistema de bloques
+Fase 5 — Sistema de bloques
 
-Definir y documentar los bloques:
+Se ha definido el sistema de:
 
-B01–B23
+23 bloques lógicos
 
-Cada bloque debe tener:
+B01–B23.
 
+Se han establecido:
+
+- IDs;
+- tipos;
 - función;
-- datos de entrada;
+- datos;
 - reglas;
 - condiciones;
-- salida;
-- comportamiento cuando falten datos.
+- reutilización.
 
-Estado: DOCUMENTADO.
-
----
-
-3.4 Interlinking
-
-Definir reglas de enlazado interno:
-
-- páginas relacionadas;
-- jerarquía;
-- contexto;
-- anchors;
-- límites;
-- reglas de automatización.
-
-Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN.
+ESTADO: COMPLETADO DOCUMENTALMENTE
 
 ---
 
-FASE 4 — MODELO DE DATOS
+Fase 6 — Contrato de salida IA
 
-4.1 Modelo de datos canónico
+Se ha definido:
 
-Definir las entidades y relaciones principales del sistema.
-
-Estado: DOCUMENTADO.
-
----
-
-4.2 Modelo de datos WordPress
-
-Definir cómo se almacenarán los datos en WordPress.
-
-Debe existir correspondencia clara entre:
-
-DATOS CANÓNICOS
-↓
-DATOS WORDPRESS
-↓
-RENDERIZADO
-
-Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN.
-
----
-
-4.3 Contrato de salida IA
-
-Definir la salida estructurada de la IA.
-
-Estado: DOCUMENTADO — CONTRATO IA 1.1.
-
----
-
-4.4 Compatibilidad entre contratos
-
-Comprobar:
-
-MODELO CANÓNICO
-↕
-CONTRATO IA
-↕
-MODELO WORDPRESS
-
-Debe garantizarse que los datos generados puedan almacenarse y renderizarse sin pérdida de información relevante.
-
-Estado: PENDIENTE DE VERIFICACIÓN FINAL.
-
----
-
-FASE 5 — GENERADOR DE CONTENIDO
-
-5.1 Preparación de contexto
-
-Definir cómo se suministra a la IA:
-
-- identidad;
-- intención;
-- evidencia;
+- estructura de salida;
 - datos;
-- arquitectura;
-- reglas;
+- bloques;
+- campos;
+- validación;
 - restricciones;
-- contexto de localidad;
-- contexto del servicio.
+- no invención;
+- compatibilidad con N8N;
+- separación entre contenido y renderizado.
 
-Estado: DOCUMENTADO.
-
----
-
-5.2 Generación estructurada
-
-Construir el generador que produzca la salida conforme al contrato IA.
-
-Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
+ESTADO: COMPLETADO DOCUMENTALMENTE
 
 ---
 
-5.3 Selección de bloques
+Fase 7 — Renderizado WordPress
 
-Implementar la selección de:
+Se ha definido:
 
-B01–B23
-
-La selección debe depender de los datos disponibles, intención y reglas definidas.
-
-Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
-
----
-
-FASE 6 — VALIDADOR
-
-6.1 Validador estructural
-
-Comprobar:
-
-- esquema;
-- campos obligatorios;
-- tipos;
-- formato;
-- valores permitidos;
-- integridad de la salida.
-
-Estado: DOCUMENTADO.
-
----
-
-6.2 Validador semántico
-
-Comprobar:
-
-- intención;
-- identidad;
-- evidencia;
-- coherencia;
-- ausencia de invenciones;
-- utilidad;
-- adecuación al usuario;
-- consistencia con los datos de entrada.
-
-Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN FINAL.
-
----
-
-6.3 Validador de landing
-
-Comprobar la landing completa:
-
-- estructura;
-- contenido;
-- datos;
-- enlaces;
-- SEO;
-- consistencia;
-- renderizado.
-
-Estado: DOCUMENTADO.
-
----
-
-6.4 Estados de validación
-
-Implementar:
-
-VALID
-REVIEW
-INVALID
-
-Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
-
----
-
-FASE 7 — WORDPRESS
-
-7.1 Arquitectura WordPress
-
-Definir:
-
-- plugin;
-- plantilla;
-- componentes;
-- almacenamiento;
+- separación entre lógica y presentación;
+- uso inicial de WordPress + Kadence;
+- plantillas/patrones reutilizables;
+- datos dinámicos;
+- condiciones de visibilidad;
 - renderizado;
-- endpoints necesarios.
+- actualización.
 
-Estado: DOCUMENTADO.
-
----
-
-7.2 Modelo WordPress
-
-Implementar el almacenamiento de datos.
-
-Estado: PENDIENTE.
+ESTADO: COMPLETADO DOCUMENTALMENTE
 
 ---
 
-7.3 Componentes B01–B23
+Fase 8 — Interlinking
 
-Construir los componentes reales.
+Se ha definido:
 
-Orden inicial:
+- enlaces entre servicios;
+- enlaces entre localidades;
+- enlaces entre pilares;
+- related_services;
+- related_locations;
+- reglas de destino;
+- anchor text;
+- actualización de enlaces;
+- control de URLs autorizadas.
+
+ESTADO: COMPLETADO DOCUMENTALMENTE
+
+---
+
+Fase 9 — Especificación de plantillas visuales
+
+Se ha definido:
+
+- B01–B23;
+- función visual;
+- campos;
+- elementos;
+- reglas;
+- responsive;
+- reutilización;
+- modo TEST;
+- modo PRODUCCIÓN;
+- componentes compartidos;
+- orden de construcción;
+- criterios de calidad.
+
+ESTADO: COMPLETADO DOCUMENTALMENTE
+
+---
+
+4. FASE ACTUAL
+
+FASE 10 — IMPLEMENTACIÓN VISUAL WORDPRESS
+
+ESTADO: SIGUIENTE FASE
+
+Objetivo:
+
+Construir físicamente en WordPress/Kadence las plantillas visuales que representarán los bloques lógicos.
+
+---
+
+5. ORDEN DE IMPLEMENTACIÓN
+
+BLOQUE 1 — ESTRUCTURA GLOBAL
+
+Construir:
+
+- B01 Header;
+- B02 Navigation;
+- B06 Footer.
+
+Objetivo:
+
+crear la estructura global reutilizable.
+
+---
+
+BLOQUE 2 — CONTENIDO PRINCIPAL
+
+Construir:
+
+- B03 Hero;
+- B04 Main Content;
+- B05 CTA.
+
+Objetivo:
+
+crear la estructura mínima de una página funcional.
+
+---
+
+BLOQUE 3 — CONTENIDO SEO
+
+Construir:
+
+- B07 Subservice;
+- B08 Problems;
+- B09 Local Context;
+- B10 Coverage;
+- B11 Process.
+
+---
+
+BLOQUE 4 — CONFIANZA Y CONVERSIÓN
+
+Construir:
+
+- B12 Trust;
+- B13 Differentiation;
+- B14 FAQ;
+- B18 Testimonials;
+- B19 Cases;
+- B21 Pricing;
+- B22 Opening Hours.
+
+---
+
+BLOQUE 5 — INTERLINKING
+
+Construir:
+
+- B15 Related Services;
+- B16 Related Locations.
+
+---
+
+BLOQUE 6 — ELEMENTOS ESPECIALES
+
+Implementar según necesidad:
+
+- B17 Structured Data;
+- B20 Gallery;
+- B23 Map.
+
+---
+
+6. PRIMER PILOTO WORDPRESS
+
+La primera prueba deberá construir una página completa utilizando:
 
 B01
 B02
 B03
-…
-B23
+B04
+B05
+B06
 
-Cada componente debe:
+Posteriormente se añadirán bloques opcionales.
 
-- recibir los datos correspondientes;
-- validar las entradas necesarias;
-- renderizar correctamente;
-- mantener consistencia visual;
-- funcionar de forma reutilizable;
-- poder ser utilizado automáticamente.
+Objetivo:
 
-Estado: PENDIENTE.
+comprobar que:
 
----
-
-7.4 Plantilla de landing
-
-Construir una plantilla reutilizable.
-
-Estado: PENDIENTE.
+- las plantillas funcionan;
+- los datos pueden sustituirse;
+- el diseño es responsive;
+- los enlaces funcionan;
+- WordPress conserva la estructura;
+- las plantillas pueden reutilizarse.
 
 ---
 
-7.5 Renderizado completo
+7. SEGUNDO PILOTO
 
-Conectar:
-
-DATOS
-↓
-BLOQUES
-↓
-PLANTILLA
-↓
-LANDING
-
-Estado: PENDIENTE.
-
----
-
-FASE 8 — INTEGRACIÓN N8N → WORDPRESS
-
-8.1 API
-
-Definir y probar comunicación segura.
-
-Estado: DOCUMENTADO.
-
----
-
-8.2 Flujo N8N V1
-
-Construir:
-
-INPUT
-↓
-PREPARACIÓN
-↓
-IA
-↓
-VALIDADOR
-↓
-WORDPRESS
-
-Estado: PENDIENTE.
-
----
-
-8.3 Manejo de errores
-
-Implementar:
-
-- retry;
-- logs;
-- estados;
-- revisión manual;
-- bloqueo de publicación;
-- recuperación ante errores.
-
-Estado: PENDIENTE.
-
----
-
-FASE 9 — PRIMERA LANDING REAL
-
-9.1 Fixture de referencia
-
-Utilizar:
-
-Fontanero Marbella
-
-como primera unidad controlada.
-
-Estado: DISPONIBLE.
-
----
-
-9.2 Generación real
-
-Ejecutar el flujo completo utilizando el fixture.
-
-Estado: PENDIENTE.
-
----
-
-9.3 Publicación real
-
-Crear la primera landing mediante el sistema.
-
-Estado: PENDIENTE.
-
----
-
-FASE 10 — QA
-
-Comprobar:
-
-- contenido;
-- diseño;
-- responsive;
-- enlaces;
-- SEO;
-- canonical;
-- datos estructurados;
-- rendimiento;
-- errores;
-- validación;
-- automatización;
-- consistencia de datos;
-- estabilidad del flujo.
-
-Estado: PENDIENTE.
-
----
-
-FASE 11 — ESCALADO CONTROLADO
-
-No comenzar con miles de páginas.
-
-Escalar progresivamente:
-
-1
-↓
-10
-↓
-100
-↓
-1.000
-
-En cada nivel comprobar:
-
-- calidad;
-- errores;
-- costes;
-- tiempo;
-- duplicación;
-- indexación;
-- estabilidad;
-- capacidad de recuperación;
-- consumo de recursos.
-
-No avanzar al siguiente nivel si aparecen errores estructurales no resueltos.
-
-Estado: PENDIENTE.
-
----
-
-FASE 12 — PRODUCCIÓN
-
-Preparar:
-
-- seguridad;
-- backups;
-- monitorización;
-- logs;
-- recuperación;
-- control de publicaciones;
-- alertas;
-- gestión de errores;
-- mantenimiento.
-
-Estado: PENDIENTE.
-
----
-
-FASE 13 — REUTILIZACIÓN
-
-Una vez validada la fábrica:
-
-crear nuevos verticales.
-
-Ejemplos:
-
-- FONTANERO;
-- ELECTRICISTA;
-- CARPINTERO;
-- PINTOR;
-- JARDINERO;
-- ABOGADO;
-- REFORMAS.
-
-Cada vertical reutiliza:
-
-- infraestructura;
-- componentes;
-- contratos;
-- validadores;
-- automatizaciones;
-- metodología.
-
-Solo cambia la configuración y los datos específicos.
-
-Estado: FUTURO.
-
----
-
-FASE 14 — NUEVOS TIPOS DE WEBS AUTOMÁTICAS
-
-Aplicar la misma fábrica a proyectos diferentes.
+Construir una página local completa.
 
 Ejemplo:
 
-Ayudas y subvenciones
+Fontanero en Estepona
 
-El sistema reutilizará el método, pero tendrá:
+Debe incorporar:
 
-- entidades diferentes;
-- fuentes diferentes;
-- modelo de datos específico;
-- reglas de decisión específicas;
-- arquitectura específica.
-
-Estado: FUTURO.
+- servicios;
+- subservicios;
+- contexto local;
+- FAQ;
+- CTA;
+- enlaces relacionados.
 
 ---
 
-7. CRITERIO DE FINALIZACIÓN DEL PROYECTO
+8. PILOTO MULTILOCALIDAD
 
-La fábrica se considera operativa cuando puede realizar:
+Crear varias páginas utilizando las mismas plantillas:
 
-DATOS
+Fontanero Estepona
+Fontanero Manilva
+Fontanero Casares
+Fontanero Ronda
+Fontanero Cártama
+Fontanero Fuengirola
+
+Objetivo:
+
+comprobar que:
+
+la plantilla permanece estable y los datos cambian.
+
+---
+
+9. PILOTO DE INTERLINKING
+
+Comprobar:
+
+Fontanero Estepona
+↕
+Fontanero Manilva
+↕
+Fontanero Casares
+
+y:
+
+Fontanero Estepona
+↕
+Carpintero Estepona
+↕
+Pintor Estepona
+
+Los enlaces deberán proceder de datos autorizados.
+
+---
+
+10. PILOTO DE ACTUALIZACIÓN
+
+Comprobar que una página ya creada puede recibir:
+
+- nuevo contenido;
+- nuevos bloques;
+- nuevos enlaces;
+- nuevos datos;
+- cambios de datos comerciales.
+
+Sin tener que reconstruir manualmente toda la página.
+
+---
+
+11. CONEXIÓN DE SISTEMAS
+
+Después de validar WordPress manualmente:
+
+N8N
++
+IA
++
+WordPress
+
+Se conectarán.
+
+N8N será el orquestador.
+
+La IA generará el contenido estructurado.
+
+WordPress renderizará mediante las plantillas.
+
+---
+
+12. ENTRADA DE OPORTUNIDADES
+
+La entrada futura podrá ser:
+
+servicio
++
+lista de localidades
+
+Ejemplo:
+
+servicio = fontanero
+
+localidades =
+Marbella
+Estepona
+Manilva
+Casares
+Ronda
+...
+
+N8N procesará cada oportunidad.
+
+---
+
+13. PROCESAMIENTO MASIVO
+
+No se recomienda inicialmente lanzar cientos de localidades.
+
+Secuencia piloto:
+
+1
 ↓
-OPORTUNIDAD
+3
 ↓
-DECISIÓN
+10
 ↓
-ARQUITECTURA
+50
+↓
+100+
+
+La velocidad de generación no debe ser el criterio principal.
+
+Primero debe comprobarse:
+
+- calidad;
+- estabilidad;
+- errores;
+- duplicación;
+- indexabilidad;
+- capacidad de actualización.
+
+---
+
+14. VALIDACIÓN AUTOMÁTICA
+
+Antes de publicar:
+
+comprobar:
+
+- JSON válido;
+- bloques válidos;
+- URLs válidas;
+- enlaces válidos;
+- datos completos;
+- ausencia de datos inventados;
+- estructura correcta;
+- contenido mínimo;
+- campos obligatorios;
+- coherencia.
+
+---
+
+15. VALIDACIÓN SEO
+
+Comprobar:
+
+- title;
+- meta description;
+- H1;
+- headings;
+- intención;
+- contenido;
+- enlaces internos;
+- datos estructurados;
+- canonical;
+- indexabilidad;
+- sitemap;
+- ausencia de duplicación evidente.
+
+---
+
+16. VALIDACIÓN COMPETITIVA
+
+Para cada piloto se podrá comparar:
+
+- intención;
+- profundidad;
+- calidad;
+- cobertura;
+- diferenciación;
+- estructura;
+- interlinking;
+- experiencia móvil;
+- señales de confianza.
+
+El objetivo será determinar si la página tiene posibilidades razonables de competir.
+
+---
+
+17. ACTUALIZACIÓN AUTOMÁTICA
+
+El sistema deberá permitir posteriormente:
+
+página existente
+↓
+nuevos datos
 ↓
 IA
 ↓
-VALIDACIÓN
+validación
 ↓
-N8N
+actualización
 ↓
-WORDPRESS
-↓
-LANDING
-↓
-QA
-↓
-PUBLICACIÓN
+WordPress
 
-de forma repetible y sin depender de intervención manual para cada unidad.
+Debe conservarse el historial.
 
 ---
 
-8. REGLA DE AVANCE
+18. INDEXACIÓN
 
-Para avanzar de un paso:
+La automatización de solicitudes de indexación queda:
 
-1. el paso actual debe estar completado;
-2. el entregable debe existir;
-3. el resultado debe haberse verificado;
-4. los bloqueos deben estar resueltos;
-5. el estado debe quedar registrado.
+PENDIENTE
 
-Solo entonces se activa el siguiente paso.
+No forma parte de la implementación inmediata.
+
+Primero debe garantizarse que las páginas son técnicamente correctas e indexables.
 
 ---
 
-9. REGLA DE NO DESVIACIÓN
+19. MONETIZACIÓN
 
-NO SE RETROCEDE SIN BLOQUEO REAL.
+Una vez validado el sistema:
 
-Durante una fase:
+posibles modelos:
 
-- las mejoras se registran;
-- las ideas nuevas se registran;
-- las optimizaciones se registran;
-- los problemas no bloqueantes se registran.
+- alquiler de landing;
+- alquiler de miniweb;
+- generación de leads;
+- venta de leads;
+- servicio mensual;
+- activo SEO propio;
+- combinación de varios modelos.
 
-Pero se continúa trabajando en el paso actual.
-
----
-
-10. REGLA PARA SESIONES FUTURAS
-
-Cuando el usuario diga:
-
-«Sigue»
-
-el asistente debe:
-
-1. recuperar "maestro.md";
-2. recuperar "proyecto/roadmap-fabrica-webs.md";
-3. recuperar este "proyecto/roadmap-proyecto.md";
-4. recuperar "proyecto/protocolo-ejecucion.md";
-5. recuperar "proyecto/checklist-arranque.md";
-6. determinar el paso actual;
-7. revisar únicamente la documentación técnica necesaria;
-8. comprobar dependencias;
-9. continuar exactamente desde el paso actual;
-10. no cambiar de fase sin completar el paso;
-11. actualizar el estado al completar el trabajo.
+No se asumirán ingresos sin validación comercial.
 
 ---
 
-11. PRINCIPIO FINAL
+20. ESCALADO
 
-ROADMAP UNIVERSAL
-↓
-ROADMAP DEL PROYECTO
-↓
-PASO ACTUAL
-↓
-DOCUMENTACIÓN NECESARIA
-↓
-CONSTRUCCIÓN
-↓
-VERIFICACIÓN
-↓
-REGISTRO DEL ESTADO
-↓
-SIGUIENTE PASO
+Solo después de validar:
 
-El roadmap universal determina el método general.
+1 página
+↓
+3 páginas
+↓
+10 páginas
+↓
+50 páginas
+↓
+100 páginas
+↓
+1000+
 
-El roadmap del proyecto determina el orden y estado del proyecto.
+El escalado dependerá de:
 
-El protocolo de ejecución determina cómo trabajar.
-
-La documentación técnica determina cómo construir cada pieza.
-
-La ejecución implementa lo definido.
-
-La memoria de conversación no sustituye al estado persistente del proyecto.
+- calidad;
+- capacidad técnica;
+- costes;
+- capacidad de IA;
+- indexación;
+- demanda;
+- monetización.
 
 ---
 
-FIN DEL ROADMAP DEL PROYECTO
+21. PRIORIDAD INMEDIATA
+
+El siguiente trabajo es:
+
+CONSTRUIR LAS PRIMERAS PLANTILLAS VISUALES EN WORDPRESS/KADENCE.
+
+Orden:
+
+B01 Header
+↓
+B02 Navigation
+↓
+B06 Footer
+↓
+B03 Hero
+↓
+B04 Main Content
+↓
+B05 CTA
+
+Después:
+
+B07–B16
+
+y posteriormente:
+
+B17–B23
+
+---
+
+22. ARCHIVOS DOCUMENTALES COMPLETADOS
+
+El sistema documental ya contiene, entre otros:
+
+- arquitectura SEO;
+- motor de decisión SEO;
+- sistema de bloques;
+- contrato de salida IA;
+- modelo de renderizado WordPress;
+- interlinking;
+- especificación de plantillas visuales;
+- roadmap.
+
+Estos documentos deben considerarse fuente de verdad.
+
+No deben modificarse nuevamente salvo que aparezca una contradicción real durante la implementación.
+
+---
+
+23. PRINCIPIO DE NO REGRESIÓN
+
+Una modificación posterior no debe romper decisiones ya validadas.
+
+Antes de modificar un documento:
+
+1. revisar documentación relacionada;
+2. identificar dependencias;
+3. comprobar contradicciones;
+4. modificar solo si es necesario;
+5. actualizar versión;
+6. conservar trazabilidad.
+
+---
+
+24. ESTADO FINAL DEL ROADMAP
+
+FASES DOCUMENTALES: COMPLETADAS
+
+FASE ACTUAL: IMPLEMENTACIÓN VISUAL WORDPRESS/KADENCE
+
+SIGUIENTE OBJETIVO: construir y validar B01, B02, B06, B03, B04 y B05.
+
+DESPUÉS: piloto completo de una landing.
+
+DESPUÉS: piloto multilocalidad.
+
+DESPUÉS: conexión N8N + IA + WordPress.
+
+DESPUÉS: automatización y escalado.
+
+---
+
+FIN DEL ROADMAP
