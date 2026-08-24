@@ -1,148 +1,118 @@
-# CONTRATO DE SALIDA IA → N8N
+CONTRATO DE SALIDA IA → N8N
 
-## 1. FUNCIÓN
-
-Este documento define exactamente qué debe devolver la inteligencia artificial después de recibir una oportunidad previamente validada y autorizada para generación de landing.
-
-La salida debe ser estructurada, predecible y validable.
-
-N8N utilizará esta salida para:
-
-1. recibir los datos;
-2. validar la estructura;
-3. comprobar restricciones;
-4. transformar los bloques;
-5. preparar la landing;
-6. enviar los datos a WordPress;
-7. registrar el resultado.
-
-La IA no decide:
-
-- si existe una oportunidad;
-- si debe crearse una página;
-- la estructura de la URL;
-- los bloques que han sido autorizados;
-- los datos comerciales que no hayan sido proporcionados.
-
-La IA genera contenido y datos únicamente dentro de las reglas recibidas.
+Versión: 2.0
+Estado: ACTIVO
+Función: definir el contrato estructural que debe cumplir toda salida de IA destinada a N8N.
 
 ---
 
-## 2. FLUJO
+1. FUNCIÓN
 
-El flujo oficial es:
+Este documento define exactamente qué debe devolver la IA después de recibir una oportunidad previamente validada y autorizada para generación de una landing.
+
+La salida debe ser:
+
+- estructurada;
+- predecible;
+- validable;
+- trazable;
+- compatible con N8N;
+- compatible con el modelo de datos;
+- independiente de la presentación WordPress.
+
+La IA genera contenido.
+
+La IA no decide la arquitectura del sistema.
+
+---
+
+2. FLUJO OFICIAL
 
 OPORTUNIDAD
-
 ↓
-
 MOTOR DE DECISIÓN
-
 ↓
-
 DECISIÓN = CREAR
-
 ↓
-
-URL
-
+ARQUITECTURA URL
 ↓
-
-ARQUITECTURA DE LANDING
-
+ARQUITECTURA LANDING
 ↓
-
+DATOS
+↓
 BLOQUES AUTORIZADOS
-
 ↓
-
-DATOS DE ENTRADA
-
-↓
-
 IA
-
 ↓
-
 JSON
-
 ↓
-
-VALIDACIÓN
-
+VALIDADOR
 ↓
-
 N8N
-
 ↓
-
 WORDPRESS
-
-↓
-
-LANDING
 
 ---
 
-## 3. FORMATO DE SALIDA
+3. REGLA DE AUTORIDAD
+
+La IA recibe determinados datos como información protegida.
+
+No puede modificarlos.
+
+Campos protegidos:
+
+- "opportunity_id"
+- "sector"
+- "service"
+- "subservice"
+- "municipality"
+- "province"
+- "country"
+- "decision_seo"
+- "page_type"
+- "url"
+- "canonical"
+- "authorized_blocks"
+- "restrictions"
+
+Si existe una contradicción:
+
+1. conservar el dato recibido;
+2. no sustituirlo;
+3. registrar la incidencia;
+4. establecer "REVIEW" cuando corresponda.
+
+---
+
+4. FORMATO DE SALIDA
 
 La salida oficial es:
 
-JSON válido.
+JSON válido y exclusivamente JSON.
 
-No puede existir ningún contenido fuera del JSON.
+No puede existir contenido fuera del JSON.
 
 No se permite:
 
-- Markdown fuera del JSON;
+- Markdown;
 - explicaciones;
 - comentarios;
 - texto antes del JSON;
 - texto después del JSON;
-- campos arbitrarios no definidos por este contrato.
+- campos arbitrarios;
+- estructuras no definidas.
 
-La salida debe poder ser procesada automáticamente.
-
----
-
-## 4. AUTORIDAD DE LOS DATOS
-
-La IA recibe datos que tienen autoridad superior.
-
-La IA no puede modificarlos.
-
-Campos protegidos:
-
-- opportunity_id
-- sector
-- servicio
-- subservicio
-- municipio
-- provincia
-- decision_seo
-- tipo_pagina
-- url
-- canonical
-- bloques_autorizados
-- restricciones
-
-Si existe una contradicción:
-
-1. la IA mantiene el dato recibido;
-2. no lo sustituye;
-3. registra una incidencia;
-4. puede establecer el estado como REVIEW.
+La respuesta debe poder ser procesada automáticamente.
 
 ---
 
-## 5. ESTRUCTURA GENERAL
-
-La salida tendrá esta estructura:
+5. ESTRUCTURA PRINCIPAL
 
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
   "opportunity_id": "",
-  "status": "",
+  "status": "READY",
   "identity": {},
   "architecture": {},
   "seo": {},
@@ -158,51 +128,47 @@ La salida tendrá esta estructura:
 
 ---
 
-## 6. SCHEMA_VERSION
-
-Identifica la versión del contrato.
+6. SCHEMA VERSION
 
 Versión actual:
 
-1.1
+"2.0"
 
-N8N debe comprobar esta versión antes de procesar la respuesta.
+N8N debe comprobar la versión antes de procesar la respuesta.
 
-Si la versión no es compatible:
+Si no es compatible:
 
-status = ERROR
+"ERROR"
 
 ---
 
-## 7. STATUS
+7. STATUS
 
 Valores permitidos:
 
+"READY"
+
+"REVIEW"
+
+"ERROR"
+
 READY
+
+La salida cumple el contrato y puede pasar al siguiente proceso.
 
 REVIEW
 
+Existe una incidencia que requiere revisión.
+
 ERROR
 
-### READY
-
-La salida es válida y puede continuar hacia la siguiente fase.
-
-### REVIEW
-
-Existe una incidencia que requiere revisión antes de publicar.
-
-### ERROR
-
-No se ha podido generar una salida válida.
+No existe una salida válida para procesar.
 
 ---
 
-## 8. IDENTITY
+8. IDENTITY
 
 Representa la identidad de la oportunidad.
-
-Estructura:
 
 {
   "identity": {
@@ -210,28 +176,29 @@ Estructura:
     "service": "",
     "subservice": null,
     "municipality": "",
-    "province": ""
+    "province": "",
+    "country": ""
   }
 }
 
-Los valores deben coincidir con los datos recibidos.
+Los valores deben coincidir con la entrada.
 
-La IA no puede sustituir una localidad por otra.
+La IA no puede sustituir una localidad, servicio o sector.
 
 ---
 
-## 9. ARCHITECTURE
+9. ARCHITECTURE
 
 Representa la arquitectura previamente determinada.
-
-Estructura:
 
 {
   "architecture": {
     "page_type": "",
     "url": "",
     "canonical": "",
-    "parent_url": null
+    "parent_url": null,
+    "depth": 1,
+    "authorized_blocks": []
   }
 }
 
@@ -241,32 +208,29 @@ La URL recibida debe devolverse exactamente.
 
 ---
 
-## 10. SEO
+10. SEO
 
-La IA genera los elementos SEO de la página dentro de las restricciones recibidas.
-
-Estructura:
+La IA genera únicamente los elementos SEO permitidos.
 
 {
   "seo": {
     "title": "",
     "meta_description": "",
-    "h1": "",
-    "slug": ""
+    "h1": ""
   }
 }
 
-### TITLE
+TITLE
 
 Debe representar la intención principal.
 
-### META DESCRIPTION
+META DESCRIPTION
 
 Debe describir la página de forma natural.
 
 No puede contener promesas no respaldadas.
 
-### H1
+H1
 
 Debe representar claramente:
 
@@ -274,46 +238,15 @@ Debe representar claramente:
 - subservicio cuando corresponda;
 - localidad.
 
-### SLUG
+El "slug" no se genera libremente.
 
-Debe coincidir exactamente con la URL autorizada.
-
----
-
-## 11. EJEMPLO SEO
-
-Entrada:
-
-servicio = fontanero
-
-subservicio = null
-
-municipio = Marbella
-
-url = /fontanero/marbella/
-
-Salida:
-
-{
-  "seo": {
-    "title": "Fontanero en Marbella",
-    "meta_description": "Información y servicios de fontanería en Marbella.",
-    "h1": "Fontanero en Marbella",
-    "slug": "fontanero/marbella"
-  }
-}
-
-El ejemplo es ilustrativo.
-
-Los textos definitivos dependerán de las evidencias y restricciones disponibles.
+La URL ya está determinada por la arquitectura.
 
 ---
 
-## 12. MENU
+11. MENU
 
-La IA puede devolver elementos de navegación únicamente cuando las URLs estén autorizadas.
-
-Estructura:
+La navegación solo puede utilizar URLs autorizadas.
 
 {
   "menu": {
@@ -331,188 +264,87 @@ Cada elemento:
 
 Tipos permitidos:
 
-- current
-- internal
-- anchor
+- "current"
+- "internal"
+- "anchor"
 
-No se deben crear enlaces hacia páginas inexistentes o no autorizadas.
+No se crean enlaces hacia páginas inexistentes.
 
 ---
 
-# 13. BLOQUES
+12. BLOQUES
 
-La respuesta contiene los bloques seleccionados previamente por el sistema.
-
-Estructura:
+La salida contiene únicamente los bloques autorizados.
 
 {
   "blocks": [
     {
-      "id": "",
-      "type": "",
+      "id": "B03",
+      "type": "hero",
       "enabled": true,
       "data": {}
     }
   ]
 }
 
-Los identificadores deben corresponder exactamente a:
+Los identificadores deben corresponder exactamente con:
 
-`proyecto/seo/sistema-bloques.md`
+"proyecto/seo/sistema-bloques.md"
 
-La IA no puede inventar nuevos identificadores.
-
----
-
-# 14. MAPA OFICIAL DE BLOQUES
-
-Los identificadores oficiales son:
-
-B01 = HEADER
-
-B02 = NAVEGACIÓN
-
-B03 = HERO
-
-B04 = CONTENIDO PRINCIPAL
-
-B05 = CTA PRINCIPAL
-
-B06 = FOOTER
-
-B07 = SUBSERVICIO
-
-B08 = PROBLEMAS / NECESIDADES
-
-B09 = INFORMACIÓN LOCAL
-
-B10 = ZONAS / COBERTURA
-
-B11 = PROCESO
-
-B12 = ELEMENTOS DE CONFIANZA
-
-B13 = DIFERENCIACIÓN
-
-B14 = FAQ
-
-B15 = SERVICIOS RELACIONADOS
-
-B16 = LOCALIDADES RELACIONADAS
-
-B17 = DATOS ESTRUCTURADOS
-
-B18 = TESTIMONIOS
-
-B19 = CASOS / EJEMPLOS
-
-B20 = GALERÍA
-
-B21 = PRECIO / TARIFAS
-
-B22 = HORARIOS
-
-B23 = MAPA / UBICACIÓN
-
-Este mapa es vinculante.
-
-No se deben reutilizar identificadores para funciones diferentes.
+La IA no puede inventar nuevos bloques.
 
 ---
 
-# 15. TYPE DE LOS BLOQUES
+13. MAPA OFICIAL DE BLOQUES
 
-El campo `type` debe utilizar valores estables.
+ID| TYPE
+B01| header
+B02| navigation
+B03| hero
+B04| main_content
+B05| cta
+B06| footer
+B07| subservice
+B08| problems
+B09| local_context
+B10| coverage
+B11| process
+B12| trust
+B13| differentiation
+B14| faq
+B15| related_services
+B16| related_locations
+B17| structured_data
+B18| testimonials
+B19| cases
+B20| gallery
+B21| pricing
+B22| opening_hours
+B23| map
 
-Mapa oficial:
-
-B01 → header
-
-B02 → navigation
-
-B03 → hero
-
-B04 → main_content
-
-B05 → cta
-
-B06 → footer
-
-B07 → subservice
-
-B08 → problems
-
-B09 → local_context
-
-B10 → coverage
-
-B11 → process
-
-B12 → trust
-
-B13 → differentiation
-
-B14 → faq
-
-B15 → related_services
-
-B16 → related_locations
-
-B17 → structured_data
-
-B18 → testimonials
-
-B19 → cases
-
-B20 → gallery
-
-B21 → pricing
-
-B22 → opening_hours
-
-B23 → map
-
-El `type` debe corresponder al `id`.
-
-Ejemplo correcto:
-
-{
-  "id": "B03",
-  "type": "hero"
-}
-
-Ejemplo incorrecto:
-
-{
-  "id": "B01",
-  "type": "hero"
-}
+El "type" debe corresponder al "id".
 
 ---
 
-# 16. ENABLED
+14. ENABLED
 
-Cada bloque tendrá:
+Cada bloque contiene:
 
-{
-  "enabled": true
-}
+"enabled": true
 
 o:
 
-{
-  "enabled": false
-}
+"enabled": false
 
-Los bloques obligatorios no pueden desactivarse salvo que el sistema de validación determine que existe una imposibilidad técnica que requiere revisión.
+Los bloques autorizados obligatorios no deben desactivarse arbitrariamente.
 
-Los bloques condicionales y opcionales pueden omitirse cuando no exista información suficiente.
+Los bloques condicionales pueden omitirse cuando no exista información suficiente.
 
 ---
 
-# 17. DATA
+15. DATA
 
-El campo `data` contiene únicamente la información necesaria para representar el bloque.
+"data" contiene únicamente la información necesaria para representar el bloque.
 
 Ejemplo:
 
@@ -532,236 +364,95 @@ Ejemplo:
 
 ---
 
-# 18. B01 — HEADER
+16. REGLA DE BLOQUES
 
-Estructura conceptual:
+La IA debe respetar:
 
-{
-  "id": "B01",
-  "type": "header",
-  "enabled": true,
-  "data": {
-    "logo": "",
-    "brand": "",
-    "navigation": [],
-    "cta": null
-  }
-}
+"authorized_blocks"
 
-El header es global.
+No puede:
 
-No debe cambiar artificialmente por localidad.
+- añadir bloques;
+- eliminar bloques obligatorios;
+- cambiar IDs;
+- cambiar tipos;
+- modificar la arquitectura;
+- crear estructuras paralelas.
 
 ---
 
-# 19. B02 — NAVEGACIÓN
+17. CONTENIDO
 
-Estructura:
+El contenido debe ser:
 
-{
-  "id": "B02",
-  "type": "navigation",
-  "enabled": true,
-  "data": {
-    "items": []
-  }
-}
+- específico;
+- útil;
+- coherente con la intención;
+- basado en los datos recibidos;
+- compatible con las restricciones.
 
-Solo se utilizarán enlaces autorizados.
+No debe generarse contenido únicamente para aumentar longitud.
 
 ---
 
-# 20. B03 — HERO
+18. NO INVENCIÓN
 
-Estructura:
+Está prohibido inventar:
 
-{
-  "id": "B03",
-  "type": "hero",
-  "enabled": true,
-  "data": {
-    "title": "",
-    "subtitle": "",
-    "cta": null
-  }
-}
-
-El hero debe identificar claramente la intención principal.
-
----
-
-# 21. B04 — CONTENIDO PRINCIPAL
-
-Estructura:
-
-{
-  "id": "B04",
-  "type": "main_content",
-  "enabled": true,
-  "data": {
-    "title": "",
-    "content": ""
-  }
-}
-
-Debe explicar el servicio o necesidad principal.
-
-No debe convertirse en texto genérico repetido.
-
----
-
-# 22. B05 — CTA PRINCIPAL
-
-Estructura:
-
-{
-  "id": "B05",
-  "type": "cta",
-  "enabled": true,
-  "data": {
-    "title": "",
-    "text": "",
-    "action": {
-      "type": "",
-      "label": ""
-    }
-  }
-}
-
-No se pueden inventar:
-
+- empresas;
+- profesionales;
 - teléfonos;
 - WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
 - disponibilidad;
-- tiempos de respuesta;
-- precios.
-
----
-
-# 23. B06 — FOOTER
-
-Estructura:
-
-{
-  "id": "B06",
-  "type": "footer",
-  "enabled": true,
-  "data": {
-    "links": [],
-    "legal": []
-  }
-}
-
-No debe utilizarse para generar una red artificial de enlaces.
-
----
-
-# 24. B07 — SUBSERVICIO
-
-Solo se utiliza cuando la oportunidad contiene un subservicio autorizado.
-
-Ejemplo:
-
-Fontanero + Desatascos + Marbella
-
-No se utiliza para introducir keywords adicionales.
-
----
-
-# 25. B08 — PROBLEMAS / NECESIDADES
-
-Solo se utiliza cuando existen necesidades relevantes respaldadas por información.
-
-Ejemplo:
-
-- atascos;
-- obstrucciones;
-- problemas de desagüe.
-
-No se deben inventar problemas.
-
----
-
-# 26. B09 — INFORMACIÓN LOCAL
-
-Solo se utiliza cuando existen datos locales útiles y verificables.
-
-No basta con mencionar repetidamente el nombre de la localidad.
-
-No se deben inventar:
-
-- barrios;
-- calles;
-- características urbanas;
-- tiempos de desplazamiento;
-- zonas;
-- particularidades locales.
-
----
-
-# 27. B10 — ZONAS / COBERTURA
-
-Solo se utiliza cuando existe información real de cobertura.
-
-Estructura:
-
-{
-  "id": "B10",
-  "type": "coverage",
-  "enabled": true,
-  "data": {
-    "title": "",
-    "areas": []
-  }
-}
-
-No se deben generar listas artificiales.
-
----
-
-# 28. B11 — PROCESO
-
-Solo se utiliza cuando existe información suficiente para explicar el proceso.
-
-No se deben inventar procedimientos comerciales.
-
----
-
-# 29. B12 — ELEMENTOS DE CONFIANZA
-
-Solo se utiliza con información verificable.
-
-No se deben inventar:
-
-- años de experiencia;
+- cobertura;
 - certificaciones;
 - garantías;
+- experiencia;
 - reseñas;
-- valoraciones;
-- número de trabajos;
-- disponibilidad.
+- testimonios;
+- casos;
+- datos locales;
+- imágenes;
+- URLs;
+- estadísticas;
+- datos comerciales.
+
+Cuando un dato no existe:
+
+"null"
+
+o:
+
+"REVIEW"
+
+si el dato es imprescindible.
 
 ---
 
-# 30. B13 — DIFERENCIACIÓN
+19. CTA
 
-Solo se utiliza cuando existe información realmente diferenciadora.
+La IA puede generar el texto del CTA.
 
-La diferenciación no puede consistir únicamente en cambiar:
+No puede inventar el canal de contacto.
 
-"Marbella"
+Ejemplo:
 
-por:
+{
+  "label": "Solicitar presupuesto",
+  "action": "contact"
+}
 
-"Estepona"
-
-Tampoco puede consistir únicamente en cambiar sinónimos o reordenar párrafos.
+Los datos reales de contacto deben proceder del modelo de datos.
 
 ---
 
-# 31. B14 — FAQ
+20. FAQ
 
-Estructura:
+Formato:
 
 {
   "id": "B14",
@@ -778,169 +469,227 @@ Estructura:
   }
 }
 
-Las preguntas deben estar relacionadas con la intención real.
+Las preguntas deben proceder de:
 
-Las respuestas deben poder justificarse.
+- intención;
+- investigación;
+- conocimiento válido;
+- datos disponibles.
 
----
-
-# 32. B15 — SERVICIOS RELACIONADOS
-
-Solo se utiliza cuando existen servicios relacionados y URLs autorizadas.
-
-No se deben crear enlaces hacia páginas inexistentes.
+No deben generarse únicamente para introducir keywords.
 
 ---
 
-# 33. B16 — LOCALIDADES RELACIONADAS
+21. INFORMACIÓN LOCAL
 
-Solo se utiliza cuando existen localidades relacionadas dentro de la arquitectura real.
+Cuando exista B09:
 
-No se deben generar cientos de localidades automáticamente.
-
----
-
-# 34. B17 — DATOS ESTRUCTURADOS
-
-Solo se genera cuando el tipo de página y los datos disponibles permiten utilizar datos estructurados válidos.
+la información debe estar respaldada.
 
 No se deben inventar:
+
+- barrios;
+- calles;
+- urbanizaciones;
+- tiempos;
+- características;
+- cobertura;
+- necesidades locales.
+
+Repetir el nombre del municipio no constituye información local.
+
+---
+
+22. COBERTURA
+
+Cuando exista B10:
+
+{
+  "areas": []
+}
+
+Solo deben incluirse zonas realmente respaldadas.
+
+No se generan listas masivas artificiales.
+
+---
+
+23. CONFIANZA
+
+Cuando exista B12, solo se utilizan señales verificables:
+
+- certificaciones;
+- experiencia;
+- garantías;
+- reseñas;
+- datos comerciales;
+- otros elementos proporcionados.
+
+Nunca se inventan señales de confianza.
+
+---
+
+24. DIFERENCIACIÓN
+
+Cuando exista B13, debe existir una razón real para la diferenciación.
+
+No es suficiente:
+
+- cambiar localidad;
+- cambiar sinónimos;
+- reordenar párrafos;
+- sustituir palabras;
+- duplicar una plantilla.
+
+---
+
+25. SERVICIOS RELACIONADOS
+
+B15 solo puede contener servicios existentes y autorizados.
+
+No se crean URLs nuevas desde la IA.
+
+---
+
+26. LOCALIDADES RELACIONADAS
+
+B16 solo puede utilizar localidades existentes en la arquitectura.
+
+No se genera una red masiva de enlaces únicamente para SEO.
+
+---
+
+27. DATOS ESTRUCTURADOS
+
+B17 y el campo "schema" solo pueden utilizar datos verificables.
+
+No se inventan:
 
 - reviews;
 - ratings;
 - precios;
 - horarios;
 - direcciones;
-- empresas.
+- empresas;
+- personas.
+
+El JSON-LD final será responsabilidad del sistema de renderizado.
 
 ---
 
-# 35. B18 — TESTIMONIOS
+28. TESTIMONIOS
 
-Solo se utiliza con testimonios reales y autorizados.
+B18 solo se utiliza cuando existen testimonios reales y autorizados.
 
 Nunca generar testimonios ficticios.
 
 ---
 
-# 36. B19 — CASOS / EJEMPLOS
+29. CASOS / EJEMPLOS
 
-Solo se utiliza cuando existen casos reales o ejemplos documentados.
+B19 solo se utiliza con casos reales o ejemplos expresamente autorizados.
 
-Nunca inventar trabajos realizados.
-
----
-
-# 37. B20 — GALERÍA
-
-Solo se utiliza cuando existen imágenes reales y relevantes.
-
-La IA no debe inventar URLs de imágenes.
+No se inventan trabajos realizados.
 
 ---
 
-# 38. B21 — PRECIO / TARIFAS
+30. GALERÍA
 
-Solo se utiliza con precios reales y autorizados.
+B20 solo puede utilizar recursos reales disponibles.
 
-Nunca inventar tarifas.
-
----
-
-# 39. B22 — HORARIOS
-
-Solo se utiliza con horarios reales y autorizados.
-
-Nunca inferir horarios.
+La IA no crea URLs de imágenes inexistentes.
 
 ---
 
-# 40. B23 — MAPA / UBICACIÓN
+31. PRECIO
 
-Solo se utiliza con información de ubicación válida.
+B21 solo puede utilizar precios proporcionados por la fuente de datos.
 
-Nunca inventar direcciones.
+Si no existe precio:
+
+"null"
+
+No se inventan tarifas.
 
 ---
 
-# 41. IMÁGENES
+32. HORARIOS
 
-La IA puede solicitar imágenes mediante:
+B22 solo puede utilizar horarios proporcionados.
+
+No se inventa disponibilidad.
+
+---
+
+33. MAPA
+
+B23 solo se utiliza cuando existen datos válidos de ubicación.
+
+No se inventan coordenadas, direcciones ni establecimientos.
+
+---
+
+34. IMAGES
+
+Formato:
 
 {
   "images": [
     {
-      "id": "",
-      "location": "",
-      "description": "",
+      "url": "",
       "alt": "",
-      "source_required": true
+      "title": "",
+      "type": ""
     }
   ]
 }
 
-La IA no debe inventar URLs de imágenes.
+La URL debe existir.
+
+La IA puede describir una imagen proporcionada, pero no inventar el recurso.
 
 ---
 
-# 42. ENLACES INTERNOS
+35. INTERNAL LINKS
 
-Estructura:
+Formato:
 
 {
   "internal_links": [
     {
       "url": "",
       "anchor": "",
-      "type": ""
+      "target": ""
     }
   ]
 }
 
-Solo se incluyen URLs autorizadas.
+Las URLs deben proceder de la arquitectura autorizada.
+
+La IA no puede crear URLs arbitrarias.
 
 ---
 
-# 43. SCHEMA
+36. VALIDATION
 
-Estructura:
-
-{
-  "schema": {
-    "type": "",
-    "data": {}
-  }
-}
-
-Solo se utilizarán datos estructurados válidos.
-
----
-
-# 44. VALIDATION
-
-Estructura:
+La IA puede devolver información de validación:
 
 {
   "validation": {
-    "result": "",
-    "warnings": [],
-    "required_review": false
+    "valid": true,
+    "checks": []
   }
 }
 
-Valores permitidos:
+Pero la validación definitiva corresponde al validador externo.
 
-READY
-
-REVIEW
-
-ERROR
+La IA no puede autovalidarse como autoridad final.
 
 ---
 
-# 45. ISSUES
+37. ISSUES
 
-Estructura:
+Formato:
 
 {
   "issues": {
@@ -948,336 +697,373 @@ Estructura:
   }
 }
 
-Cada incidencia:
+Cada incidencia puede contener:
 
 {
   "code": "",
+  "severity": "",
   "field": "",
-  "description": "",
-  "severity": ""
+  "message": ""
 }
 
-Severidad:
-
-- low
-- medium
-- high
-- critical
+La IA debe registrar problemas detectados en lugar de ocultarlos.
 
 ---
 
-# 46. DATOS FALTANTES
+38. TRACEABILITY
 
-Cuando falte información:
+La salida debe permitir rastrear su origen.
 
-1. utilizar `null` cuando corresponda;
-2. omitir bloques condicionales u opcionales;
-3. generar REVIEW si la ausencia impide completar correctamente un bloque obligatorio;
-4. registrar la incidencia.
-
-Nunca inventar el dato.
-
----
-
-# 47. REGLA DE NO INVENCIÓN
-
-Está prohibido inventar:
-
-- teléfonos;
-- WhatsApp;
-- emails;
-- direcciones;
-- precios;
-- horarios;
-- empresas;
-- técnicos;
-- certificaciones;
-- años de experiencia;
-- garantías;
-- reseñas;
-- valoraciones;
-- zonas de cobertura;
-- testimonios;
-- casos reales;
-- imágenes reales;
-- datos comerciales.
-
----
-
-# 48. REGLA DE IDENTIDAD
-
-Si recibe:
-
-servicio = fontanero
-
-municipio = Marbella
-
-debe mantener:
-
-fontanero
-
-Marbella
-
-No puede sustituirlos por otra localidad o servicio.
-
----
-
-# 49. REGLA DE URL
-
-Si recibe:
-
-url = /fontanero/marbella/
-
-debe devolver:
-
-/fontanero/marbella/
-
-No puede crear:
-
-/fontanero/desatascos/marbella/
-
-salvo que esa sea exactamente la URL recibida y autorizada.
-
-La IA nunca decide la URL.
-
----
-
-# 50. REGLA DE CANONICAL
-
-El canonical recibido debe mantenerse.
-
-La IA no puede inventar un canonical alternativo.
-
----
-
-# 51. REGLA DE DIFERENCIACIÓN
-
-La página debe responder a la oportunidad concreta.
-
-No es suficiente:
-
-- cambiar el municipio;
-- cambiar el título;
-- cambiar sinónimos;
-- cambiar el orden de los párrafos;
-- generar texto diferente sin datos diferentes.
-
-La diferenciación debe proceder de la información disponible y autorizada.
-
----
-
-# 52. REGLA DE CONTENIDO LOCAL
-
-El nombre de una localidad no constituye por sí mismo contenido local.
-
-Si no existe información local suficiente:
-
-- no inventar;
-- no rellenar artificialmente;
-- omitir el bloque local cuando sea condicional;
-- registrar la ausencia cuando sea relevante.
-
----
-
-# 53. REGLA DE BLOQUES AUTORIZADOS
-
-La IA solo puede utilizar los bloques incluidos en:
-
-`bloques_autorizados`
-
-Si un bloque no está autorizado:
-
-no debe aparecer.
-
----
-
-# 54. REGLA DE BLOQUES OBLIGATORIOS
-
-Los bloques obligatorios definidos por la arquitectura deben aparecer salvo imposibilidad que requiera revisión.
-
-La ausencia de información no autoriza a inventar contenido.
-
----
-
-# 55. REGLA DE BLOQUES CONDICIONALES
-
-Un bloque condicional solo aparece cuando:
-
-- está autorizado;
-- existe información suficiente;
-- la intención lo justifica;
-- el bloque aporta valor.
-
----
-
-# 56. REGLA DE BLOQUES OPCIONALES
-
-Los bloques opcionales solo se utilizan cuando aportan valor real.
-
-No deben utilizarse para aumentar:
-
-- longitud;
-- palabras;
-- headings;
-- keywords;
-- enlaces.
-
----
-
-# 57. REGLA DE ENLACES
-
-No se deben crear enlaces a URLs inexistentes.
-
-Las URLs deben proceder de:
-
-- arquitectura;
-- datos recibidos;
-- URLs autorizadas.
-
----
-
-# 58. REGLA DE CONTENIDO
-
-El contenido debe:
-
-- ser útil;
-- ser comprensible;
-- responder a la intención;
-- respetar las evidencias;
-- respetar las restricciones;
-- evitar afirmaciones no verificadas;
-- evitar contenido artificialmente repetitivo.
-
----
-
-# 59. REGLA DE IA
-
-La IA no sustituye:
-
-- investigación;
-- motor de decisión;
-- arquitectura SEO;
-- arquitectura de URL;
-- selección de oportunidades.
-
-La IA trabaja después de que estas capas hayan tomado sus decisiones.
-
----
-
-# 60. TRAZABILIDAD
-
-La salida debe conservar información suficiente para saber qué versión del sistema generó el contenido.
-
-Estructura:
+Formato conceptual:
 
 {
   "traceability": {
-    "contract_version": "1.1",
-    "engine_version": "",
-    "source_date": "",
-    "generated_at": ""
+    "opportunity_id": "",
+    "source_version": "",
+    "contract_version": "2.0"
   }
 }
 
----
-
-# 61. VALIDACIÓN FINAL
-
-Antes de considerar una salida como READY deben comprobarse como mínimo:
-
-1. JSON válido.
-2. `schema_version` válida.
-3. `opportunity_id` correcto.
-4. identidad correcta.
-5. URL correcta.
-6. canonical correcto.
-7. bloques autorizados.
-8. IDs de bloques válidos.
-9. tipos de bloques correctos.
-10. ausencia de datos inventados.
-11. ausencia de URLs no autorizadas.
-12. contenido coherente con la oportunidad.
-13. restricciones respetadas.
-14. incidencias correctamente registradas.
+La trazabilidad permite identificar qué oportunidad y qué contrato generaron la salida.
 
 ---
 
-# 62. RESULTADO
+39. REGLAS DE INTEGRIDAD
 
-Si todas las condiciones se cumplen:
+N8N debe rechazar la salida cuando:
 
-status = READY
+- no sea JSON válido;
+- falte "schema_version";
+- falte "opportunity_id";
+- falte "status";
+- existan bloques no autorizados;
+- existan IDs desconocidos;
+- el "type" no corresponda al ID;
+- la URL no coincida con la arquitectura;
+- existan campos protegidos modificados;
+- existan estructuras incompatibles.
 
-Si existe una incidencia que requiere revisión:
+Resultado:
 
-status = REVIEW
-
-Si la salida no puede procesarse correctamente:
-
-status = ERROR
-
----
-
-# 63. PRINCIPIO FINAL
-
-La IA no debe intentar completar información que el sistema no posee.
-
-Es preferible:
-
-OMITIR
+"ERROR"
 
 o:
 
-REVIEW
+"REVIEW"
 
-antes que:
-
-INVENTAR.
-
-El sistema debe priorizar:
-
-VERACIDAD
-
-↓
-
-TRAZABILIDAD
-
-↓
-
-UTILIDAD
-
-↓
-
-ESCALABILIDAD
+según la naturaleza del problema.
 
 ---
 
-# 64. CONTROL DE VERSIONES
+40. IDEMPOTENCIA
 
-Versión actual:
+El contrato debe permitir que N8N procese la misma salida sin crear duplicados.
 
-1.1
+El identificador estable es:
 
-Fecha:
+"opportunity_id"
 
-2026-08-23
-
-Motivo:
-
-Alineación del contrato de salida IA → N8N con el identificador oficial de bloques definido en `sistema-bloques.md`.
-
-Cambio principal:
-
-Se establece un mapa único y vinculante entre:
-
-ID DEL BLOQUE
-
-TYPE
-
-FUNCIÓN
-
-La versión anterior utilizaba identificadores incompatibles con el sistema oficial de bloques.
-
-Esta versión corrige dicha incompatibilidad.
+La landing correspondiente debe poder localizarse mediante ese identificador o mediante el identificador estable definido por el sistema.
 
 ---
+
+41. WORDPRESS
+
+La IA no genera directamente HTML final para WordPress.
+
+Flujo:
+
+IA
+↓
+JSON
+↓
+VALIDADOR
+↓
+N8N
+↓
+MODELO WORDPRESS
+↓
+RENDERIZADO
+
+WordPress renderiza los datos estructurados.
+
+---
+
+42. N8N
+
+N8N será responsable de:
+
+- recibir JSON;
+- validar;
+- transformar;
+- comprobar existencia;
+- crear o actualizar;
+- enviar a WordPress;
+- registrar errores;
+- registrar resultados.
+
+N8N no debe reinterpretar arbitrariamente las decisiones SEO.
+
+---
+
+43. EJEMPLO MÍNIMO
+
+Para:
+
+Fontanero + Marbella
+
+{
+  "schema_version": "2.0",
+  "opportunity_id": "FON-MARB-001",
+  "status": "READY",
+  "identity": {
+    "sector": "fontaneria",
+    "service": "fontanero",
+    "subservice": null,
+    "municipality": "Marbella",
+    "province": "Málaga",
+    "country": "España"
+  },
+  "architecture": {
+    "page_type": "servicio_localidad",
+    "url": "/fontanero/marbella/",
+    "canonical": "/fontanero/marbella/",
+    "parent_url": null,
+    "depth": 1,
+    "authorized_blocks": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06"
+    ]
+  },
+  "seo": {
+    "title": "Fontanero en Marbella",
+    "meta_description": "Servicios de fontanería en Marbella.",
+    "h1": "Fontanero en Marbella"
+  },
+  "menu": {
+    "items": []
+  },
+  "blocks": [],
+  "images": [],
+  "internal_links": [],
+  "schema": {},
+  "validation": {
+    "valid": true,
+    "checks": []
+  },
+  "issues": {
+    "items": []
+  },
+  "traceability": {
+    "opportunity_id": "FON-MARB-001",
+    "source_version": "",
+    "contract_version": "2.0"
+  }
+}
+
+El ejemplo es ilustrativo.
+
+Los valores definitivos dependen de los datos y evidencias reales.
+
+---
+
+44. REGLA DE NO DECISIÓN
+
+La IA NO DECIDE:
+
+- si crear una página;
+- qué servicio investigar;
+- qué localidad crear;
+- qué URL utilizar;
+- qué canonical utilizar;
+- qué bloques están autorizados;
+- qué arquitectura aplicar;
+- qué datos comerciales existen.
+
+La IA SÍ GENERA:
+
+- contenido;
+- títulos;
+- descripciones;
+- preguntas;
+- respuestas;
+- textos de bloques;
+- contenido SEO permitido;
+- información derivada de datos recibidos.
+
+---
+
+45. RELACIÓN CON DOCUMENTOS
+
+Este contrato debe mantenerse alineado con:
+
+"proyecto/seo/arquitectura-seo.md"
+
+→ arquitectura SEO.
+
+"proyecto/seo/arquitectura-urls.md"
+
+→ URLs.
+
+"proyecto/seo/arquitectura-landing.md"
+
+→ estructura funcional.
+
+"proyecto/seo/esquema-datos.md"
+
+→ modelo de datos.
+
+"proyecto/seo/sistema-bloques.md"
+
+→ B01–B23.
+
+"proyecto/seo/integracion-n8n-wordpress.md"
+
+→ comunicación.
+
+La fuente de verdad de cada decisión pertenece al documento correspondiente.
+
+No se deben crear definiciones paralelas.
+
+---
+
+46. RELACIÓN CON ESPECIFICACIÓN IA
+
+"especificacion-ia.md" define el comportamiento, instrucciones y contexto de generación.
+
+Este documento define exclusivamente:
+
+la salida estructurada que debe cumplir la IA.
+
+Por tanto:
+
+ESPECIFICACIÓN IA
+→ cómo debe trabajar la IA.
+
+CONTRATO SALIDA IA
+→ qué debe devolver.
+
+No deben duplicarse sus responsabilidades.
+
+---
+
+47. VALIDACIÓN EXTERNA
+
+El contrato no sustituye al validador.
+
+La secuencia correcta es:
+
+GENERAR
+↓
+VALIDAR ESTRUCTURA
+↓
+VALIDAR DATOS
+↓
+VALIDAR ARQUITECTURA
+↓
+VALIDAR SEO
+↓
+VALIDAR RESTRICCIONES
+↓
+N8N
+
+Una salida "READY" de la IA no implica publicación automática.
+
+---
+
+48. VERSIONADO
+
+Los cambios incompatibles deben aumentar la versión del contrato.
+
+N8N debe poder rechazar versiones incompatibles.
+
+No se debe modificar silenciosamente la estructura esperando que N8N la interprete.
+
+---
+
+49. PRINCIPIO DE ESCALABILIDAD
+
+El mismo contrato debe poder utilizarse para:
+
+- 1 landing;
+- 10 landings;
+- 100 landings;
+- 1.000 landings;
+- 10.000+ landings.
+
+La estructura del contrato permanece estable.
+
+Lo que cambia son:
+
+- oportunidades;
+- datos;
+- arquitectura;
+- bloques autorizados;
+- contenido.
+
+---
+
+50. REGLA FINAL
+
+La IA no es la fuente de verdad.
+
+La arquitectura no es la IA.
+
+N8N no decide el SEO.
+
+WordPress no decide el contenido.
+
+Cada capa ejecuta exclusivamente su responsabilidad.
+
+El flujo definitivo es:
+
+EVIDENCIA
+↓
+DECISIÓN
+↓
+ARQUITECTURA
+↓
+DATOS
+↓
+IA
+↓
+CONTRATO JSON
+↓
+VALIDADOR
+↓
+N8N
+↓
+WORDPRESS
+
+---
+
+51. CONTROL DE VERSIONES
+
+Versión: 2.0
+
+Fecha: 2026-08-24
+
+Motivo: consolidación posterior a auditoría.
+
+Cambios principales:
+
+- separación entre especificación IA y contrato de salida;
+- alineación con arquitectura SEO;
+- alineación con arquitectura URL;
+- alineación con arquitectura Landing;
+- alineación con B01–B23;
+- versión de contrato actualizada;
+- refuerzo de campos protegidos;
+- refuerzo de validación externa;
+- refuerzo de trazabilidad;
+- eliminación de decisiones autónomas de la IA;
+- preparación para N8N → WordPress;
+- eliminación de estructuras paralelas.
+
+---
+
+FIN DEL CONTRATO DE SALIDA IA → N8N
