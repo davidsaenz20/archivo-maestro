@@ -5,8 +5,8 @@ REGLA DE ARRANQUE OBLIGATORIA
 Antes de realizar cualquier trabajo sobre este proyecto, el asistente debe:
 
 1. Leer este "maestro.md".
-2. Leer "metodologia/protocolo-ejecucion.md".
-3. Leer "metodologia/checklist-arranque.md".
+2. Leer "proyecto/protocolo-ejecucion.md".
+3. Leer "proyecto/checklist-arranque.md".
 4. Identificar la fase y el HITO ACTUAL.
 5. Identificar el objetivo y entregable del hito.
 6. Consultar los documentos técnicos necesarios para ese hito.
