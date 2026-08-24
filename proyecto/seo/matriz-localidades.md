@@ -1,290 +1,279 @@
-Matriz Territorial — Localidades
+MATRIZ TERRITORIAL — LOCALIDADES
 
-1. Función del documento
+Versión: 2.0
+Estado: ACTIVO
 
-Esta matriz organiza el componente territorial del proyecto.
+---
 
-Su función es identificar y clasificar localidades y otros niveles geográficos que puedan ser relevantes para la plataforma.
+1. FUNCIÓN
 
-No determina por sí sola qué páginas deben crearse.
+Esta matriz organiza la información territorial que puede utilizar el sistema SEO.
 
-Su función es proporcionar información territorial al:
+Su función es proporcionar datos y evidencias sobre:
 
-"motor-decision.md"
+- países;
+- comunidades autónomas;
+- provincias;
+- municipios;
+- localidades;
+- zonas;
+- barrios;
+- urbanizaciones;
+- características territoriales.
 
-para que este pueda evaluar:
+La matriz no decide por sí sola qué páginas deben crearse.
+
+La decisión corresponde al:
+
+"proyecto/seo/motor-decision.md"
+
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La existencia de una localidad no implica la creación de una página.
+
+La oportunidad debe analizarse mediante:
 
 SERVICIO × LOCALIDAD
 
----
+y, cuando corresponda:
 
-2. Principio territorial
+SERVICIO × SUBSERVICIO × LOCALIDAD
 
-La existencia de una localidad no implica que deba existir una página para todos los servicios.
-
-La oportunidad depende de la combinación entre:
-
-- Servicio.
-- Localidad.
-- Intención.
-- Demanda.
-- Competencia.
-- Potencial comercial.
-- Diferenciación.
-- Información disponible.
-- Cobertura real.
+La localidad es un dato de entrada, no una justificación automática.
 
 ---
 
-3. Niveles territoriales
+3. NIVELES TERRITORIALES
 
-El sistema puede trabajar con diferentes niveles:
+El sistema puede trabajar con:
 
-- País.
-- Comunidad autónoma.
-- Provincia.
-- Ciudad.
-- Municipio.
-- Localidad.
-- Zona.
-- Barrio.
-- Urbanización.
+1. País.
+2. Comunidad autónoma.
+3. Provincia.
+4. Municipio.
+5. Localidad.
+6. Zona.
+7. Barrio.
+8. Urbanización.
 
-No todos los niveles deben utilizarse para todos los servicios.
+No todos los niveles son apropiados para todos los servicios.
 
----
-
-4. Clasificación de localidades
-
-Las localidades pueden clasificarse según:
-
-Grandes ciudades
-
-Mercados con:
-
-- población elevada;
-- gran número de empresas;
-- gran actividad económica;
-- mayor variedad de servicios;
-- mayor competencia.
+La profundidad territorial debe justificarse mediante evidencia.
 
 ---
 
-Ciudades medianas
+4. IDENTIDAD TERRITORIAL
 
-Mercados con:
+Cada localidad debería poder identificarse mediante:
 
-- demanda local relevante;
-- competencia significativa;
-- posibilidad de especialización.
+location
+├── country
+├── autonomous_community
+├── province
+├── municipality
+├── locality
+└── parent_location
+
+Los nombres deben proceder de fuentes fiables.
+
+No se inventan localidades ni divisiones territoriales.
 
 ---
 
-Municipios pequeños
+5. VARIABLES TERRITORIALES
 
-Pueden tener menor demanda absoluta, pero pueden resultar relevantes cuando existe:
+Cuando sean relevantes, pueden recopilarse:
 
-- poca competencia;
-- alta intención;
+- población;
 - actividad económica;
 - turismo;
-- características residenciales;
-- proximidad a otras localidades.
-
----
-
-Localidades turísticas
-
-Pueden presentar:
-
-- hoteles;
-- apartamentos turísticos;
-- segundas residencias;
-- restauración;
-- actividad estacional;
-- necesidades urgentes.
-
-El turismo es una variable, no una garantía automática de oportunidad.
-
----
-
-Zonas residenciales
-
-Pueden incluir:
-
+- estacionalidad;
+- tipo de vivienda;
 - urbanizaciones;
-- comunidades;
-- viviendas unifamiliares;
-- zonas de nueva construcción;
-- zonas con características específicas.
+- empresas;
+- hoteles;
+- restauración;
+- características del mercado;
+- cobertura profesional;
+- distancia;
+- competencia;
+- particularidades locales.
 
-Solo deben convertirse en páginas independientes cuando exista suficiente justificación.
+Un dato desconocido se mantiene como:
 
----
+"null"
 
-5. Variables territoriales
-
-Para cada localidad se intentará recopilar, cuando sea relevante:
-
-- Población.
-- Provincia.
-- Comunidad autónoma.
-- Actividad económica.
-- Turismo.
-- Tipo de vivienda.
-- Urbanizaciones.
-- Empresas.
-- Hoteles.
-- Restauración.
-- Características del mercado.
-- Cobertura profesional.
-- Distancia respecto a otros núcleos.
-- Competencia local.
-- Otras características específicas.
-
-No todas las variables estarán disponibles para todas las localidades.
+No se inventa.
 
 ---
 
-6. Población
+6. POBLACIÓN
 
-La población puede utilizarse como indicador de tamaño de mercado.
+La población puede utilizarse como indicador del tamaño potencial del mercado.
 
-Sin embargo:
+Pero:
 
-población ≠ demanda
+POBLACIÓN ≠ DEMANDA
 
 y:
 
-población ≠ decisión automática de crear página
+POBLACIÓN ≠ CREAR PÁGINA
 
-Debe combinarse con otras variables.
+Debe combinarse con otras evidencias.
 
 ---
 
-7. Turismo
+7. TURISMO
 
-El turismo puede aumentar determinadas oportunidades comerciales.
+El turismo puede ser relevante para determinados servicios.
 
 Debe analizarse mediante:
 
-- volumen turístico;
+- volumen;
 - estacionalidad;
-- tipo de alojamiento;
+- alojamiento;
 - segunda residencia;
 - actividad empresarial;
 - necesidades específicas.
 
-No debe utilizarse simplemente como argumento para crear páginas.
+El turismo es una variable, no una justificación automática.
 
 ---
 
-8. Urbanizaciones
+8. TIPO DE VIVIENDA
 
-Las urbanizaciones pueden ser relevantes para determinados servicios.
+Cuando exista información disponible puede analizarse:
 
-Pueden aportar:
-
-- concentración residencial;
-- características constructivas;
+- vivienda unifamiliar;
+- pisos;
 - comunidades;
-- piscinas;
-- instalaciones comunes;
-- necesidades de mantenimiento.
+- urbanizaciones;
+- segunda residencia;
+- vivienda turística;
+- nueva construcción;
+- parque inmobiliario antiguo.
 
-La existencia de una urbanización no justifica automáticamente una página independiente.
+Esta información puede ayudar a identificar necesidades específicas de determinados servicios.
 
----
-
-9. Cobertura
-
-Una localidad debe analizarse también desde el punto de vista de la cobertura real.
-
-Debe considerarse:
-
-- Distancia.
-- Tiempo de desplazamiento.
-- Existencia de profesionales.
-- Capacidad de atención.
-- Modelo de negocio.
-- Cobertura declarada.
-
-Una página no debe prometer cobertura que no exista.
+No debe utilizarse para inventar necesidades.
 
 ---
 
-10. Competencia local
+9. URBANIZACIONES Y ZONAS
 
-Debe analizarse:
+Las urbanizaciones, barrios y zonas pueden aportar información útil.
 
-- Empresas locales.
-- Directorios.
-- Marketplaces.
-- Empresas provinciales.
-- Empresas nacionales.
-- Resultados locales.
-- Calidad de las páginas competidoras.
+Pero su existencia geográfica no implica que deban convertirse en páginas independientes.
 
-La competencia alta no implica automáticamente descartar una localidad.
+Para justificar una página territorial debe existir:
+
+- intención;
+- utilidad;
+- diferenciación;
+- información suficiente;
+- cobertura;
+- evidencia.
 
 ---
 
-11. Relevancia territorial por servicio
+10. COBERTURA
 
-Una localidad puede ser especialmente interesante para determinados servicios.
+La cobertura debe distinguirse entre:
 
-Ejemplo conceptual:
+CONFIRMADA
+PROBABLE
+DESCONOCIDA
 
-Una zona turística puede tener mayor relevancia para:
+La cobertura confirmada debe estar respaldada por información real.
 
+No se promete atención en una localidad únicamente porque esté cerca de otra.
+
+---
+
+11. COMPETENCIA LOCAL
+
+Cuando se investigue una localidad pueden analizarse:
+
+- empresas locales;
+- directorios;
+- marketplaces;
+- resultados locales;
+- páginas especializadas;
+- calidad de competidores;
+- intención satisfecha por la SERP.
+
+La competencia es información para el motor.
+
+No debe convertirse en una puntuación arbitraria.
+
+---
+
+12. RELEVANCIA POR SERVICIO
+
+Una localidad puede ser especialmente relevante para un servicio concreto y menos relevante para otro.
+
+Ejemplo:
+
+Una zona turística puede tener especial interés para:
+
+- fontanería;
 - mantenimiento;
 - urgencias;
-- fontanería residencial;
-- instalaciones;
-- servicios para alojamientos.
+- servicios para alojamientos;
+- instalaciones.
 
-Pero no necesariamente tendrá la misma oportunidad para todos los servicios.
+Pero no necesariamente para cualquier servicio.
 
-Por ello la matriz territorial debe cruzarse con la matriz de servicios.
+Por ello:
 
----
+LOCALIDAD
++
+SERVICIO
 
-12. Matriz conceptual
-
-La estructura de análisis será:
-
-Localidad| Tipo| Tamaño| Turismo| Actividad| Competencia| Diferenciación| Evaluación
-Madrid| Gran ciudad| Muy alto| Alto| Muy alto| Alta| Alta| Motor
-Barcelona| Gran ciudad| Muy alto| Alto| Muy alto| Alta| Alta| Motor
-Málaga| Gran ciudad| Alto| Muy alto| Alto| Alta| Alta| Motor
-Marbella| Turística| Medio| Muy alto| Alto| Alta| Alta| Motor
-Sevilla| Gran ciudad| Alto| Alto| Alto| Alta| Alta| Motor
-
-Esta tabla es conceptual y no constituye por sí misma una decisión de creación de páginas.
-
-Los datos definitivos deben proceder de investigación y fuentes verificables.
+debe analizarse conjuntamente.
 
 ---
 
-13. Estados territoriales
+13. MATRIZ TERRITORIAL
+
+La estructura conceptual es:
+
+Localidad| Tipo| Población| Turismo| Actividad| Competencia| Cobertura| Información| Estado
+Madrid| Gran ciudad| Alta| Alta| Alta| Alta| Desconocida| Parcial| IDENTIFICADA
+Barcelona| Gran ciudad| Alta| Alta| Alta| Alta| Desconocida| Parcial| IDENTIFICADA
+Málaga| Gran ciudad| Alta| Alta| Alta| Alta| Desconocida| Parcial| IDENTIFICADA
+Marbella| Turística| Media| Alta| Alta| Alta| Desconocida| Parcial| INVESTIGADA
+Sevilla| Gran ciudad| Alta| Alta| Alta| Alta| Desconocida| Parcial| IDENTIFICADA
+
+Esta tabla es conceptual.
+
+No constituye una decisión de creación de páginas.
+
+Los valores definitivos deben proceder de investigación verificable.
+
+---
+
+14. ESTADOS TERRITORIALES
 
 Una localidad puede encontrarse en:
 
 IDENTIFICADA
 
-Incluida en el universo territorial.
+Forma parte del universo territorial.
 
 INVESTIGADA
 
-Existe información suficiente.
+Existe información suficiente para su análisis.
 
 PRIORIZADA
 
-Presenta características que justifican analizarla con mayor profundidad.
+Presenta características que justifican investigar determinadas combinaciones con mayor profundidad.
 
 VALIDADA
 
-La oportunidad ha sido comprobada.
+La información territorial relevante ha sido comprobada.
 
 AGRUPADA
 
@@ -296,38 +285,50 @@ No existe justificación suficiente para continuar su análisis.
 
 ---
 
-14. Cruce con servicios
+15. CRUCE CON SERVICIOS
 
-La matriz territorial debe cruzarse con:
-
-"matriz-servicios-fontaneria.md"
-
-para producir oportunidades potenciales:
-
-SERVICIO × LOCALIDAD
+La matriz territorial debe cruzarse con la información de servicios.
 
 Ejemplos:
 
-- Fontanero × Marbella.
-- Desatascos × Marbella.
-- Reparación de fugas × Marbella.
-- Fontanero urgente × Málaga.
+Fontanero × Marbella
+Desatascos × Marbella
+Reparación de fugas × Marbella
+Fontanero urgente × Málaga
 
-Estas combinaciones no deben convertirse automáticamente en URLs.
+Estas combinaciones son oportunidades potenciales.
 
-Deben pasar por el motor.
+No son automáticamente:
+
+- páginas;
+- URLs;
+- landings.
+
+Deben pasar por el motor de decisión.
 
 ---
 
-15. Profundidad territorial
+16. CRUCE CON SUBSERVICIOS
 
-El motor puede determinar diferentes niveles de profundidad.
+Cuando exista una intención suficientemente específica:
 
-Ejemplo conceptual:
+SERVICIO × SUBSERVICIO × LOCALIDAD
+
+Ejemplo:
+
+Fontanero × Desatascos × Marbella
+
+Solo se considerará una oportunidad independiente cuando exista evidencia suficiente de intención diferenciada.
+
+---
+
+17. PROFUNDIDAD TERRITORIAL
+
+El sistema puede trabajar con:
 
 Nivel 1
 
-Servicio + ciudad.
+Servicio + ciudad/municipio.
 
 Nivel 2
 
@@ -343,16 +344,18 @@ Servicio + barrio/urbanización.
 
 La profundidad debe justificarse mediante:
 
-- demanda;
 - intención;
+- demanda;
 - diferenciación;
 - información;
 - utilidad;
 - cobertura.
 
+No se debe aumentar la profundidad únicamente para crear más URLs.
+
 ---
 
-16. Regla contra la expansión artificial
+18. REGLA CONTRA LA EXPANSIÓN ARTIFICIAL
 
 No se deben crear páginas simplemente porque existan:
 
@@ -360,116 +363,222 @@ No se deben crear páginas simplemente porque existan:
 - barrios;
 - urbanizaciones;
 - códigos postales;
-- zonas.
+- zonas;
+- combinaciones posibles.
 
 La existencia geográfica no equivale a oportunidad SEO.
 
 ---
 
-17. Información local
+19. INFORMACIÓN LOCAL
 
-Una página territorial debe poder incorporar información real.
+Cuando una oportunidad avance hacia la creación de una landing, la información territorial puede aportar:
 
-Puede incluir:
-
-- zonas atendidas;
 - características locales;
-- problemas frecuentes;
+- zonas atendidas;
 - tipos de vivienda;
-- negocios;
-- turismo;
-- urbanizaciones;
-- servicios relevantes;
-- cobertura.
-
-No debe inventarse información local para hacer parecer única una página.
-
----
-
-18. Relación con el motor
-
-El motor utiliza la matriz territorial como fuente de información.
-
-El motor debe valorar conjuntamente:
-
-SERVICIO + LOCALIDAD
-
-y no utilizar la localidad de forma aislada.
-
-Variables territoriales importantes:
-
-- tamaño;
 - actividad;
 - turismo;
-- competencia;
+- urbanizaciones;
+- problemas específicos demostrados;
 - cobertura;
-- diferenciación;
-- características del mercado.
+- información útil para el usuario.
+
+No se debe fabricar información local para hacer que dos páginas parezcan diferentes.
 
 ---
 
-19. Reutilización
+20. DIFERENCIACIÓN
 
-La estructura territorial puede reutilizarse para cualquier servicio.
+La información territorial solo constituye diferenciación cuando aporta utilidad real.
 
-Sin embargo, los factores importantes pueden variar.
+No constituye diferenciación suficiente:
 
-Por ejemplo:
+- repetir el nombre de la localidad;
+- enumerar barrios genéricos;
+- cambiar palabras;
+- modificar títulos;
+- generar textos diferentes sin datos diferentes.
 
-- Fontanería puede depender mucho de cobertura y urgencia.
-- Abogados puede depender más de especialización, tipo de cliente y densidad empresarial.
-- Reformas puede depender de vivienda, renta y actividad inmobiliaria.
-- Jardinería puede depender de vivienda unifamiliar, urbanizaciones y zonas verdes.
+---
+
+21. EVIDENCIA
+
+Las afirmaciones territoriales importantes deben poder relacionarse con:
+
+- fuente;
+- fecha;
+- dato;
+- observación;
+- investigación.
+
+La clasificación puede ser:
+
+OBSERVED
+INFERENCE
+HYPOTHESIS
+UNKNOWN
+
+Una hipótesis no debe tratarse como dato confirmado.
+
+---
+
+22. RELACIÓN CON EL MOTOR
+
+El flujo es:
+
+MATRIZ TERRITORIAL
+↓
+CRUCE CON SERVICIO
+↓
+INVESTIGACIÓN
+↓
+MOTOR DE DECISIÓN
+↓
+CREAR / AGRUPAR / INVESTIGAR / NO CREAR
+
+La matriz proporciona información.
+
+El motor decide.
+
+---
+
+23. RELACIÓN CON LA ARQUITECTURA
+
+Solo después de obtener:
+
+CREAR
+
+se aplica la arquitectura de URLs.
+
+La matriz territorial nunca debe utilizarse para justificar una URL.
+
+---
+
+24. REUTILIZACIÓN
+
+La estructura territorial puede reutilizarse para cualquier sector.
+
+Sin embargo, las variables relevantes pueden cambiar.
+
+Ejemplos:
+
+- Fontanería → cobertura, urgencia, vivienda.
+- Abogados → especialización, empresas, población.
+- Reformas → vivienda, renta, actividad inmobiliaria.
+- Jardinería → viviendas, urbanizaciones, zonas verdes.
 
 Por tanto:
 
-estructura reutilizable ≠ variables idénticas para todos los sectores.
+ESTRUCTURA REUTILIZABLE
+≠
+VARIABLES IDÉNTICAS
 
 ---
 
-20. Regla de evidencia
+25. REGLA DE NO INVENCIÓN
 
-Las decisiones territoriales importantes deben poder justificarse mediante:
+No se inventan:
 
-- datos;
-- fuentes;
-- SERP;
-- competencia;
-- investigación;
-- información comercial;
-- resultados reales.
+- localidades;
+- barrios;
+- urbanizaciones;
+- población;
+- turismo;
+- estadísticas;
+- cobertura;
+- empresas;
+- características locales;
+- demanda;
+- competencia.
 
-La intuición puede generar una hipótesis, pero no debe convertirse automáticamente en regla.
+Cuando no exista información:
 
----
+"null"
 
-21. Actualizaciones
+o:
 
-Las modificaciones importantes de esta matriz se registrarán al final indicando:
-
-- Fecha.
-- Información añadida.
-- Información modificada.
-- Motivo.
-- Evidencia.
-- Consecuencia.
-
-Cuando una actualización contradiga información anterior, se revisará expresamente antes de sustituirla.
+"UNKNOWN"
 
 ---
 
-22. Registro de actualización
+26. ACTUALIZACIONES
 
-2026-08-23
+Las modificaciones importantes deben registrar:
 
-Se consolida la estructura territorial del proyecto.
+- fecha;
+- dato añadido;
+- dato modificado;
+- fuente;
+- motivo;
+- consecuencia.
 
-Se establece que:
+Si una nueva evidencia contradice una anterior, ambas deben revisarse antes de sustituir la información.
 
-- La localidad es un input del sistema.
-- La existencia de una localidad no implica creación automática.
-- La población no es suficiente como criterio.
-- Turismo, actividad, competencia y cobertura deben analizarse conjuntamente.
-- La profundidad territorial debe decidirse según la oportunidad.
-- El análisis definitivo se realiza mediante el cruce SERVICIO × LOCALIDAD.
-- La estructura territorial puede reutilizarse para otros servicios, adaptando las variables sectoriales.
+---
+
+27. ESTADO ACTUAL
+
+Versión: "2.0"
+
+Estado: "ACTIVO"
+
+La matriz queda alineada con:
+
+- esquema de datos v2.0;
+- motor de decisión v1.0;
+- registro de decisiones v2.0;
+- arquitectura SEO;
+- arquitectura de URLs;
+- arquitectura de landing;
+- sistema de bloques;
+- contrato IA → N8N.
+
+---
+
+28. SIGUIENTE PASO
+
+Utilizar la matriz territorial durante el piloto real.
+
+El proceso será:
+
+LOCALIDAD
+↓
+SERVICIO
+↓
+EVIDENCIAS
+↓
+MOTOR
+↓
+DECISIÓN
+↓
+REGISTRO
+
+Las combinaciones que obtengan "CREAR" podrán continuar hacia arquitectura, bloques, IA, validación, N8N y WordPress.
+
+---
+
+29. REGISTRO DE ACTUALIZACIÓN
+
+2026-08-24
+
+Se actualiza la matriz territorial a la versión "2.0".
+
+Se consolida su función como fuente de información territorial y se elimina cualquier interpretación que pueda convertir automáticamente una localidad en una oportunidad de creación.
+
+Se refuerzan:
+
+- identidad territorial;
+- estados;
+- evidencia;
+- cobertura;
+- diferenciación;
+- cruce servicio × localidad;
+- cruce servicio × subservicio × localidad;
+- profundidad territorial;
+- reutilización sectorial;
+- regla de no invención;
+- trazabilidad;
+- relación con el motor de decisión.
+
+La matriz queda preparada para utilizarse durante el piloto real.
