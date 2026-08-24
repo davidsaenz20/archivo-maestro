@@ -1,15 +1,21 @@
 ROADMAP UNIVERSAL — FÁBRICA DE WEBS AUTOMÁTICAS
 
-Versión: 1.0
+Versión: 2.0
 Tipo: Metodología reutilizable
 Ámbito: Sistemas de generación automática de webs y contenidos estructurados
-Estado: En construcción
+Estado: ACTIVO
 
 ---
 
 1. PROPÓSITO
 
-Este documento define el proceso general para diseñar, construir, validar, automatizar y escalar sistemas capaces de generar webs de forma estructurada y repetible.
+Este documento define el método general y reutilizable para diseñar, construir, validar, automatizar, publicar y escalar sistemas capaces de generar webs de forma estructurada y repetible.
+
+No define el estado concreto de ningún proyecto.
+
+No define qué paso está ejecutándose actualmente.
+
+No sustituye al roadmap específico de cada proyecto.
 
 Debe poder reutilizarse para diferentes proyectos y verticales.
 
@@ -22,21 +28,68 @@ Ejemplos:
 - webs informativas;
 - otros sistemas de generación automática.
 
-El método no depende de un sector concreto.
+---
+
+2. JERARQUÍA DEL SISTEMA
+
+La metodología universal ocupa esta posición:
+
+MAESTRO
+↓
+ROADMAP UNIVERSAL
+↓
+ROADMAP DEL PROYECTO
+↓
+DOCUMENTACIÓN TÉCNICA
+↓
+IMPLEMENTACIÓN
+
+Cada capa tiene una función distinta.
+
+"maestro.md"
+
+Define el contexto persistente y las reglas maestras.
+
+"proyecto/roadmap-fabrica-webs.md"
+
+Define el método general reutilizable.
+
+"proyecto/roadmap-proyecto.md"
+
+Define el orden, estado y ejecución del proyecto concreto.
+
+Documentación técnica
+
+Define cómo debe construirse cada componente.
+
+Implementación
+
+Ejecuta las decisiones anteriores.
+
+Ninguna capa inferior debe modificar unilateralmente las decisiones de una capa superior.
 
 ---
 
-2. PRINCIPIO FUNDAMENTAL
+3. PRINCIPIO FUNDAMENTAL
 
-El proyecto se divide en fases y pasos ordenados.
+El trabajo se divide en fases y pasos ordenados.
 
-No se avanza al siguiente paso hasta completar el paso actual, salvo que exista un bloqueo real que obligue a modificar el plan.
+No se avanza al siguiente paso hasta completar el paso actual, salvo que exista un bloqueo real que obligue a modificar temporalmente el plan.
 
-Una mejora o una idea nueva no constituye un bloqueo.
+Una mejora, idea, optimización o duda no constituye por sí misma un bloqueo.
+
+El método debe favorecer:
+
+- ejecución secuencial;
+- progreso acumulativo;
+- verificación;
+- trazabilidad;
+- reutilización;
+- mínima intervención manual.
 
 ---
 
-3. FLUJO GENERAL
+4. FLUJO GENERAL
 
 DEFINICIÓN
 ↓
@@ -70,13 +123,17 @@ MONITORIZACIÓN
 ↓
 MEJORA
 
+Este flujo representa el método general.
+
+Cada proyecto concreto puede adaptar las fases y pasos necesarios, siempre que mantenga los principios fundamentales de control y validación.
+
 ---
 
-FASE 0 — DEFINICIÓN DEL PROYECTO
+5. FASE 0 — DEFINICIÓN DEL PROYECTO
 
 Objetivo
 
-Definir qué se quiere construir y para qué.
+Definir qué se quiere construir, para quién y con qué finalidad.
 
 Pasos
 
@@ -112,7 +169,7 @@ El proyecto tiene:
 
 ---
 
-FASE 1 — INVESTIGACIÓN
+6. FASE 1 — INVESTIGACIÓN
 
 Objetivo
 
@@ -138,9 +195,11 @@ Criterio de finalización
 
 Existe suficiente evidencia para continuar con el diseño.
 
+La investigación debe basarse en fuentes y datos verificables cuando sea posible.
+
 ---
 
-FASE 2 — MODELO DE DATOS
+7. FASE 2 — MODELO DE DATOS
 
 Objetivo
 
@@ -160,7 +219,7 @@ Pasos
 
 2.6 Definir datos obligatorios y opcionales
 
-2.7 Definir valores desconocidos
+2.7 Definir datos desconocidos
 
 2.8 Crear esquema canónico
 
@@ -172,7 +231,7 @@ No deben existir modelos paralelos para representar la misma información.
 
 ---
 
-FASE 3 — OPORTUNIDADES
+8. FASE 3 — OPORTUNIDADES
 
 Objetivo
 
@@ -200,7 +259,7 @@ Las oportunidades pueden representarse mediante el modelo de datos definido.
 
 ---
 
-FASE 4 — DECISIÓN
+9. FASE 4 — DECISIÓN
 
 Objetivo
 
@@ -209,7 +268,9 @@ Determinar qué oportunidades deben convertirse en páginas o recursos.
 Decisiones posibles
 
 CREAR
+
 REVISAR
+
 NO_CREAR
 
 Pasos
@@ -232,9 +293,11 @@ Criterio de finalización
 
 Cada oportunidad relevante tiene una decisión trazable.
 
+La decisión debe poder justificarse mediante datos, reglas y evidencia.
+
 ---
 
-FASE 5 — ARQUITECTURA
+10. FASE 5 — ARQUITECTURA
 
 Objetivo
 
@@ -262,9 +325,11 @@ Criterio de finalización
 
 La arquitectura está definida y puede reutilizarse a escala.
 
+La IA no debe decidir por sí misma elementos estructurales que correspondan a esta fase.
+
 ---
 
-FASE 6 — GENERACIÓN DE DATOS Y CONTENIDO
+11. FASE 6 — GENERACIÓN DE DATOS Y CONTENIDO
 
 Objetivo
 
@@ -290,9 +355,16 @@ Pasos
 
 Regla
 
-La IA genera contenido.
+La IA genera contenido dentro de los límites definidos por el sistema.
 
-La IA no modifica decisiones arquitectónicas que pertenecen al sistema.
+La IA no debe modificar unilateralmente:
+
+- decisiones;
+- arquitectura;
+- reglas;
+- identidad;
+- datos fuente;
+- criterios de publicación.
 
 Criterio de finalización
 
@@ -300,7 +372,7 @@ Existe una salida estructurada que puede ser validada automáticamente.
 
 ---
 
-FASE 7 — VALIDACIÓN
+12. FASE 7 — VALIDACIÓN
 
 Objetivo
 
@@ -327,16 +399,18 @@ Validaciones
 Estados
 
 VALID
+
 REVIEW
+
 INVALID
 
 Criterio de finalización
 
-El sistema puede determinar automáticamente si una salida es publicable.
+El sistema puede determinar automáticamente si una salida es publicable o necesita revisión.
 
 ---
 
-FASE 8 — INFRAESTRUCTURA WEB / CMS
+13. FASE 8 — INFRAESTRUCTURA WEB / CMS
 
 Objetivo
 
@@ -366,11 +440,11 @@ Una salida validada puede convertirse en una página real.
 
 ---
 
-FASE 9 — AUTOMATIZACIÓN
+14. FASE 9 — AUTOMATIZACIÓN
 
 Objetivo
 
-Conectar todas las etapas para eliminar trabajo manual innecesario.
+Conectar las etapas para eliminar trabajo manual innecesario.
 
 Flujo
 
@@ -416,7 +490,7 @@ El flujo puede ejecutarse de principio a fin con intervención humana mínima.
 
 ---
 
-FASE 10 — PRIMERA IMPLEMENTACIÓN REAL
+15. FASE 10 — PRIMERA IMPLEMENTACIÓN REAL
 
 Objetivo
 
@@ -440,7 +514,7 @@ Existe al menos una página real generada mediante el sistema completo.
 
 ---
 
-FASE 11 — QA
+16. FASE 11 — QA
 
 Objetivo
 
@@ -466,7 +540,7 @@ La primera implementación cumple los criterios definidos.
 
 ---
 
-FASE 12 — PRODUCCIÓN
+17. FASE 12 — PRODUCCIÓN
 
 Objetivo
 
@@ -494,7 +568,7 @@ El sistema puede funcionar de forma controlada en producción.
 
 ---
 
-FASE 13 — ESCALADO
+18. FASE 13 — ESCALADO
 
 Objetivo
 
@@ -528,7 +602,7 @@ No escalar un sistema que todavía no funciona correctamente con una unidad.
 
 ---
 
-FASE 14 — MONITORIZACIÓN
+19. FASE 14 — MONITORIZACIÓN
 
 Objetivo
 
@@ -552,7 +626,7 @@ Existe un sistema que permite observar el comportamiento del proyecto.
 
 ---
 
-FASE 15 — MEJORA
+20. FASE 15 — MEJORA
 
 Objetivo
 
@@ -564,11 +638,11 @@ Las mejoras no interrumpen automáticamente el trabajo actual.
 
 Se registran y se priorizan.
 
-Solo se convierten en trabajo cuando corresponde según el roadmap.
+Solo se convierten en trabajo cuando corresponda según el roadmap específico del proyecto.
 
 ---
 
-16. REGLA DE BLOQUEOS
+21. REGLA DE BLOQUEOS
 
 Durante cualquier fase:
 
@@ -594,9 +668,11 @@ VERIFICAR
 ↓
 VOLVER AL PASO ORIGINAL
 
+Un bloqueo debe afectar materialmente a la posibilidad de completar el paso actual.
+
 ---
 
-17. REGLA DE NO DESVIACIÓN
+22. REGLA DE NO DESVIACIÓN
 
 NO SE RETROCEDE SIN BLOQUEO REAL.
 
@@ -614,14 +690,13 @@ Solo un bloqueo real puede obligar a modificar temporalmente el camino.
 
 ---
 
-18. DESCOMPOSICIÓN DE PASOS
+23. DESCOMPOSICIÓN DE PASOS
 
 Un paso puede dividirse en subpasos cuando sea necesario.
 
 Ejemplo:
 
-FASE 8
-Infraestructura WordPress
+FASE 8 — INFRAESTRUCTURA WEB
 
 8.1 Modelo de datos
 8.2 API
@@ -632,11 +707,11 @@ Infraestructura WordPress
 
 La descomposición no constituye un cambio de fase.
 
-Mientras se trabaja en la fase 8, se continúa dentro de ella hasta completarla.
+Mientras se trabaja en una fase, se continúa dentro de ella hasta completarla.
 
 ---
 
-19. REUTILIZACIÓN
+24. REUTILIZACIÓN
 
 El método debe distinguir entre:
 
@@ -666,9 +741,9 @@ El objetivo es que crear un nuevo proyecto requiera principalmente configurar el
 
 ---
 
-20. PROYECTOS FUTUROS
+25. PROYECTOS FUTUROS
 
-Este roadmap puede utilizarse para:
+Este método puede utilizarse para:
 
 - fontaneros;
 - electricistas;
@@ -682,21 +757,28 @@ Este roadmap puede utilizarse para:
 - directorios;
 - otros proyectos de generación automática.
 
-Cada nuevo proyecto debe tener su propio estado y configuración, pero puede utilizar el mismo método.
+Cada nuevo proyecto debe tener:
+
+- su propio roadmap;
+- su propio estado;
+- su propia configuración;
+- sus propios datos;
+
+pero puede reutilizar el mismo método universal.
 
 ---
 
-21. RELACIÓN CON LOS ROADMAPS DE PROYECTO
+26. RELACIÓN CON EL ROADMAP DEL PROYECTO
 
 Este documento define:
 
-«EL MÉTODO GENERAL»
+EL MÉTODO GENERAL
 
-Cada proyecto concreto deberá tener posteriormente:
+Cada proyecto concreto deberá tener:
 
-ROADMAP DEL PROYECTO
+"proyecto/roadmap-proyecto.md"
 
-Ese roadmap determinará:
+Ese documento determina:
 
 - qué fases son necesarias;
 - qué pasos concretos se ejecutarán;
@@ -704,11 +786,21 @@ Ese roadmap determinará:
 - qué partes son específicas;
 - en qué paso se encuentra actualmente el proyecto.
 
+Por tanto:
+
+este documento NO debe contener el estado actual del proyecto concreto.
+
+Ese estado pertenece al roadmap específico.
+
 ---
 
-22. REGLA DE ESTADO
+27. REGLA DE ESTADO
 
-En todo momento debe existir una única referencia persistente al estado actual del proyecto.
+El método universal no almacena el estado operativo de un proyecto concreto.
+
+El estado debe mantenerse en:
+
+"proyecto/roadmap-proyecto.md"
 
 Como mínimo:
 
@@ -724,29 +816,31 @@ No se debe determinar el paso actual únicamente mediante memoria de conversaci�
 
 ---
 
-23. FIN DEL MÉTODO
+28. CRITERIO DE COMPLETITUD METODOLÓGICA
 
-El proyecto se considera metodológicamente completo cuando:
+El método universal se considera suficientemente definido cuando establece:
 
-MÉTODO
+QUÉ HACER
 ↓
-ROADMAP
+EN QUÉ ORDEN
 ↓
-IMPLEMENTACIÓN
+CÓMO VALIDAR
 ↓
-VALIDACIÓN
+CÓMO AUTOMATIZAR
 ↓
-PRODUCCIÓN
+CÓMO PUBLICAR
 ↓
-ESCALA
+CÓMO ESCALAR
 ↓
-MONITORIZACIÓN
+CÓMO MEDIR
+↓
+CÓMO MEJORAR
 
-están definidos y controlados.
+La implementación concreta pertenece al proyecto correspondiente.
 
 ---
 
-PRINCIPIO FINAL
+29. PRINCIPIO FINAL
 
 SABER QUÉ CONSTRUIR
 ↓
@@ -766,7 +860,11 @@ El método es reutilizable.
 
 El roadmap concreto cambia por proyecto.
 
-El paso actual nunca se decide por memoria.
+El estado pertenece al proyecto, no a la metodología universal.
+
+La documentación técnica explica cómo construir.
+
+La ejecución implementa las decisiones.
 
 ---
 
