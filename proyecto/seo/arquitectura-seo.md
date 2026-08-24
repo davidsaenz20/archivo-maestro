@@ -1,216 +1,114 @@
-Arquitectura SEO del Proyecto
+ARQUITECTURA SEO DEL PROYECTO
 
-1. Objetivo
-
-Crear una plataforma de servicios profesionales capaz de generar de forma controlada páginas específicas combinando:
-
-- Servicio.
-- Especialidad.
-- Localidad.
-- Intención de búsqueda.
-- Tipo de cliente.
-- Cobertura territorial.
-- Información local.
-
-El objetivo no es generar miles de páginas idénticas.
-
-El objetivo es construir páginas útiles, diferenciadas y justificadas por una oportunidad real.
+Versión: 2.0
+Estado: ACTIVO
+Función: definir las reglas generales de arquitectura SEO del sistema de generación de páginas.
 
 ---
 
-2. Modelo principal
+1. OBJETIVO
 
-La estructura principal parte de:
+Crear una plataforma capaz de generar páginas específicas combinando de forma controlada:
 
-SERVICIO + LOCALIDAD
+- servicio;
+- especialidad;
+- localidad;
+- intención de búsqueda;
+- tipo de cliente;
+- cobertura territorial;
+- información local.
+
+El objetivo no es generar miles de páginas idénticas.
+
+El objetivo es construir páginas:
+
+- útiles;
+- diferenciadas;
+- justificadas;
+- trazables;
+- verificables;
+- escalables.
+
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La arquitectura SEO no parte directamente de una keyword.
+
+Parte de:
+
+EVIDENCIA
+↓
+OPORTUNIDAD
+↓
+DECISIÓN SEO
+↓
+ARQUITECTURA
+↓
+DATOS
+↓
+CONTENIDO
+↓
+VALIDACIÓN
+↓
+PUBLICACIÓN
+
+La existencia de una combinación "SERVICIO × LOCALIDAD" no implica automáticamente que deba existir una página.
+
+---
+
+3. UNIDAD DE ANÁLISIS
+
+La unidad principal es:
+
+"SERVICIO × LOCALIDAD"
+
+Puede ampliarse mediante:
+
+- especialidad;
+- problema;
+- urgencia;
+- tipo de cliente;
+- intención;
+- cobertura;
+- contexto local.
 
 Ejemplos:
 
 - Fontanero Marbella.
-- Fontanero Málaga.
-- Fontanero Sevilla.
-- Fontanero Bilbao.
-
-Pero también pueden existir combinaciones más específicas:
-
 - Desatascos Marbella.
 - Reparación de fugas Marbella.
-- Instalación de termos Marbella.
 - Fontanero urgente Marbella.
 
-No todas las combinaciones deben convertirse automáticamente en páginas.
-
-La existencia de una combinación solo constituye una oportunidad que debe ser evaluada por el motor de decisión.
+Cada combinación debe evaluarse individualmente.
 
 ---
 
-3. Principio fundamental
-
-La generación de páginas debe estar controlada por un sistema de decisión.
+4. CRITERIOS DE DECISIÓN
 
 El sistema debe valorar como mínimo:
 
-- Existencia del servicio.
-- Demanda o intención de búsqueda.
-- Relevancia territorial.
-- Especialización.
-- Tipo de cliente.
-- Competencia.
-- Potencial comercial.
-- Diferenciación.
-- Información local disponible.
-- Riesgo de contenido duplicado.
-- Utilidad real para el usuario.
+- existencia real del servicio;
+- intención;
+- demanda;
+- relevancia territorial;
+- especialización;
+- tipo de cliente;
+- competencia;
+- potencial comercial;
+- diferenciación;
+- información local disponible;
+- riesgo de duplicación;
+- utilidad para el usuario;
+- disponibilidad de evidencias.
 
-Si una combinación no aporta suficiente valor, no se genera como página independiente.
-
----
-
-4. Unidad de análisis
-
-La unidad principal del sistema es:
-
-SERVICIO × LOCALIDAD
-
-La decisión no debe basarse únicamente en que exista un servicio ni únicamente en que exista una localidad.
-
-Debe analizarse la combinación concreta.
+Si la combinación no tiene suficiente justificación, no se genera como página independiente.
 
 ---
 
-5. Estructura territorial
+5. DECISIONES SEO
 
-El sistema puede trabajar con diferentes niveles:
-
-- País.
-- Comunidad autónoma.
-- Provincia.
-- Ciudad.
-- Municipio.
-- Localidad.
-- Zona.
-- Barrio.
-- Urbanización.
-
-La profundidad territorial no será idéntica para todos los servicios ni para todas las localidades.
-
-Dependerá de:
-
-- Demanda.
-- Relevancia territorial.
-- Competencia.
-- Potencial comercial.
-- Información local disponible.
-- Características del mercado.
-- Posibilidad de diferenciación.
-
-No se deben crear niveles territoriales artificialmente.
-
----
-
-6. Tipos de páginas
-
-Servicio general
-
-Ejemplo:
-
-Fontanería
-
-Servicio + localidad
-
-Ejemplo:
-
-Fontanero Marbella
-
-Especialidad + localidad
-
-Ejemplo:
-
-Desatascos Marbella
-
-Urgencia + localidad
-
-Ejemplo:
-
-Fontanero urgente Marbella
-
-Servicio especializado + localidad
-
-Ejemplo:
-
-Reparación de termos Marbella
-
-La existencia de cada tipo de página debe estar justificada por el sistema de decisión.
-
----
-
-7. Diferenciación local
-
-Una página local debe poder incorporar información específica y real de la localidad.
-
-Puede incluir:
-
-- Zonas atendidas.
-- Barrios.
-- Urbanizaciones.
-- Características del municipio.
-- Tipos de viviendas.
-- Problemas habituales.
-- Servicios especialmente relevantes.
-- Contexto turístico.
-- Segundas residencias.
-- Perfil de cliente.
-- Horarios.
-- Urgencias.
-- Información comercial.
-- Preguntas frecuentes específicas.
-
-No se debe limitar a cambiar automáticamente el nombre de una localidad dentro de una plantilla.
-
----
-
-8. Fontanería como primer caso de aplicación
-
-Fontanería es el primer sector utilizado para investigar y validar el sistema.
-
-La clasificación específica del sector puede incluir:
-
-- Fontanería general.
-- Reparación de fugas.
-- Detección de fugas.
-- Desatascos.
-- Tuberías.
-- Agua caliente.
-- Termos.
-- Calentadores.
-- Urgencias.
-- Instalaciones.
-- Mantenimiento.
-- Otros servicios que sean identificados mediante investigación.
-
-Esta clasificación es específica del sector y no debe copiarse automáticamente a otros servicios.
-
----
-
-9. Motor de decisión
-
-El motor de decisión se encuentra documentado en:
-
-"proyecto/seo/motor-decision.md"
-
-El motor determina, para cada combinación relevante:
-
-- Si existe una oportunidad.
-- Si merece una página independiente.
-- Qué tipo de página corresponde.
-- Qué profundidad territorial utilizar.
-- Qué información local debe incorporarse.
-- Qué contenidos deben evitarse.
-- Si la combinación debe CREARSE, AGRUPARSE, INVESTIGARSE o NO CREARSE.
-
----
-
-10. Decisiones posibles
+Las decisiones oficiales son:
 
 CREAR
 
@@ -218,204 +116,427 @@ Crear una página independiente.
 
 AGRUPAR
 
-Integrar el servicio o intención dentro de otra página.
+Integrar la intención dentro de otra página.
 
 INVESTIGAR
 
-Existe una oportunidad potencial pero falta información crítica.
+Existe una oportunidad potencial, pero falta información crítica.
 
-NO CREAR
+NO_CREAR
 
 No existe suficiente justificación para una página independiente.
 
+Estas decisiones deben quedar registradas en el modelo de datos y no deben ser decididas por la IA durante la generación.
+
 ---
 
-11. Principio de diferenciación
+6. ESTRUCTURA TERRITORIAL
 
-No es suficiente:
+El sistema puede trabajar con:
 
-- cambiar el nombre de la ciudad;
+- país;
+- comunidad autónoma;
+- provincia;
+- ciudad;
+- municipio;
+- localidad;
+- zona;
+- barrio;
+- urbanización.
+
+La profundidad territorial depende de:
+
+- demanda;
+- relevancia;
+- competencia;
+- potencial comercial;
+- información disponible;
+- posibilidad de diferenciación.
+
+No se deben crear niveles territoriales artificiales.
+
+---
+
+7. TIPOS DE PÁGINA
+
+Tipos iniciales:
+
+SERVICIO_GENERAL
+
+Ejemplo:
+
+"Fontanería"
+
+SERVICIO_LOCALIDAD
+
+Ejemplo:
+
+"Fontanero Marbella"
+
+ESPECIALIDAD_LOCALIDAD
+
+Ejemplo:
+
+"Desatascos Marbella"
+
+URGENCIA_LOCALIDAD
+
+Ejemplo:
+
+"Fontanero urgente Marbella"
+
+SERVICIO_ESPECIALIZADO_LOCALIDAD
+
+Ejemplo:
+
+"Reparación de termos Marbella"
+
+Los tipos adicionales deben definirse documentalmente antes de utilizarse.
+
+---
+
+8. DIFERENCIACIÓN LOCAL
+
+Una página local debe incorporar información específica cuando exista.
+
+Puede incluir:
+
+- zonas atendidas;
+- barrios;
+- urbanizaciones;
+- características del municipio;
+- tipos de vivienda;
+- problemas habituales;
+- necesidades específicas;
+- contexto turístico;
+- segundas residencias;
+- perfil de cliente;
+- horarios;
+- urgencias;
+- información comercial;
+- preguntas frecuentes específicas.
+
+No es suficiente cambiar el nombre de una localidad dentro de una plantilla.
+
+---
+
+9. DIFERENCIACIÓN REAL
+
+No constituye diferenciación:
+
+- cambiar únicamente una ciudad;
 - cambiar algunas palabras;
 - duplicar una plantilla;
-- generar contenido artificial.
+- añadir texto artificial;
+- introducir keywords repetidas.
 
-Cada página debe tener una función clara y aportar información útil.
+Una página debe tener una función clara y aportar información útil.
 
----
+Debe poder responder:
 
-12. Riesgo de contenido programático
-
-La generación masiva puede producir:
-
-- Contenido repetitivo.
-- Páginas de poco valor.
-- Canibalización.
-- Problemas de indexación.
-- Costes innecesarios.
-- Mala experiencia de usuario.
-
-Por ello:
-
-la automatización debe estar subordinada al sistema de decisión.
+- qué intención satisface;
+- qué valor aporta;
+- por qué merece existir;
+- qué información específica puede contener;
+- cómo se diferencia de otras páginas.
 
 ---
 
-13. Arquitectura reutilizable
+10. FONTANERÍA
 
-La arquitectura general está diseñada para poder aplicarse a:
+Fontanería es el primer sector utilizado para investigar y validar el sistema.
 
-- Fontanería.
-- Electricidad.
-- Carpintería.
-- Pintura.
-- Jardinería.
-- Reformas.
-- Abogados.
-- Climatización.
-- Cerrajería.
-- Otros servicios profesionales.
+La clasificación sectorial puede incluir:
 
-La estructura general se reutiliza.
+- fontanería general;
+- reparación de fugas;
+- detección de fugas;
+- desatascos;
+- tuberías;
+- agua caliente;
+- termos;
+- calentadores;
+- urgencias;
+- instalaciones;
+- mantenimiento;
+- otros servicios identificados mediante investigación.
 
-La investigación y las reglas específicas de cada sector deben desarrollarse por separado.
+Esta clasificación es específica del sector.
+
+No debe copiarse automáticamente a otros sectores.
 
 ---
 
-14. Capa general y capa sectorial
+11. CAPA GENERAL Y CAPA SECTORIAL
 
-El sistema tendrá conceptualmente dos niveles.
+El sistema debe separar:
 
-Capa general
+CAPA GENERAL
 
 Reglas comunes de:
 
-- Investigación.
-- Clasificación.
-- Evaluación.
-- Decisión.
-- Validación.
-- Medición.
-- Escalado.
+- investigación;
+- clasificación;
+- evaluación;
+- decisión;
+- arquitectura;
+- validación;
+- medición;
+- escalado.
 
-Capa sectorial
+CAPA SECTORIAL
 
 Características específicas de cada servicio:
 
-- Servicios.
-- Intenciones.
-- Clientes.
-- Particularidades territoriales.
-- Potencial comercial.
-- Excepciones.
-- Parámetros específicos.
+- servicios;
+- especialidades;
+- intenciones;
+- clientes;
+- particularidades territoriales;
+- potencial comercial;
+- excepciones;
+- parámetros;
+- reglas específicas.
 
-Esto permite escalar sin convertir cada sector en un sistema completamente diferente.
+La arquitectura general se reutiliza.
 
----
-
-15. Relación con la metodología
-
-La arquitectura se integra dentro de la metodología general:
-
-INVESTIGAR
-
-↓
-
-CONSERVAR
-
-↓
-
-ESTRUCTURAR
-
-↓
-
-DECIDIR
-
-↓
-
-VALIDAR
-
-↓
-
-PROBAR
-
-↓
-
-MEDIR
-
-↓
-
-CORREGIR
-
-↓
-
-AUTOMATIZAR
-
-↓
-
-ESCALAR
-
-La arquitectura no debe adelantarse a una fase que todavía no haya sido validada.
+Las reglas sectoriales deben investigarse independientemente.
 
 ---
 
-16. Automatización
+12. MOTOR DE DECISIÓN
 
-La automatización con herramientas como N8N e IA se desarrollará posteriormente.
+El motor de decisión está definido en:
 
-La automatización debe utilizar únicamente reglas, estructuras y decisiones previamente definidas y validadas.
+"proyecto/seo/motor-decision.md"
 
-La tecnología no debe utilizarse para automatizar una lógica todavía incorrecta.
+Debe determinar, como mínimo:
 
----
+- existencia de oportunidad;
+- necesidad de página independiente;
+- tipo de página;
+- profundidad territorial;
+- información local necesaria;
+- contenidos que deben evitarse;
+- decisión final.
 
-17. Regla de calidad arquitectónica
-
-Toda nueva capa de páginas debe responder a una necesidad real.
-
-Antes de crear una nueva combinación de:
-
-SERVICIO × LOCALIDAD
-
-debe poder explicarse:
-
-- Qué intención satisface.
-- Qué valor aporta.
-- Por qué merece existir como página independiente.
-- Qué información específica puede contener.
-- Cómo se diferencia de páginas similares.
-
-Si estas preguntas no pueden responderse satisfactoriamente, la combinación debe pasar por el motor de decisión antes de generarse.
+La arquitectura no sustituye al motor de decisión.
 
 ---
 
-18. Regla de escalabilidad
+13. RELACIÓN CON LA ARQUITECTURA DE LANDING
+
+Una vez tomada la decisión "CREAR", la oportunidad pasa a:
+
+"proyecto/seo/arquitectura-landing.md"
+
+La arquitectura SEO determina qué página debe existir.
+
+La arquitectura de landing determina cómo se estructura esa página.
+
+Por tanto:
+
+ARQUITECTURA SEO
+→ decide la estructura y existencia de páginas.
+
+ARQUITECTURA LANDING
+→ define los bloques funcionales de una página concreta.
+
+No deben duplicarse estas funciones.
+
+---
+
+14. RELACIÓN CON URLS
+
+La arquitectura SEO define la lógica de tipos de página.
+
+La estructura concreta de URLs se documenta en:
+
+"proyecto/seo/arquitectura-urls.md"
+
+No se deben crear estructuras paralelas.
+
+---
+
+15. RELACIÓN CON DATOS
+
+La arquitectura utiliza el modelo definido en:
+
+"proyecto/seo/esquema-datos.md"
+
+Los datos deben ser:
+
+- estructurados;
+- trazables;
+- verificables;
+- reutilizables.
+
+La arquitectura no crea una segunda representación de los mismos datos.
+
+---
+
+16. RELACIÓN CON IA
+
+La IA recibe como contexto:
+
+- oportunidad;
+- decisión;
+- servicio;
+- localidad;
+- intención;
+- arquitectura;
+- evidencias;
+- datos;
+- bloques;
+- restricciones.
+
+La IA genera contenido dentro de esos límites.
+
+La IA no puede decidir unilateralmente:
+
+- si una página debe existir;
+- URL;
+- canonical;
+- servicio;
+- localidad;
+- arquitectura;
+- decisión SEO;
+- bloques no autorizados.
+
+---
+
+17. AUTOMATIZACIÓN
+
+Herramientas como N8N pueden automatizar el flujo:
+
+DATOS
+↓
+OPORTUNIDAD
+↓
+DECISIÓN
+↓
+ARQUITECTURA
+↓
+CONTEXTO
+↓
+IA
+↓
+VALIDACIÓN
+↓
+WORDPRESS
+↓
+PUBLICACIÓN
+
+La automatización debe ejecutar reglas previamente definidas.
+
+La tecnología no debe utilizarse para automatizar una lógica todavía no validada.
+
+---
+
+18. VALIDACIÓN
+
+Antes de publicar una página debe comprobarse:
+
+- identidad;
+- servicio;
+- especialidad;
+- localidad;
+- intención;
+- decisión;
+- arquitectura;
+- URL;
+- canonical;
+- contenido;
+- datos;
+- evidencias;
+- bloques;
+- enlaces;
+- diferenciación;
+- ausencia de invenciones;
+- ausencia de duplicación problemática.
+
+Una página que no supera la validación no debe publicarse automáticamente.
+
+---
+
+19. NO INVENCIÓN
+
+El sistema no puede inventar:
+
+- servicios;
+- empresas;
+- profesionales;
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
+- disponibilidad;
+- cobertura;
+- certificaciones;
+- garantías;
+- experiencia;
+- reseñas;
+- testimonios;
+- casos;
+- datos locales;
+- imágenes;
+- URLs.
+
+Los datos desconocidos deben representarse mediante "null" o provocar "REVISAR" cuando sean necesarios.
+
+---
+
+20. RIESGO PROGRAMÁTICO
+
+La generación masiva puede producir:
+
+- contenido repetitivo;
+- páginas de poco valor;
+- canibalización;
+- problemas de indexación;
+- costes innecesarios;
+- mala experiencia;
+- errores a escala.
+
+Por ello:
+
+AUTOMATIZACIÓN ≠ GENERACIÓN INDISCRIMINADA
+
+La automatización debe estar subordinada a:
+
+DECISIÓN + ARQUITECTURA + DATOS + VALIDACIÓN
+
+---
+
+21. ESCALABILIDAD
 
 La arquitectura debe permitir aumentar:
 
-- número de servicios;
-- número de localidades;
-- número de especialidades;
-- número de páginas;
+- servicios;
+- localidades;
+- especialidades;
+- páginas.
 
-sin perder:
+Sin perder:
 
 - utilidad;
 - diferenciación;
 - calidad;
 - trazabilidad;
 - control;
-- capacidad de validación.
+- validación.
 
 El crecimiento debe producirse mediante reglas y datos, no mediante duplicación indiscriminada.
 
 ---
 
-19. Regla de independencia sectorial
+22. INDEPENDENCIA SECTORIAL
 
-Cada nuevo servicio debe investigarse de forma independiente.
+Cada nuevo sector debe investigarse de forma independiente.
 
-La arquitectura general puede reutilizarse, pero no deben heredarse automáticamente:
+No deben heredarse automáticamente de otro sector:
 
 - servicios;
 - pesos;
@@ -424,7 +545,160 @@ La arquitectura general puede reutilizarse, pero no deben heredarse automáticam
 - niveles territoriales;
 - excepciones;
 - decisiones;
+- reglas comerciales.
 
-de otro sector.
+La reutilización debe producirse en la metodología y arquitectura general, no en datos sectoriales no validados.
 
-Cada sector debe generar su propia evidencia y, cuando sea necesario, sus propias reglas sectoriales.
+---
+
+23. REGLA DE CALIDAD
+
+Antes de crear una nueva combinación:
+
+"SERVICIO × LOCALIDAD"
+
+debe poder explicarse:
+
+1. Qué intención satisface.
+2. Qué valor aporta.
+3. Por qué merece existir.
+4. Qué información específica puede contener.
+5. Cómo se diferencia.
+
+Si no puede justificarse:
+
+"INVESTIGAR"
+
+o
+
+"NO_CREAR"
+
+según corresponda.
+
+---
+
+24. REGLA DE CONTROL
+
+La arquitectura debe ser definida antes de generar contenido.
+
+El orden correcto es:
+
+OPORTUNIDAD
+↓
+DECISIÓN
+↓
+ARQUITECTURA
+↓
+DATOS
+↓
+BLOQUES
+↓
+IA
+↓
+VALIDACIÓN
+
+Nunca:
+
+KEYWORD
+↓
+PLANTILLA
+↓
+CAMBIO DE LOCALIDAD
+↓
+PUBLICACIÓN MASIVA
+
+---
+
+25. RELACIÓN CON LA METODOLOGÍA UNIVERSAL
+
+Esta arquitectura forma parte del proceso general:
+
+INVESTIGAR
+↓
+ESTRUCTURAR
+↓
+DECIDIR
+↓
+ARQUITECTAR
+↓
+GENERAR
+↓
+VALIDAR
+↓
+PROBAR
+↓
+MEDIR
+↓
+MEJORAR
+↓
+AUTOMATIZAR
+↓
+ESCALAR
+
+La arquitectura no debe adelantarse a una fase que todavía no haya sido validada.
+
+---
+
+26. FUENTES DE AUTORIDAD
+
+Este documento define la arquitectura SEO general.
+
+No define:
+
+- estado del proyecto;
+- roadmap de ejecución;
+- modelo de datos completo;
+- bloques funcionales;
+- estructura concreta de URLs;
+- implementación WordPress;
+- implementación N8N.
+
+Para ello se utilizan respectivamente los documentos especializados correspondientes.
+
+No deben existir fuentes paralelas de autoridad.
+
+---
+
+27. REGLA FINAL
+
+Una página solo debe existir cuando exista una relación justificable entre:
+
+INTENCIÓN
++
+OPORTUNIDAD
++
+DATOS
++
+ARQUITECTURA
++
+UTILIDAD
++
+DIFERENCIACIÓN
+
+La escala nunca debe convertirse en un objetivo superior a la calidad.
+
+---
+
+28. CONTROL DE VERSIONES
+
+Versión: 2.0
+
+Fecha: 2026-08-24
+
+Motivo: consolidación posterior a la auditoría documental.
+
+Cambios principales:
+
+- separación entre arquitectura SEO y arquitectura de landing;
+- alineación con el modelo de decisión;
+- alineación con el modelo de datos;
+- separación entre capa general y sectorial;
+- refuerzo de trazabilidad;
+- refuerzo de no invención;
+- eliminación de funciones duplicadas;
+- preparación para IA → N8N → WordPress;
+- definición clara de fuentes de autoridad.
+
+---
+
+FIN DE ARQUITECTURA SEO DEL PROYECTO
