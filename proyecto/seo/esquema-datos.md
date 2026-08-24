@@ -1,1316 +1,1535 @@
-ESQUEMA DE DATOS
+ESQUEMA DE DATOS SEO
 
 Versión: 3.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: definir el modelo de datos canónico del sistema SEO automatizado.
+Función: definir el modelo canónico de datos utilizado por el sistema SEO local automatizado.
 
 ---
 
 1. FUNCIÓN
 
-Este documento define el modelo de datos común utilizado por:
+Este documento define cómo se representan los datos del proyecto SEO.
 
-- investigación;
-- evidencias;
-- matrices;
+Es la fuente canónica para:
+
 - oportunidades;
-- motor de decisión;
-- arquitectura SEO;
-- arquitectura de URLs;
-- arquitectura de landing;
-- sistema de bloques;
-- generación mediante IA;
-- validación;
-- N8N;
-- WordPress;
-- publicación;
-- actualización;
-- trazabilidad.
+- investigación;
+- decisiones;
+- arquitectura;
+- páginas;
+- miniwebs;
+- bloques;
+- SEO;
+- competencia;
+- evidencias;
+- trazabilidad;
+- validación.
 
-Los documentos especializados pueden definir reglas adicionales, pero no deben crear estructuras incompatibles con este modelo.
+No genera contenido.
 
----
+No decide por sí mismo.
 
-2. PRINCIPIO FUNDAMENTAL
-
-El sistema debe poder representar una web completa, no solamente una página aislada.
-
-Una oportunidad puede generar:
-
-- una landing principal;
-- páginas de servicios;
-- páginas de subservicios;
-- páginas informativas;
-- página de contacto;
-- otras páginas justificadas por la arquitectura.
-
-Ejemplo:
-
-OPORTUNIDAD:
-
-Fontanero + Marbella
-
-Puede producir:
-
-/fontanero/marbella/
-├── /fontanero/marbella/desatascos/
-├── /fontanero/marbella/24-horas/
-├── /fontanero/marbella/reparaciones/
-└── /fontanero/marbella/contacto/
-
-Las páginas hijas no se crean automáticamente por existir una combinación de keywords.
-
-Cada página debe estar autorizada por la arquitectura y disponer de una razón funcional.
+No publica.
 
 ---
 
-3. IDENTIDAD DE LA OPORTUNIDAD
+2. PRINCIPIO DE AUTORIDAD
 
-Campo:
+El modelo de datos es la estructura canónica utilizada por:
 
-"opportunity_id"
+INVESTIGACIÓN
+↓
+MOTOR DE DECISIÓN
+↓
+ARQUITECTURA
+↓
+BLOQUES
+↓
+CONTRATO IA
+↓
+N8N
+↓
+WORDPRESS
 
-Tipo:
+No deben crearse modelos paralelos incompatibles.
 
-"string"
+Cuando otro documento necesite información:
 
-Obligatorio:
-
-sí.
-
-Debe ser único y estable.
-
-Ejemplo:
-
-"OPP-0001"
-
-No debe cambiar durante el ciclo de vida de la oportunidad.
-
----
-
-4. IDENTIDAD DEL PROYECTO
-
-Cada oportunidad pertenece a un proyecto.
-
-project
-├── project_id
-├── project_name
-├── sector
-├── business_model
-└── status
-
-Ejemplo:
-
-project_id: PROJ-SEO-001
-project_name: Fontanería Marbella
-sector: fontanería
-business_model: alquiler_lead_generation
-status: ACTIVE
+debe utilizar este modelo.
 
 ---
 
-5. IDENTIDAD DEL SERVICIO
+3. REGLA DE NO INVENCIÓN
 
-identity
-├── sector
-├── service
-├── subservice
-├── page_type
-├── country
-├── autonomous_community
-├── province
-├── municipality
-└── locality
+Los datos deben proceder de:
 
-"service"
+- evidencias;
+- investigación;
+- fuentes verificables;
+- datos proporcionados;
+- decisiones documentadas.
 
-Servicio principal.
+No se inventan datos para completar campos.
 
-Ejemplo:
-
-"fontanero"
-
-"subservice"
-
-Servicio específico.
-
-Ejemplo:
-
-"desatascos"
-
-Puede ser:
+Cuando un dato no esté disponible:
 
 "null"
 
-"page_type"
+Cuando la ausencia impida continuar:
 
-Debe proceder de la arquitectura.
-
-Valores iniciales:
-
-- "servicio_localidad"
-- "servicio_subservicio_localidad"
-- "servicio_localidad_subpagina"
-- "servicio_subservicio_localidad_subpagina"
-
-No se deben utilizar tipos nuevos sin documentarlos.
+"REVIEW"
 
 ---
 
-6. LOCALIZACIÓN
+4. IDENTIFICADORES
 
-location
-├── country
-├── autonomous_community
-├── province
-├── municipality
-├── locality
-└── zones
+Los identificadores principales son estables.
 
-Los datos territoriales deben proceder de información válida.
+Opportunity
 
-No se inventan:
+Formato:
 
-- barrios;
-- urbanizaciones;
-- zonas;
-- pedanías;
-- municipios;
-- cobertura.
+"OPP-001"
 
-Los datos desconocidos se representan mediante:
+"OPP-002"
 
-"null"
+"OPP-003"
 
----
+No se reutilizan.
 
-7. INTENCIÓN
+Page
 
-intent
-├── type
-├── confidence
-└── evidence
+Formato conceptual:
 
-Tipos iniciales:
+"FON-MARB-P01"
 
-- "informational"
-- "commercial"
-- "transactional"
-- "navigational"
-- "local"
-- "mixed"
+"FON-MARB-P02"
 
-Confianza:
-
-- "high"
-- "medium"
-- "low"
-- "unknown"
-
-La intención debe estar respaldada por evidencias.
-
-La IA puede clasificar información, pero no convertir una hipótesis en evidencia confirmada.
+El identificador debe permanecer estable durante la vida de la página.
 
 ---
 
-8. INVESTIGACIÓN
+5. OPPORTUNITY
 
-research
-├── sources
-├── evidence
-├── demand
-├── competition
-├── trend
-└── notes
+Objeto conceptual:
 
-Cada fuente puede contener:
+{
+  "opportunity_id": "OPP-001",
+  "sector": "",
+  "service": "",
+  "subservice": null,
+  "page_type": "",
+  "location": {},
+  "intent": {},
+  "demand": {},
+  "commercial": {},
+  "territorial": {},
+  "competition": {},
+  "differentiation": {},
+  "information": {},
+  "duplication": {},
+  "research": {},
+  "decision": {},
+  "architecture": {},
+  "evidence": [],
+  "observations": [],
+  "history": []
+}
 
-id
-type
-url
-date
-description
+---
 
-Cada evidencia debe clasificarse como:
+6. IDENTIDAD
 
-- "observed"
-- "inference"
-- "hypothesis"
-- "unknown"
+Campos:
+
+- sector;
+- service;
+- subservice;
+- page_type.
+
+Ejemplo:
+
+{
+  "sector": "fontaneria",
+  "service": "fontanero",
+  "subservice": null,
+  "page_type": "service_locality"
+}
+
+Los valores deben proceder de la oportunidad y de la arquitectura autorizada.
+
+---
+
+7. LOCALIZACIÓN
+
+La localización debe representarse separando los niveles territoriales.
+
+{
+  "location": {
+    "country": "España",
+    "community": "Andalucía",
+    "province": "Málaga",
+    "municipality": "Marbella",
+    "locality": null,
+    "postal_code": null
+  }
+}
+
+No se deben confundir:
+
+- municipio;
+- localidad;
+- provincia;
+- comunidad autónoma.
+
+---
+
+8. INTENCIÓN
+
+La intención representa lo que realmente busca el usuario.
+
+Campos:
+
+{
+  "intent": {
+    "primary": "",
+    "secondary": [],
+    "commercial": "",
+    "urgency": "",
+    "confidence": ""
+  }
+}
+
+Valores orientativos:
+
+primary:
+
+- local_service;
+- informational;
+- transactional;
+- contact;
+- emergency;
+- service_specific.
+
+commercial:
+
+- HIGH;
+- MEDIUM;
+- LOW;
+- UNKNOWN.
+
+urgency:
+
+- HIGH;
+- MEDIUM;
+- LOW;
+- UNKNOWN.
+
+confidence:
+
+- HIGH;
+- MEDIUM;
+- LOW.
 
 ---
 
 9. DEMANDA
 
-demand
-├── keyword
-├── volume
-├── trend
-├── seasonality
-├── source
-└── date
+La demanda debe diferenciar entre:
 
-Cuando no exista una medición fiable:
+dato conocido;
 
-"null"
+estimación;
 
-Nunca se inventa volumen.
+dato desconocido.
 
-"null" no significa cero.
+{
+  "demand": {
+    "level": "UNKNOWN",
+    "volume": null,
+    "source": null,
+    "confidence": "LOW"
+  }
+}
 
----
+Valores de level:
 
-10. COMPETENCIA
+- HIGH;
+- MEDIUM;
+- LOW;
+- UNKNOWN.
 
-competition
-├── relevant_results
-├── competitors
-├── quality
-├── difficulty
-└── observations
+No se inventan volúmenes.
 
-La competencia debe conservar su evidencia.
-
-No se asignan puntuaciones arbitrarias.
+No se presentan estimaciones como datos reales.
 
 ---
 
-11. DECISIÓN SEO
+10. POTENCIAL COMERCIAL
 
-Campo:
+{
+  "commercial": {
+    "potential": "HIGH",
+    "lead_value": null,
+    "conversion_potential": null,
+    "rental_potential": null,
+    "confidence": "MEDIUM",
+    "evidence": []
+  }
+}
 
-"decision_seo"
+Valores:
 
-Valores oficiales:
+HIGH
 
-- "CREAR"
-- "AGRUPAR"
-- "INVESTIGAR"
-- "NO CREAR"
+MEDIUM
 
-Son los únicos resultados oficiales del motor.
+LOW
 
-La IA no puede modificar esta decisión.
+UNKNOWN
 
----
+El potencial de alquiler de una miniweb puede registrarse como hipótesis.
 
-12. AGRUPACIÓN
-
-Cuando:
-
-"decision_seo = AGRUPAR"
-
-debe poder indicarse:
-
-grouping
-├── destination_page_id
-├── destination_url
-└── reason
-
-No se crea una página independiente.
+No se debe presentar como ingreso garantizado.
 
 ---
 
-13. ARQUITECTURA
+11. RELEVANCIA TERRITORIAL
 
-Solo existe arquitectura definitiva cuando:
+{
+  "territorial": {
+    "relevance": "HIGH",
+    "service_location_fit": "HIGH",
+    "local_context_available": true,
+    "confidence": "MEDIUM"
+  }
+}
 
-"decision_seo = CREAR"
+Valores:
 
-architecture
-├── site
-├── pages
-├── navigation
-└── hierarchy
+HIGH
 
----
+MEDIUM
 
-14. IDENTIDAD DE PÁGINA
+LOW
 
-Cada página de la miniweb debe disponer de un identificador único.
+UNKNOWN
 
-page_id
-
-Ejemplos:
-
-PAGE-0001
-PAGE-0002
-PAGE-0003
-
-El "page_id" no se reutiliza.
+La existencia del nombre de una localidad no demuestra relevancia territorial.
 
 ---
 
-15. DATOS DE CADA PÁGINA
+12. COMPETENCIA
 
-page
-├── page_id
-├── page_type
-├── purpose
-├── parent_page_id
-├── architecture
-├── intent
-├── blocks
-├── content
-├── seo
-├── links
-├── validation
-├── publication
-└── status
+La competencia se divide en:
+
+- cantidad;
+- calidad;
+- fortaleza;
+- dificultad.
+
+{
+  "competition": {
+    "level": "HIGH",
+    "competitor_count": null,
+    "competitor_strength": "UNKNOWN",
+    "serp_quality": "UNKNOWN",
+    "difficulty": "UNKNOWN",
+    "competitors": []
+  }
+}
 
 ---
 
-16. ARQUITECTURA DE URL
+13. NIVELES DE COMPETENCIA
 
-architecture
-├── url
-├── url_type
-├── canonical
-├── parent_url
-├── depth
-└── indexable
+level:
+
+- LOW;
+- MEDIUM;
+- HIGH;
+- VERY_HIGH;
+- UNKNOWN.
+
+No se debe utilizar únicamente el número de competidores.
+
+---
+
+14. FORTALEZA DE COMPETIDORES
+
+competitor_strength:
+
+- LOW;
+- MEDIUM;
+- HIGH;
+- VERY_HIGH;
+- UNKNOWN.
+
+Debe considerar, cuando exista evidencia:
+
+- autoridad;
+- contenido;
+- arquitectura;
+- backlinks;
+- reseñas;
+- especialización;
+- señales comerciales;
+- experiencia de usuario;
+- presencia local.
+
+---
+
+15. CALIDAD DE SERP
+
+serp_quality:
+
+- LOW;
+- MEDIUM;
+- HIGH;
+- VERY_HIGH;
+- UNKNOWN.
+
+Debe representar la calidad de los resultados que dominan la búsqueda.
+
+Puede considerar:
+
+- empresas;
+- directorios;
+- grandes marcas;
+- páginas especializadas;
+- páginas locales;
+- marketplaces;
+- Map Pack;
+- anuncios;
+- contenido informativo.
+
+---
+
+16. DIFICULTAD
+
+difficulty:
+
+- LOW;
+- MEDIUM;
+- HIGH;
+- VERY_HIGH;
+- UNKNOWN.
+
+La dificultad no es equivalente automáticamente a competencia.
+
+Debe considerar:
+
+- calidad de los competidores;
+- intención;
+- autoridad;
+- contenido;
+- enlaces;
+- señales locales;
+- posibilidad de diferenciación.
+
+---
+
+17. COMPETIDORES
+
+Cada competidor puede representarse como:
+
+{
+  "competitor_id": "",
+  "name": "",
+  "url": "",
+  "type": "",
+  "strength": "",
+  "relevance": "",
+  "observations": [],
+  "evidence": []
+}
+
+No se inventan empresas.
+
+No se inventan URLs.
+
+---
+
+18. DIFERENCIACIÓN
+
+La diferenciación es un objeto propio.
+
+{
+  "differentiation": {
+    "level": "STRONG",
+    "possible": true,
+    "reasons": [],
+    "evidence": [],
+    "confidence": "MEDIUM"
+  }
+}
+
+Valores:
+
+STRONG
+
+MEDIUM
+
+WEAK
+
+INSUFFICIENT
+
+UNKNOWN.
+
+---
+
+19. REGLA DE DIFERENCIACIÓN
+
+No se considera diferenciación:
+
+- cambiar localidad;
+- cambiar H1;
+- cambiar URL;
+- cambiar sinónimos;
+- reordenar párrafos;
+- cambiar frases;
+- generar texto diferente sin datos diferentes.
+
+Debe existir información útil que justifique la existencia de la página.
+
+---
+
+20. INFORMACIÓN DISPONIBLE
+
+{
+  "information": {
+    "level": "MEDIUM",
+    "local": "MEDIUM",
+    "commercial": "UNKNOWN",
+    "service": "HIGH",
+    "coverage": "UNKNOWN",
+    "confidence": "MEDIUM"
+  }
+}
+
+Valores:
+
+HIGH
+
+MEDIUM
+
+LOW
+
+INSUFFICIENT
+
+UNKNOWN.
+
+---
+
+21. INFORMACIÓN LOCAL
+
+Puede incluir:
+
+- barrios;
+- urbanizaciones;
+- zonas;
+- características territoriales;
+- tipos de vivienda;
+- necesidades;
+- contexto turístico;
+- particularidades del servicio.
+
+Solo cuando exista evidencia.
 
 Ejemplo:
 
-url: /fontanero/marbella/desatascos/
-url_type: servicio_subservicio_localidad_subpagina
-canonical: /fontanero/marbella/desatascos/
-parent_url: /fontanero/marbella/
-depth: 3
-indexable: true
-
-La URL debe estar determinada antes de generar contenido.
-
-La IA no decide la URL.
+{
+  "local": {
+    "available": true,
+    "areas": [],
+    "context": [],
+    "evidence": []
+  }
+}
 
 ---
 
-17. JERARQUÍA DE PÁGINAS
+22. COBERTURA
 
-La miniweb debe poder representar:
+{
+  "coverage": {
+    "confirmed": false,
+    "areas": [],
+    "municipalities": [],
+    "evidence": []
+  }
+}
 
-SITE
-│
-├── PÁGINA PRINCIPAL
-│
-├── SERVICIOS
-│   ├── SUBSERVICIO
-│   └── SUBSERVICIO
-│
-├── PÁGINAS ESPECÍFICAS
-│
-└── CONTACTO
-
-Cada página debe conocer su página padre cuando exista.
-
-Esto permite construir automáticamente:
-
-- menú;
-- breadcrumbs;
-- enlaces internos;
-- navegación;
-- footer;
-- estructura jerárquica.
+No se crean listas de cobertura para SEO si no existe cobertura real.
 
 ---
 
-18. REGLA DE CREACIÓN DE SUBPÁGINAS
+23. RIESGO DE DUPLICACIÓN
 
-Una subpágina solo puede crearse cuando:
+{
+  "duplication": {
+    "risk": "MEDIUM_HIGH",
+    "reason": "",
+    "similar_opportunities": [],
+    "similar_pages": []
+  }
+}
 
-1. está autorizada por la arquitectura;
-2. tiene una finalidad independiente;
-3. existe intención suficiente;
-4. existe información suficiente;
-5. existe diferenciación;
-6. no supone una duplicación artificial;
-7. su URL está autorizada.
+Valores:
 
-No se deben crear automáticamente todas las combinaciones posibles.
+LOW
 
----
+MEDIUM
 
-19. MENÚ
+MEDIUM_HIGH
 
-navigation
-├── main
-├── secondary
-└── footer
+HIGH
 
-Cada elemento puede contener:
-
-label
-url
-target_page_id
-position
-enabled
-
-Las URLs deben proceder de páginas existentes o autorizadas.
-
-La IA no crea enlaces arbitrarios.
+UNKNOWN.
 
 ---
 
-20. BLOQUES
+24. INVESTIGACIÓN
 
-blocks
-├── selected
-└── configuration
+{
+  "research": {
+    "status": "EVIDENCE_INSUFFICIENT",
+    "completed_at": null,
+    "sources": [],
+    "missing_information": [],
+    "next_actions": []
+  }
+}
 
-La selección procede de:
+Estados:
 
-"proyecto/seo/arquitectura-landing.md"
+DETECTED
 
-y:
+IN_RESEARCH
+
+EVIDENCE_SUFFICIENT
+
+EVIDENCE_INSUFFICIENT
+
+VALIDATED.
+
+---
+
+25. EVIDENCIAS
+
+Cada evidencia debe poder rastrearse.
+
+{
+  "evidence_id": "",
+  "type": "",
+  "source": "",
+  "url": "",
+  "date": "",
+  "field": "",
+  "value": null,
+  "confidence": "",
+  "notes": ""
+}
+
+No se consideran evidencias válidas las afirmaciones sin fuente cuando requieren verificación.
+
+---
+
+26. FUENTES
+
+Una fuente puede contener:
+
+{
+  "source_id": "",
+  "type": "",
+  "name": "",
+  "url": "",
+  "date_accessed": "",
+  "reliability": ""
+}
+
+Tipos posibles:
+
+- search;
+- website;
+- business;
+- directory;
+- official;
+- map;
+- review;
+- dataset;
+- user_provided;
+- other.
+
+---
+
+27. DECISIÓN
+
+{
+  "decision": {
+    "seo": "INVESTIGATE",
+    "reason": "",
+    "confidence": "MEDIUM",
+    "decided_at": "",
+    "decided_by": "motor"
+  }
+}
+
+Valores oficiales:
+
+CREATE
+
+GROUP
+
+INVESTIGATE
+
+DO_NOT_CREATE
+
+En la documentación española:
+
+CREAR
+
+AGRUPAR
+
+INVESTIGAR
+
+NO_CREAR
+
+Los valores técnicos utilizados por la implementación deben permanecer estables.
+
+---
+
+28. REGLA DE DECISIÓN
+
+La decisión debe considerar conjuntamente:
+
+- intención;
+- demanda;
+- potencial comercial;
+- relevancia territorial;
+- competencia;
+- calidad SERP;
+- fortaleza competitiva;
+- dificultad;
+- diferenciación;
+- información;
+- duplicación;
+- arquitectura;
+- utilidad.
+
+No existe una única métrica que determine la decisión.
+
+---
+
+29. ARQUITECTURA
+
+Cuando la oportunidad esté preparada para CREAR:
+
+{
+  "architecture": {
+    "site_type": "local_service_site",
+    "root_url": "",
+    "pages": [],
+    "navigation": {},
+    "version": ""
+  }
+}
+
+La arquitectura no se genera desde la IA.
+
+Debe existir previamente.
+
+---
+
+30. MINIWEB
+
+El modelo permite representar una miniweb completa.
+
+{
+  "site_type": "local_service_site",
+  "root_url": "/fontanero/marbella/",
+  "pages": []
+}
+
+Las páginas pueden incluir:
+
+- página principal;
+- servicios;
+- subservicios;
+- variantes;
+- contacto;
+- otras páginas justificadas.
+
+No se crean automáticamente por existir keywords.
+
+---
+
+31. PÁGINAS AUTORIZADAS
+
+Cada página debe disponer de:
+
+{
+  "page_id": "",
+  "page_type": "",
+  "url": "",
+  "canonical": "",
+  "parent_url": null,
+  "depth": 1,
+  "intent": {},
+  "authorized_blocks": []
+}
+
+---
+
+32. TIPOS DE PÁGINA
+
+Valores iniciales:
+
+- service_locality;
+- subservice_locality;
+- service_variant;
+- contact;
+- other_authorized.
+
+Cualquier nuevo tipo debe documentarse antes de utilizarse.
+
+---
+
+33. BLOQUES
+
+Los bloques se representan mediante:
+
+{
+  "id": "B03",
+  "type": "hero",
+  "enabled": true,
+  "data": {}
+}
+
+Los IDs oficiales son:
+
+B01–B23.
+
+La lista completa está definida en:
 
 "proyecto/seo/sistema-bloques.md"
 
 ---
 
-21. IDENTIFICADORES DE BLOQUE
+34. BLOQUES AUTORIZADOS
 
-Mapa oficial:
-
-B01 = header
-B02 = navigation
-B03 = hero
-B04 = main_content
-B05 = cta
-B06 = footer
-B07 = subservice
-B08 = problems
-B09 = local_context
-B10 = coverage
-B11 = process
-B12 = trust
-B13 = differentiation
-B14 = faq
-B15 = related_services
-B16 = related_locations
-B17 = structured_data
-B18 = testimonials
-B19 = cases
-B20 = gallery
-B21 = pricing
-B22 = opening_hours
-B23 = map
-
-Este mapa es vinculante.
-
----
-
-22. CONFIGURACIÓN DE BLOQUES
-
-Cada bloque puede contener:
-
-block_id
-type
-position
-enabled
-data
-conditions
-restrictions
-fallback
-
-Ejemplo:
+Cada página debe tener:
 
 {
-  "block_id": "B03",
-  "type": "hero",
-  "position": 3,
-  "enabled": true,
-  "data": {}
+  "authorized_blocks": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06"
+  ]
 }
 
-La IA no puede inventar IDs.
+La IA no puede utilizar bloques fuera de esta lista.
 
 ---
 
-23. DATOS LOCALES
+35. SEO
 
-local_data
-├── available
-├── information
-├── points_of_interest
-├── zones
-└── sources
-
-Si:
-
-"available = false"
-
-no se genera contenido local específico.
-
----
-
-24. COBERTURA
-
-coverage
-├── confirmed
-├── municipalities
-├── zones
-└── sources
-
-Solo se afirma cobertura respaldada.
-
----
-
-25. DATOS COMERCIALES
-
-commercial_data
-├── company
-├── phone
-├── whatsapp
-├── email
-├── address
-├── opening_hours
-├── price
-├── guarantee
-├── experience
-└── certifications
-
-Cada dato puede contener:
-
-- valor real;
-- "null";
-- "REVIEW".
-
-Nunca se utiliza "null" como permiso para inventar.
-
----
-
-26. RESEÑAS Y TESTIMONIOS
-
-reviews
-├── available
-├── source
-├── count
-└── items
-
-Los testimonios reales pueden representarse mediante:
-
-author
-date
-rating
-text
-source
-
-No se generan testimonios ficticios.
-
----
-
-27. CONTENIDO
-
-content
-├── seo
-├── blocks
-└── status
-
-El contenido solo se genera cuando:
-
-"decision_seo = CREAR"
-
-y la arquitectura está preparada.
-
----
-
-28. SEO
-
-content.seo
-├── title
-├── meta_description
-└── h1
-
-El slug no se genera libremente.
-
-La URL procede de:
-
-"architecture.url"
-
----
-
-29. IMÁGENES
-
-images
-├── required
-└── items
-
-Cada imagen puede contener:
-
-id
-type
-description
-alt
-source
-url
-license
-status
-
-No se inventan URLs.
-
-No se atribuyen imágenes al negocio sin evidencia.
-
----
-
-30. ENLACES INTERNOS
-
-internal_links
-├── incoming
-└── outgoing
-
-Cada enlace puede contener:
-
-url
-anchor
-target_page_id
-reason
-
-Los enlaces deben corresponder con la arquitectura.
-
----
-
-31. DATOS ESTRUCTURADOS
-
-schema
-├── type
-├── data
-└── status
-
-Solo puede utilizar información real.
-
-No se inventan:
-
-- valoraciones;
-- precios;
-- direcciones;
-- horarios;
-- empresas;
-- personas.
-
----
-
-32. ESTADO DE OPORTUNIDAD
-
-Campo:
-
-"opportunity_status"
-
-Valores:
-
-- "DETECTED"
-- "RESEARCHED"
-- "EVALUATED"
-- "DECIDED"
-- "CLOSED"
-
-Este estado describe la oportunidad.
-
-No sustituye a "decision_seo".
-
----
-
-33. ESTADO DE LA MINIWEB
-
-Campo:
-
-"site_status"
-
-Valores:
-
-- "NOT_STARTED"
-- "ARCHITECTURE_READY"
-- "PAGES_DEFINED"
-- "DATA_READY"
-- "CONTENT_GENERATED"
-- "VALIDATION_PENDING"
-- "VALIDATED"
-- "PUBLISHED"
-- "REVIEW"
-- "REJECTED"
-
----
-
-34. ESTADO DE CADA PÁGINA
-
-Campo:
-
-"page_status"
-
-Valores:
-
-- "NOT_STARTED"
-- "DATA_READY"
-- "ARCHITECTURE_READY"
-- "BLOCKS_SELECTED"
-- "CONTENT_GENERATED"
-- "VALIDATION_PENDING"
-- "VALIDATED"
-- "PUBLISHED"
-- "REVIEW"
-- "REJECTED"
-
----
-
-35. ESTADO DEL CONTENIDO
-
-Valores:
-
-- "NOT_GENERATED"
-- "GENERATED"
-- "REVIEW"
-- "VALIDATED"
-
-No sustituye a:
-
-- "decision_seo";
-- "opportunity_status";
-- "page_status";
-- "site_status".
-
----
-
-36. VALIDACIÓN
-
-validation
-├── result
-├── date
-├── rules
-├── errors
-└── observations
-
-Valores:
-
-- "APPROVED"
-- "REJECTED"
-- "REVIEW"
-
-La validación definitiva no corresponde a la IA.
-
----
-
-37. ERRORES
-
-Cada error debe contener:
-
-code
-element
-description
-severity
-
-Ejemplo:
+Cada página puede contener:
 
 {
-  "code": "DATA001",
-  "element": "phone",
-  "description": "No existe un teléfono validado.",
-  "severity": "high"
+  "seo": {
+    "title": "",
+    "meta_description": "",
+    "h1": "",
+    "headings": []
+  }
 }
 
----
-
-38. INCIDENCIAS
-
-issues
-├── code
-├── element
-├── description
-├── severity
-└── status
-
-Estados:
-
-- "OPEN"
-- "IN_REVIEW"
-- "RESOLVED"
-- "DISMISSED"
+El contenido debe responder a la intención concreta de la página.
 
 ---
 
-39. PUBLICACIÓN
-
-publication
-├── status
-├── wordpress_id
-├── wordpress_url
-├── published_at
-└── updated_at
-
-Estados iniciales:
-
-- "NOT_PUBLISHED"
-- "PUBLISHED"
-- "UPDATE_PENDING"
-- "ERROR"
-
-N8N no debe considerar publicada una página si WordPress no confirma correctamente la operación.
-
----
-
-40. ACTUALIZACIÓN
-
-La información publicada debe poder actualizarse sin destruir la identidad de la página.
-
-update
-├── source
-├── date
-├── fields_changed
-├── reason
-└── status
-
-Una actualización puede afectar:
-
-- contenido;
-- horarios;
-- precios;
-- cobertura;
-- enlaces;
-- imágenes;
-- datos comerciales.
-
-La URL no debe cambiar salvo que la arquitectura lo autorice.
-
----
-
-41. TRAZABILIDAD
-
-traceability
-├── schema_version
-├── decision_engine_version
-├── prompt_version
-├── contract_version
-├── blocks_version
-├── created_at
-├── updated_at
-└── history
-
-Debe permitir conocer:
-
-- qué oportunidad originó la página;
-- qué versión del motor decidió;
-- qué versión del esquema se utilizó;
-- qué versión de bloques se utilizó;
-- qué contrato recibió la IA;
-- qué prompt generó el contenido;
-- cuándo se creó;
-- cuándo se actualizó.
-
----
-
-42. HISTORIAL
-
-Los cambios importantes deben conservarse.
-
-Ejemplo:
+36. MENÚ
 
 {
-  "date": "2026-08-24",
-  "field": "page_status",
-  "previous": "CONTENT_GENERATED",
-  "new": "VALIDATED",
-  "reason": "Validación completada"
+  "menu": {
+    "items": [
+      {
+        "label": "",
+        "url": "",
+        "type": "internal",
+        "target_page_id": ""
+      }
+    ]
+  }
 }
 
----
-
-43. REGLA DE NO INVENCIÓN
-
-Ninguna capa del sistema puede inventar información factual.
-
-Especialmente:
-
-- teléfonos;
-- WhatsApp;
-- emails;
-- direcciones;
-- horarios;
-- precios;
-- empresas;
-- experiencia;
-- certificaciones;
-- garantías;
-- reseñas;
-- valoraciones;
-- testimonios;
-- cobertura;
-- imágenes;
-- estadísticas;
-- datos locales;
-- URLs.
-
-Cuando un dato no existe:
-
-"null"
-
-o:
-
-"REVIEW"
-
-cuando sea imprescindible para continuar.
+Solo se utilizan páginas autorizadas.
 
 ---
 
-44. REGLA DE DATOS DESCONOCIDOS
+37. ENLACES INTERNOS
 
-Un dato desconocido no equivale automáticamente a:
+{
+  "internal_links": [
+    {
+      "url": "",
+      "anchor": "",
+      "target_page_id": "",
+      "reason": ""
+    }
+  ]
+}
 
-"0"
+El enlace debe tener una razón funcional.
 
-ni a:
-
-"false"
-
-ni a:
-
-"no existe".
-
-Debe conservarse como:
-
-"null"
-
-hasta disponer de evidencia.
+No se crean redes artificiales.
 
 ---
 
-45. REGLA DE IA
+38. DATOS COMERCIALES
 
-La IA puede:
+{
+  "commercial_data": {
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "address": null,
+    "opening_hours": null,
+    "prices": null,
+    "availability": null
+  }
+}
 
-- interpretar datos;
-- clasificar información;
-- redactar contenido;
-- detectar patrones;
-- proponer hipótesis;
-- estructurar datos.
-
-La IA no puede:
-
-- decidir crear una página;
-- modificar "decision_seo";
-- inventar URLs;
-- inventar páginas;
-- inventar bloques;
-- inventar datos;
-- modificar la arquitectura;
-- inventar información comercial.
+Todos los valores requieren evidencia.
 
 ---
 
-46. CONTRATO IA
+39. CONFIANZA
 
-La IA recibe como contexto mínimo:
+{
+  "trust": {
+    "experience": null,
+    "certifications": [],
+    "guarantees": [],
+    "reviews": [],
+    "awards": [],
+    "evidence": []
+  }
+}
 
-project
-opportunity
-identity
-location
-intent
-research
-decision_seo
-architecture
-pages
-blocks
-data
-restrictions
-
-La IA devuelve únicamente información compatible con el esquema.
-
-El contrato formal se define en:
-
-"proyecto/seo/contrato-salida-ia.md"
+Nunca se inventan señales de confianza.
 
 ---
 
-47. RELACIÓN CON N8N
+40. IMÁGENES
 
-N8N actúa como sistema de transporte y automatización.
+{
+  "images": [
+    {
+      "image_id": "",
+      "url": "",
+      "alt": "",
+      "title": "",
+      "type": "",
+      "source": "",
+      "license": null
+    }
+  ]
+}
 
-Flujo conceptual:
-
-OPORTUNIDAD
-↓
-ARQUITECTURA
-↓
-PÁGINAS
-↓
-DATOS
-↓
-BLOQUES
-↓
-IA
-↓
-VALIDACIÓN
-↓
-WORDPRESS
-↓
-PUBLICACIÓN
-
-N8N no debe tomar decisiones SEO que correspondan al motor.
+La imagen debe existir realmente.
 
 ---
 
-48. RELACIÓN CON WORDPRESS
+41. DATOS ESTRUCTURADOS
 
-WordPress recibe una estructura previamente validada.
+{
+  "structured_data": {
+    "types": [],
+    "data": {},
+    "evidence": []
+  }
+}
 
-Puede recibir:
-
-- páginas;
-- contenido;
-- bloques;
-- imágenes;
-- enlaces;
-- SEO;
-- datos estructurados.
-
-WordPress es la capa de presentación y publicación.
-
-No debe utilizarse como lugar donde se decida qué páginas deben existir.
+Solo se utilizan datos verificables.
 
 ---
 
-49. IDEMPOTENCIA
+42. VALIDACIÓN
 
-Una misma oportunidad procesada varias veces no debe crear duplicados.
+{
+  "validation": {
+    "status": "REVIEW",
+    "valid": false,
+    "checks": [],
+    "errors": [],
+    "warnings": []
+  }
+}
 
-El sistema debe utilizar identificadores estables:
-
-project_id
-opportunity_id
-page_id
-block_id
-
-Si una página ya existe:
-
-- se actualiza;
-- se revisa;
-- o se mantiene;
-
-pero no se crea otra página idéntica.
+La validación definitiva corresponde al sistema externo.
 
 ---
 
-50. REGLA DE CONSISTENCIA
+43. ESTADOS DE VALIDACIÓN
 
-Los siguientes elementos deben permanecer sincronizados:
+Valores:
 
-OPORTUNIDAD
-↓
-DECISIÓN
-↓
-ARQUITECTURA
-↓
-PÁGINAS
-↓
-BLOQUES
-↓
-CONTENIDO
-↓
-VALIDACIÓN
-↓
-PUBLICACIÓN
+READY
 
-Una capa no puede contradecir a una capa anterior.
+REVIEW
+
+ERROR
+
+Una salida con error crítico:
+
+NO PUBLICAR.
 
 ---
 
-51. EJEMPLO COMPLETO
+44. ISSUES
 
-Proyecto:
+{
+  "issues": {
+    "items": [
+      {
+        "code": "",
+        "severity": "",
+        "field": "",
+        "page_id": "",
+        "message": ""
+      }
+    ]
+  }
+}
 
-"PROJ-SEO-001"
+La incidencia debe registrarse.
+
+No se ocultan problemas para conseguir una salida READY.
+
+---
+
+45. TRAZABILIDAD
+
+{
+  "traceability": {
+    "opportunity_id": "",
+    "source_version": "",
+    "decision_version": "",
+    "architecture_version": "",
+    "blocks_version": "",
+    "contract_version": ""
+  }
+}
+
+Debe permitir reconstruir el origen de una página.
+
+---
+
+46. HISTORIAL
+
+Toda oportunidad y toda página relevante debe poder mantener historial.
+
+{
+  "history": [
+    {
+      "date": "",
+      "event": "",
+      "previous_value": null,
+      "new_value": null,
+      "reason": "",
+      "source": ""
+    }
+  ]
+}
+
+Esto permite modificar decisiones sin perder el histórico.
+
+---
+
+47. IDEMPOTENCIA
+
+Los identificadores estables son esenciales.
 
 Oportunidad:
 
-"OPP-0001"
+"opportunity_id"
 
-Servicio:
+Página:
 
-"fontanero"
+"page_id"
 
-Localidad:
+N8N debe utilizar estos identificadores para:
 
-"Marbella"
+- localizar;
+- crear;
+- actualizar;
+- evitar duplicados.
 
-Decisión:
-
-"CREAR"
-
-Página principal:
-
-page_id: PAGE-0001
-url: /fontanero/marbella/
-
-Subpágina:
-
-page_id: PAGE-0002
-url: /fontanero/marbella/desatascos/
-parent_page_id: PAGE-0001
-
-Otra subpágina:
-
-page_id: PAGE-0003
-url: /fontanero/marbella/24-horas/
-parent_page_id: PAGE-0001
-
-Contacto:
-
-page_id: PAGE-0004
-url: /fontanero/marbella/contacto/
-parent_page_id: PAGE-0001
-
-Las páginas solo existen si la arquitectura y la evidencia justifican su creación.
+Una segunda ejecución no debe crear otra página idéntica.
 
 ---
 
-52. REGLA DE MINIWEB
+48. REGLA DE IDENTIDAD
 
-Cuando una oportunidad represente una web alquilable o un proyecto de presencia local completa, el sistema debe poder generar:
+La identidad de una oportunidad debe mantenerse.
 
-1. página principal;
-2. páginas de servicios;
-3. páginas de subservicios;
-4. páginas comerciales;
-5. contacto;
-6. navegación;
-7. footer;
-8. enlaces internos.
+Una oportunidad no puede cambiar silenciosamente de:
 
-No todas las páginas son obligatorias.
-
-La arquitectura decide cuáles existen.
-
----
-
-53. ESCALABILIDAD
-
-El mismo modelo debe permitir:
-
-- una página;
-- una miniweb;
-- 10 miniwebs;
-- 100 miniwebs;
-- 1.000 miniwebs.
-
-La estructura de datos debe permanecer estable.
-
-Lo que cambia es:
-
-- proyecto;
-- sector;
 - servicio;
-- localidad;
-- evidencias;
+- municipio;
+- provincia;
+- sector.
+
+Si la investigación demuestra que la oportunidad inicial era incorrecta:
+
+se registra una incidencia.
+
+No se sobrescribe silenciosamente.
+
+---
+
+49. REGLA DE ARQUITECTURA
+
+La arquitectura debe permanecer separada de los datos.
+
+Los datos pueden cambiar.
+
+La arquitectura puede evolucionar.
+
+Pero ninguna IA puede modificarla silenciosamente durante la generación.
+
+---
+
+50. REGLA DE CONTENIDO
+
+El modelo de datos no almacena contenido artificial.
+
+El contenido generado por IA debe estar vinculado a:
+
+- oportunidad;
+- página;
+- bloque;
+- datos;
+- evidencias.
+
+Esto permite saber por qué existe cada contenido.
+
+---
+
+51. REGLA DE CALIDAD
+
+No se debe medir el sistema por:
+
+- número de páginas;
+- número de palabras;
+- número de keywords;
+- número de localidades.
+
+Se debe medir por:
+
+- utilidad;
+- intención;
+- diferenciación;
+- calidad;
+- veracidad;
+- capacidad comercial;
+- capacidad de competir;
+- trazabilidad.
+
+---
+
+52. RELACIÓN CON EL MOTOR
+
+El motor consume:
+
+- oportunidad;
+- investigación;
+- competencia;
+- SERP;
+- diferenciación;
+- datos.
+
+El motor produce:
+
+decision
+reason
+confidence
+
+El modelo de datos almacena el resultado.
+
+---
+
+53. RELACIÓN CON ARQUITECTURA
+
+Cuando:
+
+"decision = CREATE"
+
+la arquitectura puede definir:
+
+- site_type;
+- root_url;
+- páginas;
+- URLs;
+- canonical;
+- parent_url;
+- profundidad;
+- navegación;
+- bloques autorizados.
+
+---
+
+54. RELACIÓN CON SISTEMA DE BLOQUES
+
+El modelo de datos proporciona los datos.
+
+El sistema de bloques define cómo pueden organizarse.
+
+Flujo:
+
+DATA
+↓
+BLOCK
+↓
+CONTENT
+↓
+IA
+
+---
+
+55. RELACIÓN CON CONTRATO IA
+
+El contrato IA recibe datos desde este modelo.
+
+La IA no debe inventar campos estructurales.
+
+Debe utilizar únicamente los campos autorizados.
+
+---
+
+56. RELACIÓN CON N8N
+
+N8N utiliza el modelo para:
+
+- validar;
+- transportar;
+- transformar;
+- crear;
+- actualizar;
+- sincronizar;
+- registrar.
+
+N8N no debe reinterpretar decisiones.
+
+---
+
+57. RELACIÓN CON WORDPRESS
+
+WordPress representa visualmente los datos.
+
+No debe convertirse en la fuente primaria de verdad del sistema.
+
+La fuente primaria es el modelo documental y de datos.
+
+---
+
+58. EJEMPLO: FONTANERO MARBELLA
+
+{
+  "opportunity_id": "OPP-001",
+
+  "sector": "fontaneria",
+
+  "service": "fontanero",
+
+  "subservice": null,
+
+  "location": {
+    "country": "España",
+    "community": "Andalucía",
+    "province": "Málaga",
+    "municipality": "Marbella",
+    "locality": null
+  },
+
+  "intent": {
+    "primary": "local_service",
+    "commercial": "HIGH",
+    "urgency": "UNKNOWN",
+    "confidence": "HIGH"
+  },
+
+  "demand": {
+    "level": "UNKNOWN",
+    "volume": null,
+    "confidence": "LOW"
+  },
+
+  "commercial": {
+    "potential": "HIGH",
+    "rental_potential": null,
+    "confidence": "MEDIUM"
+  },
+
+  "territorial": {
+    "relevance": "HIGH",
+    "local_context_available": false,
+    "confidence": "MEDIUM"
+  },
+
+  "competition": {
+    "level": "HIGH",
+    "competitor_count": null,
+    "competitor_strength": "UNKNOWN",
+    "serp_quality": "UNKNOWN",
+    "difficulty": "UNKNOWN"
+  },
+
+  "differentiation": {
+    "level": "UNKNOWN",
+    "possible": null,
+    "confidence": "LOW"
+  },
+
+  "information": {
+    "level": "MEDIUM",
+    "local": "LOW",
+    "commercial": "UNKNOWN",
+    "service": "HIGH"
+  },
+
+  "duplication": {
+    "risk": "MEDIUM_HIGH"
+  },
+
+  "research": {
+    "status": "IN_RESEARCH"
+  },
+
+  "decision": {
+    "seo": "INVESTIGATE",
+    "reason": "Falta evidencia suficiente sobre demanda, fortaleza competitiva, SERP y diferenciación.",
+    "confidence": "MEDIUM"
+  }
+}
+
+---
+
+59. PRINCIPIO DEL CASO MARBELLA
+
+El caso Marbella demuestra que una localidad atractiva comercialmente no implica automáticamente:
+
+CREATE.
+
+La oportunidad debe demostrar:
+
+- intención;
+- demanda;
+- valor;
+- diferenciación;
+- capacidad competitiva;
+- información suficiente.
+
+---
+
+60. PRINCIPIO DEL CASO MANILVA
+
+El caso Manilva demuestra que la investigación competitiva debe formar parte del modelo.
+
+Si existen webs claramente mejores:
+
+se registra.
+
+No se ignora.
+
+Pero tampoco se convierte automáticamente en:
+
+NO_CREAR.
+
+Debe analizarse:
+
+- qué hacen mejor;
+- qué información tienen;
+- qué autoridad poseen;
+- qué intención cubren;
+- qué podemos aportar nosotros;
+- si existe una oportunidad más específica.
+
+---
+
+61. REGLA DE INVESTIGACIÓN COMPETITIVA
+
+Cuando la competencia sea:
+
+HIGH
+
+o:
+
+VERY_HIGH
+
+debe ser posible registrar:
+
+- competidores principales;
+- fortalezas;
+- debilidades;
+- SERP;
+- oportunidades de diferenciación.
+
+Si esta información es crítica y no existe:
+
+decision = INVESTIGATE.
+
+---
+
+62. REGLA DE MINIWEB
+
+Una oportunidad puede representar un activo compuesto.
+
+Ejemplo:
+
+OPP-001
+│
+└── SITE
+    ├── P01 Inicio
+    ├── P02 Desatascos
+    ├── P03 24 horas
+    └── P04 Contacto
+
+Pero cada página debe tener:
+
+- intención;
+- utilidad;
 - datos;
 - arquitectura;
-- páginas;
-- contenido.
+- bloques;
+- contenido propio.
 
 ---
 
-54. MULTISECTOR
+63. NO CREACIÓN MASIVA
 
-El modelo debe poder utilizarse para:
+No se deben generar automáticamente:
 
-- fontaneros;
-- electricistas;
-- abogados;
-- carpinteros;
-- pintores;
-- jardineros;
-- reformas;
-- otros servicios.
+servicio × todas_localidades
 
-El modelo general permanece estable.
+y después intentar justificar las páginas.
 
----
+El proceso correcto es:
 
-55. REGLA DE SEPARACIÓN
-
-Cada capa tiene una responsabilidad diferente:
-
-INVESTIGACIÓN
-→ obtiene información.
-
-OPORTUNIDAD
-→ estructura la posibilidad.
-
-MOTOR
-→ decide.
-
+DETECTAR
+↓
+INVESTIGAR
+↓
+EVALUAR
+↓
+DECIDIR
+↓
 ARQUITECTURA
-→ define la estructura.
-
-PÁGINAS
-→ define qué páginas forman el proyecto.
-
-BLOQUES
-→ define cómo se organiza cada página.
-
-DATOS
-→ proporciona la información.
-
-IA
-→ genera contenido.
-
-VALIDACIÓN
-→ comprueba.
-
-N8N
-→ automatiza.
-
-WORDPRESS
-→ publica.
-
-Ninguna capa debe asumir las responsabilidades de otra.
+↓
+GENERAR
 
 ---
 
-56. ESTADO ACTUAL
+64. INTEGRIDAD DEL MODELO
 
-Versión:
+N8N debe rechazar una estructura cuando:
 
-"v3.0"
-
-Estado:
-
-"PREPARADO PARA IMPLEMENTACIÓN PILOTO"
-
-El modelo queda preparado para representar tanto una landing individual como una miniweb local completa.
+- falta opportunity_id;
+- existe identidad contradictoria;
+- existe página no autorizada;
+- existe bloque desconocido;
+- existe URL no autorizada;
+- existe dato comercial sin evidencia;
+- existe contenido obligatorio sin datos;
+- existe estructura incompatible;
+- existe información inventada;
+- existe duplicación no controlada.
 
 ---
 
-57. REGISTRO DE ACTUALIZACIÓN
+65. VERSIONADO
 
-2026-08-24 — v3.0
+Versión mayor:
 
-Se actualiza el modelo de datos después de la consolidación del:
+3.0
 
-- motor de decisión;
-- matriz de oportunidades;
-- arquitectura de URLs;
-- arquitectura de landing;
-- sistema de bloques.
+Cambios incompatibles:
 
-Cambios principales:
+incrementar versión mayor.
 
-- incorporación formal del concepto de proyecto;
-- incorporación de "page_id";
-- incorporación de múltiples páginas por oportunidad;
-- soporte para miniwebs locales completas;
-- soporte para páginas hijas;
-- soporte para jerarquía de páginas;
-- soporte para navegación;
-- soporte para publicación;
-- soporte para actualización;
+Cambios compatibles:
+
+incrementar versión menor.
+
+Toda modificación estructural debe quedar registrada.
+
+---
+
+66. REGISTRO DE CAMBIOS
+
+2026-08-24
+
+Versión 3.0.
+
+Cambios:
+
+- incorporación formal del análisis competitivo;
+- incorporación de calidad de SERP;
+- incorporación de fortaleza de competidores;
+- incorporación de dificultad;
+- incorporación de diferenciación;
+- incorporación de información local;
+- incorporación de cobertura;
+- incorporación de potencial de miniweb;
+- separación de datos de decisión;
+- incorporación de trazabilidad;
 - refuerzo de idempotencia;
-- alineación con B01–B23;
-- separación entre oportunidad, página y bloque;
-- preparación para IA → N8N → WordPress;
-- mantenimiento de la regla de no invención;
-- mantenimiento de trazabilidad y versionado.
-
-El esquema queda preparado para la siguiente capa del sistema: el contrato de salida de IA y la posterior automatización.
+- adaptación a páginas múltiples;
+- adaptación a miniwebs locales;
+- alineación con motor de decisión v3.0;
+- alineación con sistema de bloques v2.0;
+- preparación para contrato IA v3.0;
+- preparación para implementación N8N → WordPress.
 
 ---
 
-FIN DE ESQUEMA DE DATOS
+67. REGLA FINAL
+
+El modelo de datos responde:
+
+¿QUÉ SABEMOS?
+
+El motor responde:
+
+¿QUÉ HACEMOS?
+
+La arquitectura responde:
+
+¿QUÉ CONSTRUIMOS?
+
+El sistema de bloques responde:
+
+¿CÓMO SE ESTRUCTURA?
+
+La IA responde:
+
+¿CÓMO GENERAMOS EL CONTENIDO?
+
+N8N responde:
+
+¿CÓMO LO AUTOMATIZAMOS?
+
+WordPress responde:
+
+¿CÓMO LO RENDERIZAMOS?
+
+Ninguna capa debe sustituir a otra.
+
+---
+
+FIN DE ESQUEMA DE DATOS SEO
