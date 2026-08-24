@@ -1,6 +1,6 @@
 ESPECIFICACIÓN DE IMPLEMENTACIÓN DE PLANTILLAS WORDPRESS
 
-Versión: 1.0
+Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 Fecha: 2026-08-24
 
@@ -10,284 +10,481 @@ Fecha: 2026-08-24
 
 Definir cómo convertir los bloques lógicos B01–B23 en componentes visuales reutilizables dentro de WordPress.
 
-La documentación debe ser independiente del tema visual utilizado.
+La implementación debe ser independiente del tema utilizado.
 
-La implementación inicial podrá utilizar Kadence, pero el sistema no dependerá de Kadence.
+El sistema lógico no depende de Kadence ni de ningún otro tema o constructor visual.
 
 ---
 
-2. PRINCIPIO FUNDAMENTAL
+2. ARQUITECTURA
 
-El sistema separa:
+La arquitectura definitiva es:
 
-BLOQUE LÓGICO
-↓
-PLANTILLA / PATRÓN WORDPRESS
-↓
 DATOS
 ↓
-RENDERIZADO
+BLOQUES LÓGICOS
+↓
+VALIDADOR
+↓
+N8N
+↓
+WORDPRESS
+↓
+RENDERER
+↓
+PLANTILLA VISUAL
+↓
+DESIGN SYSTEM
+↓
+TEMA
+↓
+HTML FINAL
 
-La IA no diseña.
+Cada capa tiene una responsabilidad diferente.
 
-N8N no diseña.
+IA
 
-El motor SEO no diseña.
+Genera contenido estructurado.
 
-WordPress no decide qué bloques necesita una página.
+Motor SEO
 
-Cada capa mantiene su función.
+Decide qué página debe existir y qué bloques necesita.
+
+N8N
+
+Orquesta, valida, transforma y sincroniza.
+
+WordPress
+
+Almacena y sirve los datos.
+
+Renderer
+
+Convierte bloques lógicos en representación visual.
+
+Plantilla
+
+Define la composición visual.
+
+Tema
+
+Aporta estilos y comportamiento global.
 
 ---
 
-3. INDEPENDENCIA DEL TEMA
+3. PRINCIPIO DE INDEPENDENCIA
 
-Las especificaciones B01–B23 deben poder implementarse utilizando diferentes temas o sistemas visuales compatibles con WordPress.
+El nombre del tema no forma parte del modelo lógico.
 
-Ejemplos posibles:
+No debe aparecer como dependencia en:
 
-- Kadence;
-- GeneratePress;
-- Astra;
-- otros temas compatibles;
-- Gutenberg y patrones nativos;
-- sistemas de bloques compatibles.
+- IDs de bloques;
+- datos;
+- contratos IA;
+- arquitectura SEO;
+- interlinking;
+- identificadores de instancia;
+- reglas de validación.
 
-El nombre del tema utilizado durante el piloto no forma parte del contrato lógico del sistema.
+Kadence puede utilizarse durante el piloto.
 
----
+Si posteriormente se cambia a otro sistema:
 
-4. IMPLEMENTACIÓN INICIAL
-
-Para el primer piloto se podrá utilizar:
-
-WordPress + Gutenberg + Kadence
-
-porque proporciona:
-
-- sistema visual;
-- estilos globales;
-- responsive;
-- bloques;
-- patrones;
-- reutilización;
-- buena integración con WordPress.
-
-Pero cualquier decisión específica de Kadence deberá considerarse una decisión de implementación, no una regla del sistema.
+MISMO CONTENIDO
++
+MISMA ARQUITECTURA
++
+MISMOS BLOQUES
+↓
+NUEVO RENDERER / PLANTILLAS
 
 ---
 
-5. TIPOS DE IMPLEMENTACIÓN
+4. MODELO DE BLOQUE
 
-Cada bloque puede implementarse como:
+Cada instancia debe poder identificarse mediante:
 
-GLOBAL
-
-Ejemplos:
-
-- B01 Header;
-- B02 Navigation;
-- B06 Footer.
-
-PATRÓN REUTILIZABLE
-
-Ejemplos:
-
-- B03 Hero;
-- B05 CTA;
-- B07 Subservice;
-- B14 FAQ.
-
-COMPONENTE DENTRO DE UNA PLANTILLA
-
-Ejemplos:
-
-- B04 Main Content;
-- B08 Problems;
-- B09 Local Context;
-- B10 Coverage;
-- B11 Process.
-
-BLOQUE NO VISUAL
+page_id
+block_id
+type
+block_instance_id
+block_version
+position
+enabled
+data
 
 Ejemplo:
 
-- B17 Structured Data.
-
-No es obligatorio que los 23 bloques sean 23 diseños visuales completamente independientes.
+{
+  "page_id": "FON-EST-001",
+  "block_id": "B03",
+  "type": "hero",
+  "block_instance_id": "FON-EST-001-B03-01",
+  "block_version": 1,
+  "position": 3,
+  "enabled": true,
+  "data": {}
+}
 
 ---
 
-6. SISTEMA GLOBAL DE DISEÑO
+5. BLOCK_ID
 
-Antes de construir los bloques se establecerán globalmente:
+Identifica el tipo lógico.
+
+Ejemplo:
+
+B03
+
+Debe corresponder exactamente con el bloque definido en "sistema-bloques.md".
+
+---
+
+6. TYPE
+
+Identifica funcionalmente el bloque.
+
+Ejemplo:
+
+B03 → hero
+
+"block_id" y "type" deben coincidir.
+
+Si no coinciden:
+
+BLOCK_TYPE_MISMATCH
+
+---
+
+7. BLOCK_INSTANCE_ID
+
+Identifica una instancia concreta.
+
+Ejemplo:
+
+FON-EST-001-B03-01
+
+Debe ser único dentro de la página.
+
+Permite:
+
+- actualizaciones parciales;
+- trazabilidad;
+- debugging;
+- identificación de errores;
+- sincronización.
+
+---
+
+8. BLOCK_VERSION
+
+Identifica la versión lógica del bloque.
+
+Ejemplo:
+
+block_version: 1
+
+Si cambia el contrato estructural del bloque, se incrementa la versión.
+
+La versión lógica es independiente de:
+
+- versión del tema;
+- versión del renderer;
+- versión CSS;
+- versión WordPress.
+
+---
+
+9. POSITION
+
+Indica la posición lógica dentro de la página.
+
+Ejemplo:
+
+B03 → 3
+B04 → 4
+B14 → 14
+
+El renderer ordenará las instancias por "position".
+
+---
+
+10. ENABLED
+
+Valores permitidos:
+
+true
+false
+
+Cuando es "false", el bloque no debe renderizarse.
+
+No debe dejar espacios ni contenedores vacíos.
+
+---
+
+SISTEMA DE RENDERIZADO
+
+11. RENDERER
+
+Cada bloque lógico será atendido por un renderer.
+
+Ejemplo:
+
+B03
+↓
+HeroRenderer
+↓
+HeroVariant
+↓
+HTML
+
+El renderer recibe los datos.
+
+No decide qué bloques necesita la página.
+
+---
+
+12. VARIANTES VISUALES
+
+Un bloque puede tener varias variantes.
+
+Ejemplo:
+
+B03
+├── hero_default
+├── hero_split
+├── hero_image
+└── hero_minimal
+
+La variante pertenece a la capa visual.
+
+No cambia:
+
+- "block_id";
+- "block_instance_id";
+- "page_id";
+- estructura lógica.
+
+---
+
+13. FALLBACK DE VARIANTES
+
+Si una variante solicitada no existe:
+
+VARIANTE SOLICITADA
+↓
+NO DISPONIBLE
+↓
+VARIANTE FALLBACK AUTORIZADA
+
+Nunca se debe crear una variante improvisada durante el renderizado.
+
+---
+
+14. COMPONENTES REUTILIZABLES
+
+Los renderers deben utilizar componentes comunes.
+
+Componentes mínimos:
+
+Container
+Section
+Heading
+Text
+Button
+Card
+Grid
+List
+Link
+Image
+Badge
+Icon
+
+Los componentes comunes forman parte del Design System.
+
+---
+
+15. DESIGN SYSTEM
+
+Antes de construir los bloques se definirán globalmente:
 
 - colores;
-- tipografía;
+- tipografías;
 - tamaños;
-- botones;
 - espaciado;
 - ancho máximo;
+- botones;
+- enlaces;
+- tarjetas;
 - bordes;
 - radios;
 - sombras;
-- estilos de enlaces;
-- comportamiento responsive.
+- breakpoints;
+- responsive.
 
-Los bloques utilizarán estos valores globales.
-
-No deberán contener estilos arbitrarios que rompan la identidad visual.
+Los bloques no deben introducir valores arbitrarios que rompan la identidad visual.
 
 ---
 
-7. ORDEN DE CONSTRUCCIÓN
+16. RESPONSIVE
 
-FASE A — ESTRUCTURA GLOBAL
+Toda plantilla debe funcionar correctamente en:
 
-1. B01 Header
-2. B02 Navigation
-3. B06 Footer
+MÓVIL
+TABLET
+ESCRITORIO
 
-FASE B — ESTRUCTURA PRINCIPAL
+Prioridad:
 
-4. B03 Hero
-5. B04 Main Content
-6. B05 CTA
-
-FASE C — CONTENIDO
-
-7. B07 Subservice
-8. B08 Problems
-9. B09 Local Context
-10. B10 Coverage
-11. B11 Process
-
-FASE D — CONVERSIÓN Y CONFIANZA
-
-12. B12 Trust
-13. B13 Differentiation
-14. B14 FAQ
-15. B18 Testimonials
-16. B19 Cases
-17. B21 Pricing
-18. B22 Opening Hours
-
-FASE E — INTERLINKING
-
-19. B15 Related Services
-20. B16 Related Locations
-
-FASE F — ELEMENTOS ESPECIALES
-
-21. B17 Structured Data
-22. B20 Gallery
-23. B23 Map
+MOBILE FIRST
 
 ---
 
-8. B01 — HEADER
+17. ACCESIBILIDAD
 
-Implementación:
+Las plantillas deben utilizar:
 
-Componente global de WordPress.
+- HTML semántico;
+- headings correctamente jerarquizados;
+- enlaces descriptivos;
+- botones reales;
+- labels;
+- foco visible;
+- contraste suficiente;
+- atributos "alt";
+- navegación por teclado.
 
-Debe poder recibir:
+---
+
+18. SEGURIDAD
+
+Los datos recibidos deben escaparse y sanitizarse antes de renderizarse.
+
+No se permite introducir directamente:
+
+<script>
+javascript:
+HTML peligroso
+event handlers
+iframes no autorizados
+
+---
+
+IMPLEMENTACIÓN DE LOS BLOQUES
+
+19. B01 — HEADER
+
+Tipo:
+
+GLOBAL
+
+Puede representar:
 
 - logo;
-- nombre comercial;
+- marca;
 - teléfono;
 - WhatsApp;
 - CTA;
-- URL.
+- enlace principal.
 
-Durante TEST:
-
-los datos comerciales pueden estar vacíos.
-
-No se deben publicar datos ficticios en producción.
+Los datos comerciales deben proceder de información validada.
 
 ---
 
-9. B02 — NAVIGATION
+20. B02 — NAVIGATION
 
-Implementación:
+Tipo:
 
-Sistema de navegación global de WordPress.
+GLOBAL
 
-Los elementos procederán de:
+Recibe:
 
-menu.items[]
+items[]
 
-Cada elemento:
+Cada elemento puede contener:
 
 label
 url
 type
 position
 
-Solo se mostrarán URLs autorizadas.
+Solo se muestran URLs autorizadas.
 
 ---
 
-10. B03 — HERO
+21. B03 — HERO
 
-Implementación:
+Tipo:
 
-Patrón reutilizable de WordPress.
+REUSABLE PATTERN
 
-Debe admitir:
+Datos:
 
-- H1;
-- subtítulo;
-- CTA;
-- imagen opcional;
-- elemento de confianza opcional.
+title
+subtitle
+description
+cta
+image
 
-La estructura visual permanece estable.
+Debe existir como mínimo una variante sin imagen.
 
-Los textos cambian.
+Variantes iniciales:
+
+hero_default
+hero_split
+hero_image
+hero_minimal
 
 ---
 
-11. B04 — MAIN CONTENT
+22. B04 — MAIN CONTENT
 
-Implementación:
+Tipo:
 
-Patrón reutilizable de contenido.
+REUSABLE CONTENT COMPONENT
 
 Debe permitir:
 
-- títulos;
+- headings;
 - párrafos;
 - listas;
 - destacados;
 - contenido estructurado.
 
-No debe utilizarse para rellenar espacio.
+No se utiliza para rellenar longitud artificial.
 
 ---
 
-12. B05 — CTA
+23. B05 — CTA
 
-Implementación:
+Tipo:
 
-Patrón reutilizable.
+REUSABLE PATTERN
 
-Debe admitir:
+Datos:
 
+title
+text
 label
 action
-url
+target
+
+Variantes iniciales:
+
+cta_inline
+cta_card
+cta_banner
+cta_section
 
 El destino procede de datos validados.
 
 ---
 
-13. B06 — FOOTER
+24. B06 — FOOTER
 
-Implementación:
+Tipo:
 
-Componente global de WordPress.
+GLOBAL
 
 Puede contener:
 
@@ -299,24 +496,142 @@ Puede contener:
 
 ---
 
-14. B07–B14
+25. B07 — SUBSERVICE
 
-Los bloques de contenido deberán construirse como patrones reutilizables siempre que sea técnicamente posible.
+Tipo:
 
-Cada patrón debe:
+REUSABLE PATTERN
 
-1. tener un diseño estable;
-2. tener campos claramente identificados;
-3. soportar contenido variable;
-4. soportar ausencia de datos opcionales;
-5. ser responsive;
-6. poder reutilizarse en múltiples páginas.
+Variantes:
+
+subservice_cards
+subservice_list
+subservice_grid
+
+Los datos proceden de subservicios autorizados.
 
 ---
 
-15. B15 — RELATED SERVICES
+26. B08 — PROBLEMS
 
-Patrón reutilizable.
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+problem_list
+problem_cards
+problem_grid
+
+No debe introducir problemas específicos no verificados.
+
+---
+
+27. B09 — LOCAL CONTEXT
+
+Tipo:
+
+REUSABLE PATTERN
+
+Puede representar:
+
+- contexto local;
+- zonas;
+- características territoriales;
+- información geográfica útil.
+
+No se permite generar contexto local ficticio.
+
+---
+
+28. B10 — COVERAGE
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+coverage_list
+coverage_cards
+coverage_grid
+
+Solo se muestran zonas autorizadas.
+
+---
+
+29. B11 — PROCESS
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+process_steps
+process_timeline
+process_cards
+
+Debe adaptarse a un número variable de pasos.
+
+---
+
+30. B12 — TRUST
+
+Tipo:
+
+REUSABLE PATTERN
+
+Puede representar:
+
+- experiencia;
+- certificaciones;
+- garantías;
+- reseñas verificadas;
+- señales comerciales verificadas.
+
+Nunca se inventan elementos de confianza.
+
+---
+
+31. B13 — DIFFERENTIATION
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+differentiation_cards
+differentiation_list
+differentiation_feature
+
+Solo se muestran diferenciadores reales.
+
+---
+
+32. B14 — FAQ
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+faq_list
+faq_accordion
+faq_cards
+
+Debe aceptar cualquier cantidad válida de preguntas.
+
+---
+
+33. B15 — RELATED SERVICES
+
+Tipo:
+
+REUSABLE PATTERN
 
 Entrada:
 
@@ -328,392 +643,617 @@ label
 url
 description
 
-La plantilla solo renderiza los enlaces recibidos.
-
-No genera URLs.
+El renderer no crea URLs.
 
 ---
 
-16. B16 — RELATED LOCATIONS
+34. B16 — RELATED LOCATIONS
 
-Patrón reutilizable.
+Tipo:
+
+REUSABLE PATTERN
 
 Entrada:
 
 related_locations[]
 
-Ejemplo:
-
-Fontanero en Estepona
-Fontanero en Manilva
-Fontanero en Casares
-
-Solo se muestran destinos válidos.
+Solo se muestran localidades autorizadas.
 
 ---
 
-17. B17 — STRUCTURED DATA
+35. B17 — STRUCTURED DATA
 
-No será necesariamente un patrón visual.
+Tipo:
 
-Su función será insertar los datos estructurados válidos correspondientes a la página.
+NON-VISUAL
 
-No debe mostrar información ficticia al usuario.
+No necesita representación visual.
+
+Flujo:
+
+B17
+↓
+StructuredDataRenderer
+↓
+JSON-LD
+↓
+HTML / HEAD
+
+No debe duplicar innecesariamente información visible.
 
 ---
 
-18. B18 — TESTIMONIALS
+36. B18 — TESTIMONIALS
 
-Patrón reutilizable.
+Tipo:
 
-Solo se activa cuando existan testimonios válidos.
+REUSABLE PATTERN
+
+Variantes:
+
+testimonial_cards
+testimonial_list
+testimonial_slider
+
+Solo se activa cuando existen testimonios reales.
+
+---
+
+37. B19 — CASES
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+case_cards
+case_list
+case_feature
+
+Solo se muestran casos documentados.
+
+---
+
+38. B20 — GALLERY
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+gallery_grid
+gallery_masonry
+gallery_slider
+gallery_feature
+
+Debe soportar:
+
+0 imágenes
+1 imagen
+varias imágenes
+
+sin romper el layout.
+
+---
+
+39. B21 — PRICING
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+pricing_cards
+pricing_table
+pricing_list
+
+Solo precios reales.
 
 Si no existen:
 
 enabled = false
 
-El espacio no debe quedar vacío.
+---
+
+40. B22 — OPENING HOURS
+
+Tipo:
+
+REUSABLE PATTERN
+
+Variantes:
+
+hours_list
+hours_table
+hours_card
+
+Solo horarios validados.
 
 ---
 
-19. B19 — CASES
+41. B23 — MAP
 
-Patrón reutilizable.
+Tipo:
 
-Solo se muestra cuando existen casos documentados.
+REUSABLE PATTERN
 
----
+Variantes:
 
-20. B20 — GALLERY
+map_embed
+map_card
+map_with_address
 
-Patrón reutilizable.
-
-Solo utiliza imágenes existentes y autorizadas.
-
----
-
-21. B21 — PRICING
-
-Patrón reutilizable.
-
-Solo se activa con precios reales.
-
-Si no existen:
-
-enabled = false
+Solo se muestra con información de ubicación válida.
 
 ---
 
-22. B22 — OPENING HOURS
+REGLAS DE PÁGINA
 
-Patrón reutilizable.
+42. NO TODAS LAS PÁGINAS UTILIZAN TODOS LOS BLOQUES
 
-Solo muestra horarios validados.
+La arquitectura SEO decide qué bloques están autorizados.
+
+Una página puede utilizar:
+
+B01
+B02
+B03
+B04
+B05
+B06
+
+o una combinación mayor.
+
+No se añaden bloques únicamente para aumentar contenido.
 
 ---
 
-23. B23 — MAP
+43. ORDEN DE RENDERIZADO
 
-Patrón reutilizable.
-
-Solo se muestra cuando existe información de ubicación válida.
-
----
-
-24. DATOS Y DISEÑO
-
-Regla fundamental:
-
-DATOS ≠ DISEÑO
+El orden final se determina mediante "position".
 
 Ejemplo:
 
-title = "Fontanero en Estepona"
+B03 position 3
+B04 position 4
+B09 position 5
+B14 position 6
+B05 position 7
 
-No modifica la estructura del patrón.
+El renderer representa:
 
-Solo modifica el contenido mostrado.
-
----
-
-25. BLOQUES OPCIONALES
-
-Todos los bloques deberán poder funcionar con:
-
-enabled = true
-
-o:
-
-enabled = false
-
-Cuando estén desactivados:
-
-no deben renderizarse.
-
-Esto permite que cada página utilice únicamente los bloques autorizados por su arquitectura.
+B03
+↓
+B04
+↓
+B09
+↓
+B14
+↓
+B05
 
 ---
 
-26. PÁGINA COMPLETA
+44. INTERLINKING
 
-Conceptualmente:
-
-B01 Header
-↓
-B02 Navigation
-↓
-B03 Hero
-↓
-B04 Main Content
-↓
-B07 Subservices
-↓
-B08 Problems
-↓
-B09 Local Context
-↓
-B10 Coverage
-↓
-B11 Process
-↓
-B12 Trust
-↓
-B13 Differentiation
-↓
-B14 FAQ
-↓
-B15 Related Services
-↓
-B16 Related Locations
-↓
-B18 Testimonials
-↓
-B19 Cases
-↓
-B20 Gallery
-↓
-B21 Pricing
-↓
-B22 Opening Hours
-↓
-B23 Map
-↓
-B05 CTA
-↓
-B06 Footer
-
-El orden real dependerá de la arquitectura de cada página.
-
-No todas las páginas deben contener todos los bloques.
-
----
-
-27. INTERLINKING
-
-Los enlaces entre páginas se generan mediante datos.
-
-Ejemplo:
+El interlinking procede de los datos.
 
 B15
 ↓
 related_services[]
 
-y:
-
 B16
 ↓
 related_locations[]
 
-La plantilla convierte esos datos en enlaces HTML normales de WordPress.
+Los enlaces deben:
 
-Por tanto, en la página publicada:
-
-el usuario podrá hacer clic y navegar a la URL correspondiente.
-
----
-
-28. ACTUALIZACIONES
-
-Una página ya creada debe poder recibir nuevos datos sin reconstruir manualmente toda la página.
-
-Conceptualmente:
-
-PÁGINA EXISTENTE
-↓
-NUEVOS DATOS
-↓
-VALIDACIÓN
-↓
-ACTUALIZACIÓN
-↓
-WORDPRESS
-
-Los bloques existentes se actualizan.
-
-Los bloques nuevos se añaden.
-
-Los bloques que ya no correspondan pueden desactivarse.
+- existir;
+- estar autorizados;
+- tener destino válido;
+- ser útiles para el usuario.
 
 ---
 
-29. MODO TEST
+45. ACTUALIZACIÓN PARCIAL
 
-Durante el desarrollo:
+Una página existente debe poder actualizar una única instancia.
+
+Ejemplo:
+
+page_id
+FON-EST-001
+
+block_instance_id
+FON-EST-001-B12-01
+
+El sistema actualiza únicamente esa instancia.
+
+No es necesario reconstruir toda la página.
+
+---
+
+46. IDEMPOTENCIA
+
+Si N8N recibe dos veces la misma instancia:
+
+page_id
++
+block_instance_id
+
+no debe crear duplicados.
+
+Regla:
+
+NO EXISTE
+↓
+CREATE
+
+EXISTE
+↓
+UPDATE
+
+---
+
+47. MODO TEST
+
+Durante desarrollo:
 
 environment = TEST
 
 Se permiten datos ficticios únicamente para comprobar:
 
-- diseño;
 - renderizado;
-- navegación;
 - responsive;
+- navegación;
 - actualización;
 - interlinking.
 
-Las páginas de prueba no deben confundirse con páginas de producción.
+Los datos de prueba no deben llegar a producción.
 
 ---
 
-30. MODO PRODUCCIÓN
+48. MODO PRODUCCIÓN
+
+Durante producción:
 
 environment = PRODUCTION
 
-Los datos comerciales deberán ser reales y validados.
+Los datos comerciales deben estar validados.
 
-Si no existe un dato:
+Si un dato no existe:
 
 null
 
 o se desactiva el elemento.
 
-Nunca se rellena automáticamente con información inventada.
+Nunca se inventa.
 
 ---
 
-31. COMPATIBILIDAD FUTURA
+ORDEN DE CONSTRUCCIÓN
 
-La implementación deberá evitar dependencias innecesarias del tema utilizado.
+49. FASE 1 — SISTEMA GLOBAL
 
-Si posteriormente se cambia de tema:
+Antes de construir bloques:
 
-MISMA LÓGICA
+Design System
 ↓
-NUEVA IMPLEMENTACIÓN VISUAL
-
-No debería ser necesario modificar:
-
-- motor SEO;
-- arquitectura;
-- contrato IA;
-- sistema de interlinking;
-- estructura de datos.
-
-Solo se adaptará la capa visual.
+Container
+↓
+Typography
+↓
+Buttons
+↓
+Cards
+↓
+Grid
+↓
+Responsive
 
 ---
 
-32. PRIMER PILOTO
+50. FASE 2 — ESTRUCTURA GLOBAL
 
-Antes de construir los 23 bloques:
+Construir:
 
-se construirá una primera página utilizando:
+B01 Header
+B02 Navigation
+B06 Footer
+
+Validar antes de continuar.
+
+---
+
+51. FASE 3 — LANDING MÍNIMA
+
+Construir:
+
+B03 Hero
+B04 Main Content
+B05 CTA
+
+Con:
 
 B01
 B02
-B03
-B04
-B05
 B06
 
-Objetivo:
+Resultado:
 
-demostrar que la estructura visual funciona.
+HEADER
+NAVIGATION
+HERO
+MAIN CONTENT
+CTA
+FOOTER
+
+Esta será la primera página funcional.
 
 ---
 
-33. SEGUNDO PILOTO
+52. FASE 4 — CONTENIDO SEO
 
 Añadir:
 
-B07
-B08
-B09
-B10
-B11
-B14
-B15
-B16
+B07 Subservice
+B08 Problems
+B09 Local Context
+B10 Coverage
+B11 Process
+B14 FAQ
+
+---
+
+53. FASE 5 — CONVERSIÓN Y CONFIANZA
+
+Añadir:
+
+B12 Trust
+B13 Differentiation
+B18 Testimonials
+B19 Cases
+B21 Pricing
+B22 Opening Hours
+
+Solo cuando los datos existan.
+
+---
+
+54. FASE 6 — INTERLINKING Y ELEMENTOS ESPECIALES
+
+Añadir:
+
+B15 Related Services
+B16 Related Locations
+B17 Structured Data
+B20 Gallery
+B23 Map
+
+---
+
+CRITERIOS DE ACEPTACIÓN
+
+55. UNA PLANTILLA ESTÁ TERMINADA CUANDO
+
+Cumple:
+
+- renderizado correcto;
+- responsive;
+- accesibilidad básica;
+- datos variables;
+- datos opcionales;
+- "enabled";
+- "position";
+- "block_instance_id";
+- variantes;
+- fallback;
+- URLs válidas;
+- ausencia de contenido ficticio;
+- reutilización;
+- independencia de localidad;
+- independencia del tema.
+
+---
+
+56. PRUEBAS MÍNIMAS
+
+Cada renderer debe probarse con:
+
+datos completos
+datos parciales
+datos nulos
+enabled=true
+enabled=false
+una instancia
+múltiples instancias
+móvil
+tablet
+escritorio
+
+---
+
+57. PRUEBA DE CAMBIO DE TEMA
+
+La prueba definitiva será:
+
+MISMO JSON
+↓
+TEMA / RENDERER A
+↓
+PÁGINA
+
+MISMO JSON
+↓
+TEMA / RENDERER B
+↓
+PÁGINA
+
+Los datos y la arquitectura deben permanecer intactos.
+
+---
+
+58. NO DUPLICACIÓN DE PLANTILLAS
+
+No se debe crear una plantilla para cada combinación:
+
+Fontanero Estepona
+Fontanero Manilva
+Fontanero Casares
+
+Las páginas utilizan los mismos bloques y plantillas.
+
+Cambian los datos.
+
+---
+
+59. ESCALABILIDAD
+
+La implementación debe poder manejar:
+
+1 página
+10 páginas
+100 páginas
+1.000 páginas
+10.000 páginas
+
+sin crear manualmente una plantilla por página.
+
+---
+
+60. MANTENIMIENTO
+
+Los componentes compartidos deben poder actualizarse centralmente.
+
+Ejemplo:
+
+Button v1
+↓
+Button v2
+↓
+todas las plantillas compatibles
+
+---
+
+61. N8N NO MAQUETA
+
+N8N no debe contener la lógica completa del diseño.
+
+N8N:
+
+recibe
+↓
+valida
+↓
+transforma
+↓
+sincroniza
+
+WordPress/renderer:
+
+renderiza
+
+---
+
+62. WORDPRESS NO DECIDE LA ARQUITECTURA SEO
+
+WordPress recibe la estructura ya decidida.
+
+No debe decidir automáticamente:
+
+- qué páginas crear;
+- qué localidades utilizar;
+- qué bloques son necesarios;
+- qué enlaces crear.
+
+---
+
+63. IA NO DECIDE EL DISEÑO VISUAL
+
+La IA genera:
+
+contenido estructurado
+
+No genera como contrato principal:
+
+HTML
+CSS
+maquetación
+clases visuales específicas del tema
+
+---
+
+64. CAMBIO DE TEMA
+
+Cambiar el tema debe afectar principalmente a:
+
+templates
+renderers
+design system
+CSS
+
+No debe obligar a modificar:
+
+SEO
+arquitectura
+datos
+contrato IA
+interlinking
+block_instance_id
+
+---
+
+65. PRIMER PILOTO
+
+La primera implementación real será únicamente:
+
+B01 Header
+B02 Navigation
+B03 Hero
+B04 Main Content
+B05 CTA
+B06 Footer
 
 Objetivo:
 
-demostrar que una landing SEO local completa puede construirse mediante patrones reutilizables.
+demostrar que el sistema completo puede generar y renderizar una landing funcional antes de construir los 23 bloques.
 
 ---
 
-34. CRITERIOS DE ACEPTACIÓN
+66. SIGUIENTE PASO PRÁCTICO
 
-Una plantilla se considera válida cuando:
+Una vez validado este documento:
 
-- funciona en móvil;
-- funciona en escritorio;
-- mantiene el diseño global;
-- acepta datos variables;
-- acepta datos opcionales;
-- puede desactivarse;
-- no genera contenido ficticio;
-- no crea URLs no autorizadas;
-- permite interlinking;
-- puede reutilizarse;
-- no depende de una localidad concreta;
-- no depende innecesariamente de un tema concreto.
+1. Construir B01 Header
+2. Probar
+3. Construir B02 Navigation
+4. Probar
+5. Construir B06 Footer
+6. Probar
+7. Construir B03 Hero
+8. Probar
+
+No se avanza al siguiente bloque si el anterior no funciona correctamente.
 
 ---
 
-35. REGLA DE IMPLEMENTACIÓN
+67. REGLA MAESTRA
 
-No construir los 23 bloques a ciegas.
+NO CONSTRUIR 23 BLOQUES A CIEGAS.
 
-Primero:
-
-B01
+CONSTRUIR
 ↓
-prueba
+PROBAR
 ↓
-B02
+VALIDAR
 ↓
-prueba
+DOCUMENTAR
 ↓
-B06
-↓
-prueba
+CONTINUAR
 
-Después:
-
-B03
-↓
-B04
-↓
-B05
-
-Y así sucesivamente.
-
-Cada grupo se valida antes de continuar.
-
----
-
-36. SIGUIENTE PASO
-
-El siguiente paso práctico será:
-
-B01 — HEADER
-
-Primero se definirá su estructura visual y sus campos.
-
-Después se construirá en WordPress.
-
-La implementación inicial podrá hacerse con Kadence, pero el diseño lógico deberá permanecer independiente del tema.
-
----
+La arquitectura debe permanecer desacoplada de la implementación visual concreta.
 
 FIN
