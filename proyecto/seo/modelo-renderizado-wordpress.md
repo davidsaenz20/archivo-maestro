@@ -1,404 +1,228 @@
 MODELO DE RENDERIZADO WORDPRESS
 
-Versión: 1.0
+Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: definir cómo se transforma la estructura lógica generada por la IA en páginas reales de WordPress utilizando un tema visual y plantillas reutilizables, con Kadence como referencia para el piloto.
+Fecha: 2026-08-24
 
 ---
 
 1. FUNCIÓN
 
-Este documento define el puente entre:
+Este documento define el puente técnico entre:
 
-JSON generado por IA → N8N → WordPress → plantillas visuales → página publicada
+SITE_PACKAGE → N8N → WordPress → plantillas → página publicada
 
-El documento no define el diseño visual definitivo.
+La arquitectura, el sistema de bloques y el contrato de salida de IA definen qué debe existir.
 
-Define cómo debe funcionar técnicamente el sistema de renderizado.
-
-La IA genera:
-
-- estructura;
-- contenido;
-- datos;
-- bloques autorizados;
-- relaciones;
-- enlaces.
-
-WordPress se encarga de:
-
-- utilizar las plantillas;
-- aplicar el diseño;
-- renderizar el contenido;
-- generar el HTML final;
-- mostrar la página al usuario.
+Este documento define cómo WordPress debe interpretar esa información.
 
 ---
 
 2. PRINCIPIO FUNDAMENTAL
 
-La IA no debe generar libremente el HTML final de WordPress.
+La IA no genera libremente el HTML ni el CSS final.
 
-La IA trabaja con bloques lógicos previamente definidos.
+La IA genera:
 
-Ejemplo:
-
-{
-  "id": "B03",
-  "type": "hero",
-  "enabled": true,
-  "data": {
-    "title": "Fontanero en Estepona",
-    "subtitle": "Servicio de fontanería para particulares y negocios",
-    "cta": {
-      "label": "Solicitar presupuesto",
-      "action": "contact"
-    }
-  }
-}
-
-El sistema de WordPress interpreta:
-
-B03 → plantilla Hero
-
-y rellena esa plantilla con los datos recibidos.
-
----
-
-3. OBJETIVO
-
-El sistema debe permitir:
-
-- crear páginas automáticamente;
-- actualizar páginas existentes;
-- reutilizar diseños;
-- mantener coherencia visual;
-- modificar el diseño global sin reconstruir todas las páginas;
-- generar cientos o miles de páginas sin crear manualmente cada una;
-- mantener separación entre contenido y diseño.
-
----
-
-4. TEMA VISUAL
-
-Para el piloto se utilizará:
-
-Kadence
-
-Kadence será responsable principalmente de:
-
-- estilos;
-- tipografías;
-- colores;
-- espaciado;
-- responsive;
-- columnas;
-- botones;
-- estructura visual;
-- componentes reutilizables.
-
-El sistema debe evitar crear un CSS independiente para cada página.
-
----
-
-5. SEPARACIÓN DE RESPONSABILIDADES
-
-IA
-
-Responsable de:
-
+- estructura;
 - contenido;
-- textos;
-- títulos;
-- preguntas;
-- respuestas;
-- datos estructurados;
+- bloques autorizados;
+- datos;
 - relaciones;
-- enlaces;
-- selección de bloques autorizados.
+- enlaces autorizados.
+
+El renderizador utiliza esos datos para alimentar plantillas previamente creadas en WordPress.
+
+---
+
+3. INDEPENDENCIA DEL TEMA
+
+El sistema lógico no dependerá de Kadence.
+
+Kadence será únicamente el tema utilizado durante el piloto.
+
+La estructura será:
+
+BLOQUE LÓGICO
+↓
+RENDERIZADOR
+↓
+PLANTILLA VISUAL
+↓
+TEMA ACTUAL
+
+Nunca:
+
+B03 = Kadence
+
+El objetivo es poder cambiar de tema en el futuro sin modificar la arquitectura SEO ni los datos.
+
+---
+
+4. RESPONSABILIDADES
 
 Arquitectura
 
-Responsable de:
+Decide:
 
 - páginas;
 - URLs;
 - jerarquía;
-- profundidad;
-- bloques autorizados.
+- relaciones;
+- bloques permitidos.
+
+IA
+
+Decide:
+
+- contenido;
+- datos variables;
+- selección de bloques autorizados;
+- enlaces autorizados.
 
 Validador
 
-Responsable de:
+Comprueba:
 
-- comprobar integridad;
-- detectar bloques no autorizados;
-- detectar URLs incorrectas;
-- detectar datos incompatibles;
-- impedir publicación cuando exista un error crítico.
+- estructura;
+- datos;
+- bloques;
+- URLs;
+- relaciones;
+- integridad.
 
 N8N
 
-Responsable de:
+Gestiona:
 
-- recibir el JSON;
-- procesarlo;
-- comprobar identificadores;
-- localizar páginas;
-- enviar datos a WordPress;
-- crear;
-- actualizar;
-- registrar resultados;
-- gestionar errores.
+- entrada;
+- procesamiento;
+- identificación;
+- creación;
+- actualización;
+- sincronización;
+- errores;
+- registro.
 
 WordPress
 
-Responsable de:
+Gestiona:
 
-- almacenar páginas;
-- utilizar plantillas;
-- renderizar bloques;
-- aplicar diseño;
-- generar HTML;
-- publicar.
+- almacenamiento;
+- plantillas;
+- renderizado;
+- publicación.
 
-Kadence
+Tema
 
-Responsable de:
+Gestiona:
 
-- presentación visual.
-
----
-
-6. CONCEPTO DE PLANTILLA
-
-Cada bloque lógico no implica necesariamente una plantilla visual independiente.
-
-Ejemplo:
-
-B03 puede utilizar una plantilla visual Hero.
-
-B08 puede utilizar una plantilla Problems.
-
-Pero varios bloques pueden compartir una misma estructura visual si resulta conveniente.
-
-Por tanto:
-
-23 bloques lógicos ≠ necesariamente 23 plantillas visuales independientes.
-
-El sistema debe permitir reutilización.
-
----
-
-7. IDENTIFICADORES
-
-Los bloques utilizarán los identificadores oficiales:
-
-- B01
-- B02
-- B03
-- B04
-- B05
-- B06
-- B07
-- B08
-- B09
-- B10
-- B11
-- B12
-- B13
-- B14
-- B15
-- B16
-- B17
-- B18
-- B19
-- B20
-- B21
-- B22
-- B23
-
-No se permiten nuevos identificadores creados libremente por la IA.
-
----
-
-8. MAPA LÓGICO
-
-ID| TYPE
-B01| header
-B02| navigation
-B03| hero
-B04| main_content
-B05| cta
-B06| footer
-B07| subservice
-B08| problems
-B09| local_context
-B10| coverage
-B11| process
-B12| trust
-B13| differentiation
-B14| faq
-B15| related_services
-B16| related_locations
-B17| structured_data
-B18| testimonials
-B19| cases
-B20| gallery
-B21| pricing
-B22| opening_hours
-B23| map
-
-El mapa debe coincidir con "proyecto/seo/sistema-bloques.md".
-
----
-
-9. MAPA DE RENDERIZADO
-
-El sistema deberá disponer de una correspondencia:
-
-B01 → Header
-B02 → Navigation
-B03 → Hero
-B04 → Main Content
-B05 → CTA
-B06 → Footer
-B07 → Subservice
-B08 → Problems
-B09 → Local Context
-B10 → Coverage
-B11 → Process
-B12 → Trust
-B13 → Differentiation
-B14 → FAQ
-B15 → Related Services
-B16 → Related Locations
-B17 → Structured Data
-B18 → Testimonials
-B19 → Cases
-B20 → Gallery
-B21 → Pricing
-B22 → Opening Hours
-B23 → Map
-
-Este mapa será utilizado por N8N y WordPress.
-
----
-
-10. PLANTILLAS REUTILIZABLES
-
-Las plantillas deben diseñarse una sola vez.
-
-Ejemplo:
-
-B03 Hero
-    ↓
-Plantilla Hero Kadence
-    ↓
-Datos de la página
-
-Si existen:
-
-- Fontanero Estepona;
-- Fontanero Manilva;
-- Fontanero Casares;
-- Fontanero Ronda;
-
-todas pueden utilizar la misma plantilla Hero.
-
-Lo único que cambia son los datos.
-
----
-
-11. CONTENIDO VARIABLE
-
-Los elementos variables podrán incluir:
-
-- título;
-- subtítulo;
-- texto;
-- listas;
-- preguntas;
-- respuestas;
-- CTA;
-- URLs;
-- anchors;
-- imágenes;
-- datos comerciales reales;
-- información local respaldada.
-
-El diseño no debe depender del texto concreto.
-
----
-
-12. CONTENIDO FIJO
-
-Puede existir contenido visual o estructural común:
-
-- clases;
-- estructura HTML;
+- presentación;
 - estilos;
-- iconos;
-- composición;
-- espaciado;
-- elementos decorativos;
+- responsive;
 - componentes visuales.
 
-El contenido fijo no debe utilizarse para introducir afirmaciones comerciales falsas.
+---
+
+5. IDENTIFICADORES
+
+Cada página tendrá identificadores estables.
+
+site_id
+opportunity_id
+page_id
+url
+version
+status
+
+Cada bloque tendrá:
+
+block_id
+block_instance_id
+block_version
+enabled
+
+Ejemplo
+
+{
+  "page_id": "FON-EST-HOME",
+  "block_id": "B03",
+  "block_instance_id": "FON-EST-HOME-B03-01",
+  "block_version": 1,
+  "enabled": true
+}
+
+"block_id" identifica el tipo de bloque.
+
+"block_instance_id" identifica esa instancia concreta dentro de una página.
 
 ---
 
-13. DATOS NULOS
+6. IDENTIFICADORES OFICIALES
 
-Si un campo no existe:
+Los únicos bloques permitidos son:
 
-null
+B01 Header
+B02 Navigation
+B03 Hero
+B04 Main Content
+B05 CTA
+B06 Footer
+B07 Subservice
+B08 Problems
+B09 Local Context
+B10 Coverage
+B11 Process
+B12 Trust
+B13 Differentiation
+B14 FAQ
+B15 Related Services
+B16 Related Locations
+B17 Structured Data
+B18 Testimonials
+B19 Cases
+B20 Gallery
+B21 Pricing
+B22 Opening Hours
+B23 Map
 
-El renderizador debe saber manejar valores nulos.
-
-No debe generar:
-
-- texto falso;
-- teléfonos ficticios en páginas reales;
-- precios inventados;
-- horarios inventados;
-- testimonios inventados.
+La IA no puede crear identificadores nuevos.
 
 ---
 
-14. CAMPOS OPCIONALES
+7. BLOQUE LÓGICO ≠ PLANTILLA VISUAL
 
-Los bloques pueden contener campos opcionales.
+Los 23 bloques lógicos no obligan a tener exactamente 23 plantillas visuales.
+
+Varios bloques pueden compartir una plantilla si resulta adecuado.
+
+La relación será:
+
+B03 → renderer.hero → plantilla visual Hero
+
+---
+
+8. INSTANCIA DE BLOQUE
+
+Una página puede contener varias instancias del mismo bloque.
 
 Ejemplo:
 
-{
-  "cta": {
-    "label": "Solicitar presupuesto",
-    "action": "contact",
-    "url": null
-  }
-}
+B07-SUBSERVICE-01
+B07-SUBSERVICE-02
+B07-SUBSERVICE-03
 
-Si no existe un canal de contacto real, el renderizador no debe inventarlo.
+Por tanto, nunca se debe identificar un bloque únicamente mediante "block_id".
 
----
+Debe utilizarse:
 
-15. BLOQUES DESACTIVADOS
-
-Un bloque puede tener:
-
-"enabled": false
-
-En ese caso WordPress no debe renderizarlo.
-
-Esto permite conservar una arquitectura común sin mostrar contenido innecesario.
+page_id + block_instance_id
 
 ---
 
-16. ORDEN DE LOS BLOQUES
+9. ORDEN
 
-El orden de los bloques será el orden definido en:
+El orden será el definido por:
 
 pages[].blocks[]
 
@@ -408,287 +232,419 @@ B01
 B02
 B03
 B04
+B07
 B08
 B09
 B14
+B15
+B16
 B05
 B06
 
-WordPress debe respetar ese orden.
+El renderizador debe respetarlo.
 
 ---
 
-17. EJEMPLO DE PÁGINA
+10. ESTRUCTURA DE UNA PÁGINA
 
 Conceptualmente:
 
-PAGE
-│
-├── B01 Header
-├── B02 Navigation
-├── B03 Hero
-├── B04 Main Content
-├── B08 Problems
-├── B09 Local Context
-├── B14 FAQ
-├── B05 CTA
-└── B06 Footer
-
-El renderizador convierte cada elemento en su representación visual.
+{
+  "page_id": "FON-EST-HOME",
+  "url": "/fontanero/estepona/",
+  "blocks": [
+    {
+      "block_id": "B03",
+      "block_instance_id": "FON-EST-HOME-B03-01",
+      "enabled": true,
+      "data": {}
+    }
+  ]
+}
 
 ---
 
-18. RENDERIZADO
+11. DATOS DEL BLOQUE
 
-El proceso conceptual será:
+Cada instancia tendrá:
 
-SITE_PACKAGE JSON
-        ↓
+block_id
+block_instance_id
+enabled
+data
+links
+metadata
+version
+
+Los datos variables se almacenan en "data".
+
+---
+
+12. DATOS NULOS
+
+Cuando un dato no exista:
+
+null
+
+Nunca se debe inventar.
+
+Especialmente:
+
+- teléfonos;
+- direcciones;
+- precios;
+- horarios;
+- testimonios;
+- empresas;
+- certificaciones;
+- imágenes;
+- datos comerciales.
+
+Los datos ficticios solo podrán utilizarse en entorno "TEST".
+
+---
+
+13. RENDERIZADO
+
+Flujo:
+
+SITE_PACKAGE
+↓
+VALIDADOR
+↓
 N8N
-        ↓
-VALIDACIÓN
-        ↓
+↓
 PAGE
-        ↓
-BLOCK
-        ↓
+↓
+BLOCK INSTANCE
+↓
 BLOCK ID
-        ↓
-PLANTILLA
-        ↓
-DATOS
-        ↓
+↓
+RENDERER
+↓
+TEMPLATE
+↓
+DATA
+↓
 WORDPRESS
-        ↓
+↓
 HTML FINAL
 
 ---
 
-19. NO GENERAR HTML LIBRE
+14. PLANTILLAS
 
-La IA no debe controlar directamente:
+Las plantillas visuales se crearán manualmente durante la implementación del piloto.
 
-- clases CSS;
-- estilos;
-- estructura visual;
-- tamaños;
-- colores;
-- tipografías;
-- código JavaScript;
-- CSS personalizado.
-
-La IA controla principalmente:
-
-qué contenido debe aparecer.
-
----
-
-20. WORDPRESS COMO SISTEMA DE RENDERIZADO
-
-WordPress debe recibir una estructura que permita saber:
-
-qué bloque
-+
-qué datos
-+
-en qué página
-+
-en qué posición
-
-El sistema WordPress deberá convertir esa información en una representación visual.
-
----
-
-21. IMPLEMENTACIÓN CON KADENCE
-
-Durante el piloto se evaluará la forma más sencilla de utilizar Kadence:
-
-- bloques reutilizables;
-- patrones;
-- plantillas;
-- elementos globales;
-- campos dinámicos;
-- componentes equivalentes disponibles en Kadence.
-
-No se debe asumir todavía una implementación técnica concreta si no ha sido probada.
-
-La elección definitiva se realizará durante la implementación.
-
----
-
-22. REUTILIZACIÓN
-
-Una misma plantilla puede utilizarse en muchas páginas.
+Una vez creadas podrán reutilizarse en cientos o miles de páginas.
 
 Ejemplo:
 
-B03 Hero
-│
-├── Estepona
-├── Manilva
-├── Casares
-├── Ronda
-├── Cártama
-└── Fuengirola
+Plantilla Hero
+↓
+Fontanero Estepona
+Fontanero Manilva
+Fontanero Ronda
+Fontanero Casares
+Fontanero Cártama
 
-Cada página utiliza los mismos componentes visuales pero diferentes datos.
-
----
-
-23. ACTUALIZACIÓN GLOBAL
-
-Si se modifica una plantilla global:
-
-B03 Hero
-
-el cambio debe poder afectar a las páginas que utilizan dicha plantilla.
-
-Esto permite mejorar el diseño del proyecto sin editar cientos de páginas manualmente.
+Solo cambia el contenido.
 
 ---
 
-24. ACTUALIZACIÓN INDIVIDUAL
+15. DATOS Y DISEÑO
 
-Si cambia el contenido de una página:
+El contenido debe estar separado del diseño.
 
-Fontanero en Estepona
+Ejemplo:
 
-N8N debe poder actualizar únicamente sus datos.
+DATA
+title = "Fontanero en Estepona"
 
-No debe ser necesario reconstruir toda la web.
+La plantilla decide:
+
+tipografía
+tamaño
+espaciado
+colores
+botón
+estructura
+responsive
 
 ---
 
-25. IDEMPOTENCIA
+16. NO HTML LIBRE
 
-Cada página tendrá:
+La IA no debe controlar directamente:
 
-opportunity_id
+- CSS;
+- clases;
+- JavaScript;
+- tamaños;
+- colores;
+- tipografías;
+- estructura visual arbitraria.
+
+El HTML final pertenece al sistema de renderizado.
+
+---
+
+17. ACTUALIZACIÓN INDIVIDUAL
+
+N8N debe poder recibir:
+
+{
+  "operation": "UPDATE_BLOCK",
+  "page_id": "FON-EST-HOME",
+  "block_instance_id": "FON-EST-HOME-B14-01",
+  "data": {}
+}
+
+El sistema debe actualizar únicamente esa instancia.
+
+No debe reconstruir toda la página si no es necesario.
+
+---
+
+18. OPERACIONES PERMITIDAS
+
+El renderizador debe soportar:
+
+CREATE_PAGE
+UPDATE_PAGE
+CREATE_BLOCK
+UPDATE_BLOCK
+DISABLE_BLOCK
+ENABLE_BLOCK
+DELETE_BLOCK
+UPDATE_LINKS
+UPDATE_MENU
+PUBLISH
+UNPUBLISH
+
+---
+
+19. IDEMPOTENCIA
+
+Una misma operación ejecutada dos veces no debe producir duplicados.
+
+N8N debe localizar primero:
+
 page_id
-url
 
-N8N debe utilizar estos identificadores para determinar si debe:
+y después:
 
-- crear;
-- actualizar;
-- ignorar;
-- revisar.
+block_instance_id
 
-Una segunda ejecución no debe crear duplicados.
+Si existe:
+
+UPDATE
+
+Si no existe:
+
+CREATE
 
 ---
 
-26. INTERLINKING
+20. CREACIÓN DE PÁGINA
 
-Los enlaces internos también forman parte de los datos.
+Para crear:
+
+{
+  "operation": "CREATE_PAGE",
+  "page_id": "FON-EST-HOME",
+  "url": "/fontanero/estepona/",
+  "blocks": []
+}
+
+Si "page_id" ya existe, no debe crearse una segunda página.
+
+Debe producirse:
+
+EXISTS
+
+o:
+
+UPDATE
+
+según la instrucción recibida.
+
+---
+
+21. ACTUALIZACIÓN DE PÁGINA
+
+Una actualización podrá afectar a:
+
+- SEO;
+- bloques;
+- contenido;
+- enlaces;
+- menú;
+- imágenes;
+- datos estructurados.
+
+Debe conservar los identificadores existentes.
+
+---
+
+22. ACTUALIZACIÓN PARCIAL
+
+Ejemplo:
+
+Página
+├── B03 Hero
+├── B04 Main Content
+├── B08 Problems
+├── B14 FAQ
+└── B16 Related Locations
+
+Si cambia únicamente FAQ:
+
+UPDATE B14
+
+No:
+
+DELETE PAGE
+CREATE PAGE
+
+---
+
+23. VERSIONADO
+
+Cada página tendrá una versión.
+
+Ejemplo:
+
+page_version: 4
+
+Cada bloque podrá tener:
+
+block_version: 2
+
+Una modificación debe incrementar la versión correspondiente.
+
+---
+
+24. CONTROL DE CAMBIOS
+
+Debe poder registrarse:
+
+page_id
+block_instance_id
+operation
+previous_version
+new_version
+timestamp
+result
+error
+
+---
+
+25. INTERLINKING
+
+Los enlaces forman parte de los datos del sistema.
 
 Ejemplo:
 
 {
-  "url": "/fontanero/estepona/desatascos/",
-  "anchor": "desatascos en Estepona",
-  "target": "FON-EST-P02",
-  "reason": "related_service"
+  "source_block_instance_id": "FON-EST-HOME-B16-01",
+  "target_page_id": "FON-MAN-HOME",
+  "anchor": "fontanero en Manilva",
+  "type": "related_location"
 }
 
-El renderizador debe convertirlos en enlaces HTML funcionales.
+El renderizador transforma la relación en un enlace HTML real.
 
-La IA no debe inventar URLs.
+---
 
-Las URLs deben proceder de la arquitectura autorizada.
+26. REGLA DE URL
+
+La IA nunca debe inventar una URL.
+
+Las URLs deben proceder de:
+
+arquitectura autorizada
++
+páginas existentes
 
 ---
 
 27. INTERLINKING ENTRE LOCALIDADES
 
-El sistema podrá conectar páginas relacionadas:
+Permitido:
 
-Fontanero Estepona
-        ↓
-Fontanero San Pedro
-        ↓
-Fontanero Manilva
-        ↓
-Fontanero Casares
+Estepona
+↓
+Manilva
+↓
+Casares
+↓
+San Pedro
+↓
+Marbella
 
-Siempre que esas páginas existan y estén autorizadas.
-
-No se deben crear enlaces hacia páginas inexistentes.
+siempre que las páginas estén autorizadas y existan.
 
 ---
 
 28. INTERLINKING ENTRE SERVICIOS
 
-También podrá existir:
+También puede existir:
 
 Fontanero
-   ↓
+↓
 Electricista
-   ↓
+↓
 Pintor
-   ↓
+↓
 Carpintero
 
-pero únicamente cuando la arquitectura del proyecto autorice esa relación.
-
-El enlazado entre pilares debe estar controlado.
+pero únicamente cuando la arquitectura lo autorice.
 
 No se debe crear una red artificial de enlaces.
 
 ---
 
-29. ENLACES EXTERNOS
+29. ENLACES A PÁGINAS INEXISTENTES
 
-En este documento, "enlace externo" no significa necesariamente un enlace fuera del dominio.
+Nunca se debe publicar:
 
-Los enlaces entre diferentes páginas del mismo proyecto son:
+target_page_id inexistente
 
-enlaces internos.
+La operación debe quedar:
 
-Ejemplo:
+REVIEW
 
-/fontanero/estepona/
-
-→
-
-/fontanero/manilva/
-
-sigue siendo enlazado interno si ambas páginas pertenecen al mismo dominio.
+hasta que exista el destino.
 
 ---
 
-30. IMÁGENES
+30. MENÚ
 
-Las imágenes deberán proceder de datos válidos.
+El menú podrá gestionarse mediante:
 
-El renderizador recibirá:
+menu.items[]
 
-{
-  "url": "https://...",
-  "alt": "...",
-  "title": "...",
-  "type": "hero"
-}
+Cada elemento debe contener:
 
-WordPress utilizará el recurso disponible.
+label
+target_page_id
+url
+order
+enabled
 
-No se inventarán URLs de imágenes.
+N8N podrá:
 
----
-
-31. DATOS ESTRUCTURADOS
-
-B17 puede contener información lógica para datos estructurados.
-
-El renderizador será responsable de generar el formato técnico final cuando corresponda.
-
-La IA no debe generar datos estructurados falsos.
+- crear;
+- actualizar;
+- eliminar;
+- ordenar.
 
 ---
 
-32. SEO
+31. SEO
 
-El sistema debe poder recibir:
+Los datos SEO podrán incluir:
 
 {
   "title": "",
@@ -696,171 +652,244 @@ El sistema debe poder recibir:
   "h1": ""
 }
 
-y utilizar estos datos para la página.
-
-La implementación concreta dependerá del sistema SEO utilizado en WordPress.
+La implementación concreta dependerá del sistema SEO instalado en WordPress.
 
 ---
 
-33. MENÚ
+32. IMÁGENES
 
-El menú será generado a partir de:
+Una imagen deberá disponer de datos válidos:
 
-menu.items[]
+{
+  "url": "",
+  "alt": "",
+  "title": "",
+  "type": "hero"
+}
 
-Cada elemento deberá apuntar a una URL autorizada.
-
-WordPress deberá poder:
-
-- crear;
-- actualizar;
-- eliminar;
-- ordenar
-
-los elementos del menú mediante N8N.
+Nunca se deben inventar URLs.
 
 ---
 
-34. PÁGINAS DINÁMICAS
+33. DATOS ESTRUCTURADOS
 
-El sistema debe soportar la creación de muchas páginas.
+B17 contiene la información lógica necesaria.
 
-Ejemplo:
+El sistema técnico decide cómo convertirla al formato final compatible con WordPress.
 
-Fontanero Málaga
-Fontanero Marbella
-Fontanero Estepona
-Fontanero Manilva
-Fontanero Casares
-Fontanero Ronda
-Fontanero Cártama
-...
-
-Todas pueden utilizar el mismo sistema visual.
+No se deben publicar datos estructurados falsos.
 
 ---
 
-35. ESCALABILIDAD
+34. TESTIMONIOS Y CASOS
 
-El diseño debe permitir:
+B18 y B19 solo podrán utilizar información real o información explícitamente marcada como ficticia para "TEST".
 
-1 página
-↓
-10 páginas
-↓
-100 páginas
-↓
-1.000 páginas
-
-sin necesidad de crear manualmente un diseño diferente para cada localidad.
+Nunca se deben presentar datos ficticios como experiencias reales.
 
 ---
 
-36. CAMBIO DE TEMA
+35. ENTORNOS
 
-Aunque el piloto utilice Kadence, la estructura lógica no debe depender completamente de Kadence.
+Debe existir separación:
 
-El objetivo es:
+TEST
+PRODUCTION
 
-B03
-↓
-Renderer
-↓
-Tema actual
-
-y no:
-
-B03 = código específico inseparable de Kadence
-
-Esto permite cambiar de tema en el futuro.
+Los datos ficticios de pruebas nunca deben pasar automáticamente a producción.
 
 ---
 
-37. PRINCIPIO DE PORTABILIDAD
+36. ERRORES
 
-Los datos de contenido deben poder mantenerse aunque cambie:
+Errores críticos:
 
-- tema;
-- diseño;
-- plantilla;
-- sistema visual.
+BLOCK_UNKNOWN
+PAGE_NOT_FOUND
+TEMPLATE_NOT_FOUND
+INVALID_URL
+INVALID_DATA
+INVALID_JSON
+DUPLICATE_PAGE
+MISSING_REQUIRED_DATA
 
-La información debe estar separada del diseño.
-
----
-
-38. ERRORES
-
-Si WordPress recibe:
-
-- bloque desconocido;
-- datos incompatibles;
-- plantilla inexistente;
-- página inexistente para actualización;
-- URL no autorizada;
-
-debe producirse un error controlado.
-
-No debe generarse una página parcialmente incorrecta sin registrar la incidencia.
+Una operación crítica fallida no debe publicar parcialmente una página incorrecta.
 
 ---
 
-39. FALLBACK
+37. FALLBACK
 
-No debe existir un fallback que permita a la IA generar HTML arbitrario.
+No existe fallback para HTML libre.
 
 Si falta una plantilla:
 
 REVIEW
 
-o:
+Si existe un error crítico:
 
 ERROR
 
-según la gravedad.
+---
+
+38. REGISTRO
+
+Cada ejecución debe registrar como mínimo:
+
+site_id
+opportunity_id
+page_id
+url
+operation
+block_id
+block_instance_id
+version
+result
+error
+timestamp
 
 ---
 
-40. REGISTRO
+39. ESCALABILIDAD
 
-Cada operación debe poder registrar:
+El sistema debe funcionar progresivamente:
 
-- opportunity_id;
-- page_id;
-- URL;
-- bloque;
-- fecha;
-- operación;
-- resultado;
-- error si existe;
-- versión del sistema.
+1 página
+↓
+3 páginas
+↓
+10 páginas
+↓
+50 páginas
+↓
+100 páginas
+↓
+1.000+ páginas
 
-Esto permitirá reconstruir qué ocurrió.
-
----
-
-41. VERSIONADO
-
-El sistema deberá mantener versiones de:
-
-- contrato IA;
-- bloques;
-- arquitectura;
-- renderizador;
-- plantillas;
-- modelo de datos.
-
-Esto permite saber con qué versión se generó una página.
+No se debe comenzar directamente con generación masiva.
 
 ---
 
-42. FLUJO DE CREACIÓN
+40. CAMBIO DE TEMA
 
-El flujo completo será:
+Los datos deben sobrevivir a un cambio de:
 
-LOCALIDAD
+- tema;
+- plantilla;
+- diseño;
+- sistema visual.
+
+Ejemplo:
+
+B03 + DATA
+↓
+Renderer
+↓
+Tema A
+
+y posteriormente:
+
+B03 + DATA
+↓
+Renderer
+↓
+Tema B
+
+sin cambiar la arquitectura SEO.
+
+---
+
+41. RELACIÓN CON SISTEMA DE BLOQUES
+
+"sistema-bloques.md" define:
+
+- bloques existentes;
+- finalidad;
+- campos;
+- reglas.
+
+Este documento define:
+
+- identificación;
+- renderizado;
+- actualización;
+- sincronización;
+- plantillas.
+
+---
+
+42. RELACIÓN CON ARQUITECTURA
+
+La arquitectura define:
+
+qué páginas existen
+qué URLs existen
+qué bloques pueden utilizarse
+qué relaciones están autorizadas
+
+El renderizador no puede crear estructuras nuevas por iniciativa propia.
+
+---
+
+43. RELACIÓN CON CONTRATO IA
+
+El contrato IA define:
+
+qué debe devolver la IA
+
+Este documento define:
+
+cómo interpretar esa salida
+
+El contrato IA y este documento deben mantenerse compatibles.
+
+---
+
+44. RELACIÓN CON N8N
+
+N8N no debe controlar el diseño visual.
+
+N8N transmite principalmente:
+
+page_id
+block_id
+block_instance_id
+data
+links
+operation
+version
+
+WordPress se ocupa del renderizado.
+
+---
+
+45. CREACIÓN MASIVA
+
+La entrada de una generación masiva podrá ser:
+
+servicio
 +
-SERVICIO
+lista de localidades
+
+Ejemplo:
+
+Servicio: fontanero
+
+Localidades:
+Estepona
+Manilva
+Casares
+Ronda
+Cártama
+Fuengirola
+...
+
+N8N procesa cada oportunidad individualmente.
+
+---
+
+46. FLUJO DE CREACIÓN
+
+SERVICIO + LOCALIDAD
 ↓
 INVESTIGACIÓN
 ↓
@@ -868,201 +897,177 @@ DECISIÓN
 ↓
 ARQUITECTURA
 ↓
-DATOS
+GENERACIÓN IA
 ↓
-IA
+SITE_PACKAGE
 ↓
-SITE_PACKAGE JSON
-↓
-VALIDADOR
+VALIDACIÓN
 ↓
 N8N
 ↓
 WORDPRESS
 ↓
-PLANTILLAS KADENCE
+PLANTILLAS
 ↓
-RENDERIZADO
-↓
-PÁGINA
+PUBLICACIÓN
 
 ---
 
-43. FLUJO DE ACTUALIZACIÓN
+47. FLUJO DE ACTUALIZACIÓN
 
-NUEVA INFORMACIÓN
+NUEVO DATO
 ↓
-IA / DATOS
+IA / SISTEMA DE DATOS
 ↓
-JSON
-↓
-VALIDADOR
+VALIDACIÓN
 ↓
 N8N
 ↓
 page_id
 ↓
+block_instance_id
+↓
+UPDATE
+↓
 WORDPRESS
-↓
-ACTUALIZAR DATOS
-↓
-RENDERIZAR
 
-No se debe crear una segunda página.
+No se crea una segunda página.
 
 ---
 
-44. FLUJO DE CAMBIO DE DISEÑO
+48. CAMBIO GLOBAL DE DISEÑO
 
-MODIFICAR PLANTILLA KADENCE
-↓
-PLANTILLA ACTUALIZADA
+Si se modifica una plantilla visual:
+
+PLANTILLA
 ↓
 PÁGINAS QUE LA UTILIZAN
 ↓
 NUEVO RENDERIZADO
 
-La modificación visual debe mantenerse separada del contenido.
+El contenido no debe necesitar regenerarse.
 
 ---
 
-45. PILOTO
+49. REGENERACIÓN DE CONTENIDO
 
-Antes de automatizar cientos de páginas se deberá probar:
+Si cambia el contenido de un bloque:
 
-- 1 página;
-- varios bloques;
-- actualización;
-- enlaces internos;
-- menú;
-- responsive;
-- SEO;
-- imágenes;
-- datos estructurados;
-- duplicación;
-- errores.
+DATA nueva
+↓
+block_instance_id
+↓
+UPDATE_BLOCK
+
+La plantilla permanece intacta.
+
+---
+
+50. SEGURIDAD DE PUBLICACIÓN
+
+No publicar automáticamente si existe:
+
+- JSON inválido;
+- bloque desconocido;
+- URL no autorizada;
+- página duplicada;
+- plantilla inexistente;
+- dato obligatorio ausente;
+- contradicción crítica;
+- destino de enlace inexistente.
+
+---
+
+51. PILOTO
+
+Antes de escalar se probará:
+
+1 página
+↓
+varios bloques
+↓
+creación
+↓
+actualización
+↓
+actualización parcial
+↓
+interlinking
+↓
+menú
+↓
+SEO
+↓
+publicación
 
 Después:
 
 1 → 3 → 10 → 50 → 100
 
-y únicamente después escalar.
+---
+
+52. IMPLEMENTACIÓN WORDPRESS
+
+Durante el piloto habrá que crear manualmente las plantillas visuales necesarias.
+
+No se asume que cada B01–B23 tenga obligatoriamente una plantilla independiente.
+
+La implementación deberá determinar:
+
+- qué bloques necesitan plantilla;
+- cuáles pueden compartirla;
+- cómo reciben datos;
+- cómo se identifican;
+- cómo se actualizan.
 
 ---
 
-46. REGLA DE SEGURIDAD
+53. KADENCE COMO PILOTO
 
-Nunca debe publicarse automáticamente una página cuando:
+Kadence se utilizará únicamente como herramienta visual del piloto.
 
-- el JSON no sea válido;
-- exista un bloque desconocido;
-- exista una URL no autorizada;
-- falten datos obligatorios;
-- exista una plantilla inexistente;
-- exista una contradicción de datos protegidos;
-- exista un error crítico.
+La documentación no debe utilizar nombres de funciones o estructuras exclusivas de Kadence como identificadores lógicos del sistema.
+
+Esto permitirá sustituirlo posteriormente.
 
 ---
 
-47. PRINCIPIO DE NO INVENCIÓN
+54. RESULTADO ESPERADO
 
-El renderizador nunca debe inventar contenido.
-
-Si recibe:
-
-"phone": null
-
-no debe convertirlo en:
-
-600 000 000
-
-ni ningún otro número ficticio.
-
-El sistema de datos de prueba podrá utilizar datos ficticios exclusivamente en entornos marcados como:
-
-TEST
-
----
-
-48. ENTORNO DE PRUEBA
-
-Debe existir una separación entre:
-
-TEST
-
-y:
-
-PRODUCTION
-
-Los datos ficticios utilizados para las pruebas nunca deben publicarse accidentalmente en producción.
-
----
-
-49. RESPONSABILIDAD DEL DISEÑO
-
-El diseño visual no pertenece a la IA.
-
-Pertenece a:
-
-WordPress + Kadence + plantillas
-
-La IA únicamente determina:
-
-- qué bloques utilizar;
-- qué contenido introducir;
-- qué relaciones establecer;
-- qué enlaces autorizados utilizar.
-
----
-
-50. RESPONSABILIDAD DEL HTML
-
-El HTML final debe ser producido por WordPress y su sistema de plantillas/renderizado.
-
-La IA no debe tener control directo sobre el HTML final.
-
----
-
-51. RESPONSABILIDAD DEL CSS
-
-El CSS debe proceder principalmente del tema y de las plantillas.
-
-No se debe generar CSS individual para cada localidad.
-
----
-
-52. RESULTADO ESPERADO
-
-El sistema final debe permitir que una entrada como:
+Una entrada como:
 
 Servicio: fontanero
 Localidad: Estepona
 
-pueda producir automáticamente una página completa utilizando:
+debe poder producir una página completa mediante:
 
-arquitectura autorizada
+arquitectura
 +
-bloques autorizados
+datos
 +
-contenido generado
+IA
 +
-plantillas visuales
+bloques
++
+plantillas
 +
 interlinking
++
+WordPress
 
-sin diseñar manualmente la página.
+sin diseñar manualmente cada página.
 
 ---
 
-53. PRINCIPIO DE ESCALA
+55. PRINCIPIO DE ESCALA
 
-El objetivo no es construir:
+El proyecto no debe construir:
 
 100 páginas × 100 diseños
 
 sino:
 
-1 sistema visual
+1 sistema
 +
 plantillas reutilizables
 +
@@ -1072,131 +1077,45 @@ muchas páginas
 
 ---
 
-54. SIGUIENTE FASE
+56. PRINCIPIO FINAL
 
-Una vez aprobado este modelo documental, la siguiente fase será:
+ARQUITECTURA
+decide qué existe.
 
-IMPLEMENTACIÓN WORDPRESS
+IA
+decide qué contenido necesita.
 
-Se deberá:
+N8N
+transporta, sincroniza y actualiza.
 
-1. instalar/configurar Kadence;
-2. crear las primeras plantillas;
-3. comprobar cómo representar los bloques;
-4. definir el método técnico de inserción de datos;
-5. probar una página;
-6. comprobar actualización;
-7. comprobar interlinking;
-8. documentar el método definitivo.
+WORDPRESS
+almacena y renderiza.
 
-No se debe construir todavía una automatización masiva.
+TEMA
+presenta visualmente.
 
----
+PLANTILLAS
+definen el diseño reutilizable.
 
-55. RELACIÓN CON N8N
-
-N8N no debe conocer detalles visuales.
-
-N8N debe transmitir:
-
-page_id
-+
-block_id
-+
-data
-
-WordPress decide cómo renderizarlo.
-
-Esto mantiene separadas:
-
-automatización
-
-de
-
-presentación visual.
+Ninguna capa debe asumir responsabilidades de otra.
 
 ---
 
-56. RELACIÓN CON EL CONTRATO IA
+57. ESTADO
 
-El contrato IA define:
-
-qué debe devolver la IA.
-
-Este documento define:
-
-cómo se debe interpretar esa salida para producir una página WordPress.
-
-Ninguno sustituye al otro.
-
----
-
-57. RELACIÓN CON SISTEMA DE BLOQUES
-
-"proyecto/seo/sistema-bloques.md"
-
-define:
-
-- qué bloques existen;
-- qué significa cada bloque;
-- qué datos puede utilizar.
-
-Este documento define:
-
-- cómo se representan;
-- cómo se relacionan con WordPress;
-- cómo se renderizan;
-- cómo se reutilizan.
-
----
-
-58. RELACIÓN CON ARQUITECTURA
-
-La arquitectura determina:
-
-- qué páginas existen;
-- qué bloques puede utilizar cada página;
-- qué relaciones existen.
-
-El renderizador no puede crear páginas ni bloques por iniciativa propia.
-
----
-
-59. PRINCIPIO FINAL
-
-La arquitectura decide:
-
-qué existe.
-
-La IA decide:
-
-qué contenido necesita.
-
-N8N decide:
-
-cómo transportar y sincronizar los datos.
-
-WordPress decide:
-
-cómo almacenar y renderizar.
-
-Kadence decide:
-
-cómo se presenta visualmente.
-
-El resultado final debe mantener estas responsabilidades separadas.
-
----
-
-60. ESTADO DEL DOCUMENTO
-
-Versión: 1.0
-
+Versión: 2.0
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
-Fecha: 2026-08-24
+Siguiente fase
 
-Siguiente paso: implementación de las primeras plantillas visuales en WordPress/Kadence y prueba del mecanismo de alimentación de datos.
+1. Validar este contrato.
+2. Validarlo contra "contrato-salida-ia.md".
+3. Validarlo contra "sistema-bloques.md".
+4. Validarlo contra "interlinking.md".
+5. Pasar a la implementación real de las primeras plantillas en WordPress.
+6. Probar creación y actualización de una landing.
+7. Documentar el método técnico definitivo.
+8. Conectar N8N.
 
 ---
 
