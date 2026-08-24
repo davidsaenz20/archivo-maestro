@@ -1,8 +1,8 @@
 CHECKLIST DE ARRANQUE DEL PROYECTO
 
-Versión: 1.0
+Versión: 1.1
 Estado: OBLIGATORIO
-Propósito: garantizar que cualquier sesión de trabajo comienza desde el estado real del proyecto y no desde suposiciones o memoria.
+Propósito: garantizar que cualquier sesión de trabajo comienza desde el estado persistente real del proyecto y no desde suposiciones o memoria.
 
 ---
 
@@ -32,9 +32,9 @@ Antes de trabajar:
 
 3. RECUPERACIÓN DE LA METODOLOGÍA
 
-Leer:
+Leer obligatoriamente:
 
-"metodologia/protocolo-ejecucion.md"
+"proyecto/protocolo-ejecucion.md"
 
 Comprobar:
 
@@ -52,7 +52,7 @@ Comprobar:
 
 Identificar qué documentos son necesarios para ejecutar el hito actual.
 
-Leer únicamente los documentos relevantes para ese trabajo.
+Leer los documentos relevantes para ese trabajo antes de ejecutarlo.
 
 Comprobar:
 
@@ -69,11 +69,11 @@ Una revisión completa solo se realiza cuando:
 - comienza una fase importante;
 - existe un bloqueo real;
 - existe una contradicción que afecta al hito;
-- se solicita expresamente una auditoría.
+- se solicita expresamente una auditoría completa.
 
 ---
 
-5. COMPROBACIÓN DE OBJETIVO
+5. COMPROBACIÓN DEL OBJETIVO
 
 Antes de ejecutar una tarea preguntar:
 
@@ -193,7 +193,7 @@ El repositorio debe permitir reconstruir el estado del proyecto.
 
 Cuando el usuario indique:
 
-«"Sigue"»
+«Sigue»
 
 debe interpretarse como:
 
