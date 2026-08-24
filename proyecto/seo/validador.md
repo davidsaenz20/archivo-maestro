@@ -1,50 +1,62 @@
 VALIDADOR
 
-Versión: 1.1
-Estado: Diseño técnico
+Versión: 2.0
+Estado: Preparado para implementación piloto
 Proyecto: Plataforma de landings locales automatizadas
 
 ---
 
 1. OBJETIVO
 
-El validador comprueba que la salida de la IA cumple el contrato definido antes de permitir que N8N la transforme y la envíe a WordPress.
+El validador comprueba que la salida de la IA cumple el contrato vigente antes de permitir que N8N la transforme y la envíe a WordPress.
 
 IA
 ↓
-JSON
+SITE_PACKAGE
 ↓
 VALIDADOR
 ↓
-OK → N8N
+OK → TRANSFORMACIÓN → WORDPRESS
 ERROR → BLOQUEAR
 
-El validador no genera contenido.
+El validador:
 
-No corrige automáticamente contenido.
-
-No decide la arquitectura.
+- no genera contenido;
+- no decide la arquitectura;
+- no inventa datos;
+- no modifica silenciosamente la salida;
+- no publica.
 
 Su función es determinar si la salida es válida.
 
 ---
 
-2. ENTRADA
+2. CONTRATO DE ENTRADA
 
-La entrada esperada es el JSON producido según "contrato-salida-ia.md".
+La entrada debe cumplir:
 
-Debe contener como mínimo:
+"contrato-salida-ia.md"
 
-schema_version
-landing
+Versión vigente: 4.0
 
-La estructura exacta debe coincidir con el contrato vigente.
+El validador debe rechazar:
+
+- JSON inválido;
+- estructura incompatible;
+- versión no soportada;
+- campos obligatorios ausentes;
+- tipos incorrectos;
+- bloques no autorizados;
+- datos comerciales no autorizados;
+- URLs inválidas;
+- enlaces no permitidos;
+- schema inválido.
 
 ---
 
 3. RESULTADO
 
-El validador devuelve siempre:
+El resultado tendrá siempre esta estructura:
 
 {
   "valid": true,
@@ -62,25 +74,36 @@ o:
   "metadata": {}
 }
 
+Regla principal
+
+errors.length == 0
+↓
+CONTINUAR
+
+errors.length > 0
+↓
+BLOQUEAR
+
 ---
 
-4. SEVERIDADES
+4. ERRORES Y WARNINGS
 
 ERROR
 
-Impide continuar.
+Bloquea la ejecución.
 
 Ejemplos:
 
-- JSON inválido.
-- Campo obligatorio ausente.
-- Tipo de dato incorrecto.
-- Bloque no autorizado.
-- Bloque duplicado cuando no está permitido.
-- URL inválida.
-- Schema inválido.
-- Datos comerciales no autorizados.
-- Incumplimiento del contrato.
+- JSON inválido;
+- contrato inválido;
+- bloque desconocido;
+- bloque no autorizado;
+- "page_id" inválido;
+- "block_instance_id" inválido;
+- URL inválida;
+- dato comercial inventado;
+- schema inválido;
+- HTML peligroso.
 
 WARNING
 
@@ -88,34 +111,36 @@ No bloquea automáticamente.
 
 Ejemplos:
 
-- campo opcional vacío;
-- información incompleta;
-- interlinking insuficiente;
-- contenido que requiere revisión humana.
+- información opcional ausente;
+- contenido incompleto;
+- interlinking mejorable;
+- elemento que requiere revisión humana.
 
-La decisión final de publicación podrá establecer que determinados warnings también bloqueen.
+La política de publicación podrá convertir determinados warnings en bloqueantes.
 
 ---
 
-5. VALIDACIÓN POR CAPAS
+5. ORDEN DE VALIDACIÓN
 
 El proceso seguirá este orden:
 
 1. JSON
-2. schema
+2. schema_version
 3. estructura
 4. identidad
-5. bloques
-6. contenido
-7. SEO
-8. URLs
-9. interlinking
-10. schema.org
-11. datos comerciales
-12. reglas de seguridad
-13. resultado final
-
-Si una capa crítica falla, el proceso puede detenerse.
+5. URL
+6. bloques
+7. instancias
+8. datos de bloques
+9. contenido
+10. SEO
+11. interlinking
+12. imágenes
+13. CTA
+14. schema
+15. datos comerciales
+16. seguridad
+17. resultado final
 
 ---
 
@@ -123,13 +148,13 @@ Si una capa crítica falla, el proceso puede detenerse.
 
 Comprobar:
 
-- JSON correctamente formado.
-- No existen claves estructurales inesperadas cuando estén prohibidas.
-- No existen valores de tipos incorrectos.
-- No existen estructuras corruptas.
-- "schema_version" coincide con la versión soportada.
+- JSON correctamente formado;
+- estructura válida;
+- tipos correctos;
+- ausencia de estructuras corruptas;
+- "schema_version" soportada.
 
-ERROR:
+Errores:
 
 INVALID_JSON
 UNSUPPORTED_SCHEMA_VERSION
@@ -140,179 +165,500 @@ INVALID_STRUCTURE
 
 7. IDENTIDAD
 
-Comprobar:
+La landing debe contener:
 
-landing_id
+site_id
+opportunity_id
+page_id
+
+Cuando corresponda, comprobar también:
+
 sector
 servicio
+subservicio
 pais
+comunidad_autonoma
 provincia
-municipio/localidad
+municipio
+localidad
+intencion
 
-cuando sean obligatorios según la arquitectura.
+Debe existir coherencia entre:
 
-Comprobar coherencia:
+servicio + localidad + URL + contenido
 
-servicio + localidad
-
-y que no existan contradicciones entre campos.
-
-Ejemplo de error:
+Error:
 
 IDENTITY_MISMATCH
 
 ---
 
-8. LANDING_ID
+8. PAGE_ID
 
-"landing_id" debe:
+"page_id":
 
-- existir;
-- ser string;
-- no estar vacío;
-- tener formato válido;
-- ser estable.
+- debe existir;
+- debe ser string;
+- no puede estar vacío;
+- debe ser estable;
+- debe respetar el formato definido por el proyecto.
 
-No se permitirá que la IA cambie arbitrariamente el identificador proporcionado por el motor.
+La IA no puede cambiar arbitrariamente un "page_id" generado por el sistema.
 
-ERROR:
+Errores:
 
-MISSING_LANDING_ID
-INVALID_LANDING_ID
+MISSING_PAGE_ID
+INVALID_PAGE_ID
 
 ---
 
-9. BLOQUES
+9. OPPORTUNITY_ID
 
-El validador debe comprobar que cada bloque pertenece al catálogo oficial:
+"opportunity_id":
+
+- debe existir;
+- debe identificar la oportunidad que originó la landing;
+- debe ser estable.
+
+Error:
+
+INVALID_OPPORTUNITY_ID
+
+---
+
+10. URL
+
+Comprobar:
+
+slug
+url
+canonical
+url_tipo
+
+El slug:
+
+- no debe contener espacios;
+- debe tener formato válido;
+- debe corresponder a la arquitectura URL.
+
+Errores:
+
+INVALID_SLUG
+INVALID_URL
+INVALID_CANONICAL
+CANONICAL_MISMATCH
+
+---
+
+11. CONSISTENCIA DE URL
+
+Ejemplo:
+
+servicio = fontanero
+localidad = Estepona
+
+La URL:
+
+/fontanero/estepona/
+
+es coherente.
+
+No sería coherente:
+
+/fontanero/marbella/
+
+Error:
+
+URL_IDENTITY_MISMATCH
+
+---
+
+12. BLOQUES
+
+Solo se permiten los bloques definidos en:
+
+"sistema-bloques.md"
+
+Catálogo:
 
 B01
 B02
-...
+B03
+B04
+B05
+B06
+B07
+B08
+B09
+B10
+B11
+B12
+B13
+B14
+B15
+B16
+B17
+B18
+B19
+B20
+B21
+B22
 B23
 
 No se permite:
 
 B24
-B25
 Hero
 CustomBlock
+RandomBlock
 
-si no están definidos como bloques válidos.
+si no están oficialmente definidos.
 
-ERROR:
+Error:
 
 UNKNOWN_BLOCK
 
 ---
 
-10. BLOQUES AUTORIZADOS
+13. BLOQUES AUTORIZADOS
 
-La IA solo puede utilizar los bloques incluidos en:
+Además de existir en el catálogo, cada bloque debe estar autorizado para la página según la arquitectura vigente.
 
-bloques_autorizados
-
-Si la IA genera:
-
-B08
-
-pero "B08" no está autorizado:
+Si un bloque existe pero no está permitido:
 
 UNAUTHORIZED_BLOCK
 
-El validador bloquea la salida.
+---
+
+14. BLOCK_INSTANCE_ID
+
+Cada instancia debe contener:
+
+block_id
+block_instance_id
+block_version
+position
+enabled
+data
+
+"block_instance_id" debe ser:
+
+- único dentro de su página;
+- estable;
+- string;
+- no vacío.
+
+Error:
+
+INVALID_BLOCK_INSTANCE_ID
+DUPLICATE_BLOCK_INSTANCE_ID
 
 ---
 
-11. BLOQUES DUPLICADOS
+15. BLOQUES REPETIBLES
 
-Por defecto un bloque no podrá aparecer más de una vez salvo que la definición oficial permita múltiples instancias.
+No todos los bloques tienen necesariamente la misma regla de multiplicidad.
 
-Ejemplo:
+La fuente de verdad es:
+
+"sistema-bloques.md"
+
+Si un bloque no permite múltiples instancias:
 
 B03
 B03
 
-ERROR:
+debe generar:
 
 DUPLICATE_BLOCK
 
-La regla podrá modificarse posteriormente para bloques repetibles.
+Si el bloque permite múltiples instancias, serán válidas siempre que cada una tenga un "block_instance_id" diferente.
 
 ---
 
-12. ORDEN
+16. POSICIÓN
 
-Cada bloque debe tener una posición coherente.
+Cada instancia debe tener:
 
-Ejemplo:
+position
 
-{
-  "id": "B03",
-  "position": 3
-}
+Debe ser:
 
-Comprobar:
+- numérica;
+- válida;
+- coherente;
+- sin conflictos.
 
-- posición existente;
-- posición numérica;
-- ausencia de conflictos;
-- orden coherente.
-
-ERROR:
+Error:
 
 INVALID_BLOCK_POSITION
+DUPLICATE_BLOCK_POSITION
 
 ---
 
-13. DATOS DE BLOQUE
+17. ENABLED
 
-Cada bloque debe contener únicamente los campos permitidos por su definición.
+Debe ser booleano:
 
-No se aceptarán campos arbitrarios introducidos por la IA cuando el contrato no los contemple.
+{
+  "enabled": true
+}
 
-Ejemplo:
+o:
 
-B03
+{
+  "enabled": false
+}
 
-no puede convertirse en:
+No se aceptarán valores como:
 
-B03
-├── h1
-├── subtitle
-├── precio_inventado
-├── telefono_inventado
-└── random_data
+"true"
+"false"
+"yes"
+"no"
 
-ERROR:
+cuando el contrato requiera booleano.
+
+Error:
+
+INVALID_ENABLED_VALUE
+
+---
+
+18. DATOS DE BLOQUE
+
+Cada bloque debe utilizar únicamente los campos definidos para ese bloque.
+
+La definición procede de:
+
+"sistema-bloques.md"
+
+No se aceptarán campos arbitrarios cuando el contrato los prohíba.
+
+Error:
 
 UNAUTHORIZED_BLOCK_FIELD
 
-cuando corresponda.
-
 ---
 
-14. B01–B23
+19. REGISTRO DE BLOQUES
 
-El validador utilizará el catálogo definido en "sistema-bloques.md".
-
-La definición de cada bloque será la fuente de verdad.
-
-No se duplicará manualmente una definición diferente en cada workflow.
-
-Conceptualmente:
+El validador utilizará conceptualmente:
 
 BLOCK_REGISTRY
 ├── B01
 ├── B02
+├── B03
 ├── ...
 └── B23
 
+No se deben duplicar manualmente las reglas de los bloques en múltiples workflows.
+
 ---
 
-15. CAMPOS COMERCIALES
+20. CONTENIDO
 
-Los siguientes datos requieren especial protección:
+Comprobar:
+
+- campos obligatorios;
+- tipos;
+- valores vacíos;
+- coherencia;
+- ausencia de placeholders;
+- ausencia de instrucciones internas;
+- ausencia de datos inventados.
+
+El validador no debe reescribir el contenido.
+
+---
+
+21. PLACEHOLDERS
+
+Bloquear patrones como:
+
+TODO
+PLACEHOLDER
+Lorem ipsum
+INSERT HERE
+[REEMPLAZAR]
+{{variable}}
+{{nombre}}
+[LOCALIDAD]
+[EMPRESA]
+
+Error:
+
+PROHIBITED_CONTENT
+
+---
+
+22. CONSISTENCIA DEL SERVICIO
+
+Si:
+
+servicio = fontanero
+
+no puede producirse:
+
+H1 = Electricista en Estepona
+
+Error:
+
+SERVICE_INCONSISTENCY
+
+---
+
+23. CONSISTENCIA LOCAL
+
+Si:
+
+localidad = Estepona
+
+el contenido principal no debe referirse accidentalmente a otra localidad.
+
+Ejemplo inválido:
+
+H1 = Fontanero en Estepona
+contenido = Servicio de fontanería en Marbella
+canonical = /fontanero/marbella/
+
+Error:
+
+LOCALITY_INCONSISTENCY
+
+---
+
+24. SEO
+
+Comprobar:
+
+seo.title
+seo.meta_description
+seo.canonical
+seo.robots
+
+cuando sean obligatorios.
+
+Comprobar:
+
+- coherencia con servicio y localidad;
+- longitud según las reglas SEO vigentes;
+- ausencia de HTML no permitido;
+- canonical válida;
+- robots válido.
+
+Errores:
+
+INVALID_SEO_TITLE
+INVALID_META_DESCRIPTION
+INVALID_CANONICAL
+INVALID_ROBOTS
+
+---
+
+25. INTERLINKING
+
+Cada enlace interno debe contener, cuando corresponda:
+
+source_block_instance_id
+target_page_id
+url
+anchor
+type
+enabled
+
+Comprobar:
+
+- URL válida;
+- destino permitido;
+- anchor coherente;
+- ausencia de destinos desconocidos;
+- ausencia de enlaces rotos conocidos.
+
+Errores:
+
+INVALID_INTERNAL_LINK
+INVALID_LINK_TARGET
+INVALID_ANCHOR
+UNKNOWN_INTERNAL_URL
+
+---
+
+26. DESTINOS INEXISTENTES
+
+La IA no puede inventar destinos.
+
+Si:
+
+target_page_id
+
+no pertenece al conjunto de páginas disponibles o autorizadas:
+
+UNKNOWN_LINK_TARGET
+
+El enlace se bloquea.
+
+---
+
+27. IMÁGENES
+
+Cuando existan imágenes, comprobar:
+
+url
+alt
+title
+type
+
+No aceptar:
+
+- URLs ficticias;
+- recursos inexistentes conocidos;
+- protocolos peligrosos;
+- contenido no autorizado.
+
+Error:
+
+INVALID_IMAGE
+
+---
+
+28. CTA
+
+Cuando exista un CTA:
+
+type
+text
+destination
+
+debe ser válido.
+
+Tipos autorizados dependerán del contrato, por ejemplo:
+
+whatsapp
+phone
+contact
+quote
+appointment
+
+El destino debe estar validado.
+
+Nunca se debe inventar:
+
+teléfono
+WhatsApp
+email
+URL
+
+Errores:
+
+INVALID_CTA
+UNAUTHORIZED_CTA_DESTINATION
+
+---
+
+29. DATOS COMERCIALES
+
+Especial protección para:
 
 telefono
 whatsapp
@@ -325,23 +671,19 @@ experiencia
 certificaciones
 reseñas
 
-El validador debe comprobar que:
+El validador debe comprobar que proceden de datos autorizados.
 
-- proceden de datos autorizados;
-- no aparecen cuando están prohibidos;
-- no han sido inventados por la IA.
-
-ERROR:
+Error:
 
 UNAUTHORIZED_COMMERCIAL_DATA
 
 ---
 
-16. DATOS AUSENTES
+30. DATOS AUSENTES
 
 La ausencia de información no debe provocar invención.
 
-Es preferible:
+Preferible:
 
 {
   "telefono": null
@@ -353,135 +695,30 @@ que:
   "telefono": "600000000"
 }
 
-si el teléfono no existe en las fuentes autorizadas.
+No utilizar valores ficticios como:
 
-No se permite utilizar valores ficticios como:
-
-N/A
-123456789
 600000000
-ejemplo@example.com
+123456789
+N/A
+example@example.com
 
-para completar campos comerciales.
-
----
-
-17. SEO
-
-Comprobar:
-
-seo_title
-meta_description
-canonical
-robots
-
-cuando sean obligatorios.
-
-Comprobar:
-
-- no estén vacíos cuando sean obligatorios;
-- longitud según las reglas SEO vigentes;
-- ausencia de HTML no permitido;
-- coherencia con servicio/localidad;
-- canonical válida.
-
-Errores:
-
-INVALID_SEO_TITLE
-INVALID_META_DESCRIPTION
-INVALID_CANONICAL
-INVALID_ROBOTS
+para rellenar datos reales.
 
 ---
 
-18. SLUG
+31. SCHEMA
 
-El slug debe:
+Cuando exista:
 
-- existir;
-- ser único cuando se publique;
-- utilizar formato válido;
-- no contener espacios;
-- no contener caracteres prohibidos;
-- corresponder a la arquitectura URL.
+schema
 
-Ejemplo válido:
-
-fontanero-marbella
-
-Ejemplo inválido:
-
-Fontanero en Marbella!!!
-
-ERROR:
-
-INVALID_SLUG
-
----
-
-19. CANONICAL
-
-La canonical debe:
-
-- corresponder a la landing;
-- ser válida;
-- no apuntar accidentalmente a otra localidad;
-- no generar una cadena de redirecciones;
-- respetar la arquitectura URL.
-
-ERROR:
-
-CANONICAL_MISMATCH
-
----
-
-20. INTERLINKING
-
-Cada enlace interno debe comprobar:
-
-url
-anchor
-target
-
-cuando sean obligatorios.
-
-Comprobar:
-
-- URL válida;
-- destino permitido;
-- anchor coherente;
-- ausencia de enlaces rotos conocidos;
-- ausencia de URLs externas cuando solo se permiten internas.
-
-Errores:
-
-INVALID_INTERNAL_LINK
-INVALID_LINK_TARGET
-INVALID_ANCHOR
-
----
-
-21. ENLACES INVENTADOS
-
-La IA no puede inventar URLs.
-
-Si el destino no existe en el conjunto de URLs disponibles:
-
-UNKNOWN_INTERNAL_URL
-
-El validador bloqueará el enlace.
-
----
-
-22. SCHEMA
-
-Cuando exista "schema", comprobar:
+comprobar:
 
 - JSON válido;
 - estructura válida;
 - tipos permitidos;
 - URLs válidas;
-- datos coherentes con la landing;
+- coherencia con la landing;
 - ausencia de datos comerciales inventados.
 
 Errores:
@@ -492,415 +729,463 @@ UNAUTHORIZED_SCHEMA_DATA
 
 ---
 
-23. CONTENIDO PROHIBIDO
+32. HTML
 
-El validador debe detectar patrones conocidos de:
+La IA no debe generar HTML libre si el contrato utiliza datos estructurados.
 
-- datos comerciales ficticios;
-- placeholders;
-- texto de prueba;
-- instrucciones para la IA;
-- comentarios internos;
-- metadatos que no deben aparecer públicamente;
-- HTML no permitido;
-- contenido fuera del contrato.
-
-Ejemplos:
-
-TODO
-PLACEHOLDER
-Lorem ipsum
-INSERT HERE
-{{variable}}
-[REEMPLAZAR]
-
-ERROR:
-
-PROHIBITED_CONTENT
-
----
-
-24. HTML
-
-La salida de la IA no debe utilizarse como HTML arbitrario si el contrato establece contenido estructurado.
-
-Se rechazará HTML no autorizado.
+Se rechazará HTML peligroso o no autorizado.
 
 Especialmente:
 
-<script>  
-iframe  
-style  
-event handlers  
+<script>
+<iframe>
+<style>
+
+y:
+
 javascript:
+onerror=
+onclick=
+onload=
 
-cuando no estén explícitamente permitidos.
-
-ERROR:
+Error:
 
 UNSAFE_HTML
 
 ---
 
-25. PROMPT INJECTION / INSTRUCCIONES INTERNAS
+33. PROMPT INJECTION
 
-El contenido destinado a publicación no puede contener instrucciones destinadas al sistema o a la IA.
+El contenido público no puede contener instrucciones destinadas al sistema o a la IA.
 
 Ejemplos:
 
-ignore previous instructions  
-system:  
-assistant:  
+ignore previous instructions
+system:
+assistant:
 developer:
 
-si aparecen como contenido accidental de la landing.
+cuando aparezcan como instrucciones internas accidentales.
 
-ERROR:
+Error:
 
 INTERNAL_INSTRUCTION_DETECTED
 
 ---
 
-26. FAQ
+34. FAQ
 
-Cada FAQ debe contener:
+Cada FAQ deberá contener:
 
-question  
+question
 answer
 
 Comprobar:
 
 - pregunta no vacía;
 - respuesta no vacía;
+- coherencia;
 - ausencia de datos inventados;
 - ausencia de HTML peligroso.
 
 Errores:
 
-INVALID_FAQ  
+INVALID_FAQ
 EMPTY_FAQ
 
 ---
 
-27. IMÁGENES
+35. DATOS ESTRUCTURADOS Y COMERCIALES
 
-Comprobar:
+Nunca se debe permitir que la IA complete automáticamente campos que requieran información real.
 
-url  
-alt  
-type
+Regla:
 
-cuando corresponda.
+DATO NO DISPONIBLE
+↓
+null / omitido
 
-No aceptar:
+No:
 
-- URLs ficticias;
-- recursos inexistentes;
-- URLs peligrosas;
-- contenido no autorizado.
-
-Error:
-
-INVALID_IMAGE
+DATO NO DISPONIBLE
+↓
+INVENTAR
 
 ---
 
-28. CTA
+36. SEGURIDAD
 
-Un CTA debe tener:
+Bloquear:
 
-type  
-text  
-destination
+- scripts;
+- iframes no autorizados;
+- URLs "javascript:";
+- handlers HTML;
+- código ejecutable;
+- credenciales;
+- secretos;
+- instrucciones internas.
 
-cuando la arquitectura lo requiera.
+Errores:
 
-El destino debe estar autorizado.
-
-No se puede crear:
-
-whatsapp → número inventado  
-phone → número inventado
-
-Error:
-
-INVALID_CTA  
-UNAUTHORIZED_CTA_DESTINATION
+UNSAFE_CONTENT
+CREDENTIAL_EXPOSURE
+INTERNAL_INSTRUCTION_DETECTED
 
 ---
 
-29. CONSISTENCIA LOCAL
+37. TRAZABILIDAD
 
-El validador debe comprobar que la localidad aparece de forma coherente.
+Cada validación debe asociarse a:
 
-Ejemplo:
+site_id
+opportunity_id
+page_id
+schema_version
+validator_version
+timestamp
+result
+errors
+warnings
 
-servicio = fontanero  
-localidad = Marbella
-
-No debe producirse:
-
-H1 = Fontanero en Marbella  
-contenido = Fontanero en Estepona  
-canonical = /fontanero-malaga/
-
-ERROR:
-
-LOCALITY_INCONSISTENCY
+Esto permite saber por qué una landing fue aceptada o rechazada.
 
 ---
 
-30. CONSISTENCIA DEL SERVICIO
+38. FORMATO DE ERROR
 
-Igualmente:
+Cada error debe tener:
 
-servicio = fontanero
-
-no puede producir:
-
-H1 = Electricista en Marbella
-
-ERROR:
-
-SERVICE_INCONSISTENCY
-
----
-
-31. PUBLICACIÓN
-
-El validador debe devolver explícitamente:
-
-valid = true
-
-solo cuando no existan errores bloqueantes.
-
-Estados:
-
-VALID  
-INVALID
-
-N8N no deberá enviar a WordPress una salida:
-
-valid = false
-
----
-
-32. FORMATO DE ERROR
-
-Cada error deberá ser estructurado:
-
-```json
 {
   "code": "UNAUTHORIZED_BLOCK",
   "severity": "ERROR",
-  "path": "landing.bloques[4].id",
-  "message": "El bloque B08 no está autorizado para esta landing"
+  "path": "landing.blocks[4].block_id",
+  "message": "El bloque no está autorizado para esta landing"
 }
-```
 
 Campos:
 
-code  
-severity  
-path  
+code
+severity
+path
 message
 
 ---
 
-33. FORMATO DE WARNING
+39. FORMATO DE WARNING
 
-```json
 {
   "code": "MISSING_OPTIONAL_DATA",
-  "severity": "WARN",
-  "path": "landing.bloques[3].data.subtitulo",
-  "message": "El campo opcional está vacío"
+  "severity": "WARNING",
+  "path": "landing.blocks[3].data.subtitle",
+  "message": "Campo opcional vacío"
 }
-```
 
 ---
 
-34. RESULTADO COMPLETO
+40. RESULTADO VÁLIDO
 
-Ejemplo válido:
+Ejemplo:
 
-```json
 {
   "valid": true,
   "errors": [],
-  "warnings": [
-    {
-      "code": "MISSING_OPTIONAL_DATA",
-      "severity": "WARN",
-      "path": "landing.bloques[2].data.subtitulo",
-      "message": "Campo opcional vacío"
-    }
-  ],
+  "warnings": [],
   "metadata": {
-    "schema_version": "1.1",
-    "landing_id": "LANDING-fontanero-marbella"
+    "schema_version": "4.0",
+    "validator_version": "2.0",
+    "page_id": "FON-EST-HOME"
   }
 }
-```
 
-Ejemplo inválido:
+---
 
-```json
+41. RESULTADO INVÁLIDO
+
+Ejemplo:
+
 {
   "valid": false,
   "errors": [
     {
       "code": "UNAUTHORIZED_BLOCK",
       "severity": "ERROR",
-      "path": "landing.bloques[5].id",
+      "path": "landing.blocks[5].block_id",
       "message": "Bloque no autorizado"
     }
   ],
   "warnings": [],
   "metadata": {
-    "schema_version": "1.1",
-    "landing_id": "LANDING-fontanero-marbella"
+    "schema_version": "4.0",
+    "validator_version": "2.0",
+    "page_id": "FON-EST-HOME"
   }
 }
-```
 
 ---
 
-35. REGLA DE CONTINUACIÓN
-
-La regla principal es:
-
-errors.length == 0  
-↓  
-CONTINUAR
-
-Si:
-
-errors.length > 0
-
-entonces:
-
-BLOQUEAR
-
-Los warnings no bloquean salvo que una regla de publicación específica los convierta en bloqueantes.
-
----
-
-36. NO CORREGIR AUTOMÁTICAMENTE
+42. NO CORREGIR AUTOMÁTICAMENTE
 
 El validador no debe cambiar silenciosamente:
 
+- títulos;
 - H1;
 - URLs;
 - bloques;
+- datos;
 - teléfonos;
 - precios;
-- schema;
 - enlaces;
+- schema;
 - contenido.
 
 Si existe un error:
 
-ERROR  
-↓  
-devolver error  
-↓  
-corregir origen  
-↓  
-volver a validar
+ERROR
+↓
+BLOQUEAR
+↓
+REGISTRAR
+↓
+CORREGIR ORIGEN
+↓
+VOLVER A VALIDAR
 
-Esto evita que el sistema publique información modificada sin trazabilidad.
+Esto mantiene la trazabilidad.
 
 ---
 
-37. INTEGRACIÓN CON N8N
+43. INTEGRACIÓN CON N8N
 
-N8N ejecutará:
+Flujo:
 
-AI NODE  
-↓  
-VALIDATOR  
-↓  
-IF valid == true  
-    ↓  
-TRANSFORM  
-    ↓  
+AI
+↓
+PARSE
+↓
+VALIDATOR
+↓
+IF valid == true
+    ↓
+TRANSFORMER
+    ↓
 WORDPRESS
 
-Y:
+Si:
 
-IF valid == false  
-    ↓  
-ERROR HANDLER  
-    ↓  
-LOG  
-    ↓  
-NO PUBLICAR
+valid == false
 
----
+entonces:
 
-38. TRAZABILIDAD
-
-Cada validación debe poder asociarse a:
-
-landing_id  
-schema_version  
-timestamp  
-resultado  
-errores  
-warnings
-
-Esto permitirá saber por qué una landing fue rechazada.
+ERROR HANDLER
+↓
+LOG
+↓
+NO WORDPRESS
 
 ---
 
-39. VERSIONADO
+44. RELACIÓN CON WORDPRESS
 
-El validador deberá versionarse junto al contrato.
+El validador valida el modelo antes de su transformación.
 
-Ejemplo:
+SITE_PACKAGE
+↓
+VALIDADOR
+↓
+MODELO WORDPRESS
+↓
+RENDERIZADOR
 
-contrato IA: 1.1  
-validador: 1.1
+No valida el diseño visual final.
 
-Una modificación importante del contrato deberá implicar revisión del validador.
-
-No se debe actualizar uno sin comprobar el otro.
-
----
-
-40. FUENTES DE VERDAD
-
-El validador depende de:
-
-modelo-datos.md  
-sistema-bloques.md  
-contrato-salida-ia.md  
-arquitectura-landing.md  
-arquitectura-wordpress.md  
-modelo-datos-wordpress.md  
-integracion-n8n-wordpress.md
-
-Si existe una contradicción, debe resolverse en el documento propietario antes de modificar el comportamiento del validador.
+La comprobación del renderizado pertenece a la fase de verificación posterior.
 
 ---
 
-41. IMPLEMENTACIÓN FUTURA
+45. IDEMPOTENCIA
 
-La primera implementación podrá realizarse como:
+El validador debe comprobar que:
 
-JavaScript / TypeScript
+page_id
 
-o mediante código ejecutado dentro de N8N.
+es estable.
 
-La arquitectura debe mantener separadas:
+Y que:
 
-REGLAS  
-↓  
-VALIDADOR  
-↓  
+block_instance_id
+
+es estable dentro de su página.
+
+La ejecución repetida de una misma entrada no debe producir nuevas identidades.
+
+---
+
+46. VERSIONES
+
+Debe comprobarse:
+
+schema_version
+
+contra la versión soportada.
+
+También se registrará:
+
+validator_version
+
+Esto permite evolucionar el sistema sin perder trazabilidad.
+
+---
+
+47. PRUEBAS MÍNIMAS
+
+Antes del piloto se deberán probar:
+
+Test 01
+
+JSON válido.
+
+Test 02
+
+JSON inválido.
+
+Test 03
+
+"page_id" ausente.
+
+Test 04
+
+"page_id" duplicado/inválido.
+
+Test 05
+
+Bloque desconocido.
+
+Test 06
+
+Bloque no autorizado.
+
+Test 07
+
+"block_instance_id" duplicado.
+
+Test 08
+
+URL inválida.
+
+Test 09
+
+Canonical incorrecta.
+
+Test 10
+
+Dato comercial inventado.
+
+Test 11
+
+Enlace interno inexistente.
+
+Test 12
+
+Schema inválido.
+
+Test 13
+
+HTML peligroso.
+
+Test 14
+
+Placeholder.
+
+Test 15
+
+Contenido con prompt injection.
+
+Test 16
+
+Landing válida completa.
+
+---
+
+48. REGLA DE PUBLICACIÓN
+
+Una landing solo puede continuar hacia publicación cuando:
+
+valid == true
+
+Durante el piloto:
+
+VALIDADOR
+↓
 N8N
+↓
+WORDPRESS
+↓
+DRAFT
 
-para permitir sustituir posteriormente la implementación sin cambiar las reglas de negocio.
+La publicación automática se habilitará después de superar las pruebas.
 
 ---
+
+49. FUENTES DE VERDAD
+
+modelo-datos.md
+→ modelo común
+
+contrato-salida-ia.md
+→ contrato de IA
+
+sistema-bloques.md
+→ catálogo y reglas B01–B23
+
+arquitectura-wordpress.md
+→ arquitectura WordPress
+
+modelo-datos-wordpress.md
+→ modelo de datos WordPress
+
+modelo-renderizado-wordpress.md
+→ renderizado
+
+integracion-n8n-wordpress.md
+→ integración
+
+El validador no debe redefinir esas fuentes.
+
+Debe comprobarlas.
+
+---
+
+50. PRINCIPIO FINAL
+
+IA
+↓
+GENERA
+
+VALIDADOR
+↓
+COMPRUEBA
+
+N8N
+↓
+ORQUESTA
+
+WORDPRESS
+↓
+ALMACENA
+
+RENDERIZADOR
+↓
+TRANSFORMA
+
+PLANTILLAS
+↓
+PRESENTAN
+
+TEMA
+↓
+ESTILIZA
+
+El validador es la barrera de seguridad y calidad entre la IA y WordPress.
+
+FIN
