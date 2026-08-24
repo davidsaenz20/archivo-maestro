@@ -958,3 +958,333 @@ N8N
 WORDPRESS
 
 La implementación real comenzará cuando dispongamos de ordenador.
+
+---
+
+ACTUALIZACIÓN — CONTRATO 1.1
+
+Fecha: 2026-08-24
+Versión del validador: 1.1
+Estado: Diseño técnico consolidado
+
+41. CONTRATO VIGENTE
+
+A partir de esta versión, la estructura de entrada oficial del validador es exclusivamente la definida en:
+
+"proyecto/seo/contrato-salida-ia.md"
+
+Versión vigente:
+
+"schema_version = "1.1""
+
+La referencia anterior:
+
+schema_version
+landing
+
+queda OBSOLETA como estructura de entrada.
+
+El validador no debe exigir un objeto raíz "landing".
+
+La estructura raíz vigente es:
+
+{
+  schema_version,
+  opportunity_id,
+  status,
+  identity,
+  architecture,
+  seo,
+  menu,
+  blocks,
+  images,
+  internal_links,
+  schema,
+  validation,
+  issues,
+  traceability
+}
+
+42. CAMPOS PROTEGIDOS
+
+El validador debe comprobar que la IA respeta los datos recibidos desde el contexto de oportunidad.
+
+Campos protegidos:
+
+opportunity_id
+identity.sector
+identity.service
+identity.subservice
+identity.municipality
+identity.province
+architecture.page_type
+architecture.url
+architecture.canonical
+architecture.parent_url
+
+Cuando existan datos equivalentes en el contexto protegido, la IA no puede sustituirlos.
+
+Una contradicción debe producir:
+
+IDENTITY_MISMATCH
+ARCHITECTURE_MISMATCH
+PROTECTED_DATA_MISMATCH
+
+según corresponda.
+
+43. ESTADO
+
+Los estados válidos del contrato son:
+
+READY
+REVIEW
+ERROR
+
+El validador técnico no debe convertir silenciosamente:
+
+ERROR → READY
+
+ni:
+
+REVIEW → READY
+
+La decisión de publicación corresponde al flujo superior de validación.
+
+44. BLOQUES
+
+La entrada oficial utiliza:
+
+blocks[]
+
+Cada bloque debe tener como mínimo:
+
+{
+  "id": "B03",
+  "type": "hero",
+  "enabled": true,
+  "data": {}
+}
+
+La validación debe comprobar:
+
+id válido
+type compatible con id
+enabled boolean
+data objeto
+
+Los identificadores válidos son exclusivamente:
+
+B01
+B02
+B03
+B04
+B05
+B06
+B07
+B08
+B09
+B10
+B11
+B12
+B13
+B14
+B15
+B16
+B17
+B18
+B19
+B20
+B21
+B22
+B23
+
+La fuente de verdad del catálogo continúa siendo:
+
+"proyecto/seo/sistema-bloques.md"
+
+45. BLOQUES AUTORIZADOS
+
+La IA no tiene autoridad para ampliar el conjunto de bloques.
+
+El validador debe comprobar que:
+
+blocks[].id
+
+pertenece al conjunto de:
+
+bloques_autorizados
+
+Si no pertenece:
+
+UNAUTHORIZED_BLOCK
+
+→ ERROR.
+
+46. SEO
+
+La estructura SEO vigente se encuentra en:
+
+seo.title
+seo.meta_description
+seo.h1
+seo.slug
+
+Debe comprobarse su coherencia con:
+
+identity
+architecture
+
+Especialmente:
+
+seo.slug
+
+debe ser compatible con:
+
+architecture.url
+
+Una contradicción produce:
+
+SEO_ARCHITECTURE_MISMATCH
+
+47. MENÚ
+
+La navegación utiliza:
+
+menu.items[]
+
+Cada elemento debe respetar el contrato vigente.
+
+No se permiten URLs inventadas.
+
+Los tipos autorizados son:
+
+current
+internal
+anchor
+
+Una URL no autorizada produce:
+
+UNKNOWN_INTERNAL_URL
+
+48. INTERLINKING
+
+La estructura vigente utiliza:
+
+internal_links[]
+
+Los enlaces internos deben apuntar únicamente a URLs conocidas o autorizadas.
+
+No se permite que la IA cree páginas inexistentes simplemente para generar enlaces.
+
+49. IMÁGENES
+
+La estructura vigente utiliza:
+
+images[]
+
+Las imágenes deben poder ser procesadas posteriormente por N8N/WordPress.
+
+No se deben aceptar URLs ficticias ni datos inventados.
+
+50. SCHEMA
+
+La estructura vigente utiliza:
+
+schema
+
+El validador comprobará:
+
+- estructura válida;
+- coherencia con la identidad;
+- coherencia con la URL;
+- ausencia de datos comerciales inventados;
+- ausencia de datos incompatibles con la oportunidad.
+
+51. VALIDACIÓN
+
+El proceso completo queda definido como:
+
+1. JSON
+2. schema_version
+3. estructura contrato 1.1
+4. identidad
+5. arquitectura
+6. bloques
+7. bloques autorizados
+8. datos de bloques
+9. SEO
+10. menú
+11. URLs
+12. interlinking
+13. imágenes
+14. schema
+15. datos comerciales
+16. seguridad
+17. coherencia global
+18. resultado
+
+52. RESULTADO PARA N8N
+
+El validador debe producir una salida normalizada:
+
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "metadata": {
+    "schema_version": "1.1",
+    "opportunity_id": "",
+    "validator_version": "1.1"
+  }
+}
+
+Si existe al menos un error bloqueante:
+
+valid = false
+
+N8N no puede continuar hacia WordPress.
+
+53. RELACIÓN CON VALIDADOR-LANDING
+
+"validador.md" realiza principalmente la validación técnica del contrato.
+
+"validador-landing.md" realiza la validación de integridad de la landing respecto al contexto protegido.
+
+No se fusionan.
+
+Flujo:
+
+CONTRATO IA 1.1
+       ↓
+VALIDADOR TÉCNICO
+       ↓
+VALIDADOR DE LANDING
+       ↓
+READY / REVIEW / ERROR
+       ↓
+N8N
+
+54. FUENTE DE VERDAD
+
+En caso de contradicción entre versiones antiguas de este documento y el contrato vigente:
+
+contrato-salida-ia.md
+
+tiene prioridad.
+
+En caso de contradicción sobre bloques:
+
+sistema-bloques.md
+
+tiene prioridad.
+
+En caso de contradicción sobre arquitectura:
+
+arquitectura-wordpress.md
+arquitectura-landing.md
+
+tienen prioridad según el ámbito correspondiente.
+
+---
+
+FIN DE ACTUALIZACIÓN 1.1
