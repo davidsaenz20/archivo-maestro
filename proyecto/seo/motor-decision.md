@@ -1,329 +1,426 @@
 MOTOR DE DECISIÓN SEO
 
-1. FUNCIÓN
-
-Este documento define las reglas mediante las cuales el sistema decide qué hacer con una combinación de:
-
-SERVICIO × LOCALIDAD
-
-y, cuando exista una intención suficientemente específica:
-
-SERVICIO × SUBSERVICIO × LOCALIDAD
-
-El motor no genera contenido.
-
-El motor no crea URLs libremente.
-
-El motor no sustituye la investigación.
-
-Su función es transformar datos y evidencias en una decisión reproducible.
+Versión: 3.0
+Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
+Función: determinar qué hacer con cada oportunidad SEO después de analizar sus evidencias.
 
 ---
 
-2. RESULTADOS POSIBLES
+1. FUNCIÓN
 
-El motor únicamente puede producir uno de estos cuatro resultados:
+El motor de decisión transforma una oportunidad investigada en una decisión operativa.
+
+No genera contenido.
+
+No genera páginas.
+
+No crea URLs.
+
+No diseña landings.
+
+No decide qué información existe.
+
+Su función es decidir:
+
+- CREAR;
+- AGRUPAR;
+- INVESTIGAR;
+- NO CREAR.
+
+Flujo:
+
+EVIDENCIAS
+↓
+OPORTUNIDAD
+↓
+INVESTIGACIÓN
+↓
+EVALUACIÓN
+↓
+MOTOR DE DECISIÓN
+↓
+CREAR / AGRUPAR / INVESTIGAR / NO CREAR
+↓
+ARQUITECTURA
+
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La existencia de una búsqueda potencial no significa que exista una oportunidad suficiente para crear una página.
+
+El motor debe evaluar conjuntamente:
+
+- intención;
+- demanda;
+- potencial comercial;
+- relevancia territorial;
+- competencia;
+- calidad de las SERP;
+- fortaleza de las páginas competidoras;
+- diferenciación posible;
+- información disponible;
+- cobertura real;
+- riesgo de duplicación;
+- capacidad de construir una página útil;
+- capacidad de construir una miniweb coherente;
+- coste y complejidad de producción;
+- riesgo de crear contenido de bajo valor.
+
+La decisión no debe depender de una única métrica.
+
+---
+
+3. DECISIONES OFICIALES
+
+Los únicos resultados válidos son:
 
 CREAR
 
-Existe suficiente evidencia para justificar una página independiente.
-
 AGRUPAR
 
-La intención puede resolverse mejor dentro de otra página existente.
-
 INVESTIGAR
-
-No existe información suficiente para tomar una decisión fiable.
 
 NO CREAR
 
-La combinación no justifica una página independiente.
+Mientras no exista suficiente información:
+
+PENDIENTE
 
 ---
 
-3. PRINCIPIO FUNDAMENTAL
+4. CREAR
 
-No se crea una página simplemente porque exista:
+CREAR significa:
 
-- un servicio;
-- una localidad;
-- una keyword;
-- una combinación servicio + localidad;
-- una posibilidad de generar contenido automáticamente.
+Existe evidencia suficiente para justificar la creación de una página o miniweb.
 
-Debe existir una razón suficiente para que esa página tenga utilidad propia.
+Debe existir:
 
-La pregunta fundamental es:
+- intención clara;
+- oportunidad comercial razonable;
+- relevancia territorial;
+- diferenciación posible;
+- información suficiente;
+- arquitectura válida;
+- riesgo de duplicación aceptable;
+- competencia abordable o una estrategia clara para diferenciarse.
 
-«¿Existe una intención concreta que pueda resolverse mejor mediante una página independiente y podemos aportar suficiente valor específico para justificarla?»
+CREAR no significa:
 
----
+"vamos a posicionar seguro".
 
-4. RIESGO DE PÁGINAS PUERTA
+Significa:
 
-El motor debe considerar expresamente el riesgo de crear páginas sustancialmente similares.
-
-Google define como abuso de páginas puerta, entre otros casos, la creación de páginas dirigidas a regiones o ciudades que son sustancialmente similares y que sirven principalmente para captar búsquedas específicas.
-
-Por tanto:
-
-"Cambiar el nombre de la ciudad" NO constituye diferenciación suficiente.
-
-Tampoco constituye diferenciación suficiente:
-
-- cambiar únicamente el título;
-- cambiar únicamente la URL;
-- cambiar unas pocas palabras;
-- añadir una introducción genérica sobre la ciudad;
-- insertar una lista genérica de barrios;
-- generar contenido diferente únicamente mediante IA sin datos reales diferentes.
-
-La diferenciación debe proceder de información útil y relevante.
+"existe una oportunidad suficientemente justificada para construirla y validarla".
 
 ---
 
-5. VARIABLES DEL MOTOR
+5. AGRUPAR
 
-Las variables principales son:
+AGRUPAR significa que varias oportunidades pueden resolverse mediante una misma página.
 
-1. Intención.
-2. Demanda.
-3. Potencial comercial.
-4. Relevancia territorial.
-5. Competencia.
-6. Diferenciación.
-7. Información disponible.
-8. Riesgo de duplicación.
+Se utiliza cuando:
 
-No todas las variables tienen que convertirse automáticamente en una puntuación numérica.
+- la intención es esencialmente la misma;
+- el usuario busca la misma solución;
+- no existe suficiente diferenciación;
+- crear páginas independientes produciría contenido repetitivo;
+- la arquitectura recomienda una página común.
 
-Cuando no exista evidencia suficiente, la variable debe marcarse como:
+Ejemplo:
 
-DESCONOCIDA
+Si:
 
-y no debe inventarse un valor.
+"fontanero en Marbella"
+
+"fontanero Marbella"
+
+"fontaneros Marbella"
+
+representan la misma intención:
+
+no se crean tres páginas.
+
+Se agrupan en una única URL autorizada.
 
 ---
 
-6. INTENCIÓN
+6. INVESTIGAR
 
-Objetivo
+INVESTIGAR significa:
 
-Determinar si existe una intención suficientemente clara y diferenciada.
+Existe una oportunidad potencial, pero todavía falta información crítica.
 
-Evidencia fuerte
+Ejemplos:
 
-- Búsquedas claramente asociadas al servicio y localidad.
-- SERP específica.
-- Resultados locales relevantes.
-- Páginas de competidores orientadas a esa intención.
-- Variantes de búsqueda coherentes.
-- Intención transaccional o de contratación.
+- demanda desconocida;
+- competencia no analizada;
+- SERP no estudiada;
+- páginas competidoras fuertes;
+- diferenciación desconocida;
+- información local insuficiente;
+- cobertura no confirmada;
+- arquitectura no definida;
+- intención ambigua.
 
-Evidencia media
+INVESTIGAR no es un rechazo.
 
-- Señales indirectas de búsqueda.
-- Variantes semánticas.
-- Resultados parcialmente localizados.
+Es una decisión provisional.
 
-Evidencia débil
+---
 
-- Únicamente existe una combinación teórica.
-- No se observa una SERP específica.
-- La combinación parece creada únicamente por permutación.
+7. NO CREAR
 
-Regla
+NO CREAR significa que existe evidencia suficiente para concluir que la creación de una página independiente no está justificada.
 
-Si la intención específica no puede justificarse:
+Puede ocurrir cuando:
 
-INVESTIGAR
+- no existe intención suficiente;
+- la demanda es irrelevante;
+- el potencial comercial es bajo;
+- la intención ya está correctamente cubierta por otra página;
+- no existe diferenciación posible;
+- las SERP muestran una barrera competitiva desproporcionada;
+- la página produciría contenido de bajo valor;
+- existe alto riesgo de duplicación;
+- la oportunidad no tiene sentido para el modelo de negocio.
 
-o:
+---
+
+8. NUEVO CRITERIO: CALIDAD DE LA SERP
+
+La investigación debe analizar la SERP real.
+
+No basta con medir:
+
+"hay resultados".
+
+Hay que estudiar:
+
+"qué tipo de resultados existen y qué calidad tienen".
+
+Para cada oportunidad se debe analizar, cuando sea posible:
+
+- intención dominante de la SERP;
+- tipo de resultados;
+- número de negocios locales;
+- número de directorios;
+- páginas de empresas;
+- páginas especializadas;
+- páginas locales;
+- marketplaces;
+- grandes marcas;
+- resultados informativos;
+- Map Pack;
+- anuncios;
+- contenido generado;
+- calidad general de los resultados.
+
+---
+
+9. FUERZA DE LOS COMPETIDORES
+
+No basta con contar competidores.
+
+Debe evaluarse su fortaleza.
+
+Indicadores posibles:
+
+- autoridad del dominio;
+- antigüedad;
+- calidad del contenido;
+- profundidad de la página;
+- información local;
+- arquitectura;
+- enlazado interno;
+- backlinks;
+- señales de confianza;
+- reseñas;
+- Google Business Profile;
+- especialización;
+- calidad técnica;
+- velocidad;
+- experiencia móvil;
+- número y calidad de páginas relacionadas.
+
+No todos los competidores tienen el mismo peso.
+
+---
+
+10. COMPETENCIA BAJA
+
+COMPETENCIA_BAJA
+
+Cuando existen pocos resultados relevantes o los competidores presentan debilidades evidentes.
+
+Puede existir oportunidad aunque la demanda no sea enorme.
+
+Debe comprobarse igualmente:
+
+- intención;
+- valor comercial;
+- diferenciación.
+
+---
+
+11. COMPETENCIA MEDIA
+
+COMPETENCIA_MEDIA
+
+Existe competencia real, pero todavía existe espacio razonable para construir una página mejor o más específica.
+
+Debe existir una ventaja identificable.
+
+Ejemplos:
+
+- mejor respuesta a la intención;
+- mejor estructura;
+- mejor información local;
+- mejor cobertura documental;
+- mejor especialización;
+- mejor experiencia de usuario.
+
+---
+
+12. COMPETENCIA ALTA
+
+COMPETENCIA_ALTA
+
+Existen varias páginas relevantes y bien construidas.
+
+La oportunidad no debe rechazarse automáticamente.
+
+Debe analizarse si existe una estrategia real de diferenciación.
+
+Competencia alta + diferenciación fuerte:
+
+puede permitir CREAR.
+
+Competencia alta + diferenciación débil:
+
+normalmente requiere INVESTIGAR o AGRUPAR.
+
+---
+
+13. COMPETENCIA MUY ALTA
+
+COMPETENCIA_MUY_ALTA
+
+Existe una SERP dominada por:
+
+- marcas fuertes;
+- webs con gran autoridad;
+- empresas consolidadas;
+- páginas muy especializadas;
+- resultados locales con fuerte presencia;
+- múltiples señales de autoridad.
+
+En este escenario:
 
 NO CREAR
 
-según la evidencia disponible.
+no debe aplicarse automáticamente.
+
+Primero debe comprobarse si existe un nicho más específico.
+
+Ejemplo:
+
+"fontanero Marbella"
+
+puede ser mucho más competitivo que:
+
+"desatascos de urgencia Marbella"
+
+o una intención todavía más específica.
+
+La decisión debe analizar la oportunidad concreta, no solo el sector.
 
 ---
 
-7. DEMANDA
+14. DIFERENCIACIÓN
 
-Objetivo
-
-Determinar si existe suficiente interés real.
-
-Las fuentes pueden incluir:
-
-- Datos de búsqueda.
-- Tendencias.
-- SERP.
-- Herramientas SEO.
-- Datos propios.
-- Señales comerciales.
-- Evidencias observadas durante la investigación.
-
-Regla fundamental
-
-No se debe inventar volumen de búsqueda.
-
-Si no existe una medición fiable:
-
-"demanda = DESCONOCIDA"
-
-No debe convertirse automáticamente en cero.
-
----
-
-8. POTENCIAL COMERCIAL
-
-Objetivo
-
-Determinar si la intención puede conducir razonablemente a una necesidad comercial.
-
-Se consideran:
-
-- Urgencia.
-- Necesidad del servicio.
-- Probabilidad de contratación.
-- Valor económico potencial.
-- Tipo de cliente.
-- Cercanía a la conversión.
-
-Ejemplos de señales fuertes
-
-- "fontanero urgente".
-- "desatascos".
-- "fuga de agua".
-- "reparación de caldera".
-
-Regla
-
-Una búsqueda informativa puede justificar contenido, pero no necesariamente una landing comercial independiente.
-
----
-
-9. RELEVANCIA TERRITORIAL
-
-La localidad debe aportar significado real.
-
-Se pueden considerar:
-
-- Población.
-- Actividad económica.
-- Tipo de vivienda.
-- Turismo.
-- Antigüedad del parque inmobiliario.
-- Actividad empresarial.
-- Características geográficas.
-- Demanda potencial.
-- Cobertura real del servicio.
-- Particularidades locales.
-
-La localidad no debe utilizarse únicamente como palabra clave.
-
----
-
-10. COMPETENCIA
-
-La competencia es una variable descriptiva.
-
-Debe analizarse:
-
-- Número de resultados relevantes.
-- Calidad de competidores.
-- Presencia de empresas locales.
-- Calidad de sus páginas.
-- Autoridad aparente.
-- Especialización.
-- Intención satisfecha por los resultados existentes.
-
-No debe asignarse arbitrariamente una puntuación del tipo:
-
-"competencia = 8/10"
-
-sin haber definido previamente cómo se obtiene.
-
-La primera versión del motor conservará la evidencia cualitativa.
-
-Posteriormente podrá crearse una escala cuantitativa validada.
-
----
-
-11. DIFERENCIACIÓN
-
-Esta es una de las variables más importantes.
+La diferenciación es uno de los criterios principales.
 
 Debe responder:
 
-«¿Qué información útil puede ofrecer esta página que no sea simplemente una copia de otra página del mismo servicio?»
+¿Por qué debería existir esta página?
 
 Puede proceder de:
 
-- Necesidades específicas de la localidad.
-- Tipo de viviendas.
-- Problemas frecuentes.
-- Particularidades del servicio.
-- Casos reales.
-- Información territorial.
-- Cobertura.
-- Procesos.
-- Preguntas frecuentes específicas.
-- Datos comerciales verificables.
-- Diferencias en intención.
-- Diferencias reales entre servicios.
+- intención;
+- subservicio;
+- problema;
+- contexto territorial;
+- tipo de cliente;
+- cobertura;
+- información local;
+- datos propios;
+- proceso;
+- especialización;
+- información comercial real;
+- casos documentados.
 
-No se considera diferenciación suficiente:
+No constituye diferenciación:
 
-- sustituir el nombre de la ciudad;
+- cambiar el municipio;
+- cambiar el H1;
 - cambiar sinónimos;
-- modificar el orden de párrafos;
-- generar texto diferente sin datos diferentes.
+- cambiar el orden de párrafos;
+- cambiar algunas frases;
+- generar texto diferente sin aportar datos diferentes.
 
 ---
 
-12. INFORMACIÓN DISPONIBLE
+15. DIFERENCIACIÓN FUERTE
 
-Una página no debe crearse si el sistema no dispone de suficiente información para construirla de forma útil.
+DIFERENCIACION_FUERTE
 
-La información puede proceder de:
+Existe información suficientemente específica para construir una página que aporte valor real.
 
-- Investigación propia.
-- Fuentes públicas.
-- Datos del negocio.
-- Datos territoriales.
-- SERP.
-- Competidores.
-- Datos estructurados.
-- Bases de datos.
-- Fuentes verificables.
+Ejemplos:
 
-Si la información es insuficiente:
+- servicio específico;
+- problema específico;
+- contexto local real;
+- información de cobertura;
+- datos propios;
+- proceso específico;
+- necesidades locales documentadas.
+
+Favorece:
+
+CREAR
+
+---
+
+16. DIFERENCIACIÓN DÉBIL
+
+DIFERENCIACION_DEBIL
+
+Existe alguna diferencia, pero no suficiente para justificar necesariamente una página independiente.
+
+Puede conducir a:
+
+AGRUPAR
+
+o:
 
 INVESTIGAR
 
 ---
 
-13. RIESGO DE DUPLICACIÓN
+17. DIFERENCIACIÓN INSUFICIENTE
 
-Esta variable determina si la nueva página probablemente será demasiado similar a otra.
+DIFERENCIACION_INSUFICIENTE
 
-Se consideran:
+No existe suficiente información para producir una página realmente diferente.
 
-- Misma intención.
-- Mismo servicio.
-- Misma información.
-- Misma estructura.
-- Misma propuesta.
-- Misma cobertura.
-- Misma finalidad.
-- Falta de información local diferenciadora.
+Si además existe alta competencia:
 
-Riesgo alto
+no se debe crear automáticamente.
 
-La nueva página sería esencialmente la misma página cambiando localidad o keyword.
-
-Resultado preferente:
+Resultado habitual:
 
 AGRUPAR
 
@@ -331,519 +428,861 @@ o:
 
 NO CREAR
 
-Riesgo medio
+---
 
-Existe cierta diferenciación, pero todavía no suficiente.
+18. CAPACIDAD DE CONSTRUIR UNA PÁGINA ÚTIL
+
+Debe existir información suficiente para construir una página que responda a:
+
+- qué busca el usuario;
+- qué problema tiene;
+- qué solución necesita;
+- qué información necesita antes de contactar;
+- qué información local resulta relevante;
+- qué acción puede realizar.
+
+Si solo disponemos de:
+
+servicio + localidad
+
+la oportunidad todavía no está preparada para CREAR.
+
+---
+
+19. CAPACIDAD DE CONSTRUIR UNA MINIWEB
+
+Cuando el modelo de negocio requiera una miniweb local, el análisis debe comprobar también si existe suficiente estructura para construir:
+
+- página principal;
+- servicios;
+- subservicios;
+- páginas de intención específica;
+- contacto;
+- navegación;
+- enlazado interno.
+
+No es obligatorio crear todas estas páginas.
+
+Pero la arquitectura debe poder justificarlas individualmente.
+
+Una miniweb no debe ser simplemente:
+
+una landing + muchas páginas vacías.
+
+---
+
+20. REGLA SOBRE SUBPÁGINAS
+
+Una subpágina solo puede existir cuando:
+
+- tiene intención propia;
+- está justificada;
+- dispone de información suficiente;
+- puede diferenciarse;
+- pertenece a la arquitectura autorizada.
+
+Ejemplo:
+
+/fontanero/marbella/
+
+/fontanero/marbella/desatascos/
+
+/fontanero/marbella/24-horas/
+
+/fontanero/marbella/contacto/
+
+No significa que todas deban crearse siempre.
+
+Cada una debe superar su propia evaluación.
+
+---
+
+21. DEMANDA
+
+Valores:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+DESCONOCIDA
+
+La demanda debe proceder de evidencia.
+
+No se inventan volúmenes.
+
+No se convierten impresiones subjetivas en cifras.
+
+---
+
+22. POTENCIAL COMERCIAL
+
+Valores:
+
+ALTO
+
+MEDIO
+
+BAJO
+
+DESCONOCIDO
+
+Debe analizar:
+
+- intención transaccional;
+- valor del servicio;
+- urgencia;
+- frecuencia;
+- posibilidad de contacto;
+- posibilidad de alquiler de la landing;
+- valor para un profesional local.
+
+---
+
+23. RELEVANCIA TERRITORIAL
+
+Valores:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+Debe existir una relación real entre:
+
+servicio
+
+y
+
+localidad.
+
+El municipio no debe utilizarse únicamente como palabra clave.
+
+---
+
+24. INFORMACIÓN DISPONIBLE
+
+Valores:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+INSUFICIENTE
+
+Debe evaluarse si existen datos suficientes para construir contenido real.
+
+---
+
+25. RIESGO DE DUPLICACIÓN
+
+Valores:
+
+BAJO
+
+MEDIO
+
+MEDIO_ALTO
+
+ALTO
+
+El riesgo aumenta cuando:
+
+- se generan muchas localidades;
+- las páginas comparten estructura y contenido;
+- no existe información local;
+- no existen diferencias de intención;
+- no existen datos específicos.
+
+---
+
+26. EVALUACIÓN DE CALIDAD COMPETITIVA
+
+Debe existir un campo:
+
+competitor_strength
+
+Valores:
+
+BAJA
+
+MEDIA
+
+ALTA
+
+MUY_ALTA
+
+DESCONOCIDA
+
+Y un campo:
+
+serp_quality
+
+Valores:
+
+BAJA
+
+MEDIA
+
+ALTA
+
+MUY_ALTA
+
+DESCONOCIDA
+
+---
+
+27. MATRIZ DE DECISIÓN
+
+Condición| Resultado recomendado
+Evidencia insuficiente| INVESTIGAR
+Intención ambigua| INVESTIGAR
+Demanda desconocida y crítica| INVESTIGAR
+Competencia desconocida| INVESTIGAR
+Diferenciación desconocida| INVESTIGAR
+Misma intención que otra página| AGRUPAR
+Diferenciación insuficiente| AGRUPAR / INVESTIGAR
+Demanda baja + potencial bajo| NO CREAR
+Riesgo duplicación alto + sin diferenciación| NO CREAR
+Competencia muy alta + sin ventaja| NO CREAR
+Competencia alta + diferenciación fuerte| CREAR
+Intención clara + valor comercial alto + información suficiente| CREAR
+Oportunidad claramente útil y diferenciada| CREAR
+
+Esta tabla es orientativa.
+
+La decisión final debe considerar el conjunto de evidencias.
+
+---
+
+28. REGLA DE COMPETENCIA
+
+La competencia nunca debe utilizarse de forma aislada.
+
+No:
+
+COMPETENCIA ALTA
+↓
+NO CREAR
+
+Ni:
+
+COMPETENCIA BAJA
+↓
+CREAR
+
+La competencia debe combinarse con:
+
+- demanda;
+- intención;
+- potencial;
+- diferenciación;
+- información;
+- SERP;
+- capacidad de producción.
+
+---
+
+29. REGLA DE CALIDAD DEL RESULTADO
+
+El objetivo no es:
+
+"crear tantas páginas como sea posible".
+
+El objetivo es:
+
+"crear únicamente páginas que tengan posibilidades razonables de aportar valor y competir".
+
+Por tanto:
+
+100 páginas débiles
+
+es peor que:
+
+20 páginas fuertes.
+
+---
+
+30. REGLA DE ESCALABILIDAD
+
+La automatización debe aumentar:
+
+- velocidad;
+- capacidad de investigación;
+- consistencia;
+- trazabilidad.
+
+Nunca debe utilizarse para aumentar artificialmente el número de páginas.
+
+---
+
+31. CASO MANILVA
+
+El caso de Fontanero + Manilva demuestra la necesidad de este criterio.
+
+Durante la investigación pueden aparecer webs competidoras mejor construidas que otras.
+
+Esto no significa automáticamente:
+
+NO CREAR.
+
+Significa que el motor debe registrar:
+
+- calidad de competidores;
+- fortaleza de las páginas;
+- calidad de la SERP;
+- nivel de diferenciación posible;
+- oportunidad comercial;
+- dificultad real.
+
+Después debe decidir.
+
+---
+
+32. CASO MARBELLA
+
+Marbella presenta un entorno competitivo especialmente trabajado en SEO local, con páginas específicas, contenido local, enlazado y señales de autoridad en determinados sectores.
+
+Por tanto:
+
+"Fontanero en Marbella"
+
+no debe aprobarse únicamente porque:
+
+- Marbella tenga población;
+- exista intención;
+- existan fontaneros;
+- exista una keyword.
+
+Debe analizarse si nuestra futura miniweb puede aportar:
+
+- mejor respuesta a la intención;
+- información local útil;
+- servicios específicos;
+- estructura de miniweb;
+- diferenciación real;
+- contenido verificable;
+- navegación útil;
+- señales de confianza disponibles;
+- una estrategia competitiva razonable.
+
+---
+
+33. RESULTADO DE LA INVESTIGACIÓN
+
+Cada oportunidad debe terminar con:
+
+decision_seo
+
+y:
+
+decision_reason
+
+y:
+
+decision_confidence
+
+Valores de confidence:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+Ejemplo:
+
+{
+"decision_seo": "CREAR",
+"decision_reason": "Intención comercial clara, información suficiente y diferenciación real.",
+"decision_confidence": "ALTA"
+}
+
+---
+
+34. TRAZABILIDAD
+
+La decisión debe poder explicar:
+
+¿Por qué se tomó?
+
+Debe conservar:
+
+- evidencias;
+- fecha;
+- datos utilizados;
+- competencia analizada;
+- SERP analizada;
+- diferenciación;
+- decisión;
+- motivo.
+
+Nunca debe existir una decisión sin explicación.
+
+---
+
+35. CAMBIO DE DECISIÓN
+
+Una oportunidad puede cambiar de decisión.
+
+Ejemplo:
+
+INVESTIGAR
+↓
+nueva evidencia
+↓
+CREAR
+
+o:
+
+CREAR
+↓
+nueva investigación competitiva
+↓
+AGRUPAR
+
+o:
+
+CREAR
+↓
+nueva evidencia
+↓
+NO CREAR
+
+El sistema debe conservar el historial.
+
+---
+
+36. NO INVENCIÓN
+
+Está prohibido inventar:
+
+- demanda;
+- volumen;
+- competencia;
+- autoridad;
+- rankings;
+- empresas;
+- precios;
+- reseñas;
+- clientes;
+- cobertura;
+- teléfonos;
+- horarios;
+- disponibilidad;
+- datos locales.
+
+Cuando no exista evidencia:
+
+DESCONOCIDO
+
+---
+
+37. VALIDACIÓN
+
+Antes de enviar una oportunidad a arquitectura:
+
+comprobar:
+
+- oportunidad válida;
+- intención definida;
+- demanda documentada o marcada como desconocida;
+- potencial comercial;
+- relevancia territorial;
+- competencia;
+- calidad SERP;
+- fortaleza competidores;
+- diferenciación;
+- información disponible;
+- riesgo duplicación;
+- decisión;
+- motivo;
+- confianza.
+
+Si falta información crítica:
+
+INVESTIGAR.
+
+---
+
+38. RELACIÓN CON ARQUITECTURA
+
+Solo cuando:
+
+decision_seo = CREAR
+
+se puede pasar a:
+
+ARQUITECTURA
+
+La arquitectura determinará posteriormente:
+
+- páginas;
+- URLs;
+- parent_url;
+- profundidad;
+- bloques;
+- navegación.
+
+El motor no construye la arquitectura.
+
+---
+
+39. RELACIÓN CON SISTEMA DE BLOQUES
+
+El motor no selecciona bloques.
+
+Su salida es:
+
+DECISIÓN
+
+Después:
+
+ARQUITECTURA
+↓
+SISTEMA DE BLOQUES
+
+---
+
+40. RELACIÓN CON CONTRATO IA
+
+La IA no recibe una oportunidad sin decisión.
+
+Flujo:
+
+OPORTUNIDAD
+↓
+MOTOR
+↓
+CREAR
+↓
+ARQUITECTURA
+↓
+CONTRATO IA
+↓
+GENERACIÓN
+
+La IA no puede convertir:
+
+INVESTIGAR
+
+en:
+
+CREAR.
+
+---
+
+41. RELACIÓN CON N8N
+
+N8N debe recibir únicamente oportunidades con decisión compatible con el siguiente paso.
+
+Si:
+
+CREAR
+
+→ puede iniciar construcción.
+
+Si:
+
+AGRUPAR
+
+→ debe utilizar la página agrupadora autorizada.
+
+Si:
+
+INVESTIGAR
+
+→ no construir.
+
+Si:
+
+NO CREAR
+
+→ no construir.
+
+---
+
+42. REGLA DE PUBLICACIÓN
+
+El motor nunca publica.
+
+Su función termina en:
+
+DECISIÓN
+
+La publicación requiere:
+
+DECISIÓN
+↓
+ARQUITECTURA
+↓
+DATOS
+↓
+BLOQUES
+↓
+IA
+↓
+VALIDACIÓN
+↓
+N8N
+↓
+WORDPRESS
+
+---
+
+43. EJEMPLO OPP-001
+
+Oportunidad:
+
+OPP-001
+
+Servicio:
+
+Fontanero
+
+Localidad:
+
+Marbella
+
+Evaluación inicial:
+
+- intención: ALTA;
+- potencial comercial: ALTO;
+- relevancia territorial: ALTA;
+- demanda: DESCONOCIDA;
+- competencia: ALTA;
+- fortaleza competitiva: DESCONOCIDA;
+- calidad SERP: DESCONOCIDA;
+- diferenciación: INSUFICIENTEMENTE DOCUMENTADA;
+- información: MEDIA;
+- riesgo duplicación: MEDIO_ALTO.
 
 Resultado:
 
 INVESTIGAR
 
-Riesgo bajo
-
-Existe una intención diferenciada y suficiente información específica.
-
-Puede continuar a:
-
-CREAR
+No se autoriza todavía la creación.
 
 ---
 
-14. REGLA DE DECISIÓN
+44. EJEMPLO DE PASO A CREAR
 
-El motor no utiliza una suma automática de variables en esta primera versión.
+Si una investigación posterior demuestra:
 
-Primero utiliza reglas de decisión.
+- intención alta;
+- demanda suficiente;
+- potencial comercial alto;
+- SERP competitiva pero abordable;
+- competidores con debilidades identificables;
+- diferenciación fuerte;
+- información local suficiente;
+- riesgo de duplicación aceptable;
 
-REGLA A
+entonces:
 
-Si no existe intención suficientemente clara:
+decision_seo = CREAR
 
-NO CREAR
-
-o:
-
-INVESTIGAR
-
----
-
-REGLA B
-
-Si existe intención pero no existe suficiente información:
-
-INVESTIGAR
+y se puede pasar a arquitectura.
 
 ---
 
-REGLA C
+45. EJEMPLO DE PASO A NO CREAR
 
-Si existe intención pero el riesgo de duplicación es alto:
+Si se demuestra:
 
-AGRUPAR
+- demanda baja;
+- potencial bajo;
+- intención débil;
+- SERP muy fuerte;
+- competidores muy consolidados;
+- ausencia de diferenciación;
+- información insuficiente;
 
-o:
+entonces:
 
-NO CREAR
-
----
-
-REGLA D
-
-Si existe intención + información suficiente + diferenciación real + riesgo de duplicación bajo:
-
-CREAR
+decision_seo = NO CREAR
 
 ---
 
-REGLA E
+46. EJEMPLO DE AGRUPACIÓN
 
-Si existen señales contradictorias:
+Si:
 
-INVESTIGAR
+Fontanero Marbella
 
-No se fuerza una decisión.
+Fontaneros Marbella
 
----
+Servicio de fontanería Marbella
 
-15. CONDICIONES MÍNIMAS PARA CREAR
+Fontanería en Marbella
 
-Para obtener:
+responden a la misma intención:
 
-CREAR
+se agrupan.
 
-deben cumplirse como mínimo:
+No se crean cuatro URLs.
 
-1. Intención clara.
-2. Justificación territorial o de contexto.
-3. Información suficiente.
-4. Diferenciación real.
-5. Riesgo de duplicación aceptable.
-6. Utilidad independiente para el usuario.
-7. URL coherente con la arquitectura.
-
-Si falta una condición fundamental:
-
-No se debe crear automáticamente.
+Una página puede cubrir la intención completa.
 
 ---
 
-16. RELACIÓN CON LA ARQUITECTURA DE URL
+47. PRINCIPIO DE CALIDAD
 
-El motor decide primero:
+La pregunta principal del motor no es:
 
-CREAR / AGRUPAR / INVESTIGAR / NO CREAR
+"¿Podemos generar esta página?"
 
-Después, si la decisión es:
+La pregunta es:
 
-CREAR
-
-se aplica:
-
-"proyecto/seo/arquitectura-urls.md"
-
-Ejemplo:
-
-Servicio:
-fontanero
-
-Subservicio:
-desatascos
-
-Localidad:
-Marbella
-
-Decisión:
-CREAR
-
-URL:
- /fontanero/desatascos/marbella/
-
-La arquitectura de URL no debe utilizarse para justificar la creación de una página.
-
-La decisión del motor precede a la URL.
+"¿Está suficientemente justificado que exista esta página?"
 
 ---
 
-17. EJEMPLO DE DECISIÓN POSITIVA
+48. PRINCIPIO DE NEGOCIO
 
-SERVICIO:
-fontanero
+Una oportunidad SEO debe poder convertirse potencialmente en:
 
-SUBSERVICIO:
-desatascos
+- tráfico cualificado;
+- contacto;
+- lead;
+- cliente;
+- activo digital;
+- landing alquilable;
+- miniweb alquilable.
 
-LOCALIDAD:
-Marbella
+Pero el potencial económico debe estar basado en una hipótesis razonable.
 
-INTENCIÓN:
-Alta y específica
-
-DEMANDA:
-Evidencia disponible
-
-POTENCIAL COMERCIAL:
-Alto
-
-RELEVANCIA TERRITORIAL:
-Alta
-
-COMPETENCIA:
-Existente
-
-DIFERENCIACIÓN:
-Posible mediante información específica
-
-INFORMACIÓN:
-Suficiente
-
-RIESGO DE DUPLICACIÓN:
-Bajo
-
-DECISIÓN:
-CREAR
-
-URL:
- /fontanero/desatascos/marbella/
-
-Este caso debe ser validado posteriormente con las evidencias reales disponibles.
+No se inventan ingresos futuros.
 
 ---
 
-18. EJEMPLO DE AGRUPACIÓN
+49. PRINCIPIO DE REALISMO
 
-SERVICIO:
-fontanero
+El sistema debe aceptar:
 
-SUBSERVICIO:
-reparaciones
+"NO HAY OPORTUNIDAD"
 
-LOCALIDAD:
-Marbella
+como resultado válido.
 
-INTENCIÓN:
-Similar a página principal de fontanería
+No debe existir presión interna para que todas las combinaciones:
 
-DIFERENCIACIÓN:
-Insuficiente
+SERVICIO × LOCALIDAD
 
-RIESGO DE DUPLICACIÓN:
-Alto
+terminen en:
 
-DECISIÓN:
-AGRUPAR
-
-La intención puede resolverse dentro de una página más amplia.
+CREAR.
 
 ---
 
-19. EJEMPLO DE INVESTIGACIÓN
+50. PRINCIPIO FINAL
 
-SERVICIO:
-fontanero
+El motor protege al proyecto contra:
 
-SUBSERVICIO:
-instalación específica
+- publicación masiva sin criterio;
+- páginas clónicas;
+- contenido artificial;
+- competencia ignorada;
+- inversión en oportunidades débiles;
+- arquitectura innecesaria;
+- generación automática sin validación.
 
-LOCALIDAD:
-Localidad X
+La secuencia correcta es:
 
-INTENCIÓN:
-Posible
-
-DEMANDA:
-Desconocida
-
-INFORMACIÓN:
-Insuficiente
-
-DECISIÓN:
-INVESTIGAR
-
-No se inventa una puntuación.
-
-Se solicita información adicional.
-
----
-
-20. EJEMPLO DE NO CREAR
-
-SERVICIO:
-fontanero
-
-SUBSERVICIO:
-variante semántica
-
-LOCALIDAD:
-Localidad X
-
-INTENCIÓN:
-No diferenciada
-
-DIFERENCIACIÓN:
-Nula
-
-RIESGO DE DUPLICACIÓN:
-Alto
-
-DECISIÓN:
-NO CREAR
-
----
-
-21. EVIDENCIA FRENTE A HIPÓTESIS
-
-Cada variable debe clasificarse, cuando sea necesario, como:
-
-DATO OBSERVADO
-
-Existe evidencia directa.
-
-INFERENCIA
-
-La conclusión se deriva razonablemente de varios datos.
-
-HIPÓTESIS
-
-Todavía no existe suficiente evidencia.
-
-El motor no debe tratar una hipótesis como un dato confirmado.
-
----
-
-22. FUENTES
-
-Las fuentes utilizadas deben conservarse en:
-
-- Investigación sectorial.
-- Matrices.
-- Registro de decisiones.
-- Documentos de evidencias cuando sea necesario.
-
-No es necesario duplicar una misma fuente en todos los archivos.
-
-Debe existir trazabilidad.
-
----
-
-23. VERSIONADO
-
-Cada cambio importante del motor incrementará su versión.
-
-Ejemplo:
-
-"v1.0"
-
-"v1.1"
-
-"v2.0"
-
-Los cambios menores pueden incrementar el segundo número.
-
-Los cambios estructurales importantes incrementarán el primero.
-
-Cada decisión registrada debe indicar la versión del motor utilizada.
-
----
-
-24. VALIDACIÓN DEL MOTOR
-
-El motor no se considera validado por estar escrito.
-
-Debe probarse con casos reales.
-
-La validación deberá comprobar:
-
-- Casos que deberían crear.
-- Casos que deberían agrupar.
-- Casos que deberían investigar.
-- Casos que deberían descartarse.
-- Casos ambiguos.
-- Casos con alto riesgo de duplicación.
-- Casos con información insuficiente.
-
-El objetivo es comprobar si el motor reproduce decisiones razonables.
-
----
-
-25. AJUSTE DEL MOTOR
-
-Si una prueba real produce un resultado incorrecto:
-
-1. Registrar el caso.
-2. Explicar el fallo.
-3. Identificar la regla responsable.
-4. Proponer modificación.
-5. Actualizar el motor.
-6. Incrementar versión.
-7. Repetir las pruebas afectadas.
-8. Registrar el cambio.
-
-Nunca se modifica el resultado simplemente para conseguir el resultado deseado.
-
----
-
-26. RELACIÓN CON EL REGISTRO DE DECISIONES
-
-Este documento contiene:
-
-REGLAS
-
-El archivo:
-
-"proyecto/seo/registro-decisiones.md"
-
-contiene:
-
-RESULTADOS
-
-El flujo es:
-
-MOTOR
-
+EVIDENCIA
 ↓
-
-APLICACIÓN
-
+ANÁLISIS
 ↓
-
-REGISTRO
-
----
-
-27. RELACIÓN CON LA MATRIZ DE OPORTUNIDADES
-
-Cuando exista una matriz de oportunidades completa, el flujo será:
-
-INVESTIGACIÓN
-
+COMPETENCIA
 ↓
-
-MATRICES
-
+SERP
 ↓
-
-MATRIZ DE OPORTUNIDADES
-
+DIFERENCIACIÓN
 ↓
-
-MOTOR
-
+EVALUACIÓN
 ↓
-
 DECISIÓN
-
 ↓
-
-URL
-
+ARQUITECTURA
 ↓
+GENERACIÓN
 
-REGISTRO
+Nunca:
 
-La matriz de oportunidades no debe contener decisiones inventadas.
-
----
-
-28. REGLA DE IA
-
-La IA puede ayudar a:
-
-- Clasificar información.
-- Detectar patrones.
-- Extraer datos.
-- Proponer hipótesis.
-- Preparar análisis.
-
-Pero una hipótesis generada por IA no se convierte automáticamente en evidencia.
-
-Debe conservarse su naturaleza como:
-
-HIPÓTESIS
-
-hasta que exista validación suficiente.
+KEYWORD
+↓
+IA
+↓
+LANDING
+↓
+PUBLICACIÓN
 
 ---
 
-29. REGLA DE ESCALABILIDAD
-
-El motor debe poder utilizarse posteriormente con otros servicios.
-
-La estructura general debe permanecer estable.
-
-Lo que puede cambiar por sector:
-
-- Variables específicas.
-- Servicios.
-- Subservicios.
-- Intenciones.
-- Evidencias.
-- Criterios comerciales.
-- Particularidades territoriales.
-
-La metodología general no debe depender exclusivamente de fontanería.
-
----
-
-30. ESTADO ACTUAL
+51. ESTADO DEL DOCUMENTO
 
 Versión:
 
-v1.0
+3.0
 
 Estado:
 
-DEFINIDO — PENDIENTE DE VALIDACIÓN REAL
+PREPARADO PARA IMPLEMENTACIÓN PILOTO
 
-La estructura del motor está definida.
+Fecha:
 
-Las escalas cuantitativas todavía no deben considerarse definitivas.
+2026-08-24
 
-Primero se probará el modelo basado en evidencia y reglas.
+Cambios principales:
 
----
-
-31. SIGUIENTE PASO
-
-El siguiente paso es seleccionar casos reales de la investigación de fontanería y aplicar:
-
-DATOS → MOTOR → DECISIÓN → URL
-
-Cada resultado se registrará en:
-
-"proyecto/seo/registro-decisiones.md"
-
-Durante esta prueba se comprobará si las reglas producen resultados razonables.
-
-Si se detectan fallos, se modificará el motor y se incrementará su versión.
+- incorporación de análisis competitivo;
+- incorporación de calidad de SERP;
+- incorporación de fortaleza de competidores;
+- incorporación de capacidad real de diferenciación;
+- incorporación de capacidad de construir una miniweb;
+- refuerzo de AGRUPAR;
+- refuerzo de INVESTIGAR;
+- separación entre competencia y decisión;
+- incorporación de confianza de decisión;
+- incorporación de trazabilidad;
+- incorporación del aprendizaje de Manilva;
+- adaptación del sistema para oportunidades locales competitivas;
+- protección frente a generación masiva de páginas débiles.
 
 ---
 
-32. REGISTRO DE ACTUALIZACIÓN
+52. REGLA FINAL
 
-2026-08-23
+El motor decide:
 
-Se actualiza el motor de decisión a la versión v1.0.
+¿MERECE LA PENA CONSTRUIR?
 
-Se establece un sistema basado inicialmente en reglas y evidencia, evitando asignaciones numéricas arbitrarias.
+La arquitectura decide:
 
-Se incorpora explícitamente:
+¿QUÉ PÁGINAS FORMARÁN EL ACTIVO?
 
-- Intención.
-- Demanda.
-- Potencial comercial.
-- Relevancia territorial.
-- Competencia.
-- Diferenciación.
-- Información disponible.
-- Riesgo de duplicación.
-- Clasificación entre dato, inferencia e hipótesis.
-- Riesgo de páginas sustancialmente similares.
-- Versionado.
-- Validación mediante casos reales.
-- Trazabilidad con el registro de decisiones.
+El sistema de bloques decide:
 
-Se establece que la decisión del motor precede a la creación de la URL.
+¿QUÉ COMPONENTES LÓGICOS NECESITA CADA PÁGINA?
 
-Se establece que la IA no puede convertir hipótesis en datos confirmados.
+El contrato IA decide:
 
-El motor queda preparado para su primera validación real.
+¿CÓMO DEBE DEVOLVER LA IA LA INFORMACIÓN?
+
+N8N decide:
+
+¿CÓMO SE PROCESA Y SINCRONIZA?
+
+WordPress decide:
+
+¿CÓMO SE RENDERIZA Y PUBLICA?
+
+La calidad del sistema depende de que ninguna capa invada las funciones de las demás.
+
+---
+
+FIN DE MOTOR DE DECISIÓN SEO
