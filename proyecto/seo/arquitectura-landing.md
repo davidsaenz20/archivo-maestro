@@ -1,6 +1,12 @@
-# ARQUITECTURA DE LANDING
+ARQUITECTURA DE LANDING
 
-## 1. FUNCIÓN
+Versión: 2.0
+Estado: ACTIVO
+Función: definir la arquitectura funcional de una landing SEO local antes de generar contenido.
+
+---
+
+1. FUNCIÓN
 
 Define la estructura funcional de una landing SEO local generada a partir de una oportunidad validada.
 
@@ -28,7 +34,7 @@ PUBLICACIÓN
 
 ---
 
-## 2. PRINCIPIO FUNDAMENTAL
+2. PRINCIPIO FUNDAMENTAL
 
 Una landing debe responder a una intención concreta y aportar información útil, específica y diferenciada.
 
@@ -36,66 +42,77 @@ Cambiar únicamente el nombre de una localidad no constituye diferenciación.
 
 La arquitectura debe poder reutilizarse a escala sin producir páginas prácticamente idénticas.
 
+La arquitectura se determina antes de generar contenido.
+
+La IA no puede modificar unilateralmente la arquitectura.
+
 ---
 
-## 3. CONDICIÓN DE ENTRADA
+3. CONDICIÓN DE ENTRADA
 
 Solo se inicia la construcción cuando:
 
-decision_seo = CREAR
+"decision_seo = CREAR"
 
 La oportunidad debe utilizar el modelo definido en:
 
-`proyecto/seo/esquema-datos.md`
+"proyecto/seo/esquema-datos.md"
 
 Como mínimo debe existir:
 
-- opportunity_id
-- identidad
-- localizacion
-- intencion
-- investigacion
-- decision_seo
-- arquitectura
-- datos disponibles
-- restricciones
+- "opportunity_id"
+- "identidad"
+- "localizacion"
+- "intencion"
+- "investigacion"
+- "decision_seo"
+- "arquitectura"
+- "datos disponibles"
+- "restricciones"
+
+Si falta información necesaria:
+
+- utilizar "null" cuando el dato pueda permanecer ausente;
+- utilizar "REVISAR" cuando la ausencia impida construir correctamente la página.
 
 ---
 
-## 4. ARQUITECTURA
+4. ARQUITECTURA
 
-La arquitectura define:
+La arquitectura define como mínimo:
 
-- tipo_pagina
-- url
-- url_tipo
-- canonical
-- parent_url
-- profundidad
+- "tipo_pagina"
+- "url"
+- "url_tipo"
+- "canonical"
+- "parent_url"
+- "profundidad"
 
 Estos elementos deben estar determinados antes de generar contenido.
 
-La IA no puede modificarlos.
+La IA recibe estos elementos como contexto y no puede modificarlos.
 
 ---
 
-## 5. TIPOS DE PÁGINA
+5. TIPOS DE PÁGINA
 
 Valores iniciales:
 
-`servicio_localidad`
+"servicio_localidad"
 
-`servicio_subservicio_localidad`
+"servicio_subservicio_localidad"
 
 Ejemplos:
 
-`/fontanero/marbella/`
+"/fontanero/marbella/"
 
-`/fontanero/desatascos/marbella/`
+"/fontanero/desatascos/marbella/"
+
+Los tipos adicionales deberán definirse documentalmente antes de utilizarse.
 
 ---
 
-## 6. ESTRUCTURA GLOBAL
+6. ESTRUCTURA GLOBAL
 
 Una landing puede contener:
 
@@ -117,47 +134,57 @@ Una landing puede contener:
 
 No todas las páginas necesitan todos los elementos.
 
+La selección depende de:
+
+- tipo de página;
+- intención;
+- datos disponibles;
+- arquitectura;
+- utilidad real del bloque.
+
 ---
 
-## 7. BLOQUES
+7. SISTEMA DE BLOQUES
 
 La selección se realiza mediante:
 
-`bloques.seleccionados`
+"bloques.seleccionados"
 
-Los identificadores oficiales son:
+Identificadores oficiales:
 
-B01 HEADER  
-B02 NAVEGACIÓN  
-B03 HERO  
-B04 CONTENIDO PRINCIPAL  
-B05 CTA PRINCIPAL  
-B06 FOOTER  
-B07 SUBSERVICIO  
-B08 PROBLEMAS / NECESIDADES  
-B09 INFORMACIÓN LOCAL  
-B10 ZONAS / COBERTURA  
-B11 PROCESO  
-B12 ELEMENTOS DE CONFIANZA  
-B13 DIFERENCIACIÓN  
-B14 FAQ  
-B15 SERVICIOS RELACIONADOS  
-B16 LOCALIDADES RELACIONADAS  
-B17 DATOS ESTRUCTURADOS  
-B18 TESTIMONIOS  
-B19 CASOS / EJEMPLOS  
-B20 GALERÍA  
-B21 PRECIO / TARIFAS  
-B22 HORARIOS  
-B23 MAPA / UBICACIÓN
+- B01 HEADER
+- B02 NAVEGACIÓN
+- B03 HERO
+- B04 CONTENIDO PRINCIPAL
+- B05 CTA PRINCIPAL
+- B06 FOOTER
+- B07 SUBSERVICIO
+- B08 PROBLEMAS / NECESIDADES
+- B09 INFORMACIÓN LOCAL
+- B10 ZONAS / COBERTURA
+- B11 PROCESO
+- B12 ELEMENTOS DE CONFIANZA
+- B13 DIFERENCIACIÓN
+- B14 FAQ
+- B15 SERVICIOS RELACIONADOS
+- B16 LOCALIDADES RELACIONADAS
+- B17 DATOS ESTRUCTURADOS
+- B18 TESTIMONIOS
+- B19 CASOS / EJEMPLOS
+- B20 GALERÍA
+- B21 PRECIO / TARIFAS
+- B22 HORARIOS
+- B23 MAPA / UBICACIÓN
 
 La definición técnica está en:
 
-`proyecto/seo/sistema-bloques.md`
+"proyecto/seo/sistema-bloques.md"
+
+No se deben crear identificadores paralelos.
 
 ---
 
-## 8. BLOQUES OBLIGATORIOS
+8. BLOQUES OBLIGATORIOS
 
 Los bloques obligatorios se determinan por la arquitectura y el tipo de página.
 
@@ -174,9 +201,9 @@ No se debe inventar contenido para completar un bloque.
 
 ---
 
-## 9. BLOQUES CONDICIONALES
+9. BLOQUES CONDICIONALES
 
-Se utilizan cuando existen datos suficientes y aportan valor.
+Se utilizan únicamente cuando existen datos suficientes y aportan valor real.
 
 Ejemplos:
 
@@ -199,7 +226,7 @@ Ejemplos:
 
 ---
 
-## 10. HERO
+10. HERO
 
 Debe identificar inmediatamente:
 
@@ -208,7 +235,7 @@ Debe identificar inmediatamente:
 - intención;
 - acción principal.
 
-Debe contener cuando corresponda:
+Puede contener:
 
 - H1;
 - subtítulo;
@@ -218,7 +245,7 @@ No puede incluir afirmaciones comerciales no verificadas.
 
 ---
 
-## 11. H1
+11. H1
 
 Cada landing indexable tendrá un único H1.
 
@@ -229,17 +256,15 @@ Debe corresponder con:
 - localidad;
 - intención.
 
-Ejemplo:
+Ejemplos:
 
-`Fontanero en Marbella`
+"Fontanero en Marbella"
 
-o:
-
-`Desatascos en Marbella`
+"Desatascos en Marbella"
 
 ---
 
-## 12. CONTENIDO PRINCIPAL
+12. CONTENIDO PRINCIPAL
 
 Debe explicar la necesidad principal del usuario.
 
@@ -255,7 +280,7 @@ No debe utilizarse para rellenar longitud artificialmente.
 
 ---
 
-## 13. INFORMACIÓN LOCAL
+13. INFORMACIÓN LOCAL
 
 Solo se incorpora información local respaldada.
 
@@ -273,7 +298,7 @@ El nombre del municipio por sí solo no constituye contenido local.
 
 ---
 
-## 14. COBERTURA
+14. COBERTURA
 
 Solo se incluyen zonas o localidades cuando la cobertura esté confirmada o exista una justificación documental válida.
 
@@ -281,7 +306,7 @@ No se crean listas masivas para aumentar relevancia SEO.
 
 ---
 
-## 15. PROCESO
+15. PROCESO
 
 Puede explicar el proceso real del servicio.
 
@@ -294,7 +319,7 @@ No se inventan:
 
 ---
 
-## 16. CONFIANZA
+16. CONFIANZA
 
 Solo se utilizan elementos verificables:
 
@@ -310,7 +335,7 @@ Nunca se inventan señales de confianza.
 
 ---
 
-## 17. DIFERENCIACIÓN
+17. DIFERENCIACIÓN
 
 Una página debe tener una razón real para existir.
 
@@ -326,13 +351,17 @@ Puede proceder de:
 - información comercial;
 - evidencias.
 
-Cambiar localidad, sin más, no es diferenciación.
+Cambiar únicamente la localidad no es diferenciación.
 
 ---
 
-## 18. FAQ
+18. FAQ
 
-Las preguntas deben proceder de la intención, investigación o conocimiento válido del servicio.
+Las preguntas deben proceder de:
+
+- intención;
+- investigación;
+- conocimiento válido del servicio.
 
 No deben generarse únicamente para introducir keywords.
 
@@ -340,7 +369,7 @@ Las respuestas deben ser verificables.
 
 ---
 
-## 19. CTA
+19. CTA
 
 Debe corresponder con el modelo comercial disponible.
 
@@ -352,13 +381,18 @@ Ejemplos:
 - pedir cita;
 - contactar.
 
-No se inventan teléfonos, WhatsApp, disponibilidad ni tiempos de respuesta.
+No se inventan:
+
+- teléfonos;
+- WhatsApp;
+- disponibilidad;
+- tiempos de respuesta.
 
 ---
 
-## 20. NAVEGACIÓN
+20. NAVEGACIÓN
 
-Solo puede enlazar a URLs autorizadas.
+Solo puede enlazar a URLs autorizadas por la arquitectura.
 
 Puede incluir:
 
@@ -371,7 +405,7 @@ No se debe enlazar indiscriminadamente a miles de páginas.
 
 ---
 
-## 21. ENLAZADO INTERNO
+21. ENLAZADO INTERNO
 
 Los enlaces deben proceder de la arquitectura existente.
 
@@ -383,7 +417,7 @@ No se crean enlaces hacia:
 
 ---
 
-## 22. SEO ON-PAGE
+22. SEO ON-PAGE
 
 La landing debe poder generar:
 
@@ -400,27 +434,27 @@ La IA trabaja dentro de la arquitectura recibida.
 
 ---
 
-## 23. DATOS
+23. DATOS
 
 La arquitectura utiliza como fuente:
 
-`proyecto/seo/esquema-datos.md`
+"proyecto/seo/esquema-datos.md"
 
 No se deben crear estructuras paralelas.
 
 Los datos ausentes se representan mediante:
 
-`null`
+"null"
 
 o provocan:
 
-`REVISAR`
+"REVISAR"
 
 cuando sean necesarios para completar correctamente la página.
 
 ---
 
-## 24. NO INVENCIÓN
+24. NO INVENCIÓN
 
 Está prohibido inventar:
 
@@ -446,7 +480,7 @@ Está prohibido inventar:
 
 ---
 
-## 25. RELACIÓN CON IA
+25. RELACIÓN CON IA
 
 La IA recibe:
 
@@ -461,7 +495,7 @@ La IA recibe:
 
 La IA genera contenido.
 
-No decide:
+La IA no decide:
 
 - si la página debe existir;
 - URL;
@@ -473,31 +507,31 @@ No decide:
 
 ---
 
-## 26. RELACIÓN CON N8N
+26. RELACIÓN CON N8N
 
 Flujo:
 
-Oportunidad validada
+OPORTUNIDAD VALIDADA
 ↓
-Preparar datos
+PREPARAR DATOS
 ↓
-Arquitectura
+ARQUITECTURA
 ↓
-Seleccionar bloques
+SELECCIONAR BLOQUES
 ↓
-Preparar contexto
+PREPARAR CONTEXTO
 ↓
 IA
 ↓
-Validación
+VALIDACIÓN
 ↓
-WordPress
+WORDPRESS
 ↓
-Publicación
+PUBLICACIÓN
 
 ---
 
-## 27. VALIDACIÓN
+27. VALIDACIÓN
 
 Antes de publicar:
 
@@ -517,7 +551,7 @@ Antes de publicar:
 
 ---
 
-## 28. ESCALABILIDAD
+28. ESCALABILIDAD
 
 La misma arquitectura debe permitir generar:
 
@@ -537,15 +571,15 @@ La escalabilidad nunca justifica reducir:
 
 ---
 
-## 29. EJEMPLO
+29. EJEMPLO
 
 Oportunidad:
 
-`fontanero + Marbella`
+"fontanero + Marbella"
 
 URL:
 
-`/fontanero/marbella/`
+"/fontanero/marbella/"
 
 Estructura posible:
 
@@ -565,7 +599,7 @@ Los bloques B08, B09, B11, B13 y B14 solo se utilizan si los datos y la intenci�
 
 ---
 
-## 30. REGLA FINAL
+30. REGLA FINAL
 
 La arquitectura debe conseguir:
 
@@ -595,26 +629,54 @@ PUBLICACIÓN MASIVA
 
 ---
 
-## 31. CONTROL DE VERSIONES
+31. RELACIÓN CON OTROS DOCUMENTOS
 
-Versión:
+Este documento define la arquitectura funcional de la landing.
 
-1.1
+No define:
 
-Fecha:
+- el estado actual del proyecto;
+- el roadmap de ejecución;
+- el modelo de datos completo;
+- la implementación técnica de los bloques;
+- el flujo técnico completo de N8N.
 
-2026-08-23
+Para ello se utilizan respectivamente:
+
+"proyecto/roadmap-proyecto.md"
+
+"proyecto/seo/esquema-datos.md"
+
+"proyecto/seo/sistema-bloques.md"
+
+y la documentación técnica de automatización.
+
+No deben crearse fuentes paralelas para estas funciones.
+
+---
+
+32. CONTROL DE VERSIONES
+
+Versión: 2.0
+
+Fecha: 2026-08-24
 
 Motivo:
 
-Alineación con el esquema de datos canónico y el sistema oficial de bloques.
+Alineación posterior a la auditoría y consolidación documental.
 
 Cambios principales:
 
-- eliminación de referencias al modelo de datos antiguo;
-- alineación con `esquema-datos.md`;
-- alineación con los identificadores B01-B23;
-- separación entre arquitectura, datos y contenido;
-- eliminación de estructuras paralelas;
+- separación clara entre arquitectura y estado del proyecto;
+- alineación con el modelo de datos canónico;
+- alineación con el sistema oficial B01-B23;
+- refuerzo de la autoridad de la arquitectura;
+- separación entre arquitectura, datos, contenido e implementación;
+- eliminación de referencias obsoletas;
 - refuerzo de las reglas de no invención;
-- preparación para IA → N8N → WordPress.
+- preparación para IA → N8N → WordPress;
+- eliminación de estructuras documentales paralelas.
+
+---
+
+FIN DE ARQUITECTURA DE LANDING
