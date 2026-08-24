@@ -1,8 +1,8 @@
 CHECKLIST DE ARRANQUE DEL PROYECTO
 
-Versión: 1.1
+Versión: 2.0
 Estado: OBLIGATORIO
-Propósito: garantizar que cualquier sesión de trabajo comienza desde el estado persistente real del proyecto y no desde suposiciones o memoria.
+Propósito: garantizar que cualquier sesión comienza desde el estado persistente real del proyecto y respeta la jerarquía documental.
 
 ---
 
@@ -15,6 +15,7 @@ Antes de realizar cualquier tarea sobre el proyecto se debe recuperar el estado 
 La memoria de la conversación no sustituye a los archivos del proyecto.
 
 ---
+
 2. RECUPERACIÓN DEL ESTADO
 
 Antes de trabajar:
@@ -22,34 +23,35 @@ Antes de trabajar:
 - [ ] Leer "maestro.md".
 - [ ] Leer "proyecto/roadmap-fabrica-webs.md".
 - [ ] Leer "proyecto/roadmap-proyecto.md".
-- [ ] Identificar la fase actual en el roadmap del proyecto.
-- [ ] Identificar el PASO ACTUAL.
-- [ ] Identificar el objetivo del paso.
-- [ ] Identificar el entregable esperado.
+- [ ] Leer "proyecto/protocolo-ejecucion.md".
+- [ ] Identificar la fase actual.
+- [ ] Identificar el paso actual.
+- [ ] Identificar el objetivo.
+- [ ] Identificar el entregable.
 - [ ] Identificar los pasos completados.
 - [ ] Identificar el siguiente paso.
 - [ ] Identificar los bloqueos conocidos.
 
-El "roadmap-proyecto.md" es la fuente de verdad del estado y del orden de ejecución.
+"proyecto/roadmap-proyecto.md" es la fuente de verdad del estado y del orden de ejecución.
 
 La memoria de conversación no determina el estado del proyecto.
+
 ---
 
 3. RECUPERACIÓN DE LA METODOLOGÍA
 
-Leer obligatoriamente:
+Comprobar que el trabajo respeta:
 
-"proyecto/protocolo-ejecucion.md"
-
-Comprobar:
-
-- [ ] No retroceder sin bloqueo real.
-- [ ] No cambiar de hito por iniciativa propia.
-- [ ] No rediseñar durante la implementación.
-- [ ] Registrar problemas que no bloqueen.
-- [ ] Resolver únicamente problemas que bloqueen.
-- [ ] Volver al hito original después de resolver un bloqueo.
-- [ ] Priorizar construcción sobre documentación innecesaria.
+- [ ] El roadmap universal.
+- [ ] El protocolo de ejecución.
+- [ ] La jerarquía documental.
+- [ ] La regla de no retroceder sin bloqueo real.
+- [ ] La regla de no cambiar de paso por iniciativa propia.
+- [ ] La regla de no rediseñar durante la implementación.
+- [ ] La regla de registrar problemas no bloqueantes.
+- [ ] La regla de resolver únicamente bloqueos reales.
+- [ ] La regla de volver al paso original después de resolver un bloqueo.
+- [ ] La regla de priorizar construcción sobre documentación innecesaria.
 
 ---
 
@@ -57,8 +59,7 @@ Comprobar:
 
 Identificar qué documentos son necesarios para ejecutar el paso actual.
 
-
-Leer los documentos relevantes para ese trabajo antes de ejecutarlo.
+Leer únicamente los documentos relevantes para ese trabajo.
 
 Comprobar:
 
@@ -70,12 +71,12 @@ Comprobar:
 
 No es necesario revisar todo el repositorio en cada sesión.
 
-Una revisión completa solo se realiza cuando:
+Una auditoría completa solo se realiza cuando:
 
 - comienza una fase importante;
-- existe un bloqueo real;
-- existe una contradicción que afecta al hito;
-- se solicita expresamente una auditoría completa.
+- existe un bloqueo estructural;
+- existe una contradicción que afecta al paso actual;
+- se solicita expresamente.
 
 ---
 
@@ -83,7 +84,7 @@ Una revisión completa solo se realiza cuando:
 
 Antes de ejecutar una tarea preguntar:
 
-«¿Esta tarea contribuye directamente a completar el HITO ACTUAL?»
+«¿Esta tarea contribuye directamente a completar el PASO ACTUAL?»
 
 Si SÍ
 
@@ -103,8 +104,8 @@ Si durante la revisión aparece:
 - una optimización;
 - una idea nueva;
 - una posible refactorización;
-- una documentación mejorable;
-- una contradicción que no afecta al hito;
+- documentación mejorable;
+- una contradicción que no afecta al paso actual;
 
 NO cambiar el objetivo.
 
@@ -117,22 +118,24 @@ Registrar para evaluación posterior y continuar.
 Cuando aparece un problema:
 
 PROBLEMA
-   ↓
-¿BLOQUEA EL HITO?
-   ↓
- ┌───────────────┐
- │               │
- NO              SÍ
- │               │
- ▼               ▼
-REGISTRAR      DETENER
- │               │
- ▼               ▼
-CONTINUAR      RESOLVER
-                 │
-                 ▼
-             VOLVER AL
-             HITO ORIGINAL
+↓
+¿BLOQUEA EL PASO ACTUAL?
+
+NO
+
+REGISTRAR
+↓
+CONTINUAR
+
+SÍ
+
+DETENER
+↓
+RESOLVER
+↓
+VERIFICAR
+↓
+VOLVER AL PASO ORIGINAL
 
 ---
 
@@ -141,7 +144,7 @@ CONTINUAR      RESOLVER
 Antes de comenzar el trabajo debe poder responderse:
 
 FASE:
-HITO ACTUAL:
+PASO ACTUAL:
 OBJETIVO:
 ENTREGABLE:
 DOCUMENTOS CONSULTADOS:
@@ -160,11 +163,12 @@ Primero recuperar la información necesaria desde GitHub.
 
 Una vez completados los pasos anteriores:
 
-- [ ] Ejecutar únicamente la tarea correspondiente al hito.
+- [ ] Ejecutar únicamente la tarea correspondiente al paso actual.
 - [ ] No abrir nuevos frentes innecesarios.
 - [ ] No retroceder a fases anteriores.
 - [ ] No rediseñar componentes que no sean necesarios.
 - [ ] Mantener coherencia con los documentos fuente.
+- [ ] Verificar el resultado antes de considerar completada la tarea.
 
 ---
 
@@ -172,17 +176,22 @@ Una vez completados los pasos anteriores:
 
 Al terminar:
 
-- [ ] Comprobar qué se ha construido.
-- [ ] Comprobar si el hito está completo.
+- [ ] Comprobar qué se ha ejecutado.
+- [ ] Comprobar si el paso está completo.
 - [ ] Registrar problemas pendientes.
+- [ ] Registrar decisiones relevantes cuando corresponda.
 - [ ] Determinar el siguiente paso.
-- [ ] Si el hito está COMPLETADO, actualizar "maestro.md".
+- [ ] Actualizar "proyecto/roadmap-proyecto.md".
+
+El estado operativo se actualiza en el roadmap del proyecto.
+
+No utilizar "maestro.md" como registro rutinario del estado de cada paso.
 
 ---
 
 11. REGLA DE PERSISTENCIA
 
-Las decisiones importantes deben quedar registradas en GitHub.
+Las decisiones importantes deben quedar registradas en GitHub en el documento que sea su fuente de autoridad.
 
 No depender exclusivamente de:
 
@@ -195,7 +204,7 @@ El repositorio debe permitir reconstruir el estado del proyecto.
 
 ---
 
-12. REGLA PARA CADA "SIGUE"
+12. REGLA PARA CADA «SIGUE»
 
 Cuando el usuario indique:
 
@@ -203,20 +212,49 @@ Cuando el usuario indique:
 
 debe interpretarse como:
 
-«Continuar desde el HITO ACTUAL del proyecto.»
+«Continuar desde el PASO ACTUAL del proyecto.»
 
-No significa:
+Antes de continuar:
+
+1. recuperar el estado;
+2. aplicar este checklist;
+3. comprobar el paso actual;
+4. comprobar bloqueos;
+5. continuar desde el punto correspondiente.
+
+«Sigue» no significa:
 
 - buscar una tarea diferente;
 - volver a una fase anterior;
 - rediseñar la arquitectura;
 - iniciar una nueva línea de trabajo.
 
-Antes de continuar se debe aplicar este checklist.
+---
+
+13. JERARQUÍA DOCUMENTAL
+
+La información debe interpretarse así:
+
+"maestro.md"
+→ contexto persistente y reglas maestras.
+
+"proyecto/roadmap-fabrica-webs.md"
+→ metodología universal.
+
+"proyecto/roadmap-proyecto.md"
+→ estado y orden del proyecto actual.
+
+Documentación técnica
+→ especificaciones de construcción.
+
+Implementación
+→ ejecución de las especificaciones.
+
+En caso de duda, no crear una segunda fuente de verdad.
 
 ---
 
-13. PRINCIPIO FINAL
+14. PRINCIPIO FINAL
 
 LEER
 ↓
