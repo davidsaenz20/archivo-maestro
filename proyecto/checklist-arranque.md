@@ -53,9 +53,10 @@ Comprobar:
 
 ---
 
-4. DOCUMENTACIÓN DEL HITO
+4. DOCUMENTACIÓN DEL PASO ACTUAL
 
-Identificar qué documentos son necesarios para ejecutar el hito actual.
+Identificar qué documentos son necesarios para ejecutar el paso actual.
+
 
 Leer los documentos relevantes para ese trabajo antes de ejecutarlo.
 
