@@ -1,42 +1,79 @@
 ARQUITECTURA DE URLs
 
-1. Función del documento
+Versión: 2.0
+Estado: ACTIVO
+Función: transformar una oportunidad SEO validada en una URL única, coherente y automatizable.
+
+---
+
+1. FUNCIÓN
 
 Este documento define cómo se transforma una oportunidad SEO validada por el motor de decisión en una URL concreta.
 
-La arquitectura de URLs debe ser:
+La URL debe ser:
 
 - coherente;
 - predecible;
+- estable;
 - escalable;
 - reutilizable;
-- comprensible para usuarios y buscadores;
-- compatible con la automatización mediante N8N;
+- comprensible;
+- compatible con la automatización;
 - independiente de decisiones arbitrarias de la IA.
 
 La IA no decide libremente la estructura de las URLs.
 
-La estructura se determina mediante las reglas definidas en este documento.
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La URL representa una página que el sistema ha decidido crear.
+
+Flujo:
+
+EVIDENCIA
+↓
+OPORTUNIDAD
+↓
+DECISIÓN SEO
+↓
+URL
+↓
+LANDING
+↓
+CONTENIDO
+↓
+VALIDACIÓN
+↓
+PUBLICACIÓN
+
+La existencia de una combinación de palabras clave no implica que deba existir una URL.
 
 ---
 
-2. Principio fundamental
+3. UNIDAD PRINCIPAL
 
-La URL representa la combinación que el motor ha decidido convertir en una página.
+La estructura inicial es:
 
-La unidad principal es:
+"SERVICIO × LOCALIDAD"
 
-SERVICIO × LOCALIDAD
+Ejemplo:
 
-Cuando existe un subservicio suficientemente diferenciado, puede utilizarse:
+"/fontanero/marbella/"
 
-SERVICIO × SUBSERVICIO × LOCALIDAD
+Cuando existe un subservicio con intención independiente y suficiente diferenciación:
+
+"SERVICIO × SUBSERVICIO × LOCALIDAD"
+
+Ejemplo:
+
+"/fontanero/desatascos/marbella/"
 
 ---
 
-3. Estructura principal
+4. ESTRUCTURA PRINCIPAL
 
-Nivel 1 — Servicio + localidad
+Nivel 1
 
 Formato:
 
@@ -50,11 +87,9 @@ Ejemplos:
 
 "/abogado/marbella/"
 
----
+Nivel 2
 
-4. Nivel 2 — Servicio + subservicio + localidad
-
-Cuando existe un subservicio con intención propia y suficiente diferenciación:
+Formato:
 
 "/{servicio}/{subservicio}/{localidad}/"
 
@@ -66,74 +101,65 @@ Ejemplos:
 
 "/abogado/divorcios/marbella/"
 
-"/abogado/derecho-laboral/marbella/"
+---
+
+5. REGLA DE CREACIÓN
+
+Una URL solo puede crearse cuando la oportunidad tenga una decisión:
+
+"CREAR"
+
+Las decisiones posibles son:
+
+- "CREAR"
+- "AGRUPAR"
+- "INVESTIGAR"
+- "NO_CREAR"
+
+"AGRUPAR" significa que la intención se integra en otra página.
+
+"INVESTIGAR" significa que falta información para decidir.
+
+"NO_CREAR" significa que no existe suficiente justificación.
 
 ---
 
-5. Regla de no generación automática
+6. SERVICIO PRINCIPAL
 
-La existencia de:
-
-- un servicio;
-- un subservicio;
-- una localidad;
-
-no implica automáticamente que deba existir una URL.
-
-La combinación debe pasar previamente por el motor de decisión.
-
-El resultado debe ser:
-
-- CREAR;
-- AGRUPAR;
-- INVESTIGAR;
-- NO CREAR.
-
-Solo una oportunidad que termine justificadamente en:
-
-CREAR
-
-puede convertirse en candidata a URL.
-
----
-
-6. Regla de servicio principal
-
-El primer nivel de la URL representa el servicio principal.
+El primer segmento representa el servicio principal.
 
 Ejemplo:
 
 "/fontanero/marbella/"
 
-El servicio principal debe corresponder con la intención principal de la página.
+El servicio debe corresponder con la intención principal.
+
+No se utilizarán servicios inventados ni combinaciones semánticamente incoherentes.
 
 ---
 
-7. Regla de subservicio
+7. SUBSERVICIO
 
-El subservicio se incorpora a la URL únicamente cuando representa una intención suficientemente diferenciada.
+Un subservicio solo se incorpora cuando:
 
-Ejemplo:
+- tiene intención propia;
+- está definido en el modelo;
+- existe oportunidad suficiente;
+- puede diferenciarse;
+- aporta utilidad;
+- no duplica otra página.
 
-"/fontanero/desatascos/marbella/"
-
-puede utilizarse si “desatascos” constituye una oportunidad independiente.
-
-No debe utilizarse simplemente para añadir palabras clave.
+No debe utilizarse únicamente para añadir keywords.
 
 ---
 
-8. Regla de agrupación
+8. AGRUPACIÓN
 
-Si un subservicio no justifica una página independiente, no se crea una URL específica.
+Si un subservicio no merece página independiente, se integra en una página superior.
 
 Ejemplo:
 
-Si el motor determina que:
-
-"Fontanero + Marbella"
-
-debe ser una única página y que “reparación de grifos” no tiene suficiente entidad independiente, entonces:
+Si "reparación de grifos + Marbella" no justifica una página propia:
 
 "/fontanero/marbella/"
 
@@ -143,15 +169,13 @@ No se crea:
 
 "/fontanero/reparacion-de-grifos/marbella/"
 
-salvo que el motor determine que merece una página propia.
+salvo que la decisión SEO determine que merece una página independiente.
 
 ---
 
-9. Regla de profundidad
+9. PROFUNDIDAD
 
-La arquitectura debe evitar niveles innecesarios.
-
-Como regla general:
+La arquitectura inicial queda limitada a:
 
 Nivel 1
 
@@ -161,86 +185,33 @@ Nivel 2
 
 "/servicio/subservicio/localidad/"
 
-No se deben añadir niveles adicionales automáticamente.
+No se añaden automáticamente niveles adicionales.
 
-Ejemplo que NO debe generarse por defecto:
+Ejemplo que no se genera por defecto:
 
 "/fontanero/desatascos/urgente/marbella/"
 
-Solo podría existir una estructura más profunda si una futura validación demuestra que es necesaria y aporta valor real.
+Una estructura más profunda requeriría una decisión y validación específica.
 
 ---
 
-10. La IA no decide la URL
+10. LOCALIDAD
 
-La IA no debe inventar la estructura de URL.
+Cuando exista intención local, la localidad ocupa el último segmento.
 
-El sistema debe proporcionarle una URL ya determinada.
+Ejemplos:
 
-Ejemplo:
+"/fontanero/marbella/"
 
-SERVICIO = fontanero
-SUBSERVICIO = desatascos
-LOCALIDAD = Marbella
-DECISIÓN = CREAR
-URL = /fontanero/desatascos/marbella/
+"/fontanero/desatascos/marbella/"
 
-La IA genera el contenido correspondiente a esa URL.
+La localidad debe proceder de datos territoriales válidos.
 
-No decide:
-
-- qué niveles tiene;
-- qué slug utilizar;
-- si debe existir una página;
-- si debe crear una nueva combinación.
+No se crean localidades artificiales.
 
 ---
 
-11. Responsabilidad del motor
-
-El motor decide:
-
-1. Si existe oportunidad.
-2. Si debe crearse página.
-3. Si debe agruparse.
-4. Si necesita más investigación.
-5. Si debe descartarse.
-6. Si la intención justifica un subservicio independiente.
-
-La arquitectura de URLs transforma esa decisión en una estructura URL.
-
----
-
-12. Responsabilidad de la capa de contenido
-
-Una vez definida la URL, la arquitectura de landing determina:
-
-- bloques;
-- información;
-- variables;
-- contenido;
-- elementos SEO;
-- CTA.
-
-Por tanto:
-
-MOTOR
-
-↓
-
-URL
-
-↓
-
-LANDING
-
-↓
-
-CONTENIDO
-
----
-
-13. Slugs
+11. SLUGS
 
 Los slugs deben ser:
 
@@ -249,7 +220,7 @@ Los slugs deben ser:
 - legibles;
 - estables;
 - en minúsculas;
-- separados mediante guiones.
+- separados por guiones.
 
 Ejemplos:
 
@@ -261,65 +232,16 @@ Ejemplos:
 
 "marbella"
 
-No se utilizarán:
+No utilizar:
 
 - espacios;
-- caracteres innecesarios;
 - cadenas artificiales;
-- números sin significado.
+- números sin significado;
+- caracteres innecesarios.
 
 ---
 
-14. Regla de localidad
-
-La localidad debe aparecer como último segmento de la URL cuando la página tenga intención local.
-
-Ejemplo:
-
-"/fontanero/marbella/"
-
-"/fontanero/desatascos/marbella/"
-
-Esto permite mantener una estructura coherente:
-
-servicio → especialización → territorio
-
----
-
-15. Canonical
-
-Cada página indexable debe tener una URL canónica única.
-
-No deben existir múltiples URLs equivalentes para la misma intención.
-
-Ejemplo:
-
-Si la página oficial es:
-
-"/fontanero/desatascos/marbella/"
-
-no debe existir otra URL equivalente que compita por la misma intención.
-
----
-
-16. Evitar duplicaciones
-
-Antes de crear una URL debe comprobarse:
-
-- si ya existe una página para esa intención;
-- si existe una URL equivalente;
-- si el contenido se solaparía;
-- si existe una página superior que resuelve correctamente la intención.
-
-Si existe solapamiento importante, debe estudiarse:
-
-AGRUPAR
-
-en lugar de crear otra URL.
-
----
-
-17. Relación entre URL y intención
+12. INTENCIÓN
 
 Cada URL debe corresponder a una intención identificable.
 
@@ -327,71 +249,51 @@ Ejemplo:
 
 "/fontanero/marbella/"
 
-Intención principal:
+Intención:
 
-contratar un fontanero en Marbella
-
-Ejemplo:
-
-"/fontanero/desatascos/marbella/"
-
-Intención principal:
-
-contratar un servicio de desatascos en Marbella
-
-La URL no debe representar simplemente una combinación de palabras clave.
-
----
-
-18. Regla de coherencia semántica
-
-La jerarquía debe tener sentido.
+contratar un fontanero en Marbella.
 
 Ejemplo:
 
 "/fontanero/desatascos/marbella/"
 
-es coherente si “desatascos” está definido como subservicio dentro del modelo de fontanería.
+Intención:
 
-Pero una combinación que no tenga relación semántica no debe crearse simplemente porque tenga búsquedas.
+contratar un servicio de desatascos en Marbella.
 
----
-
-19. Relación con localidades
-
-La arquitectura territorial se basa inicialmente en:
-
-SERVICIO + LOCALIDAD
-
-o:
-
-SERVICIO + SUBSERVICIO + LOCALIDAD
-
-La localidad utilizada debe proceder de la matriz territorial y estar correctamente identificada.
-
-No se crearán URLs para localidades inventadas o variantes artificiales.
+La URL no debe representar únicamente una combinación de keywords.
 
 ---
 
-20. Localidades pequeñas
+13. CANONICAL
 
-Una localidad pequeña no debe generar automáticamente una URL.
+Cada página indexable debe tener una única URL canónica.
 
-Debe superar los criterios del motor.
+No deben existir múltiples URLs equivalentes para una misma intención.
 
-Si no existe suficiente oportunidad:
-
-NO CREAR
-
-o:
-
-AGRUPAR
-
-según corresponda.
+La canonical debe corresponder con la URL oficial de la página.
 
 ---
 
-21. Urgencia
+14. DUPLICACIÓN
+
+Antes de crear una URL se debe comprobar:
+
+- si ya existe una página equivalente;
+- si existe otra URL para la misma intención;
+- si existe una página superior que resuelve correctamente la intención;
+- si el contenido se solaparía;
+- si la nueva página tendría diferenciación real.
+
+Cuando exista solapamiento importante:
+
+"AGRUPAR"
+
+debe considerarse antes de crear una URL adicional.
+
+---
+
+15. URGENCIA
 
 Términos como:
 
@@ -399,118 +301,186 @@ Términos como:
 - 24 horas;
 - emergencia;
 
-no generan automáticamente un nuevo nivel de URL.
+no generan automáticamente nuevos niveles de URL.
 
-Ejemplo:
+El motor debe determinar si existe una intención suficientemente diferenciada.
 
-No debe crearse automáticamente:
+Puede decidir:
 
-"/fontanero/urgente/marbella/"
-
-El motor debe comprobar primero si existe una intención suficientemente diferenciada.
-
-Puede terminar:
-
-- creando una URL independiente;
-- integrando la urgencia dentro de "/fontanero/marbella/";
-- agrupándola;
-- investigándola.
+- crear una página;
+- agrupar;
+- investigar;
+- no crear.
 
 ---
 
-22. Variantes lingüísticas
+16. VARIANTES LINGÜÍSTICAS
 
-Sinónimos o variantes no deben generar automáticamente URLs diferentes.
+Sinónimos o variantes no generan automáticamente URLs diferentes.
 
 Ejemplo:
 
-“fontanero” y “fontanería” pueden tener relaciones semánticas diferentes, pero no deben generar dos páginas únicamente porque existan dos palabras.
+"fontanero"
 
-Debe analizarse la intención real.
+y
+
+"fontanería"
+
+deben analizarse según su intención real.
+
+No se crean páginas únicamente porque existan dos términos diferentes.
 
 ---
 
-23. Marcas y modelos
+17. MARCAS Y MODELOS
 
-Las marcas o modelos no generan automáticamente niveles adicionales de URL.
+Las marcas y modelos no generan automáticamente niveles adicionales.
 
 Ejemplo:
-
-No se debe crear automáticamente:
 
 "/fontanero/termo/cointra/marbella/"
 
-La creación de una URL de este tipo requeriría:
+no debe crearse por defecto.
+
+Para justificar una URL de este tipo deben existir:
 
 - intención propia;
 - demanda suficiente;
-- contenido diferenciado;
 - utilidad;
-- oportunidad comercial;
+- contenido diferenciado;
+- oportunidad;
 - ausencia de duplicación.
 
 ---
 
-24. URL y plantilla
+18. COHERENCIA SEMÁNTICA
 
-La URL determina la identidad de la página.
+La jerarquía debe tener sentido.
 
-La plantilla determina su estructura.
+Ejemplo válido:
 
-Ejemplo:
+"/fontanero/desatascos/marbella/"
 
-URL:
- /fontanero/desatascos/marbella/
+si "desatascos" está definido como subservicio de fontanería.
 
-DATOS:
- servicio = fontanero
- subservicio = desatascos
- localidad = Marbella
-
-PLANTILLA:
- hero
- servicio
- problema
- información local
- cobertura
- proceso
- FAQ
- CTA
-
-La plantilla no debe modificar la URL.
+No se deben crear combinaciones semánticamente incoherentes aunque tengan potencial de búsqueda.
 
 ---
 
-25. URL como dato estructurado
+19. LOCALIDADES PEQUEÑAS
 
-La URL debe formar parte de los datos de entrada del sistema.
+Una localidad pequeña no genera automáticamente una URL.
 
-Ejemplo:
+Debe pasar por los mismos criterios de decisión que cualquier otra localidad.
 
-id = FON-DES-MARB
-servicio = fontanero
-subservicio = desatascos
-localidad = Marbella
-decisión = CREAR
-url = /fontanero/desatascos/marbella/
+El resultado puede ser:
 
-N8N utilizará posteriormente este dato para construir/publicar la página.
+"CREAR"
+
+"AGRUPAR"
+
+"INVESTIGAR"
+
+"NO_CREAR"
 
 ---
 
-26. Reutilización entre sectores
+20. RELACIÓN CON EL MOTOR
 
-La estructura general:
+El motor determina:
 
-"/{servicio}/{localidad}/"
+1. si existe oportunidad;
+2. si merece una página;
+3. si debe agruparse;
+4. si necesita investigación;
+5. si debe descartarse;
+6. si el subservicio merece independencia.
 
-y:
+La arquitectura de URLs transforma esa decisión en una estructura URL.
 
-"/{servicio}/{subservicio}/{localidad}/"
+---
 
-puede reutilizarse en otros sectores.
+21. RELACIÓN CON LANDING
 
-Ejemplos:
+La separación es:
+
+MOTOR SEO
+
+decide qué debe existir.
+
+↓
+
+ARQUITECTURA URL
+
+determina dónde existe.
+
+↓
+
+ARQUITECTURA LANDING
+
+determina cómo se estructura.
+
+↓
+
+IA
+
+genera el contenido autorizado.
+
+---
+
+22. URL COMO DATO
+
+La URL debe formar parte del registro estructurado de la oportunidad.
+
+Ejemplo:
+
+opportunity_id: FON-DES-MARB
+servicio: fontanero
+subservicio: desatascos
+localidad: Marbella
+decision_seo: CREAR
+url: /fontanero/desatascos/marbella/
+
+La URL no debe construirse improvisadamente durante la generación de contenido.
+
+---
+
+23. RESPONSABILIDAD DE N8N
+
+N8N puede utilizar la URL ya validada para:
+
+- generar la página;
+- enviar datos al CMS;
+- crear enlaces;
+- publicar;
+- registrar resultados.
+
+N8N no debe inventar URLs fuera de las reglas establecidas.
+
+---
+
+24. RESPONSABILIDAD DE LA IA
+
+La IA recibe una URL previamente determinada.
+
+Puede generar contenido para:
+
+"/fontanero/desatascos/marbella/"
+
+pero no puede decidir:
+
+- crear la URL;
+- modificar el slug;
+- cambiar la localidad;
+- añadir niveles;
+- crear otra URL;
+- modificar la arquitectura.
+
+---
+
+25. REUTILIZACIÓN
+
+La estructura general puede reutilizarse:
 
 Abogados
 
@@ -530,120 +500,159 @@ Reformas
 
 "/reformas/cocinas/marbella/"
 
-Sin embargo, cada sector debe validar sus propias relaciones entre servicio y subservicio.
+Cada sector debe validar sus propias relaciones entre servicios y subservicios.
 
 ---
 
-27. Regla contra el contenido escalado sin valor
+26. CONTROL CONTRA ESCALA INDISCRIMINADA
 
-La arquitectura de URLs no debe utilizarse para generar grandes cantidades de páginas casi idénticas.
+El sistema no debe utilizar la arquitectura para generar grandes cantidades de páginas casi idénticas.
 
-Cada URL creada debe tener una razón funcional y SEO.
+Cada URL debe tener:
 
-Debe existir capacidad para aportar:
-
-- información específica;
+- intención;
 - utilidad;
+- datos;
 - diferenciación;
-- intención clara.
+- justificación.
 
 El número de URLs no es un objetivo.
 
 ---
 
-28. Flujo definitivo
+27. VALIDACIÓN PREVIA
 
-El proceso será:
+Antes de aceptar una URL se debe comprobar:
+
+- servicio válido;
+- subservicio válido cuando exista;
+- localidad válida;
+- decisión "CREAR";
+- intención identificable;
+- ausencia de URL equivalente;
+- ausencia de duplicación;
+- estructura correcta;
+- slug correcto;
+- canonical definida.
+
+Si falla una condición crítica:
+
+"REVISAR"
+
+o
+
+"NO_CREAR"
+
+según corresponda.
+
+---
+
+28. FLUJO DEFINITIVO
 
 INVESTIGACIÓN
-
 ↓
-
 MATRICES
-
 ↓
-
 MOTOR DE DECISIÓN
-
 ↓
-
-DECISIÓN CREAR
-
+CREAR
 ↓
-
-ARQUITECTURA DE URL
-
+ARQUITECTURA URL
 ↓
-
-SELECCIÓN DE PLANTILLA
-
+LANDING
 ↓
-
-SELECCIÓN DE BLOQUES
-
+DATOS
 ↓
-
-DATOS DE CONTENIDO
-
-↓
-
 IA
-
 ↓
-
 VALIDACIÓN
-
 ↓
-
 N8N
-
 ↓
-
 WORDPRESS
-
 ↓
-
 PUBLICACIÓN
 
 ---
 
-29. Regla de no improvisación
-
-Una URL no debe ser inventada durante la generación de contenido.
+29. REGLA DE NO IMPROVISACIÓN
 
 La URL debe existir antes de solicitar a la IA la generación de la landing.
 
 Esto garantiza:
 
 - consistencia;
-- control;
 - trazabilidad;
-- escalabilidad;
-- automatización.
+- control;
+- automatización;
+- escalabilidad.
+
+Nunca:
+
+KEYWORD
+↓
+IA
+↓
+URL improvisada
 
 ---
 
-30. Estado actual
+30. FUENTES DE AUTORIDAD
 
-La estructura base queda definida como:
+Este documento define la arquitectura de URLs.
 
-SERVICIO + LOCALIDAD
+No define:
 
-y:
+- estado del proyecto;
+- modelo completo de datos;
+- bloques de landing;
+- contenido;
+- implementación WordPress;
+- automatización completa.
 
-SERVICIO + SUBSERVICIO + LOCALIDAD
+Esas funciones pertenecen a sus documentos específicos.
 
-La decisión de utilizar una estructura u otra dependerá del resultado del motor de decisión y de las reglas de diferenciación.
-
-La IA no tiene libertad para modificar esta arquitectura.
+No deben existir estructuras paralelas de URLs.
 
 ---
 
-31. Pendiente de validación
+31. ESCALABILIDAD
 
-Antes de considerar esta arquitectura definitiva se deben probar combinaciones reales de fontanería.
+La arquitectura debe permitir:
 
-Ejemplos:
+"1"
+
+↓
+
+"10"
+
+↓
+
+"100"
+
+↓
+
+"1.000"
+
+↓
+
+"ESCALA MAYOR"
+
+sin perder:
+
+- calidad;
+- utilidad;
+- diferenciación;
+- trazabilidad;
+- control.
+
+La automatización debe ampliar un sistema validado, no sustituir la validación.
+
+---
+
+32. PRUEBAS
+
+Antes de considerar la arquitectura completamente validada se deben probar casos reales como:
 
 - Fontanero × Marbella.
 - Desatascos × Marbella.
@@ -651,41 +660,40 @@ Ejemplos:
 - Fontanero urgente × Marbella.
 - Fontanero × localidad pequeña.
 
-Se comprobará:
+Debe comprobarse:
 
-- decisión del motor;
+- decisión;
 - intención;
-- estructura URL;
-- riesgo de duplicación;
-- utilidad de la landing;
+- URL;
+- diferenciación;
+- duplicación;
+- utilidad;
 - escalabilidad.
 
-Los resultados de estas pruebas podrán modificar esta arquitectura.
+Los resultados de estas pruebas pueden provocar modificaciones posteriores de esta arquitectura.
 
 ---
 
-32. Registro de actualización
+33. CONTROL DE VERSIONES
 
-2026-08-23
+Versión: 2.0
 
-Se crea la primera versión de la arquitectura de URLs.
+Fecha: 2026-08-24
 
-Se establece como estructura base:
+Motivo: consolidación posterior a la auditoría documental.
 
-"/{servicio}/{localidad}/"
+Cambios principales:
 
-y:
+- separación entre decisión SEO y construcción de URL;
+- alineación con "arquitectura-seo.md";
+- alineación con "arquitectura-landing.md";
+- refuerzo del motor como autoridad de decisión;
+- refuerzo de la URL como dato estructurado;
+- eliminación de decisiones de URL por parte de la IA;
+- refuerzo de canonical y control de duplicación;
+- preparación para N8N → WordPress;
+- eliminación de estructuras paralelas.
 
-"/{servicio}/{subservicio}/{localidad}/"
+---
 
-Se establece que:
-
-- El motor decide si existe una oportunidad.
-- La arquitectura determina la URL.
-- La IA no decide libremente la estructura.
-- Los subservicios no generan automáticamente URLs.
-- La profundidad debe mantenerse limitada.
-- La localidad ocupa inicialmente el último segmento.
-- Cada URL debe representar una intención identificable.
-- Debe evitarse la duplicación.
-- La arquitectura queda pendiente de validación con casos reales.
+FIN DE ARQUITECTURA DE URLs
