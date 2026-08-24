@@ -1,18 +1,86 @@
-ARQUITECTURA DE LANDING SEO
+ARQUITECTURA DE MINIWEB LOCAL SEO
 
-Versión: 2.1
+Versión: 3.0
 Estado: ACTIVO
-Función: definir la arquitectura funcional de una landing SEO antes de generar contenido.
+Función: definir la arquitectura funcional de una miniweb local completa, incluyendo su página principal, subpáginas, navegación, páginas de servicio y páginas comerciales.
 
 ---
 
 1. FUNCIÓN
 
-Define la estructura funcional de una landing SEO generada a partir de una oportunidad que ya ha sido evaluada por el sistema.
+Este documento define cómo debe estructurarse una miniweb local creada alrededor de un servicio y una localidad.
 
-La landing no se genera directamente desde keywords.
+El producto no consiste únicamente en una landing SEO.
 
-Flujo:
+Una combinación como:
+
+Fontanero + Marbella
+
+puede convertirse en una miniweb local completa, preparada para presentar el servicio y posteriormente alquilarla a un profesional o empresa.
+
+La miniweb puede contener:
+
+- página principal;
+- páginas de servicios;
+- páginas de problemas o necesidades;
+- páginas comerciales;
+- página de contacto;
+- páginas informativas;
+- páginas territoriales cuando estén justificadas.
+
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La miniweb debe ser útil para dos objetivos diferentes:
+
+Objetivo SEO
+
+Captar y resolver intenciones de búsqueda relevantes.
+
+Objetivo comercial
+
+Presentar el servicio de forma profesional y permitir que un negocio pueda utilizar la web como activo comercial.
+
+Por tanto:
+
+SEO y producto comercial están relacionados, pero no son exactamente lo mismo.
+
+Una página puede existir por razones SEO.
+
+Otra puede existir principalmente para mejorar la conversión y la utilidad de la miniweb.
+
+No todas las páginas deben crearse únicamente porque exista una keyword.
+
+---
+
+3. EJEMPLO DEL PRODUCTO
+
+Para:
+
+Fontanero Marbella
+
+la estructura podría ser:
+
+/fontanero/marbella/
+
+Página principal.
+
+Y:
+
+/fontanero/marbella/desatascos/
+/fontanero/marbella/24-horas/
+/fontanero/marbella/fugas/
+/fontanero/marbella/servicios/
+/fontanero/marbella/contacto/
+
+Estas páginas forman parte de la misma miniweb.
+
+La navegación debe conectar las páginas.
+
+---
+
+4. FLUJO GENERAL
 
 EVIDENCIAS
 ↓
@@ -22,694 +90,13 @@ MOTOR DE DECISIÓN
 ↓
 CREAR
 ↓
-ARQUITECTURA
+ARQUITECTURA DE MINIWEB
+↓
+MAPA DE PÁGINAS
 ↓
 DATOS
 ↓
 BLOQUES
-↓
-IA
-↓
-VALIDACIÓN
-↓
-PUBLICACIÓN
-
----
-
-2. PRINCIPIO FUNDAMENTAL
-
-Una landing debe responder a una intención concreta y aportar información útil, específica y diferenciada.
-
-Cambiar únicamente el nombre de una localidad no constituye diferenciación.
-
-La arquitectura debe permitir trabajar a escala sin convertir el sistema en una fábrica de páginas prácticamente idénticas.
-
-La arquitectura se determina antes de generar contenido.
-
-La IA no puede modificar unilateralmente la arquitectura.
-
----
-
-3. CONDICIÓN DE ENTRADA
-
-Solo se inicia la construcción cuando:
-
-decision_seo = CREAR
-
-La oportunidad debe proceder de:
-
-"proyecto/seo/matriz-oportunidades.md"
-
-y utilizar el modelo definido en:
-
-"proyecto/seo/esquema-datos.md"
-
-Como mínimo debe existir información suficiente sobre:
-
-- opportunity_id;
-- sector;
-- servicio;
-- subservicio, cuando corresponda;
-- localización;
-- intención;
-- evidencias;
-- decisión SEO;
-- arquitectura necesaria;
-- datos disponibles;
-- restricciones.
-
-Si falta información necesaria:
-
-null
-
-cuando pueda permanecer ausente.
-
-Si la ausencia impide construir correctamente la página:
-
-REVISAR
-
----
-
-4. AUTORIDAD DE LA ARQUITECTURA
-
-La arquitectura de landing determina cómo debe construirse la página.
-
-La IA no puede decidir por sí misma:
-
-- crear una página;
-- cambiar la URL;
-- cambiar el canonical;
-- cambiar el servicio;
-- cambiar la localidad;
-- añadir bloques no autorizados;
-- eliminar bloques obligatorios;
-- crear enlaces hacia páginas no autorizadas.
-
-Si durante la generación se detecta un problema arquitectónico:
-
-REVISAR
-
-La IA no debe resolverlo modificando silenciosamente la arquitectura.
-
----
-
-5. ELEMENTOS ARQUITECTÓNICOS
-
-La arquitectura define como mínimo:
-
-- "tipo_pagina"
-- "url"
-- "url_tipo"
-- "canonical"
-- "parent_url"
-- "profundidad"
-- "bloques.seleccionados"
-
-Estos elementos deben estar determinados antes de generar contenido.
-
----
-
-6. TIPOS DE PÁGINA
-
-Valores iniciales:
-
-servicio_localidad
-servicio_subservicio_localidad
-
-Ejemplos:
-
-/fontanero/marbella/
-
-/fontanero/desatascos/marbella/
-
-Los tipos adicionales deberán definirse documentalmente antes de utilizarse.
-
-No se deben crear nuevos tipos de página únicamente porque una combinación de keywords lo sugiera.
-
----
-
-7. URL
-
-La URL procede de:
-
-"proyecto/seo/arquitectura-urls.md"
-
-La URL no debe utilizarse para justificar la existencia de una página.
-
-Primero:
-
-MOTOR
-↓
-CREAR
-
-Después:
-
-ARQUITECTURA
-↓
-URL
-
-La URL debe ser coherente con:
-
-- servicio;
-- subservicio;
-- localidad;
-- tipo de página;
-- jerarquía.
-
----
-
-8. CANONICAL
-
-El canonical debe proceder de la arquitectura definida.
-
-No se genera de forma independiente por la IA.
-
-Debe representar la URL que el sistema considera canónica para esa página.
-
-No se utilizará canonical para ocultar una mala decisión de creación.
-
----
-
-9. PARENT_URL
-
-Cuando exista jerarquía, "parent_url" debe representar la relación con la página superior.
-
-Ejemplo:
-
-/fontanero/marbella/
-
-puede depender de:
-
-/fontanero/
-
-y:
-
-/fontanero/desatascos/marbella/
-
-puede depender de:
-
-/fontanero/desatascos/
-
-La relación debe proceder de la arquitectura de URLs.
-
----
-
-10. PROFUNDIDAD
-
-La profundidad representa el nivel de la página dentro de la arquitectura.
-
-No se aumenta la profundidad únicamente para crear más URLs.
-
-Debe existir una relación lógica entre:
-
-- página principal;
-- servicio;
-- subservicio;
-- localidad;
-- posibles niveles territoriales adicionales.
-
----
-
-11. ESTRUCTURA GLOBAL
-
-Una landing puede contener:
-
-1. Header
-2. Navegación
-3. Hero
-4. Contenido principal
-5. Problemas / necesidades
-6. Información local
-7. Cobertura
-8. Proceso
-9. Confianza
-10. Diferenciación
-11. FAQ
-12. Servicios relacionados
-13. Localidades relacionadas
-14. CTA
-15. Footer
-
-No todas las páginas necesitan todos los elementos.
-
-La selección depende de:
-
-- tipo de página;
-- intención;
-- datos disponibles;
-- evidencias;
-- utilidad;
-- arquitectura;
-- modelo comercial.
-
----
-
-12. SISTEMA DE BLOQUES
-
-La selección se realiza mediante:
-
-bloques.seleccionados
-
-Identificadores oficiales:
-
-- B01 HEADER
-- B02 NAVEGACIÓN
-- B03 HERO
-- B04 CONTENIDO PRINCIPAL
-- B05 CTA PRINCIPAL
-- B06 FOOTER
-- B07 SUBSERVICIO
-- B08 PROBLEMAS / NECESIDADES
-- B09 INFORMACIÓN LOCAL
-- B10 ZONAS / COBERTURA
-- B11 PROCESO
-- B12 ELEMENTOS DE CONFIANZA
-- B13 DIFERENCIACIÓN
-- B14 FAQ
-- B15 SERVICIOS RELACIONADOS
-- B16 LOCALIDADES RELACIONADAS
-- B17 DATOS ESTRUCTURADOS
-- B18 TESTIMONIOS
-- B19 CASOS / EJEMPLOS
-- B20 GALERÍA
-- B21 PRECIO / TARIFAS
-- B22 HORARIOS
-- B23 MAPA / UBICACIÓN
-
-La definición y reglas de los bloques están en:
-
-"proyecto/seo/sistema-bloques.md"
-
-No se deben crear identificadores paralelos.
-
----
-
-13. BLOQUES OBLIGATORIOS
-
-Una landing funcional debe poder representar como mínimo:
-
-- identidad;
-- intención;
-- contenido principal;
-- navegación;
-- CTA;
-- footer.
-
-La selección definitiva de bloques debe quedar registrada antes de generar el contenido.
-
-No se debe inventar contenido para completar un bloque.
-
----
-
-14. BLOQUES CONDICIONALES
-
-Se utilizan únicamente cuando existen datos suficientes y aportan valor real.
-
-Ejemplos:
-
-- B07 Subservicio
-- B08 Problemas / necesidades
-- B09 Información local
-- B10 Zonas / cobertura
-- B11 Proceso
-- B12 Elementos de confianza
-- B13 Diferenciación
-- B14 FAQ
-- B15 Servicios relacionados
-- B16 Localidades relacionadas
-- B18 Testimonios
-- B19 Casos / ejemplos
-- B20 Galería
-- B21 Precio / tarifas
-- B22 Horarios
-- B23 Mapa / ubicación
-
----
-
-15. REGLA DE BLOQUES
-
-Un bloque no se añade porque exista en la biblioteca.
-
-Debe existir una razón para utilizarlo.
-
-Ejemplo:
-
-B18 TESTIMONIOS solo debe utilizarse si existen testimonios reales y verificables.
-
-B21 PRECIO solo debe utilizarse si existen precios o información comercial válida.
-
-B22 HORARIOS solo debe utilizarse si existen horarios reales.
-
-B23 MAPA solo debe utilizarse cuando la ubicación tenga sentido y exista información válida.
-
----
-
-16. HERO
-
-Debe identificar inmediatamente:
-
-- servicio;
-- subservicio cuando corresponda;
-- localidad;
-- intención;
-- acción principal.
-
-Puede contener:
-
-- H1;
-- subtítulo;
-- CTA.
-
-No puede incluir afirmaciones comerciales no verificadas.
-
----
-
-17. H1
-
-Cada landing indexable tendrá un único H1.
-
-Debe corresponder con:
-
-- servicio;
-- subservicio cuando exista;
-- localidad;
-- intención.
-
-Ejemplos:
-
-Fontanero en Marbella
-
-Desatascos en Marbella
-
-El H1 no debe utilizarse para crear una falsa diferenciación entre páginas.
-
----
-
-18. CONTENIDO PRINCIPAL
-
-Debe explicar la necesidad principal del usuario.
-
-Puede incluir:
-
-- servicio;
-- alcance;
-- problemas;
-- situaciones habituales;
-- información útil;
-- proceso;
-- contexto específico.
-
-No debe utilizarse para rellenar longitud artificialmente.
-
----
-
-19. INFORMACIÓN LOCAL
-
-Solo se incorpora información local respaldada por evidencias.
-
-Puede incluir:
-
-- zonas;
-- barrios;
-- urbanizaciones;
-- características relevantes;
-- tipos de vivienda;
-- necesidades locales;
-- cobertura;
-- contexto territorial.
-
-El nombre del municipio por sí solo no constituye contenido local.
-
-La información local debe aportar utilidad real.
-
----
-
-20. COBERTURA
-
-Solo se incluyen zonas o localidades cuando:
-
-- la cobertura esté confirmada;
-- exista una fuente válida;
-- o exista una justificación documental suficiente.
-
-No se crean listas masivas de localidades para aumentar artificialmente la relevancia SEO.
-
----
-
-21. PROCESO
-
-Puede explicar el proceso real del servicio.
-
-No se inventan:
-
-- procedimientos comerciales;
-- tiempos;
-- garantías;
-- disponibilidad;
-- condiciones.
-
-Si el proceso no está documentado:
-
-REVISAR
-
-o se omite el bloque.
-
----
-
-22. CONFIANZA
-
-Solo se utilizan elementos verificables:
-
-- experiencia;
-- certificaciones;
-- garantías;
-- horarios;
-- cobertura;
-- reseñas;
-- datos comerciales.
-
-Nunca se inventan señales de confianza.
-
----
-
-23. DIFERENCIACIÓN
-
-Una página debe tener una razón real para existir.
-
-Puede proceder de:
-
-- intención específica;
-- servicio;
-- subservicio;
-- problema;
-- contexto local;
-- tipo de cliente;
-- cobertura;
-- información comercial;
-- evidencias;
-- características reales del mercado.
-
-Cambiar únicamente la localidad no es diferenciación.
-
-La diferenciación debe estar respaldada por los datos de la oportunidad.
-
----
-
-24. FAQ
-
-Las preguntas deben proceder de:
-
-- intención;
-- investigación;
-- conocimiento válido del servicio;
-- dudas reales del usuario.
-
-No deben generarse únicamente para introducir keywords.
-
-Las respuestas deben ser verificables.
-
----
-
-25. CTA
-
-Debe corresponder con el modelo comercial disponible.
-
-Ejemplos:
-
-- llamar;
-- WhatsApp;
-- solicitar presupuesto;
-- pedir cita;
-- contactar.
-
-No se inventan:
-
-- teléfonos;
-- WhatsApp;
-- disponibilidad;
-- tiempos de respuesta;
-- precios.
-
----
-
-26. NAVEGACIÓN
-
-Solo puede enlazar a URLs autorizadas por la arquitectura.
-
-Puede incluir:
-
-- servicios;
-- localidades;
-- páginas superiores;
-- contacto;
-- páginas relacionadas autorizadas.
-
-No se debe enlazar indiscriminadamente a miles de páginas.
-
----
-
-27. ENLAZADO INTERNO
-
-Los enlaces deben proceder de la arquitectura existente.
-
-No se crean enlaces hacia:
-
-- URLs inexistentes;
-- páginas no autorizadas;
-- páginas generadas únicamente para crear enlaces;
-- páginas descartadas;
-- oportunidades que todavía estén en "INVESTIGAR".
-
----
-
-28. SEO ON-PAGE
-
-La landing debe poder generar:
-
-- title;
-- meta description;
-- H1;
-- headings;
-- canonical;
-- enlaces internos;
-- datos estructurados cuando proceda;
-- ALT de imágenes.
-
-Estos elementos se generan a partir de la arquitectura y los datos disponibles.
-
-La IA trabaja dentro de las restricciones recibidas.
-
----
-
-29. DATOS
-
-La arquitectura utiliza como fuente:
-
-"proyecto/seo/esquema-datos.md"
-
-No se deben crear estructuras paralelas.
-
-Los datos ausentes se representan mediante:
-
-null
-
-o provocan:
-
-REVISAR
-
-cuando sean necesarios para completar correctamente la página.
-
----
-
-30. EVIDENCIA
-
-Las afirmaciones importantes de la landing deben poder relacionarse con los datos y evidencias de la oportunidad.
-
-La IA no debe presentar como hecho una información que el sistema haya marcado como:
-
-HYPOTHESIS
-
-o:
-
-UNKNOWN
-
----
-
-31. NO INVENCIÓN
-
-Está prohibido inventar:
-
-- teléfonos;
-- WhatsApp;
-- emails;
-- direcciones;
-- precios;
-- horarios;
-- disponibilidad;
-- empresas;
-- técnicos;
-- experiencia;
-- certificaciones;
-- garantías;
-- reseñas;
-- testimonios;
-- zonas;
-- cobertura;
-- casos;
-- imágenes;
-- URLs;
-- datos territoriales.
-
-La ausencia de información no se soluciona inventándola.
-
----
-
-32. RELACIÓN CON IA
-
-La IA recibe:
-
-- identidad;
-- servicio;
-- subservicio;
-- localidad;
-- intención;
-- URL;
-- canonical;
-- parent_url;
-- arquitectura;
-- evidencias;
-- datos;
-- bloques;
-- restricciones.
-
-La IA genera contenido.
-
-La IA no decide:
-
-- si la página debe existir;
-- URL;
-- canonical;
-- localidad;
-- servicio;
-- arquitectura;
-- bloques no autorizados;
-- publicación.
-
----
-
-33. RELACIÓN CON N8N
-
-N8N podrá automatizar posteriormente:
-
-OPORTUNIDAD VALIDADA
-↓
-PREPARAR DATOS
-↓
-ARQUITECTURA
-↓
-SELECCIONAR BLOQUES
-↓
-PREPARAR CONTEXTO
 ↓
 IA
 ↓
@@ -719,120 +106,347 @@ WORDPRESS
 ↓
 PUBLICACIÓN
 
-N8N no debe saltarse:
+---
 
-- la decisión SEO;
-- la arquitectura;
-- la validación.
+5. CONDICIÓN DE ENTRADA
 
-Una oportunidad con:
+La miniweb solo se construye cuando la oportunidad principal ha obtenido:
 
-INVESTIGAR
+decision_seo = CREAR
 
-o:
+La oportunidad debe proceder de:
 
-NO CREAR
+"proyecto/seo/matriz-oportunidades.md"
 
-no debe publicarse automáticamente.
+y utilizar:
+
+"proyecto/seo/esquema-datos.md"
 
 ---
 
-34. VALIDACIÓN
+6. MINIWEB Y PÁGINA PRINCIPAL
 
-Antes de publicar se comprobará:
+La miniweb tiene una página principal.
 
-- identidad correcta;
-- servicio correcto;
-- subservicio correcto;
-- localidad correcta;
-- URL correcta;
-- canonical correcto;
-- parent_url correcto cuando corresponda;
-- intención correcta;
-- contenido específico;
-- datos respaldados;
-- bloques correctos;
-- ausencia de invenciones;
-- ausencia de duplicación evidente;
-- enlaces válidos;
-- CTA válido;
-- estructura correcta.
-
-Si una comprobación fundamental falla:
-
-NO PUBLICAR
-
-y:
-
-REVISAR
-
----
-
-35. CONTROL DE DUPLICACIÓN
-
-Antes de publicar una landing se debe comprobar que no sea sustancialmente equivalente a otra página existente.
-
-Se compararán, cuando corresponda:
-
-- intención;
-- servicio;
-- subservicio;
-- información;
-- estructura;
-- propuesta;
-- cobertura;
-- contenido local;
-- finalidad.
-
-Cambiar únicamente:
-
-- ciudad;
-- keyword;
-- título;
-- URL;
-
-no convierte una página en diferente.
-
----
-
-36. ESCALABILIDAD
-
-La misma arquitectura debe permitir generar:
-
-- 1 página;
-- 10 páginas;
-- 100 páginas;
-- 1.000 páginas;
-
-sin cambiar las reglas fundamentales.
-
-La escalabilidad nunca justifica reducir:
-
-- calidad;
-- veracidad;
-- utilidad;
-- diferenciación;
-- validación.
-
-El sistema debe poder detener automáticamente una página cuando no exista información suficiente.
-
----
-
-37. EJEMPLO
-
-Oportunidad:
-
-fontanero + Marbella
-
-Decisión:
-
-CREAR
-
-URL:
+Ejemplo:
 
 /fontanero/marbella/
 
-Estructura posible:
+Esta página representa:
+
+Fontanero en Marbella
+
+Su función es presentar:
+
+- servicio;
+- localidad;
+- propuesta;
+- principales necesidades;
+- servicios disponibles;
+- información relevante;
+- llamadas a la acción.
+
+La página principal no sustituye a las subpáginas.
+
+---
+
+7. MAPA DE PÁGINAS
+
+Antes de generar contenido se debe crear un mapa de páginas.
+
+Ejemplo:
+
+MINIWEB
+│
+├── INICIO
+│   └── /fontanero/marbella/
+│
+├── SERVICIOS
+│   └── /fontanero/marbella/servicios/
+│
+├── DESATASCOS
+│   └── /fontanero/marbella/desatascos/
+│
+├── 24 HORAS
+│   └── /fontanero/marbella/24-horas/
+│
+├── FUGAS
+│   └── /fontanero/marbella/fugas/
+│
+└── CONTACTO
+    └── /fontanero/marbella/contacto/
+
+Este mapa no debe generarse automáticamente únicamente mediante permutación de keywords.
+
+Debe existir una justificación para cada página.
+
+---
+
+8. TIPOS DE PÁGINA
+
+Los tipos iniciales son:
+
+inicio_local
+servicio_local
+subservicio_local
+problema_local
+pagina_comercial
+contacto_local
+informativa_local
+territorial_local
+
+No todos tienen que utilizarse en todas las miniwebs.
+
+Los nuevos tipos deberán documentarse antes de utilizarse.
+
+---
+
+9. PÁGINAS SEO Y PÁGINAS COMERCIALES
+
+La miniweb puede contener dos grandes categorías:
+
+Páginas SEO
+
+Diseñadas para responder a una intención de búsqueda concreta.
+
+Ejemplos:
+
+/fontanero/marbella/desatascos/
+/fontanero/marbella/fugas/
+
+Páginas comerciales
+
+Diseñadas principalmente para facilitar conversión, confianza o información del negocio.
+
+Ejemplos:
+
+/fontanero/marbella/contacto/
+/fontanero/marbella/sobre-nosotros/
+
+Una página comercial no necesita necesariamente tener una keyword específica para ser útil.
+
+---
+
+10. PÁGINAS MÍNIMAS
+
+Una miniweb funcional debe poder representar como mínimo:
+
+INICIO
+SERVICIOS
+CONTACTO
+
+Esto constituye el núcleo comercial.
+
+Las demás páginas se añaden cuando estén justificadas.
+
+---
+
+11. PÁGINAS CONDICIONALES
+
+Pueden añadirse:
+
+- desatascos;
+- 24 horas;
+- fugas;
+- tuberías;
+- calentadores;
+- reformas;
+- mantenimiento;
+- zonas de cobertura;
+- sobre nosotros;
+- preguntas frecuentes;
+- casos;
+- tarifas;
+- otras necesidades.
+
+La existencia de una página dependerá de:
+
+- intención;
+- utilidad;
+- datos;
+- evidencia;
+- modelo comercial;
+- diferenciación.
+
+---
+
+12. REGLA ESPECIAL PARA PÁGINAS DE SERVICIO
+
+Una página de servicio puede convertirse en una landing SEO independiente cuando exista evidencia suficiente.
+
+Ejemplo:
+
+/fontanero/marbella/desatascos/
+
+Puede existir como:
+
+página SEO + página comercial
+
+si ambas funciones están justificadas.
+
+---
+
+13. PÁGINA "24 HORAS"
+
+Una página como:
+
+/fontanero/marbella/24-horas/
+
+solo debe crearse si existe una oferta o intención real relacionada con servicio 24 horas.
+
+No debe afirmarse:
+
+- disponibilidad 24 horas;
+- atención nocturna;
+- atención inmediata;
+- tiempo de respuesta concreto;
+
+si no existe evidencia.
+
+El sistema nunca debe crear una promesa comercial únicamente porque la keyword sea atractiva.
+
+---
+
+14. PÁGINA DE CONTACTO
+
+La página de contacto pertenece a la miniweb aunque no exista una oportunidad SEO independiente.
+
+Puede contener:
+
+- formulario;
+- teléfono;
+- WhatsApp;
+- email;
+- ubicación;
+- horarios;
+- instrucciones de contacto.
+
+Solo se incorporan datos que estén disponibles y verificados.
+
+Los datos desconocidos permanecen:
+
+null
+
+---
+
+15. PÁGINA DE SERVICIOS
+
+La página:
+
+/fontanero/marbella/servicios/
+
+puede funcionar como índice comercial de los servicios.
+
+Puede enlazar hacia:
+
+- desatascos;
+- fugas;
+- tuberías;
+- instalaciones;
+- otros servicios autorizados.
+
+No debe crear enlaces hacia páginas inexistentes.
+
+---
+
+16. NAVEGACIÓN
+
+La miniweb tendrá un menú coherente.
+
+Ejemplo:
+
+INICIO
+SERVICIOS
+24 HORAS
+DESATASCOS
+FUGAS
+CONTACTO
+
+El menú no tiene que mostrar necesariamente todas las páginas existentes.
+
+La selección dependerá de:
+
+- importancia;
+- intención;
+- conversión;
+- experiencia de usuario;
+- jerarquía.
+
+---
+
+17. JERARQUÍA
+
+La página principal será el centro de la miniweb.
+
+Ejemplo:
+
+/fontanero/marbella/
+
+Las páginas secundarias dependerán de ella conceptualmente.
+
+Ejemplo:
+
+/fontanero/marbella/desatascos/
+
+/fontanero/marbella/fugas/
+
+/fontanero/marbella/contacto/
+
+La jerarquía debe ser sencilla y comprensible.
+
+---
+
+18. ENLAZADO INTERNO
+
+La miniweb debe tener enlaces internos entre páginas relacionadas.
+
+Ejemplo:
+
+INICIO
+↓
+SERVICIOS
+↓
+DESATASCOS
+
+Y:
+
+DESATASCOS
+↓
+CONTACTO
+
+También puede existir:
+
+INICIO
+↓
+DESATASCOS
+↓
+FUGAS
+
+cuando la relación tenga sentido.
+
+No se crean enlaces únicamente para aumentar el número de enlaces.
+
+---
+
+19. BLOQUES
+
+Cada página utiliza los bloques oficiales definidos en:
+
+"proyecto/seo/sistema-bloques.md"
+
+La arquitectura debe determinar:
+
+bloques.seleccionados
+
+antes de generar el contenido.
+
+No se deben crear identificadores nuevos dentro de esta arquitectura.
+
+---
+
+20. ESTRUCTURA DE LA PÁGINA PRINCIPAL
+
+Una estructura posible:
 
 B01 HEADER
 B02 NAVEGACIÓN
@@ -840,31 +454,23 @@ B03 HERO
 B04 CONTENIDO PRINCIPAL
 B08 PROBLEMAS / NECESIDADES
 B09 INFORMACIÓN LOCAL
-B11 PROCESO
+B15 SERVICIOS RELACIONADOS
 B13 DIFERENCIACIÓN
 B14 FAQ
-B05 CTA PRINCIPAL
+B05 CTA
 B06 FOOTER
 
-Los bloques B08, B09, B11, B13 y B14 solo se utilizan si los datos y la intención los justifican.
+La selección definitiva dependerá de los datos.
 
 ---
 
-38. EJEMPLO DE SUBSERVICIO
+21. ESTRUCTURA DE UNA PÁGINA DE SERVICIO
 
-Oportunidad:
+Ejemplo:
 
-fontanero + desatascos + Marbella
+Desatascos en Marbella
 
-Decisión:
-
-CREAR
-
-URL:
-
-/fontanero/desatascos/marbella/
-
-La arquitectura puede incluir:
+Puede contener:
 
 B01 HEADER
 B02 NAVEGACIÓN
@@ -873,138 +479,496 @@ B07 SUBSERVICIO
 B04 CONTENIDO PRINCIPAL
 B08 PROBLEMAS / NECESIDADES
 B09 INFORMACIÓN LOCAL
-B10 ZONAS / COBERTURA
 B11 PROCESO
 B13 DIFERENCIACIÓN
 B14 FAQ
-B05 CTA PRINCIPAL
+B05 CTA
 B06 FOOTER
 
-La selección definitiva dependerá de los datos reales disponibles.
+No todos los bloques son obligatorios.
 
 ---
 
-39. REGLA CONTRA LA PUBLICACIÓN MASIVA
+22. ESTRUCTURA DE CONTACTO
 
-El sistema nunca debe funcionar como:
+Puede contener:
 
-KEYWORD
-↓
-PLANTILLA
-↓
-CAMBIO DE LOCALIDAD
-↓
-IA
-↓
-PUBLICACIÓN MASIVA
+B01 HEADER
+B02 NAVEGACIÓN
+B03 HERO
+B04 CONTENIDO PRINCIPAL
+B22 HORARIOS
+B23 MAPA / UBICACIÓN
+B05 CTA
+B06 FOOTER
 
-El flujo correcto es:
+Solo se muestran los elementos para los que existan datos.
 
-EVIDENCIA
-↓
+---
+
+23. DATOS
+
+Todas las páginas utilizarán el modelo definido en:
+
+"proyecto/seo/esquema-datos.md"
+
+No se crean estructuras paralelas.
+
+Cada página debe poder identificar:
+
+- miniweb;
+- página;
+- servicio;
+- subservicio;
+- localidad;
+- tipo de página;
+- intención;
+- evidencias;
+- datos;
+- bloques;
+- restricciones.
+
+---
+
+24. IDENTIDAD DE LA MINIWEB
+
+La miniweb debe disponer de una identidad común.
+
+Ejemplo:
+
+miniweb_id = FONTANERO-MARBELLA
+
+Todas las páginas pertenecen a esa misma miniweb.
+
+Esto permitirá posteriormente:
+
+- generar el menú;
+- mantener elementos comunes;
+- actualizar datos;
+- modificar el diseño;
+- conectar WordPress;
+- automatizar la miniweb completa.
+
+---
+
+25. DATOS COMPARTIDOS
+
+Algunos datos pueden ser comunes a toda la miniweb.
+
+Ejemplos:
+
+- teléfono;
+- WhatsApp;
+- email;
+- nombre comercial;
+- horarios;
+- dirección;
+- cobertura;
+- colores;
+- logo.
+
+Estos datos no deben duplicarse manualmente en cada página si el sistema puede gestionarlos como datos compartidos.
+
+Si cambia un dato común, el sistema debe poder actualizar las páginas que lo utilizan.
+
+---
+
+26. DATOS ESPECÍFICOS
+
+Otros datos pertenecen únicamente a una página.
+
+Ejemplo:
+
+Página:
+
+/fontanero/marbella/desatascos/
+
+Puede tener información específica sobre:
+
+- problemas de atascos;
+- tipos de desagüe;
+- situaciones habituales;
+- preguntas relacionadas.
+
+Estos datos no deben contaminar otras páginas sin justificación.
+
+---
+
+27. IA
+
+La IA recibe:
+
+- identidad de la miniweb;
+- identidad de la página;
+- servicio;
+- subservicio;
+- localidad;
+- intención;
+- arquitectura;
+- datos compartidos;
+- datos específicos;
+- evidencias;
+- bloques;
+- restricciones.
+
+La IA genera el contenido.
+
+No decide la estructura de la miniweb.
+
+---
+
+28. N8N
+
+N8N podrá gestionar posteriormente el flujo completo:
+
 OPORTUNIDAD
 ↓
-MOTOR
+CREAR MINIWEB
 ↓
-CREAR
+CREAR MAPA DE PÁGINAS
 ↓
-ARQUITECTURA
+PREPARAR DATOS
 ↓
-DATOS
+ASIGNAR BLOQUES
 ↓
-BLOQUES
+GENERAR CONTEXTO
 ↓
 IA
 ↓
 VALIDACIÓN
 ↓
+WORDPRESS
+↓
+MENÚ
+↓
+PÁGINAS
+↓
+ENLACES
+↓
 PUBLICACIÓN
+
+La automatización debe respetar todas las reglas anteriores.
 
 ---
 
-40. RELACIÓN CON OTROS DOCUMENTOS
+29. WORDPRESS
 
-Este documento define la arquitectura funcional de la landing.
+WordPress será la capa de construcción y publicación.
 
-No define:
+La miniweb deberá poder generarse como:
 
-- el estado general del proyecto;
-- el roadmap;
-- el modelo de datos completo;
-- la implementación técnica de WordPress;
-- la implementación técnica de N8N;
-- el contenido final de cada página.
+- página principal;
+- páginas secundarias;
+- menú;
+- navegación;
+- enlaces internos;
+- bloques;
+- datos compartidos;
+- elementos comerciales.
 
-Las referencias principales son:
+La implementación concreta de WordPress se documentará en la documentación técnica correspondiente.
 
-"proyecto/roadmap-proyecto.md"
+---
 
-"proyecto/seo/esquema-datos.md"
+30. VALIDACIÓN DE LA MINIWEB
+
+Antes de publicar se debe validar:
+
+Miniweb
+
+- identidad;
+- servicio;
+- localidad;
+- estructura;
+- navegación;
+- menú.
+
+Páginas
+
+- URL;
+- canonical;
+- tipo;
+- intención;
+- contenido;
+- bloques.
+
+Datos
+
+- datos reales;
+- ausencia de invenciones;
+- datos compartidos coherentes.
+
+SEO
+
+- intención;
+- diferenciación;
+- enlaces;
+- arquitectura;
+- ausencia de duplicación.
+
+Comercial
+
+- CTA;
+- contacto;
+- información del negocio;
+- coherencia de la propuesta.
+
+Si existe un fallo importante:
+
+NO PUBLICAR
+
+---
+
+31. DUPLICACIÓN ENTRE MINIWEBS
+
+El sistema debe evitar que dos miniwebs sean simplemente copias cambiando la localidad.
+
+La diferenciación debe poder proceder de:
+
+- mercado local;
+- necesidades;
+- servicios;
+- información territorial;
+- datos del negocio;
+- intención;
+- evidencias.
+
+La automatización no constituye diferenciación.
+
+---
+
+32. ESCALABILIDAD
+
+El sistema debe permitir crear:
+
+1 MINIWEB
+↓
+10 MINIWEBS
+↓
+100 MINIWEBS
+↓
+1.000 MINIWEBS
+
+sin cambiar la metodología fundamental.
+
+Cada miniweb tendrá:
+
+- identidad;
+- mapa de páginas;
+- datos;
+- bloques;
+- contenido;
+- navegación;
+- validación.
+
+La escala no debe eliminar la revisión ni la calidad.
+
+---
+
+33. EJEMPLO COMPLETO
+
+Miniweb:
+
+Fontanero Marbella
+
+Página principal:
+
+/fontanero/marbella/
+
+Páginas posibles:
+
+/fontanero/marbella/servicios/
+/fontanero/marbella/desatascos/
+/fontanero/marbella/24-horas/
+/fontanero/marbella/fugas/
+/fontanero/marbella/contacto/
+
+Menú:
+
+Inicio
+Servicios
+Desatascos
+24 horas
+Fugas
+Contacto
+
+La existencia definitiva de cada página debe validarse.
+
+---
+
+34. REGLA DE NO INVENCIÓN
+
+Está prohibido inventar:
+
+- empresas;
+- profesionales;
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
+- disponibilidad;
+- cobertura;
+- garantías;
+- certificaciones;
+- experiencia;
+- testimonios;
+- reseñas;
+- casos;
+- fotografías;
+- datos territoriales;
+- URLs.
+
+Si la miniweb todavía no está alquilada a un profesional concreto, no debe fingirse que existe una empresa real detrás de ella.
+
+La web de prueba puede utilizar contenido neutral.
+
+---
+
+35. RELACIÓN CON EL MOTOR DE DECISIÓN
+
+El motor decide si la oportunidad principal merece convertirse en una página o activo independiente.
+
+Archivo:
 
 "proyecto/seo/motor-decision.md"
 
+Cuando la decisión sea:
+
+CREAR
+
+la arquitectura determina la miniweb.
+
+El motor no debe utilizarse para inventar páginas secundarias.
+
+Las páginas secundarias deberán justificarse por su función:
+
+- SEO;
+- comercial;
+- navegación;
+- conversión;
+- información;
+- estructura del producto.
+
+---
+
+36. RELACIÓN CON LA MATRIZ DE OPORTUNIDADES
+
+La matriz identifica oportunidades SEO.
+
+Archivo:
+
 "proyecto/seo/matriz-oportunidades.md"
+
+Una miniweb puede contener:
+
+- una oportunidad principal;
+- varias oportunidades SEO secundarias;
+- páginas comerciales no asociadas directamente a una keyword.
+
+Por tanto:
+
+OPORTUNIDADES SEO
++
+ESTRUCTURA COMERCIAL
+=
+MINIWEB
+
+---
+
+37. RELACIÓN CON ARQUITECTURA DE URL
+
+La estructura concreta de URLs debe respetar:
 
 "proyecto/seo/arquitectura-urls.md"
 
-"proyecto/seo/sistema-bloques.md"
+La arquitectura de URLs define la nomenclatura y jerarquía.
+
+Este documento define la función de cada página dentro de la miniweb.
+
+No deben existir contradicciones entre ambos documentos.
 
 ---
 
-41. CONTROL DE VERSIONES
+38. RELACIÓN CON SISTEMA DE BLOQUES
 
-Versión: 2.1
+La implementación visual de las páginas utilizará:
+
+"proyecto/seo/sistema-bloques.md"
+
+Este documento determina:
+
+- qué páginas pueden existir;
+- qué función tiene cada una;
+- qué bloques necesita cada página.
+
+El sistema de bloques determina cómo se construye visualmente cada componente.
+
+---
+
+39. REGLA FINAL
+
+El producto no es:
+
+UNA KEYWORD
+↓
+UNA PÁGINA
+
+El producto es:
+
+SERVICIO + LOCALIDAD
+↓
+MINIWEB LOCAL
+↓
+PÁGINA PRINCIPAL
+↓
+PÁGINAS DE SERVICIO
+↓
+PÁGINAS COMERCIALES
+↓
+CONTACTO
+↓
+MENÚ
+↓
+ENLAZADO INTERNO
+↓
+CONTENIDO
+↓
+VALIDACIÓN
+↓
+WORDPRESS
+
+La miniweb debe poder funcionar como un sitio web coherente incluso antes de ser alquilada a un profesional concreto.
+
+---
+
+40. CONTROL DE VERSIONES
+
+Versión: 3.0
 
 Fecha: 2026-08-24
 
-Cambios
+Motivo
 
-- Consolidación con la matriz de oportunidades v2.0.
-- Refuerzo de la condición "decision_seo = CREAR".
-- Clarificación de la autoridad de la arquitectura.
-- Integración explícita de "parent_url".
-- Integración explícita de "bloques.seleccionados".
-- Refuerzo de la trazabilidad entre oportunidad, evidencias y landing.
-- Refuerzo de las reglas de no invención.
-- Incorporación de control de duplicación antes de publicación.
-- Clarificación de la relación entre IA, N8N y WordPress.
-- Refuerzo de la regla de no publicación cuando existan datos insuficientes.
-- Eliminación de posibles interpretaciones que permitan a la IA modificar la arquitectura.
+La primera prueba real de “Fontanero en Marbella” mostró que la arquitectura anterior estaba demasiado centrada en una única landing SEO y no representaba completamente el producto previsto.
 
----
+Cambios principales
 
-42. REGLA FINAL
-
-La arquitectura responde:
-
-¿CÓMO DEBE ESTRUCTURARSE ESTA PÁGINA?
-
-El motor responde:
-
-¿DEBE EXISTIR ESTA PÁGINA?
-
-La matriz responde:
-
-¿QUÉ OPORTUNIDAD ESTAMOS EVALUANDO?
-
-El registro responde:
-
-¿QUÉ DECISIÓN SE TOMÓ Y POR QUÉ?
-
-La IA responde:
-
-¿CÓMO GENERAMOS EL CONTENIDO?
-
-N8N responde:
-
-¿CÓMO AUTOMATIZAMOS EL PROCESO?
-
-WordPress responde:
-
-¿DÓNDE SE CONSTRUYE Y PUBLICA?
-
-Ninguna capa debe saltarse a las anteriores.
+- Se transforma el concepto de landing individual en miniweb local.
+- Se incorpora página principal y subpáginas.
+- Se incorpora mapa de páginas.
+- Se incorpora menú.
+- Se incorporan páginas SEO y páginas comerciales.
+- Se incorporan páginas de servicio.
+- Se incorpora página de contacto.
+- Se incorpora identidad de miniweb.
+- Se incorporan datos compartidos y datos específicos.
+- Se define la relación entre miniweb, SEO y producto comercial.
+- Se prepara la arquitectura para posterior automatización mediante N8N.
+- Se prepara la estructura para construcción mediante WordPress.
+- Se mantiene la separación entre decisión SEO, arquitectura, datos, bloques, IA y publicación.
 
 ---
 
-FIN
+FIN DE ARQUITECTURA DE MINIWEB LOCAL SEO
