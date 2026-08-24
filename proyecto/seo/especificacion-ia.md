@@ -1,101 +1,103 @@
 ESPECIFICACIÓN DE IA
 
+Versión: 2.0
+Estado: ACTIVO
+Función: definir el comportamiento de la IA dentro del sistema SEO automatizado.
+
+---
+
 1. FUNCIÓN
 
-La inteligencia artificial es el motor de generación de contenido del sistema.
+La IA es el motor de generación de contenido.
 
-Su función es transformar una oportunidad SEO previamente definida en una salida estructurada que pueda ser procesada automáticamente por N8N.
+Transforma una oportunidad SEO previamente definida en una salida estructurada compatible con el Contrato de salida IA → N8N.
 
 La IA:
 
-- no decide la estrategia SEO;
-- no decide qué URLs deben existir;
-- no modifica la arquitectura recibida;
-- no inventa datos;
-- no publica directamente en WordPress;
-- no sustituye al motor de decisión;
-- no sustituye a N8N.
+- genera contenido;
+- respeta la arquitectura recibida;
+- utiliza únicamente datos disponibles;
+- utiliza únicamente bloques autorizados;
+- devuelve JSON compatible con el contrato.
 
-La IA genera contenido y estructura dentro de las reglas recibidas.
+La IA no decide la estrategia SEO, las URLs, la arquitectura ni la publicación.
 
 ---
 
 2. FLUJO
 
-El flujo general es:
-
-DATOS
+EVIDENCIA
 ↓
 MOTOR DE DECISIÓN
 ↓
 ARQUITECTURA SEO
 ↓
-ARQUITECTURA DE LANDING
+ARQUITECTURA URL
 ↓
-SISTEMA DE BLOQUES
+ARQUITECTURA LANDING
+↓
+DATOS
+↓
+BLOQUES AUTORIZADOS
 ↓
 IA
 ↓
-CONTRATO DE SALIDA
+CONTRATO JSON 2.0
 ↓
-VALIDACIÓN
+VALIDADOR
 ↓
 N8N
 ↓
 WORDPRESS
 
-La IA entra después de que la oportunidad haya sido definida.
-
 ---
 
 3. DOCUMENTOS DE REFERENCIA
 
-La IA debe trabajar respetando los documentos maestros del sistema.
+La IA debe respetar:
 
-Documentos principales:
+- "proyecto/seo/esquema-datos.md"
+- "proyecto/seo/matriz-servicios.md"
+- "proyecto/seo/matriz-localidades.md"
+- "proyecto/seo/arquitectura-seo.md"
+- "proyecto/seo/arquitectura-urls.md"
+- "proyecto/seo/arquitectura-landing.md"
+- "proyecto/seo/sistema-bloques.md"
+- "proyecto/seo/contrato-salida-ia.md"
 
-"proyecto/seo/esquema-datos.md"
-
-"proyecto/seo/matriz-servicios.md"
-
-"proyecto/seo/matriz-localidades.md"
-
-"proyecto/seo/arquitectura-urls.md"
-
-"proyecto/seo/arquitectura-landing.md"
-
-"proyecto/seo/sistema-bloques.md"
-
-"proyecto/seo/contrato-salida-ia.md"
-
-Cuando exista una contradicción, prevalecen las reglas de autoridad establecidas en el sistema.
+El documento correspondiente es la autoridad de cada ámbito.
 
 ---
 
-4. ENTRADA DE LA IA
+4. ENTRADA
 
-La IA recibirá una oportunidad estructurada.
+La IA recibe una oportunidad estructurada.
 
 Como mínimo:
 
 {
   "opportunity_id": "",
-  "sector": "",
-  "servicio": "",
-  "subservicio": null,
-  "municipio": "",
-  "provincia": "",
+  "identity": {
+    "sector": "",
+    "service": "",
+    "subservice": null,
+    "municipality": "",
+    "province": "",
+    "country": ""
+  },
+  "architecture": {
+    "page_type": "",
+    "url": "",
+    "canonical": "",
+    "authorized_blocks": []
+  },
   "decision_seo": "",
-  "tipo_pagina": "",
-  "url": "",
-  "canonical": "",
-  "bloques_autorizados": [],
-  "restricciones": []
+  "restrictions": []
 }
 
-Estos datos no son una sugerencia.
+Estos datos constituyen la especificación de generación.
 
-Son la especificación que la IA debe respetar.
+No son sugerencias.
 
 ---
 
@@ -103,412 +105,559 @@ Son la especificación que la IA debe respetar.
 
 La IA no puede modificar:
 
-- opportunity_id
-- sector
-- servicio
-- subservicio
-- municipio
-- provincia
-- decision_seo
-- tipo_pagina
-- url
-- canonical
-- bloques_autorizados
-- restricciones
+- "opportunity_id"
+- "sector"
+- "service"
+- "subservice"
+- "municipality"
+- "province"
+- "country"
+- "decision_seo"
+- "page_type"
+- "url"
+- "canonical"
+- "authorized_blocks"
+- "restrictions"
 
-Si detecta una contradicción:
-
-"status = REVIEW"
-
-y debe registrar la incidencia.
-
-"REVIEW" es un estado técnico del contrato IA → N8N.
-
-No debe confundirse con "decision_seo".
+Si detecta una contradicción, debe registrarla y utilizar "REVIEW" cuando corresponda.
 
 ---
 
-6. VERSIÓN DEL CONTRATO
+6. DECISIÓN SEO
 
-La versión vigente del contrato de salida IA → N8N es:
-
-"schema_version = "1.1""
-
-La especificación de IA debe mantenerse compatible con:
-
-"proyecto/seo/contrato-salida-ia.md"
-
-N8N debe validar que la salida recibida utiliza una versión de contrato compatible antes de procesarla.
-
-Si la versión no es compatible:
-
-"status = ERROR"
-
----
-
-7. ESTADOS TÉCNICOS DE LA SALIDA IA
-
-El campo "status" pertenece al contrato técnico IA → N8N.
-
-Valores permitidos:
-
-- "READY"
-- "REVIEW"
-- "ERROR"
-
-READY
-
-La salida es válida y puede continuar hacia la siguiente fase.
-
-REVIEW
-
-Existe una incidencia que requiere revisión antes de continuar.
-
-ERROR
-
-No se ha podido generar una salida válida.
-
-Estos estados son independientes de "decision_seo".
-
----
-
-8. DECISIÓN SEO
-
-La IA no determina la decisión SEO.
-
-Las decisiones SEO válidas son:
+Valores:
 
 - "CREAR"
 - "AGRUPAR"
 - "INVESTIGAR"
-- "NO CREAR"
+- "NO_CREAR"
 
-La IA únicamente recibe "decision_seo" como dato protegido.
+La IA no decide este campo.
 
 Si:
 
 "decision_seo != CREAR"
 
-la IA no debe generar una landing lista para publicación.
+no debe producir una landing preparada para publicación.
 
 ---
 
-9. URL
+7. URL
 
-La IA no decide la URL.
+La IA nunca decide la URL.
 
-La URL procede de la arquitectura SEO.
+La recibe de "arquitectura-urls.md".
 
 Ejemplo:
 
-servicio = fontanero
-
-municipio = Marbella
-
-subservicio = null
-
-La arquitectura puede proporcionar:
-
 "/fontanero/marbella/"
 
-La IA debe utilizar exactamente esa URL.
+Debe devolver exactamente esa URL.
+
+Nunca debe:
+
+- cambiar el slug;
+- añadir niveles;
+- cambiar la localidad;
+- crear URLs alternativas.
 
 ---
 
-10. EJEMPLO CON SUBSERVICIO
+8. SUBSERVICIOS
 
-Si la oportunidad recibida es:
+Si recibe:
 
-servicio = fontanero
+"service = fontanero"
 
-subservicio = desatascos
+"subservice = desatascos"
 
-municipio = Marbella
+"municipality = Marbella"
 
-y la arquitectura determina:
+y la URL autorizada es:
 
 "/fontanero/desatascos/marbella/"
 
-la IA debe utilizar esa URL.
+debe generar contenido específico para esa intención.
 
-No puede cambiarla.
-
----
-
-11. EJEMPLO SIN SUBSERVICIO
-
-Si la oportunidad recibida es:
-
-servicio = fontanero
-
-subservicio = null
-
-municipio = Marbella
-
-y la arquitectura determina:
-
-"/fontanero/marbella/"
-
-la IA debe generar una landing de intención general de fontanero en Marbella.
-
-No debe convertirla en una landing de desatascos.
+No puede convertirlo en una landing general de fontanería.
 
 ---
 
-12. OBJETIVO DE GENERACIÓN
+9. OBJETIVO
 
-La IA debe producir una landing:
+La landing generada debe ser:
 
-- coherente;
-- específica;
 - útil;
-- orientada a la intención de búsqueda;
-- estructurada;
+- específica;
+- coherente;
+- orientada a la intención;
 - diferenciada;
-- compatible con el sistema de bloques;
+- estructurada;
+- verificable;
 - compatible con N8N;
 - compatible con WordPress.
 
-No debe limitarse a sustituir el nombre del municipio dentro de un texto genérico.
+Cambiar únicamente el nombre de una localidad no constituye contenido diferenciado.
 
 ---
 
-13. CONTENIDO ESPECÍFICO
+10. CONTENIDO
 
-La IA debe utilizar:
+La IA debe utilizar la información disponible sobre:
 
-- sector;
 - servicio;
-- subservicio cuando exista;
-- municipio;
-- provincia;
-- datos locales disponibles;
-- datos comerciales disponibles;
-- información de cobertura disponible;
-- información de servicios;
-- preguntas relevantes;
-- información adicional autorizada.
+- subservicio;
+- localidad;
+- datos locales;
+- servicios;
+- cobertura;
+- preguntas;
+- información comercial autorizada;
+- evidencias disponibles.
 
-Debe evitar contenido vacío o genérico.
+No debe rellenar espacio con contenido genérico.
 
 ---
 
-14. INFORMACIÓN LOCAL
+11. INFORMACIÓN LOCAL
 
-El municipio por sí solo no constituye información local suficiente.
+Solo puede utilizar información local respaldada.
 
-La IA solo puede utilizar datos locales respaldados por información disponible.
-
-No debe inventar:
+No puede inventar:
 
 - barrios;
 - calles;
 - zonas;
-- lugares;
-- características geográficas;
-- tiempos de desplazamiento;
-- demanda local;
+- urbanizaciones;
+- estadísticas;
+- tiempos;
+- características locales;
 - problemas habituales;
-- estadísticas.
+- demanda.
+
+El nombre de una localidad por sí solo no constituye información local.
 
 ---
 
-15. DATOS COMERCIALES
+12. DATOS COMERCIALES
 
-Cuando exista información de una empresa concreta, la IA puede utilizarla.
+Si existen datos reales y autorizados, pueden utilizarse.
 
-Cuando no exista, no puede inventarla.
+Nunca inventar:
 
-No debe inventar:
-
-- nombre de empresa;
+- empresa;
+- profesional;
 - teléfono;
 - WhatsApp;
 - email;
 - dirección;
-- horario;
+- horarios;
 - precios;
 - garantías;
-- años de experiencia;
+- experiencia;
 - certificaciones;
-- equipo;
 - reseñas;
-- valoraciones.
+- valoraciones;
+- disponibilidad.
+
+Si un dato imprescindible no existe, debe producirse "REVIEW" o "null" según el contrato.
 
 ---
 
-16. REGLA DE NO INVENCIÓN
+13. NO INVENCIÓN
 
-La ausencia de información no debe solucionarse mediante imaginación.
+La ausencia de información nunca se resuelve mediante imaginación.
 
-Si un dato no está disponible:
+Dependiendo del caso:
 
 "null"
 
-o:
-
-"bloque desactivado"
+"enabled = false"
 
 o:
 
 "status = REVIEW"
 
-según el caso.
+---
 
-Nunca debe inventarse información para evitar una ausencia de datos.
+14. ARQUITECTURA DE LANDING
+
+La IA respeta la estructura definida en "arquitectura-landing.md".
+
+No puede:
+
+- crear una arquitectura alternativa;
+- cambiar el orden estructural autorizado;
+- inventar secciones;
+- eliminar bloques obligatorios.
 
 ---
 
-17. ARQUITECTURA DE LANDING
+15. SISTEMA DE BLOQUES
 
-La IA debe respetar la arquitectura de landing definida.
-
-La landing puede incluir:
-
-- Header
-- Navegación
-- Hero
-- Contenido principal
-- Bloques de servicio
-- Información local
-- Cobertura
-- Proceso
-- Confianza
-- FAQ
-- CTA
-- Footer
-
-No todos los bloques tienen que aparecer.
-
-La selección depende de las reglas del sistema de bloques y de los datos disponibles.
-
----
-
-18. SISTEMA DE BLOQUES
-
-La IA solo puede utilizar bloques autorizados.
-
-Los identificadores deben proceder de:
+Los bloques proceden exclusivamente de:
 
 "proyecto/seo/sistema-bloques.md"
 
-No puede inventar:
+Actualmente:
 
-- B99
-- B100
-- B-LOCALES
+"B01–B23"
 
-si no existen en el sistema.
+La IA no puede inventar identificadores nuevos.
 
-Los identificadores y tipos deben ser compatibles con la versión vigente del contrato de salida.
+El "id" y "type" deben ser compatibles con el contrato 2.0.
 
 ---
 
-19. BLOQUES OBLIGATORIOS
+16. BLOQUES OBLIGATORIOS
 
-Los bloques marcados como obligatorios deben aparecer.
+Los bloques obligatorios deben aparecer.
 
 Si falta información necesaria para completarlos:
 
 "status = REVIEW"
 
-La IA no debe inventar contenido para completar el bloque.
+Nunca se inventa el contenido faltante.
 
 ---
 
-20. BLOQUES CONDICIONALES Y OPCIONALES
+17. BLOQUES CONDICIONALES
 
-Los bloques condicionales solo deben aparecer cuando se cumplen sus condiciones.
+Los bloques condicionales solo se utilizan cuando se cumplen sus condiciones.
 
 Ejemplo:
 
-información local disponible
-→ bloque local
+datos locales disponibles
+→ bloque local activado.
 
-Si no:
+Sin datos:
 
-"bloque local = disabled"
+→ bloque desactivado o "REVIEW", según las reglas del sistema.
 
-Los bloques opcionales deben utilizarse cuando aporten valor.
-
-No se deben añadir bloques simplemente para hacer la página más larga.
+Los bloques no se añaden para aumentar artificialmente la longitud.
 
 ---
 
-21. HERO Y ELEMENTOS SEO
+18. HERO
 
-HERO
+El Hero debe representar la intención principal.
 
-El Hero debe reflejar la intención principal.
-
-Para:
-
-fontanero + Marbella
-
-el H1 puede ser:
+Ejemplo:
 
 "Fontanero en Marbella"
 
-Para:
-
-fontanero + desatascos + Marbella
-
-el H1 puede ser:
+o:
 
 "Desatascos en Marbella"
 
-si esa es la intención definida por la arquitectura.
+según la oportunidad recibida.
 
-La IA debe respetar el tipo de página recibido.
-
-TÍTULO SEO
-
-El title debe:
-
-- representar la intención;
-- ser natural;
-- incluir los elementos principales cuando corresponda;
-- evitar sobreoptimización;
-- evitar promesas no verificadas.
-
-META DESCRIPTION
-
-Debe:
-
-- describir la página;
-- ser específica;
-- resultar útil para el usuario;
-- evitar afirmaciones no verificadas.
+El H1 debe respetar el tipo de página.
 
 ---
 
-22. COMPATIBILIDAD CON EL CONTRATO
+19. SEO
 
-Esta especificación describe el comportamiento de la IA.
+La IA puede generar:
 
-La estructura exacta de salida JSON está definida por:
+- "seo.title"
+- "seo.meta_description"
+- "seo.h1"
+
+Deben ser:
+
+- naturales;
+- específicos;
+- coherentes;
+- orientados a la intención;
+- sin sobreoptimización;
+- sin afirmaciones no verificadas.
+
+La IA no modifica "url" ni "canonical".
+
+---
+
+20. FAQ
+
+Las preguntas deben proceder de:
+
+- intención;
+- investigación;
+- conocimiento válido;
+- datos disponibles.
+
+No deben crearse preguntas únicamente para introducir keywords.
+
+No se inventan datos comerciales en las respuestas.
+
+---
+
+21. CTA
+
+La IA puede generar el texto del CTA.
+
+No puede inventar el canal ni los datos de contacto.
+
+Ejemplo:
+
+"Solicitar presupuesto"
+
+Los datos reales proceden del modelo de datos.
+
+---
+
+22. COBERTURA
+
+La cobertura solo puede contener zonas respaldadas.
+
+No se generan listas artificiales de localidades, barrios o zonas.
+
+---
+
+23. CONFIANZA
+
+Solo se utilizan señales verificables:
+
+- certificaciones;
+- experiencia;
+- garantías;
+- reseñas;
+- datos comerciales proporcionados.
+
+Nunca se inventan señales de confianza.
+
+---
+
+24. DIFERENCIACIÓN
+
+La landing debe tener diferenciación real.
+
+No se considera diferenciación:
+
+- cambiar una localidad;
+- cambiar sinónimos;
+- reordenar párrafos;
+- sustituir palabras;
+- duplicar una plantilla.
+
+---
+
+25. SERVICIOS Y LOCALIDADES RELACIONADAS
+
+Solo pueden utilizarse servicios y localidades existentes y autorizados.
+
+La IA no crea URLs nuevas.
+
+---
+
+26. IMÁGENES
+
+La IA puede describir recursos proporcionados.
+
+No puede inventar:
+
+- URLs;
+- archivos;
+- imágenes inexistentes.
+
+---
+
+27. SCHEMA
+
+Los datos estructurados solo pueden utilizar información verificable.
+
+Nunca inventar:
+
+- reviews;
+- ratings;
+- precios;
+- horarios;
+- direcciones;
+- empresas;
+- personas.
+
+La generación final de JSON-LD corresponde al sistema de renderizado.
+
+---
+
+28. VALIDACIÓN
+
+La IA puede indicar:
+
+"READY"
+
+"REVIEW"
+
+"ERROR"
+
+pero no es la autoridad final de validación.
+
+La validación definitiva se realiza externamente.
+
+Debe comprobarse:
+
+- JSON;
+- versión;
+- campos obligatorios;
+- bloques;
+- arquitectura;
+- URLs;
+- datos;
+- restricciones;
+- coherencia.
+
+---
+
+29. CONTRATO DE SALIDA
+
+La interfaz técnica oficial es:
 
 "proyecto/seo/contrato-salida-ia.md"
 
-La versión vigente del contrato es:
+Versión vigente:
 
-"1.1"
+2.0
 
-Por tanto:
+La especificación de IA define cómo trabaja la IA.
 
-Especificación de IA → define el comportamiento.
+El contrato define qué devuelve.
 
-Contrato de salida IA → define la interfaz técnica.
-
-N8N → valida y procesa la interfaz.
-
-WordPress → recibe los datos validados.
-
-Ninguno de estos documentos puede utilizar una versión diferente del contrato sin una actualización explícita y coordinada.
+No deben duplicarse estas responsabilidades.
 
 ---
 
-REGLA FINAL
+30. JSON
+
+La IA debe devolver exclusivamente JSON válido.
+
+No se permite:
+
+- Markdown;
+- explicaciones;
+- comentarios;
+- texto fuera del JSON;
+- campos arbitrarios.
+
+La salida debe poder procesarse automáticamente.
+
+---
+
+31. WORDPRESS
+
+La IA no genera directamente HTML final para WordPress.
+
+Flujo:
+
+IA
+↓
+JSON
+↓
+VALIDADOR
+↓
+N8N
+↓
+WORDPRESS
+↓
+RENDERIZADO
+
+---
+
+32. N8N
+
+N8N:
+
+- recibe;
+- valida;
+- transforma;
+- crea o actualiza;
+- comunica con WordPress;
+- registra errores;
+- registra resultados.
+
+N8N no reinterpretará arbitrariamente la decisión SEO.
+
+---
+
+33. IDEMPOTENCIA
+
+La misma oportunidad debe representar una única landing.
+
+El identificador estable es:
+
+"opportunity_id"
+
+Procesamiento:
+
+"no existe → CREATE"
+
+"existe → UPDATE"
+
+Nunca duplicar por ejecutar nuevamente el workflow.
+
+---
+
+34. ESCALABILIDAD
+
+La misma especificación debe funcionar para:
+
+- 1 landing;
+- 10;
+- 100;
+- 1.000;
+- 10.000+.
+
+La escala procede de los datos y oportunidades, no de duplicar lógica.
+
+---
+
+35. REGLA DE NO DECISIÓN
+
+La IA no decide:
+
+- qué páginas crear;
+- qué URLs existen;
+- qué localidades crear;
+- qué arquitectura aplicar;
+- qué bloques están autorizados;
+- qué datos comerciales existen;
+- cuándo publicar.
+
+La IA genera contenido dentro de las reglas recibidas.
+
+---
+
+36. PRIORIDAD
+
+Cuando existan contradicciones:
+
+1. datos/evidencias;
+2. documento propietario de la decisión;
+3. arquitectura;
+4. contrato;
+5. especificación IA.
+
+La IA nunca puede utilizar su propia interpretación para sobrescribir una decisión superior.
+
+---
+
+37. CONTROL DE CALIDAD
+
+Antes de entregar la salida:
+
+- comprobar JSON válido;
+- comprobar "schema_version = 2.0";
+- comprobar "opportunity_id";
+- comprobar campos protegidos;
+- comprobar URL;
+- comprobar canonical;
+- comprobar bloques autorizados;
+- comprobar ausencia de invenciones;
+- comprobar restricciones;
+- registrar incidencias.
+
+---
+
+38. REGLA FINAL
 
 La IA genera.
 
@@ -524,9 +673,32 @@ El validador comprueba.
 
 N8N procesa.
 
-WordPress publica.
+WordPress renderiza y publica.
 
-La IA no puede asumir funciones pertenecientes a ninguna de las capas anteriores o posteriores.
+Ninguna capa debe asumir las funciones de otra.
+
+---
+
+39. CONTROL DE VERSIONES
+
+Versión: 2.0
+Fecha: 2026-08-24
+Motivo: consolidación posterior a auditoría.
+
+Cambios principales:
+
+- contrato actualizado de 1.1 a 2.0;
+- alineación con arquitectura SEO;
+- alineación con arquitectura URL;
+- alineación con arquitectura Landing;
+- alineación con B01–B23;
+- separación de responsabilidades;
+- refuerzo de campos protegidos;
+- refuerzo de no invención;
+- validación externa;
+- trazabilidad;
+- compatibilidad N8N → WordPress;
+- eliminación de definiciones paralelas.
 
 ---
 
