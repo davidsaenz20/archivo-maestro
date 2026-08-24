@@ -1,27 +1,31 @@
+Ha pensado durante 16s
+
 MODELO DE DATOS WORDPRESS
 
-Versión: 1.0
-Estado: Diseño
+Versión: 2.0
+Estado: Preparado para implementación piloto
 Proyecto: Plataforma de landings locales automatizadas
 
 ---
 
 1. FUNCIÓN
 
-Este documento define la proyección del modelo de datos común hacia WordPress.
+Este documento define cómo se representa en WordPress la información de una landing ya validada.
 
-No sustituye a:
+No define:
 
-- "proyecto/seo/modelo-datos.md"
-- "proyecto/seo/sistema-bloques.md"
-- "proyecto/seo/contrato-salida-ia.md"
-- "proyecto/seo/arquitectura-wordpress.md"
+- estrategia SEO;
+- generación de contenido;
+- bloques;
+- arquitectura general de WordPress;
+- comunicación N8N;
+- diseño visual.
 
-WordPress almacena y renderiza una landing ya decidida y validada.
+WordPress recibe datos estructurados y los almacena para que el sistema de renderizado pueda convertirlos en una página.
 
-No decide la estrategia SEO ni genera contenido.
+---
 
-Flujo
+2. FLUJO DE DATOS
 
 MODELO DE DATOS COMÚN
         ↓
@@ -33,179 +37,368 @@ N8N
         ↓
 MODELO WORDPRESS
         ↓
-PLANTILLA
-
----
-
-2. PRINCIPIO DE PROYECCIÓN
-
-No todo el modelo común debe almacenarse como campo público de WordPress.
-
-Se separan tres grupos:
-
-1. Datos necesarios para renderizar.
-2. Datos necesarios para SEO/publicación.
-3. Datos de trazabilidad o control interno.
-
-Los datos de investigación, evidencias y razonamiento del motor no deben exponerse innecesariamente en la página pública.
+RENDERIZADOR
+        ↓
+PLANTILLAS
+        ↓
+PÁGINA
 
 ---
 
 3. ENTIDAD PRINCIPAL
 
-Tipo conceptual:
+Entidad conceptual:
 
 Landing
 
-Implementación prevista:
+Implementación prevista inicialmente:
 
 Custom Post Type: landing
 
-La decisión definitiva del CPT y del sistema de campos se realizará durante la implementación técnica.
+Cada registro representa una landing lógica.
 
-Cada registro representa una única landing.
-
----
-
-4. IDENTIFICACIÓN
-
-Campo| Tipo| Origen| Almacenamiento| Renderizado
-"landing_id"| string| motor/N8N| meta| no
-"opportunity_id"| string| investigación/motor| meta| no
-"version"| string| sistema| meta| no
-"estado_landing"| enum| workflow| meta| no
-
-"landing_id" debe ser estable e idempotente.
+El ID interno de WordPress no será la identidad principal del sistema.
 
 ---
 
-5. IDENTIDAD
+4. IDENTIDAD LÓGICA
 
-Campo| Tipo| Origen| Almacenamiento| Renderizado
-"sector"| string| modelo común| campo estructurado| indirecto
-"servicio"| string| motor| campo estructurado| sí
-"subservicio"| string/null| motor| campo estructurado| condicional
-"pais"| string| modelo común| campo estructurado| no necesariamente
-"comunidad_autonoma"| string| modelo común| campo estructurado| condicional
-"provincia"| string| modelo común| campo estructurado| condicional
-"municipio"| string| motor| campo estructurado| sí
-"localidad"| string| motor| campo estructurado| sí
-"intencion"| enum| motor| meta/control| indirecto
+Cada landing deberá conservar:
 
-La identidad no puede ser modificada por la IA.
+site_id
+opportunity_id
+page_id
 
----
+Ejemplo:
 
-6. URL
+site_id: malaga
+opportunity_id: fontanero-estepona
+page_id: FON-EST-HOME
 
-Campo| Tipo| Origen| Almacenamiento| Renderizado
-"slug"| string| arquitectura URL| post slug| URL
-"url"| string| arquitectura URL| derivada/validada| URL
-"canonical"| URL| arquitectura SEO| meta/SEO| head
-"url_tipo"| enum| arquitectura URL| meta| no
+Regla
 
-WordPress no debe recalcular una URL estratégica de forma autónoma.
+"page_id" debe ser estable e idempotente.
+
+No debe cambiar porque WordPress cambie su ID interno.
 
 ---
 
-7. SEO
+5. IDENTIDAD WORDPRESS
 
-Campo| Tipo| Origen| Almacenamiento| Renderizado
-"seo_title"| string| IA dentro de reglas| meta SEO| "<title>"
-"meta_description"| string| IA dentro de reglas| meta SEO| "<meta>"
-"robots"| enum/string| sistema| meta SEO| head
-"canonical"| URL| arquitectura| meta SEO| head
+WordPress puede tener:
 
-El mecanismo concreto de almacenamiento SEO dependerá de la solución WordPress elegida.
+wordpress_post_id
+
+Este valor es únicamente técnico.
+
+Ejemplo:
+
+page_id:
+FON-EST-HOME
+
+wordpress_post_id:
+1847
+
+La relación será:
+
+page_id
+    ↓
+wordpress_post_id
 
 ---
 
-8. BLOQUES
+6. IDENTIDAD GEOGRÁFICA Y DE SERVICIO
 
-Campo principal:
+Campos:
 
-bloques[]
+sector
+servicio
+subservicio
+pais
+comunidad_autonoma
+provincia
+municipio
+localidad
+intencion
 
-Cada elemento debe conservar como mínimo:
+Ejemplo:
 
-id
+{
+  "sector": "servicios",
+  "servicio": "fontanero",
+  "subservicio": null,
+  "pais": "España",
+  "comunidad_autonoma": "Andalucía",
+  "provincia": "Málaga",
+  "municipio": "Estepona",
+  "localidad": "Estepona",
+  "intencion": "local_service"
+}
+
+La IA no puede alterar la identidad estratégica definida por la arquitectura.
+
+---
+
+7. URL
+
+Campos:
+
+slug
+url
+canonical
+url_tipo
+
+Ejemplo:
+
+slug:
+fontanero-estepona
+
+url:
+https://dominio.com/fontanero/estepona/
+
+canonical:
+https://dominio.com/fontanero/estepona/
+
+La URL estratégica procede de la arquitectura y no debe ser modificada arbitrariamente por WordPress.
+
+---
+
+8. VERSIONADO
+
+Cada landing tendrá:
+
+page_version
+
+Cada instancia de bloque tendrá:
+
+block_version
+
+Ejemplo:
+
+page_version: 4
+
+block_version: 2
+
+El versionado lógico es independiente del sistema de revisiones visuales de WordPress.
+
+---
+
+9. ESTADO
+
+Estado lógico de la landing:
+
+draft
+published
+unpublished
+archived
+
+Durante el piloto:
+
+CREATE
+ ↓
+draft
+ ↓
+verificación
+ ↓
+published
+
+---
+
+10. SEO
+
+Campos conceptuales:
+
+seo.title
+seo.meta_description
+seo.canonical
+seo.robots
+
+Ejemplo:
+
+{
+  "title": "Fontanero en Estepona | Servicio profesional",
+  "meta_description": "Servicio de fontanería en Estepona...",
+  "canonical": "https://dominio.com/fontanero/estepona/",
+  "robots": "index,follow"
+}
+
+La implementación concreta dependerá del sistema SEO utilizado en WordPress.
+
+---
+
+11. BLOQUES
+
+La landing tendrá:
+
+blocks[]
+
+Cada instancia deberá conservar:
+
+block_id
+block_instance_id
+block_version
 position
+enabled
 data
 
 Ejemplo:
 
 {
-  "id": "B03",
+  "block_id": "B03",
+  "block_instance_id": "FON-EST-HOME-B03-01",
+  "block_version": 1,
   "position": 3,
+  "enabled": true,
   "data": {
-    "h1": "Fontanero en Marbella",
-    "subtitulo": "...",
+    "h1": "Fontanero en Estepona",
+    "subtitle": "Servicio de fontanería en Estepona",
     "cta": {}
   }
 }
 
-Los identificadores B01–B23 son los definidos por "sistema-bloques.md".
+---
 
-La IA no puede introducir identificadores no autorizados.
+12. BLOCK_ID
+
+Los identificadores autorizados son:
+
+B01
+B02
+B03
+B04
+B05
+B06
+B07
+B08
+B09
+B10
+B11
+B12
+B13
+B14
+B15
+B16
+B17
+B18
+B19
+B20
+B21
+B22
+B23
+
+Su definición funcional pertenece exclusivamente a:
+
+sistema-bloques.md
+
+La IA no puede crear nuevos "block_id".
 
 ---
 
-9. MAPA B01–B23 → DATOS
+13. BLOCK_INSTANCE_ID
 
-Bloque| Datos principales
-B01 Header| marca, logo, navegación, CTA global
-B02 Navegación| URLs globales y estratégicas validadas
-B03 Hero| h1, subtítulo, CTA, confianza disponible
-B04 Contenido principal| títulos, textos, problemas, alcance
-B05 CTA principal| tipo, texto, canal/destino validado
-B06 Footer| navegación, contacto, legal, enlaces globales
-B07 Subservicio| servicio, subservicio, contenido específico
-B08 Problemas/necesidades| elementos respaldados
-B09 Información local| datos locales verificados
-B10 Zonas/cobertura| zonas y cobertura confirmada
-B11 Proceso| pasos reales del servicio
-B12 Confianza| experiencia, certificaciones, garantías, reseñas válidas
-B13 Diferenciación| información específica y verificable
-B14 FAQ| preguntas y respuestas
-B15 Servicios relacionados| URL, anchor, relación
-B16 Localidades relacionadas| localidad, URL, relación
-B17 Datos estructurados| schema válido
-B18 Testimonios| testimonios reales/autorizados
-B19 Casos/ejemplos| casos reales/documentados
-B20 Galería| recursos de imagen reales
-B21 Precio/tarifas| precio autorizado
-B22 Horarios| horarios reales
-B23 Mapa/ubicación| ubicación válida
+"block_instance_id" identifica una instancia concreta de un bloque.
+
+Ejemplo:
+
+FON-EST-HOME-B14-01
+
+Si la misma página contiene tres FAQ independientes:
+
+FON-EST-HOME-B14-01
+FON-EST-HOME-B14-02
+FON-EST-HOME-B14-03
+
+Esto permite actualizar una instancia concreta sin reconstruir toda la página.
 
 ---
 
-10. FAQ
+14. POSICIÓN
 
-Campo:
+Cada bloque tendrá:
+
+position
+
+Ejemplo:
+
+B03 → position 3
+B04 → position 4
+B05 → position 5
+
+La posición define el orden lógico de renderizado.
+
+---
+
+15. ENABLED
+
+Cada instancia podrá tener:
+
+enabled: true
+
+o:
+
+enabled: false
+
+Cuando sea "false", el renderizador no debe mostrar el bloque.
+
+La instancia no se elimina.
+
+Esto permite desactivación temporal.
+
+---
+
+16. DATOS DEL BLOQUE
+
+Cada bloque tendrá un objeto:
+
+data
+
+Su estructura dependerá de "block_id".
+
+Ejemplo:
+
+{
+  "block_id": "B14",
+  "data": {
+    "items": [
+      {
+        "question": "¿Trabajáis en Estepona?",
+        "answer": "Sí, ofrecemos servicio en Estepona."
+      }
+    ]
+  }
+}
+
+No todos los bloques tendrán los mismos campos.
+
+---
+
+17. FAQ
+
+Estructura:
 
 faq[]
 
-Estructura:
+Cada elemento:
 
 question
 answer
 
-Las FAQ deben proceder del contenido validado y no pueden inventar datos comerciales.
+Las respuestas deben proceder de información validada.
+
+No se deben inventar datos comerciales.
 
 ---
 
-11. CTA
+18. CTA
 
-Estructura conceptual:
+Estructura:
 
 cta:
   type
   text
   destination
 
-El destino debe ser real y previamente validado.
-
-Ejemplos de "type":
+Tipos posibles:
 
 whatsapp
 phone
@@ -213,45 +406,51 @@ contact
 quote
 appointment
 
-No se almacenará un teléfono o WhatsApp inventado.
+El destino debe estar validado.
+
+No se deben inventar teléfonos, WhatsApp, emails ni URLs.
 
 ---
 
-12. INTERLINKING
+19. INTERLINKING
 
-Campo:
+La landing tendrá:
 
 internal_links[]
 
-Cada enlace:
+Cada enlace podrá contener:
 
+source_block_instance_id
+target_page_id
 url
 anchor
-target
+type
 reason
+enabled
 
 Ejemplo:
 
 {
-  "url": "/fontanero/estepona/",
-  "anchor": "Fontanero en Estepona",
-  "target": "localidad",
-  "reason": "localidad relacionada"
+  "source_block_instance_id": "FON-EST-HOME-B16-01",
+  "target_page_id": "FON-MAN-HOME",
+  "url": "/fontanero/manilva/",
+  "anchor": "Fontanero en Manilva",
+  "type": "related_location",
+  "reason": "localidad relacionada",
+  "enabled": true
 }
 
-Solo se almacenarán URLs existentes o validadas.
-
-La plantilla utilizará estos datos para renderizar los enlaces donde corresponda.
+Solo se deben utilizar destinos existentes o validados.
 
 ---
 
-13. IMÁGENES
+20. IMÁGENES
 
-Campo:
+Estructura:
 
 images[]
 
-Estructura conceptual:
+Campos:
 
 id
 url
@@ -260,30 +459,31 @@ title
 type
 source
 license
+wordpress_media_id
 
-WordPress podrá convertir los recursos válidos en IDs de Media Library durante la implementación.
+"wordpress_media_id" puede añadirse cuando el recurso haya sido incorporado a la Media Library.
 
-La URL no debe ser inventada.
+No se deben inventar recursos.
 
 ---
 
-14. SCHEMA
+21. DATOS ESTRUCTURADOS
 
 Campo:
 
 schema
 
-Debe contener únicamente datos estructurados válidos y derivados de información autorizada.
+Debe contener únicamente datos estructurados válidos y autorizados.
 
-La salida final será JSON-LD en el HTML.
+El renderizador podrá convertirlos en JSON-LD.
 
-No se permitirá que un editor o proceso posterior introduzca datos ficticios para completar el schema.
+No se deben fabricar datos para completar campos obligatorios.
 
 ---
 
-15. DATOS COMERCIALES
+22. DATOS COMERCIALES
 
-Los datos comerciales que puedan aparecer públicamente deberán estar separados y validados:
+Cuando existan datos reales:
 
 empresa
 marca
@@ -299,185 +499,378 @@ certificaciones
 
 Regla:
 
-ausencia de dato
-        ↓
+dato no disponible
+       ↓
 null / omitido
 
-Nunca se debe inferir o inventar un dato comercial.
+Nunca:
+
+dato no disponible
+       ↓
+inventar
 
 ---
 
-16. DATOS INTERNOS
+23. DATOS INTERNOS
 
-No deben formar parte del contenido público salvo que una regla lo determine expresamente:
+Podrán almacenarse para trazabilidad:
 
-fuentes
-evidencias
-confianza
-decision
-restricciones
-errores internos
-logs
-fecha_generacion
-fecha_validacion
+sources
+evidence
+confidence
+restrictions
+validation_errors
+validation_warnings
+generation_date
+validation_date
 
-Pueden almacenarse para trazabilidad si resulta útil para administración, auditoría o automatización.
-
----
-
-17. VALIDACIÓN
-
-Antes de crear o actualizar una landing, N8N debe comprobar al menos:
-
-- "landing_id" válido;
-- identidad coherente;
-- URL y slug válidos;
-- bloques autorizados;
-- datos obligatorios presentes;
-- ausencia de datos prohibidos;
-- URLs internas válidas;
-- schema válido;
-- CTA y datos comerciales autorizados;
-- idempotencia.
-
-WordPress no sustituye al validador previo.
+Estos datos no deben aparecer en la página pública salvo que exista una regla explícita.
 
 ---
 
-18. RENDERIZADO
+24. METADATOS DE CONTROL
 
-La plantilla seguirá esta lógica conceptual:
+El sistema podrá conservar:
 
-Landing
-   ↓
-leer identidad / SEO
-   ↓
-recorrer bloques[]
-   ↓
-resolver componente por ID
-   ↓
-pasar data del bloque
-   ↓
-renderizar HTML
-   ↓
-insertar interlinking
-   ↓
-insertar schema
+schema_version
+validator_version
+model_version
+generated_at
+validated_at
+last_updated_at
 
-No se debe generar HTML directamente desde el contenido de la IA sin pasar por el componente correspondiente.
+Sirven para auditoría y control técnico.
 
 ---
 
-19. REGLA DE COMPONENTES
+25. ESTRUCTURA CONCEPTUAL COMPLETA
 
-Existirá un registro interno de correspondencia:
+{
+  "site_id": "malaga",
+  "opportunity_id": "fontanero-estepona",
+  "page_id": "FON-EST-HOME",
+  "wordpress_post_id": 1847,
 
-B01 → Header
-B02 → Navigation
-B03 → Hero
-...
-B23 → Map
+  "identity": {
+    "sector": "servicios",
+    "servicio": "fontanero",
+    "subservicio": null,
+    "pais": "España",
+    "comunidad_autonoma": "Andalucía",
+    "provincia": "Málaga",
+    "municipio": "Estepona",
+    "localidad": "Estepona",
+    "intencion": "local_service"
+  },
 
-La implementación podrá utilizar PHP, bloques dinámicos, componentes o una combinación, pero la interfaz lógica será el ID del bloque.
+  "url": {
+    "slug": "fontanero-estepona",
+    "url": "https://dominio.com/fontanero/estepona/",
+    "canonical": "https://dominio.com/fontanero/estepona/",
+    "url_tipo": "service_location"
+  },
+
+  "page_version": 1,
+
+  "status": "draft",
+
+  "seo": {
+    "title": "",
+    "meta_description": "",
+    "canonical": "",
+    "robots": "index,follow"
+  },
+
+  "blocks": [],
+
+  "internal_links": [],
+
+  "images": [],
+
+  "schema": {},
+
+  "control": {
+    "schema_version": "4.0",
+    "validator_version": "",
+    "model_version": "",
+    "generated_at": "",
+    "validated_at": "",
+    "last_updated_at": ""
+  }
+}
 
 ---
 
-20. CREAR / ACTUALIZAR
+26. CREATE
 
-N8N utilizará "landing_id" para determinar la operación.
+Cuando una página no existe:
 
-no existe landing_id
+page_id inexistente
         ↓
 CREATE
+        ↓
+wordpress_post_id
+        ↓
+guardar relación
 
-existe landing_id
+El "page_id" no cambia.
+
+---
+
+27. UPDATE
+
+Cuando ya existe:
+
+page_id existente
         ↓
 UPDATE
 
-La operación debe ser idempotente.
-
-La primera publicación automática se mantendrá en "draft" hasta completar las pruebas.
+No se crea una segunda landing.
 
 ---
 
-21. FONTANERO MARBELLA — FIXTURE
+28. ACTUALIZACIÓN PARCIAL
 
-Identidad mínima de prueba:
+Debe ser posible modificar únicamente:
 
-landing_id: LANDING-fontanero-marbella
-servicio: fontanero
-subservicio: null
-pais: España
-comunidad_autonoma: Andalucía
-provincia: Málaga
-municipio: Marbella
-localidad: Marbella
-slug: fontanero-marbella
+un bloque
 
-Los campos comerciales no incluidos deberán permanecer vacíos/null.
+o:
 
-No se deben inventar:
+interlinking
 
-- teléfono;
-- WhatsApp;
-- dirección;
-- precio;
-- horarios;
-- certificaciones;
-- experiencia;
-- reseñas.
+o:
 
-El fixture servirá para probar:
+SEO
 
-modelo
-   ↓
-validación
-   ↓
-transformación N8N
-   ↓
-creación WordPress
-   ↓
-renderizado
+o:
+
+menú
+
+sin reconstruir innecesariamente toda la página.
 
 ---
 
-22. DECISIONES PENDIENTES DE IMPLEMENTACIÓN
+29. IDEMPOTENCIA
 
-Todavía NO se fija:
+Una ejecución repetida con el mismo:
 
-- plugin de campos;
-- ACF u otra solución;
-- estructura exacta de tablas/meta;
-- implementación definitiva del CPT;
-- endpoints REST definitivos;
-- autenticación;
-- tema;
-- constructor visual;
-- implementación concreta de componentes.
+site_id
++
+opportunity_id
++
+page_id
 
-Estas decisiones se tomarán después de validar el modelo.
+no debe crear duplicados.
+
+Regla:
+
+NO EXISTE
+ ↓
+CREATE
+
+EXISTE
+ ↓
+UPDATE
 
 ---
 
-23. FUENTES DE VERDAD
+30. VALIDACIÓN
 
-"modelo-datos.md" → modelo común.
+Antes de almacenar:
 
-"sistema-bloques.md" → definición B01–B23.
+page_id
+identity
+url
+seo
+blocks
+block_id
+block_instance_id
+links
+schema
+commercial_data
 
-"contrato-salida-ia.md" → salida IA.
+deben haber superado el validador.
 
-"arquitectura-wordpress.md" → arquitectura WordPress.
+WordPress no sustituye al validador de N8N.
 
-"integracion-n8n-wordpress.md" → comunicación N8N/WordPress.
+---
 
-Este documento → proyección del modelo común dentro de WordPress.
+31. RENDERIZADO
 
-Si aparece una contradicción:
+El renderizador utilizará:
 
-1. Se identifica el documento propietario de la decisión.
-2. Se corrige ese documento.
-3. Se actualizan las dependencias necesarias.
-4. Se evita resolver la contradicción mediante memoria informal.
+page
+ ↓
+blocks[]
+ ↓
+block_id
+ ↓
+resolver plantilla/componente
+ ↓
+data
+ ↓
+HTML WordPress
 
-El repositorio debe actuar como fuente de verdad del proyecto.
+La información de este documento representa datos.
+
+No contiene el diseño visual.
+
+---
+
+32. INDEPENDENCIA DEL TEMA
+
+No se almacenarán referencias obligatorias a:
+
+Kadence
+Astra
+GeneratePress
+Divi
+Elementor
+
+El modelo debe funcionar aunque se cambie el tema.
+
+---
+
+33. RELACIÓN CON LAS PLANTILLAS
+
+La relación conceptual es:
+
+block_id
+    ↓
+renderer
+    ↓
+template
+    ↓
+data
+
+Los datos permanecen estables.
+
+La plantilla puede cambiar.
+
+---
+
+34. FONTANERO ESTEpona — FIXTURE
+
+{
+  "site_id": "malaga",
+  "opportunity_id": "fontanero-estepona",
+  "page_id": "FON-EST-HOME",
+
+  "identity": {
+    "sector": "servicios",
+    "servicio": "fontanero",
+    "subservicio": null,
+    "pais": "España",
+    "comunidad_autonoma": "Andalucía",
+    "provincia": "Málaga",
+    "municipio": "Estepona",
+    "localidad": "Estepona",
+    "intencion": "local_service"
+  },
+
+  "url": {
+    "slug": "fontanero-estepona",
+    "url": "/fontanero/estepona/",
+    "canonical": "/fontanero/estepona/",
+    "url_tipo": "service_location"
+  },
+
+  "page_version": 1,
+  "status": "draft",
+
+  "seo": {
+    "title": "",
+    "meta_description": "",
+    "canonical": "/fontanero/estepona/",
+    "robots": "index,follow"
+  },
+
+  "blocks": [],
+
+  "internal_links": [],
+
+  "images": [],
+
+  "schema": {}
+}
+
+Los datos comerciales ausentes permanecen vacíos.
+
+---
+
+35. REGLAS DE INTEGRIDAD
+
+Nunca debe existir:
+
+block_instance_id
+
+sin:
+
+page_id
+
+Nunca debe existir:
+
+internal_link
+
+con un destino no validado.
+
+Nunca debe existir:
+
+wordpress_post_id
+
+sin su correspondiente:
+
+page_id
+
+Nunca se debe utilizar un "block_id" que no esté definido en "sistema-bloques.md".
+
+---
+
+36. FUENTES DE VERDAD
+
+modelo-datos.md
+→ modelo común
+
+contrato-salida-ia.md
+→ contrato de salida
+
+sistema-bloques.md
+→ B01–B23
+
+arquitectura-wordpress.md
+→ arquitectura técnica
+
+integracion-n8n-wordpress.md
+→ integración
+
+modelo-renderizado-wordpress.md
+→ renderizado
+
+modelo-datos-wordpress.md
+→ datos almacenados/proyectados en WordPress
+
+Cada decisión debe tener un único documento propietario.
+
+---
+
+37. ESTADO
+
+Versión: 2.0
+Estado: Preparado para implementación piloto.
+
+Siguiente fase:
+
+VALIDACIÓN DOCUMENTAL
+        ↓
+PLANTILLAS WORDPRESS
+        ↓
+API
+        ↓
+N8N
+        ↓
+PRIMERA LANDING
+        ↓
+PRUEBAS DE ACTUALIZACIÓN
+
+FIN
