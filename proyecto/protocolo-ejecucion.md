@@ -21,18 +21,33 @@ El proyecto debe avanzar de forma:
 - orientada a implementación.
 
 ---
-
 2. FUENTE DE VERDAD DEL ESTADO
 
-"maestro.md" determina siempre:
+El estado y el orden de ejecución del proyecto están determinados por:
+
+"proyecto/roadmap-proyecto.md"
+
+Este documento NO determina qué fase o paso debe ejecutarse.
+
+El roadmap del proyecto determina siempre:
 
 - fase actual;
-- hito actual;
-- objetivo del hito;
-- hitos completados;
-- siguiente hito.
+- paso actual;
+- objetivo del paso;
+- entregable esperado;
+- pasos completados;
+- siguiente paso;
+- bloqueos conocidos.
 
-Los demás documentos contienen especificaciones técnicas y metodológicas, pero no pueden cambiar por sí mismos el orden de ejecución.
+"proyecto/roadmap-fabrica-webs.md" define el método general reutilizable.
+
+"maestro.md" actúa como documento de control y obliga a recuperar el estado persistente antes de ejecutar.
+
+Los demás documentos contienen especificaciones técnicas y no pueden cambiar por sí mismos el orden de ejecución.
+
+Si un documento técnico propone un trabajo diferente al paso actual, esa propuesta no cambia el roadmap.
+
+Solo una decisión explícita registrada en el roadmap puede cambiar el orden de ejecución.
 
 ---
 
