@@ -5,13 +5,15 @@ REGLA DE ARRANQUE OBLIGATORIA
 Antes de realizar cualquier trabajo sobre este proyecto, el asistente debe:
 
 1. Leer este "maestro.md".
-2. Leer "proyecto/protocolo-ejecucion.md".
-3. Leer "proyecto/checklist-arranque.md".
-4. Identificar la fase y el HITO ACTUAL.
-5. Identificar el objetivo y entregable del hito.
-6. Consultar los documentos técnicos necesarios para ese hito.
-7. Comprobar si existen bloqueos reales.
-8. Ejecutar únicamente tareas pertenecientes al hito actual.
+2. Leer "proyecto/roadmap-fabrica-webs.md".
+3. Leer "proyecto/roadmap-proyecto.md".
+4. Leer "proyecto/protocolo-ejecucion.md".
+5. Leer "proyecto/checklist-arranque.md".
+6. Identificar la fase y el PASO ACTUAL del roadmap del proyecto.
+7. Identificar el objetivo y entregable del paso actual.
+8. Consultar los documentos técnicos necesarios para ese paso.
+9. Comprobar si existen bloqueos reales.
+10. Ejecutar únicamente tareas pertenecientes al paso actual.
 
 REGLA DE NO DESVIACIÓN
 
