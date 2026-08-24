@@ -1,15 +1,15 @@
 ROADMAP DEL PROYECTO — FÁBRICA DE WEBS AUTOMÁTICAS
 
-Versión: 1.0
+Versión: 2.0
 Proyecto: Sistema de generación automática de webs
-Estado: En construcción
+Estado: EN CONSTRUCCIÓN
 Roadmap universal: "proyecto/roadmap-fabrica-webs.md"
 
 ---
 
 1. PROPÓSITO
 
-Este documento define el orden oficial de construcción del proyecto actual.
+Este documento define el orden oficial de construcción y el estado operativo del proyecto actual.
 
 El objetivo es construir una fábrica de webs capaz de generar páginas estructuradas, validadas y publicables de forma automática.
 
@@ -34,29 +34,29 @@ Ejemplos:
 Construir un sistema en el que:
 
 DATOS / FUENTES
-        ↓
+↓
 INVESTIGACIÓN
-        ↓
+↓
 OPORTUNIDAD
-        ↓
+↓
 DECISIÓN
-        ↓
+↓
 ARQUITECTURA
-        ↓
+↓
 GENERACIÓN IA
-        ↓
+↓
 VALIDACIÓN
-        ↓
+↓
 N8N
-        ↓
+↓
 WORDPRESS
-        ↓
+↓
 LANDING REAL
-        ↓
+↓
 QA
-        ↓
+↓
 PUBLICACIÓN
-        ↓
+↓
 ESCALADO
 
 pueda ejecutarse de forma repetible y con mínima intervención manual.
@@ -74,46 +74,74 @@ Si aparece un problema:
 ¿BLOQUEA EL PASO?
 
 NO
-
-Se registra y se continúa.
+→ se registra y se continúa.
 
 SÍ
+→ se detiene temporalmente la ejecución, se resuelve el bloqueo y se vuelve al paso original.
 
-Se detiene temporalmente la ejecución, se resuelve y se vuelve al paso original.
+Una mejora, idea u optimización que no bloquee el paso actual no modifica el orden del roadmap.
 
 ---
 
-4. ESTADO ACTUAL
+4. FUENTE DE VERDAD DEL ESTADO
 
-FASE: Diseño y construcción de la fábrica.
+La fuente única de verdad del estado operativo del proyecto es este documento:
 
-PASO ACTUAL: Auditoría y consolidación del roadmap.
+"proyecto/roadmap-proyecto.md"
 
-OBJETIVO DEL PASO: establecer una secuencia única y coherente de construcción utilizando toda la documentación existente.
+Aquí deben quedar registrados:
+
+- fase actual;
+- paso actual;
+- objetivo;
+- entregable;
+- estado;
+- bloqueos;
+- decisiones relevantes;
+- siguiente paso.
+
+El protocolo de ejecución establece cómo trabajar, pero no determina el paso actual.
+
+El roadmap universal establece el método general reutilizable, pero no sustituye al roadmap específico.
+
+La documentación técnica define cómo construir cada componente, pero no puede modificar por sí misma el orden de ejecución.
+
+---
+
+5. ESTADO ACTUAL
+
+FASE ACTUAL: Fase 2 — Modelo de negocio y oportunidades.
+
+PASO ACTUAL: 2.1 — Investigación de mercado.
+
+OBJETIVO: analizar y consolidar la demanda, competencia, intención, monetización y viabilidad de las oportunidades iniciales.
 
 ESTADO: EN EJECUCIÓN.
 
 BLOQUEOS: Ninguno conocido.
 
+ÚLTIMO HITO COMPLETADO: Fase 1 — Consolidación del sistema.
+
+SIGUIENTE PASO: 2.2 — Modelo de oportunidades.
+
 ---
 
-5. ROADMAP OFICIAL
+6. ROADMAP OFICIAL
 
 FASE 1 — CONSOLIDACIÓN DEL SISTEMA
 
 1.1 Auditoría del repositorio
 
-Revisar toda la documentación existente.
-
-Objetivo:
+Revisar la documentación existente para:
 
 - conocer qué está definido;
 - detectar duplicidades;
 - detectar contradicciones;
 - identificar piezas incompletas;
-- distinguir arquitectura de implementación.
+- distinguir arquitectura de implementación;
+- determinar la función de cada documento.
 
-Estado: EN EJECUCIÓN.
+Estado: COMPLETADO.
 
 ---
 
@@ -124,32 +152,30 @@ Determinar qué documentos:
 - permanecen;
 - se actualizan;
 - se fusionan;
-- se convierten en referencia;
+- actúan como referencia;
 - quedan como documentación histórica.
 
-Estado: PENDIENTE.
+Estado: COMPLETADO.
 
 ---
 
 1.3 Definir autoridad documental
 
-Establecer qué documento tiene autoridad sobre:
+Establecer la autoridad de cada capa:
 
-- metodología;
-- roadmap;
-- estado;
-- arquitectura;
-- contratos;
-- validación;
-- implementación.
+- "maestro.md" → contexto persistente y reglas maestras;
+- "proyecto/roadmap-fabrica-webs.md" → metodología universal;
+- "proyecto/roadmap-proyecto.md" → estado y orden del proyecto;
+- documentación técnica → especificaciones de construcción;
+- implementación → ejecución de las especificaciones.
 
-Estado: PENDIENTE.
+Estado: COMPLETADO.
 
 ---
 
 1.4 Establecer sistema de estado
 
-Definir una única forma persistente de indicar:
+El estado operativo debe contener como mínimo:
 
 - fase;
 - paso;
@@ -157,9 +183,10 @@ Definir una única forma persistente de indicar:
 - entregable;
 - estado;
 - bloqueos;
+- decisiones relevantes;
 - siguiente paso.
 
-Estado: PENDIENTE.
+Estado: COMPLETADO.
 
 ---
 
@@ -173,9 +200,13 @@ Analizar:
 - competencia;
 - intención;
 - monetización;
-- viabilidad.
+- viabilidad;
+- dificultad;
+- potencial de escalado.
 
-Estado: PARCIALMENTE COMPLETADO.
+Estado: EN EJECUCIÓN.
+
+Entregable: modelo consolidado de investigación de oportunidades.
 
 ---
 
@@ -183,13 +214,21 @@ Estado: PARCIALMENTE COMPLETADO.
 
 Definir cómo se representan las oportunidades.
 
-Estado: PARCIALMENTE COMPLETADO.
+Cada oportunidad deberá poder contener, como mínimo:
 
----
+- vertical;
+- servicio;
+- localidad;
+- demanda;
+- competencia;
+- intención;
+- potencial económico;
+- dificultad;
+- evidencia;
+- estado;
+- decisión.
 
-2.3 Motor de decisión
-
-Definir cuándo una oportunidad:
+Estados posibles:
 
 CREAR
 REVISAR
@@ -199,9 +238,25 @@ Estado: PARCIALMENTE COMPLETADO.
 
 ---
 
+2.3 Motor de decisión
+
+Definir las reglas que determinan cuándo una oportunidad debe:
+
+CREAR
+
+REVISAR
+
+NO_CREAR
+
+Las decisiones deberán basarse en criterios objetivos y datos disponibles.
+
+Estado: PARCIALMENTE COMPLETADO.
+
+---
+
 2.4 Matrices de decisión
 
-Completar las matrices necesarias.
+Completar las matrices necesarias para evaluar oportunidades de forma repetible.
 
 Estado: PARCIALMENTE COMPLETADO.
 
@@ -217,7 +272,9 @@ Definir:
 - jerarquía;
 - canonical;
 - páginas objetivo;
-- reglas de indexación.
+- reglas de indexación;
+- relación servicio/localidad;
+- estructura escalable.
 
 Estado: COMPLETADO / DOCUMENTADO.
 
@@ -232,7 +289,9 @@ Definir:
 - orden;
 - reglas;
 - contenido;
-- enlazado.
+- enlazado;
+- elementos obligatorios;
+- elementos opcionales.
 
 Estado: DOCUMENTADO.
 
@@ -240,7 +299,18 @@ Estado: DOCUMENTADO.
 
 3.3 Sistema de bloques
 
-Definir B01–B23.
+Definir y documentar los bloques:
+
+B01–B23
+
+Cada bloque debe tener:
+
+- función;
+- datos de entrada;
+- reglas;
+- condiciones;
+- salida;
+- comportamiento cuando falten datos.
 
 Estado: DOCUMENTADO.
 
@@ -248,7 +318,14 @@ Estado: DOCUMENTADO.
 
 3.4 Interlinking
 
-Definir reglas de enlazado interno.
+Definir reglas de enlazado interno:
+
+- páginas relacionadas;
+- jerarquía;
+- contexto;
+- anchors;
+- límites;
+- reglas de automatización.
 
 Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN.
 
@@ -258,7 +335,7 @@ FASE 4 — MODELO DE DATOS
 
 4.1 Modelo de datos canónico
 
-Definir entidades y relaciones.
+Definir las entidades y relaciones principales del sistema.
 
 Estado: DOCUMENTADO.
 
@@ -267,6 +344,14 @@ Estado: DOCUMENTADO.
 4.2 Modelo de datos WordPress
 
 Definir cómo se almacenarán los datos en WordPress.
+
+Debe existir correspondencia clara entre:
+
+DATOS CANÓNICOS
+↓
+DATOS WORDPRESS
+↓
+RENDERIZADO
 
 Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN.
 
@@ -290,6 +375,8 @@ CONTRATO IA
 ↕
 MODELO WORDPRESS
 
+Debe garantizarse que los datos generados puedan almacenarse y renderizarse sin pérdida de información relevante.
+
 Estado: PENDIENTE DE VERIFICACIÓN FINAL.
 
 ---
@@ -305,7 +392,10 @@ Definir cómo se suministra a la IA:
 - evidencia;
 - datos;
 - arquitectura;
-- reglas.
+- reglas;
+- restricciones;
+- contexto de localidad;
+- contexto del servicio.
 
 Estado: DOCUMENTADO.
 
@@ -313,7 +403,7 @@ Estado: DOCUMENTADO.
 
 5.2 Generación estructurada
 
-Construir el generador que produzca la salida según el contrato IA.
+Construir el generador que produzca la salida conforme al contrato IA.
 
 Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
 
@@ -321,7 +411,11 @@ Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
 
 5.3 Selección de bloques
 
-Implementar la selección B01–B23.
+Implementar la selección de:
+
+B01–B23
+
+La selección debe depender de los datos disponibles, intención y reglas definidas.
 
 Estado: PENDIENTE DE IMPLEMENTACIÓN REAL.
 
@@ -331,7 +425,14 @@ FASE 6 — VALIDADOR
 
 6.1 Validador estructural
 
-Comprobar esquema y campos.
+Comprobar:
+
+- esquema;
+- campos obligatorios;
+- tipos;
+- formato;
+- valores permitidos;
+- integridad de la salida.
 
 Estado: DOCUMENTADO.
 
@@ -345,8 +446,10 @@ Comprobar:
 - identidad;
 - evidencia;
 - coherencia;
-- invenciones;
-- utilidad.
+- ausencia de invenciones;
+- utilidad;
+- adecuación al usuario;
+- consistencia con los datos de entrada.
 
 Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN FINAL.
 
@@ -354,7 +457,15 @@ Estado: DOCUMENTADO / PENDIENTE DE IMPLEMENTACIÓN FINAL.
 
 6.3 Validador de landing
 
-Comprobar la landing completa.
+Comprobar la landing completa:
+
+- estructura;
+- contenido;
+- datos;
+- enlaces;
+- SEO;
+- consistencia;
+- renderizado.
 
 Estado: DOCUMENTADO.
 
@@ -382,7 +493,8 @@ Definir:
 - plantilla;
 - componentes;
 - almacenamiento;
-- renderizado.
+- renderizado;
+- endpoints necesarios.
 
 Estado: DOCUMENTADO.
 
@@ -405,16 +517,17 @@ Orden inicial:
 B01
 B02
 B03
-...
+…
 B23
 
 Cada componente debe:
 
 - recibir los datos correspondientes;
-- validar entradas necesarias;
+- validar las entradas necesarias;
 - renderizar correctamente;
 - mantener consistencia visual;
-- funcionar de forma reutilizable.
+- funcionar de forma reutilizable;
+- poder ser utilizado automáticamente.
 
 Estado: PENDIENTE.
 
@@ -480,7 +593,8 @@ Implementar:
 - logs;
 - estados;
 - revisión manual;
-- bloqueo de publicación.
+- bloqueo de publicación;
+- recuperación ante errores.
 
 Estado: PENDIENTE.
 
@@ -490,7 +604,7 @@ FASE 9 — PRIMERA LANDING REAL
 
 9.1 Fixture de referencia
 
-Utilizar el caso:
+Utilizar:
 
 Fontanero Marbella
 
@@ -502,7 +616,7 @@ Estado: DISPONIBLE.
 
 9.2 Generación real
 
-Ejecutar el flujo completo.
+Ejecutar el flujo completo utilizando el fixture.
 
 Estado: PENDIENTE.
 
@@ -530,7 +644,9 @@ Comprobar:
 - rendimiento;
 - errores;
 - validación;
-- automatización.
+- automatización;
+- consistencia de datos;
+- estabilidad del flujo.
 
 Estado: PENDIENTE.
 
@@ -558,7 +674,11 @@ En cada nivel comprobar:
 - tiempo;
 - duplicación;
 - indexación;
-- estabilidad.
+- estabilidad;
+- capacidad de recuperación;
+- consumo de recursos.
+
+No avanzar al siguiente nivel si aparecen errores estructurales no resueltos.
 
 Estado: PENDIENTE.
 
@@ -574,7 +694,9 @@ Preparar:
 - logs;
 - recuperación;
 - control de publicaciones;
-- alertas.
+- alertas;
+- gestión de errores;
+- mantenimiento.
 
 Estado: PENDIENTE.
 
@@ -584,17 +706,17 @@ FASE 13 — REUTILIZACIÓN
 
 Una vez validada la fábrica:
 
-Crear nuevos verticales
+crear nuevos verticales.
 
 Ejemplos:
 
-FONTANERO
-ELECTRICISTA
-CARPINTERO
-PINTOR
-JARDINERO
-ABOGADO
-REFORMAS
+- FONTANERO;
+- ELECTRICISTA;
+- CARPINTERO;
+- PINTOR;
+- JARDINERO;
+- ABOGADO;
+- REFORMAS.
 
 Cada vertical reutiliza:
 
@@ -619,7 +741,7 @@ Ejemplo:
 
 Ayudas y subvenciones
 
-El sistema reutilizará el método pero tendrá:
+El sistema reutilizará el método, pero tendrá:
 
 - entidades diferentes;
 - fuentes diferentes;
@@ -631,7 +753,7 @@ Estado: FUTURO.
 
 ---
 
-6. CRITERIO DE FINALIZACIÓN DEL PROYECTO
+7. CRITERIO DE FINALIZACIÓN DEL PROYECTO
 
 La fábrica se considera operativa cuando puede realizar:
 
@@ -657,25 +779,25 @@ QA
 ↓
 PUBLICACIÓN
 
-sin depender de intervención manual para cada paso.
+de forma repetible y sin depender de intervención manual para cada unidad.
 
 ---
 
-7. REGLA DE AVANCE
+8. REGLA DE AVANCE
 
-Para avanzar de una fase a otra:
+Para avanzar de un paso:
 
-1. El paso actual debe estar completado.
-2. El entregable debe existir.
-3. Debe haberse verificado.
-4. Los bloqueos deben estar resueltos.
-5. El estado debe quedar registrado.
+1. el paso actual debe estar completado;
+2. el entregable debe existir;
+3. el resultado debe haberse verificado;
+4. los bloqueos deben estar resueltos;
+5. el estado debe quedar registrado.
 
 Solo entonces se activa el siguiente paso.
 
 ---
 
-8. REGLA DE NO DESVIACIÓN
+9. REGLA DE NO DESVIACIÓN
 
 NO SE RETROCEDE SIN BLOQUEO REAL.
 
@@ -690,7 +812,7 @@ Pero se continúa trabajando en el paso actual.
 
 ---
 
-9. REGLA PARA SESIONES FUTURAS
+10. REGLA PARA SESIONES FUTURAS
 
 Cuando el usuario diga:
 
@@ -698,46 +820,49 @@ Cuando el usuario diga:
 
 el asistente debe:
 
-1. Leer "maestro.md".
-2. Leer "proyecto/roadmap-fabrica-webs.md".
-3. Leer este "proyecto/roadmap-proyecto.md".
-4. Leer "proyecto/protocolo-ejecucion.md".
-5. Leer "proyecto/checklist-arranque.md".
-6. Determinar el paso actual.
-7. Leer únicamente la documentación técnica necesaria.
-8. Continuar exactamente desde ese paso.
-9. No cambiar de fase sin completar el paso.
-10. Registrar el nuevo estado al terminar.
+1. recuperar "maestro.md";
+2. recuperar "proyecto/roadmap-fabrica-webs.md";
+3. recuperar este "proyecto/roadmap-proyecto.md";
+4. recuperar "proyecto/protocolo-ejecucion.md";
+5. recuperar "proyecto/checklist-arranque.md";
+6. determinar el paso actual;
+7. revisar únicamente la documentación técnica necesaria;
+8. comprobar dependencias;
+9. continuar exactamente desde el paso actual;
+10. no cambiar de fase sin completar el paso;
+11. actualizar el estado al completar el trabajo.
 
 ---
 
-10. PRINCIPIO FINAL
+11. PRINCIPIO FINAL
 
 ROADMAP UNIVERSAL
-        ↓
+↓
 ROADMAP DEL PROYECTO
-        ↓
+↓
 PASO ACTUAL
-        ↓
-DOCUMENTACIÓN
-        ↓
+↓
+DOCUMENTACIÓN NECESARIA
+↓
 CONSTRUCCIÓN
-        ↓
+↓
 VERIFICACIÓN
-        ↓
-REGISTRO
-        ↓
+↓
+REGISTRO DEL ESTADO
+↓
 SIGUIENTE PASO
 
-El roadmap determina qué hacer.
+El roadmap universal determina el método general.
 
-El protocolo determina cómo trabajar.
+El roadmap del proyecto determina el orden y estado del proyecto.
 
-El estado determina dónde estamos.
+El protocolo de ejecución determina cómo trabajar.
 
 La documentación técnica determina cómo construir cada pieza.
 
-La memoria de conversación no determina el estado del proyecto.
+La ejecución implementa lo definido.
+
+La memoria de conversación no sustituye al estado persistente del proyecto.
 
 ---
 
