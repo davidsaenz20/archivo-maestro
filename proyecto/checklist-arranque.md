@@ -15,19 +15,24 @@ Antes de realizar cualquier tarea sobre el proyecto se debe recuperar el estado 
 La memoria de la conversación no sustituye a los archivos del proyecto.
 
 ---
-
 2. RECUPERACIÓN DEL ESTADO
 
 Antes de trabajar:
 
 - [ ] Leer "maestro.md".
-- [ ] Identificar la fase actual.
-- [ ] Identificar el HITO ACTUAL.
-- [ ] Identificar el objetivo del hito.
+- [ ] Leer "proyecto/roadmap-fabrica-webs.md".
+- [ ] Leer "proyecto/roadmap-proyecto.md".
+- [ ] Identificar la fase actual en el roadmap del proyecto.
+- [ ] Identificar el PASO ACTUAL.
+- [ ] Identificar el objetivo del paso.
 - [ ] Identificar el entregable esperado.
-- [ ] Identificar el siguiente hito.
-- [ ] Identificar bloqueos conocidos.
+- [ ] Identificar los pasos completados.
+- [ ] Identificar el siguiente paso.
+- [ ] Identificar los bloqueos conocidos.
 
+El "roadmap-proyecto.md" es la fuente de verdad del estado y del orden de ejecución.
+
+La memoria de conversación no determina el estado del proyecto.
 ---
 
 3. RECUPERACIÓN DE LA METODOLOGÍA
