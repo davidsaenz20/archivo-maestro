@@ -1,217 +1,391 @@
 ARQUITECTURA DE URLs
 
-Versión: 2.0
+Versión: 3.0
 Estado: ACTIVO
-Función: transformar una oportunidad SEO validada en una URL única, coherente y automatizable.
+Función: definir la estructura de URLs de una miniweb local y de sus páginas internas.
 
 ---
 
 1. FUNCIÓN
 
-Este documento define cómo se transforma una oportunidad SEO validada por el motor de decisión en una URL concreta.
+Este documento define cómo se construyen las URLs de una miniweb local.
+
+La URL no se decide directamente desde una keyword.
+
+Flujo:
+
+INVESTIGACIÓN
+↓
+OPORTUNIDAD
+↓
+DECISIÓN SEO
+↓
+ARQUITECTURA DE MINIWEB
+↓
+URL
+↓
+DATOS
+↓
+BLOQUES
+↓
+IA
+↓
+VALIDACIÓN
+↓
+N8N
+↓
+WORDPRESS
+
+---
+
+2. PRINCIPIO FUNDAMENTAL
+
+La arquitectura debe permitir construir una miniweb local completa.
+
+Ejemplo:
+
+Fontanero Marbella
+
+Puede contener:
+
+- página principal;
+- servicios;
+- subservicios;
+- páginas comerciales;
+- contacto;
+- otras páginas justificadas.
 
 La URL debe ser:
 
 - coherente;
 - predecible;
 - estable;
+- legible;
 - escalable;
-- reutilizable;
-- comprensible;
-- compatible con la automatización;
+- automatizable;
+- compatible con WordPress;
 - independiente de decisiones arbitrarias de la IA.
 
-La IA no decide libremente la estructura de las URLs.
-
 ---
 
-2. PRINCIPIO FUNDAMENTAL
+3. ESTRUCTURA DE LA MINIWEB
 
-La URL representa una página que el sistema ha decidido crear.
-
-Flujo:
-
-EVIDENCIA
-↓
-OPORTUNIDAD
-↓
-DECISIÓN SEO
-↓
-URL
-↓
-LANDING
-↓
-CONTENIDO
-↓
-VALIDACIÓN
-↓
-PUBLICACIÓN
-
-La existencia de una combinación de palabras clave no implica que deba existir una URL.
-
----
-
-3. UNIDAD PRINCIPAL
-
-La estructura inicial es:
-
-"SERVICIO × LOCALIDAD"
+La miniweb tendrá una URL principal.
 
 Ejemplo:
 
-"/fontanero/marbella/"
+"/fontanero-marbella/"
 
-Cuando existe un subservicio con intención independiente y suficiente diferenciación:
+Esta URL representa la miniweb completa.
 
-"SERVICIO × SUBSERVICIO × LOCALIDAD"
+Dentro de ella pueden existir páginas:
 
-Ejemplo:
+"/fontanero-marbella/servicios/"
 
-"/fontanero/desatascos/marbella/"
+"/fontanero-marbella/desatascos/"
+
+"/fontanero-marbella/24-horas/"
+
+"/fontanero-marbella/fugas/"
+
+"/fontanero-marbella/contacto/"
+
+La estructura definitiva dependerá de la arquitectura de la miniweb.
 
 ---
 
-4. ESTRUCTURA PRINCIPAL
+4. PÁGINA PRINCIPAL
 
-Nivel 1
+La página principal representa:
 
-Formato:
+servicio + localidad
 
-"/{servicio}/{localidad}/"
+Ejemplo:
+
+"/fontanero-marbella/"
+
+Su función es ser la entrada principal de la miniweb.
+
+Debe poder enlazar hacia las páginas secundarias autorizadas.
+
+---
+
+5. PÁGINAS INTERNAS
+
+Las páginas internas pertenecen a la miniweb.
 
 Ejemplos:
 
-"/fontanero/marbella/"
+"/fontanero-marbella/desatascos/"
 
-"/electricista/marbella/"
+"/fontanero-marbella/24-horas/"
 
-"/abogado/marbella/"
+"/fontanero-marbella/fugas/"
 
-Nivel 2
+"/fontanero-marbella/contacto/"
 
-Formato:
-
-"/{servicio}/{subservicio}/{localidad}/"
-
-Ejemplos:
-
-"/fontanero/desatascos/marbella/"
-
-"/fontanero/fugas-de-agua/marbella/"
-
-"/abogado/divorcios/marbella/"
+Todas deben mantener una relación clara con la miniweb principal.
 
 ---
 
-5. REGLA DE CREACIÓN
+6. TIPOS DE URL
 
-Una URL solo puede crearse cuando la oportunidad tenga una decisión:
+Los tipos iniciales son:
 
-"CREAR"
+INICIO
 
-Las decisiones posibles son:
+"/{servicio}-{localidad}/"
 
-- "CREAR"
-- "AGRUPAR"
-- "INVESTIGAR"
-- "NO_CREAR"
+SERVICIO
 
-"AGRUPAR" significa que la intención se integra en otra página.
+"/{servicio}-{localidad}/{servicio-secundario}/"
 
-"INVESTIGAR" significa que falta información para decidir.
+SUBSERVICIO
 
-"NO_CREAR" significa que no existe suficiente justificación.
+"/{servicio}-{localidad}/{subservicio}/"
+
+PÁGINA COMERCIAL
+
+"/{servicio}-{localidad}/{pagina}/"
+
+CONTACTO
+
+"/{servicio}-{localidad}/contacto/"
+
+OTRAS PÁGINAS
+
+Solo se crearán cuando estén justificadas por la arquitectura.
 
 ---
 
-6. SERVICIO PRINCIPAL
+7. EJEMPLO FONTANERO MARBELLA
 
-El primer segmento representa el servicio principal.
+Miniweb:
+
+"/fontanero-marbella/"
+
+Páginas posibles:
+
+"/fontanero-marbella/servicios/"
+
+"/fontanero-marbella/desatascos/"
+
+"/fontanero-marbella/24-horas/"
+
+"/fontanero-marbella/fugas/"
+
+"/fontanero-marbella/reparacion-tuberias/"
+
+"/fontanero-marbella/contacto/"
+
+---
+
+8. REGLA DE CREACIÓN
+
+Una página SEO independiente requiere:
+
+"decision_seo = CREAR"
+
+La arquitectura comercial de la miniweb puede contener páginas necesarias para:
+
+- navegación;
+- contacto;
+- conversión;
+- presentación;
+- organización del servicio.
+
+Pero ninguna página SEO debe crearse únicamente porque exista una combinación de palabras.
+
+---
+
+9. DIFERENCIA ENTRE MINIWEB Y PÁGINA SEO
+
+La miniweb:
+
+Fontanero Marbella
+
+es el producto completo.
+
+Una página como:
+
+Desatascos en Marbella
+
+es una página interna de esa miniweb.
+
+Por tanto:
+
+MINIWEB
+│
+├── INICIO
+├── SERVICIOS
+├── DESATASCOS
+├── 24 HORAS
+├── FUGAS
+└── CONTACTO
+
+La miniweb puede contener varias páginas SEO.
+
+---
+
+10. PÁGINAS SEO
+
+Una página interna puede tener función SEO cuando exista:
+
+- intención propia;
+- demanda suficiente;
+- utilidad;
+- información;
+- diferenciación;
+- justificación comercial o de búsqueda.
 
 Ejemplo:
 
-"/fontanero/marbella/"
+"/fontanero-marbella/desatascos/"
 
-El servicio debe corresponder con la intención principal.
-
-No se utilizarán servicios inventados ni combinaciones semánticamente incoherentes.
+No se crea únicamente porque "desatascos" sea una keyword.
 
 ---
 
-7. SUBSERVICIO
+11. PÁGINAS COMERCIALES
 
-Un subservicio solo se incorpora cuando:
-
-- tiene intención propia;
-- está definido en el modelo;
-- existe oportunidad suficiente;
-- puede diferenciarse;
-- aporta utilidad;
-- no duplica otra página.
-
-No debe utilizarse únicamente para añadir keywords.
-
----
-
-8. AGRUPACIÓN
-
-Si un subservicio no merece página independiente, se integra en una página superior.
+Algunas páginas pueden existir principalmente para mejorar la utilidad de la web.
 
 Ejemplo:
 
-Si "reparación de grifos + Marbella" no justifica una página propia:
+"/fontanero-marbella/contacto/"
 
-"/fontanero/marbella/"
+Esta página no necesita necesariamente una oportunidad SEO independiente.
 
-puede contener información sobre reparación de grifos.
-
-No se crea:
-
-"/fontanero/reparacion-de-grifos/marbella/"
-
-salvo que la decisión SEO determine que merece una página independiente.
+Puede existir porque una miniweb profesional necesita una vía de contacto.
 
 ---
 
-9. PROFUNDIDAD
+12. SERVICIOS
 
-La arquitectura inicial queda limitada a:
+La página:
 
-Nivel 1
+"/fontanero-marbella/servicios/"
 
-"/servicio/localidad/"
+puede actuar como índice de servicios.
 
-Nivel 2
+Puede enlazar hacia:
 
-"/servicio/subservicio/localidad/"
+- desatascos;
+- fugas;
+- tuberías;
+- instalaciones;
+- otros servicios autorizados.
 
-No se añaden automáticamente niveles adicionales.
-
-Ejemplo que no se genera por defecto:
-
-"/fontanero/desatascos/urgente/marbella/"
-
-Una estructura más profunda requeriría una decisión y validación específica.
+No debe enlazar a páginas inexistentes.
 
 ---
 
-10. LOCALIDAD
+13. 24 HORAS
 
-Cuando exista intención local, la localidad ocupa el último segmento.
+Una URL como:
 
-Ejemplos:
+"/fontanero-marbella/24-horas/"
 
-"/fontanero/marbella/"
+solo se utilizará si existe una justificación real.
 
-"/fontanero/desatascos/marbella/"
+No se debe afirmar:
 
-La localidad debe proceder de datos territoriales válidos.
+- disponibilidad 24 horas;
+- atención nocturna;
+- respuesta inmediata;
+- servicio urgente;
 
-No se crean localidades artificiales.
+si no existe evidencia.
 
 ---
 
-11. SLUGS
+14. CONTACTO
+
+La página:
+
+"/fontanero-marbella/contacto/"
+
+puede contener:
+
+- teléfono;
+- WhatsApp;
+- email;
+- formulario;
+- dirección;
+- horarios;
+- ubicación.
+
+Los datos deben proceder de información verificada.
+
+Los datos desconocidos serán:
+
+"null"
+
+---
+
+15. SOBRE NOSOTROS
+
+Si la miniweb se utiliza posteriormente para un negocio concreto puede existir:
+
+"/fontanero-marbella/sobre-nosotros/"
+
+Pero no deben inventarse:
+
+- empresa;
+- profesionales;
+- experiencia;
+- certificaciones;
+- historia;
+- testimonios.
+
+En una web de prueba puede utilizarse contenido neutral.
+
+---
+
+16. REGLA DE SUBPÁGINAS
+
+Una subpágina debe tener una función clara.
+
+Puede existir para:
+
+- responder una intención SEO;
+- explicar un servicio;
+- explicar un problema;
+- facilitar conversión;
+- presentar información comercial;
+- organizar la navegación.
+
+No se crean subpáginas únicamente para aumentar el número de URLs.
+
+---
+
+17. PROFUNDIDAD
+
+La estructura inicial será preferentemente:
+
+MINIWEB
+↓
+PÁGINA
+↓
+SUBPÁGINA
+
+Ejemplo:
+
+"/fontanero-marbella/"
+
+↓
+
+"/fontanero-marbella/desatascos/"
+
+No se crearán automáticamente estructuras como:
+
+"/fontanero-marbella/desatascos/urgente/zona/"
+
+Una profundidad adicional requerirá justificación específica.
+
+---
+
+18. SLUGS
 
 Los slugs deben ser:
 
@@ -224,475 +398,455 @@ Los slugs deben ser:
 
 Ejemplos:
 
-"fontanero"
-
 "desatascos"
 
-"fugas-de-agua"
+"24-horas"
 
-"marbella"
+"fugas"
+
+"contacto"
 
 No utilizar:
 
 - espacios;
-- cadenas artificiales;
 - números sin significado;
+- cadenas artificiales;
 - caracteres innecesarios.
 
 ---
 
-12. INTENCIÓN
+19. COHERENCIA
 
-Cada URL debe corresponder a una intención identificable.
+La estructura debe tener sentido para el usuario.
 
-Ejemplo:
+Correcto:
 
-"/fontanero/marbella/"
+"/fontanero-marbella/desatascos/"
 
-Intención:
+Incorrecto:
 
-contratar un fontanero en Marbella.
+"/fontanero-marbella/x7f92/"
 
-Ejemplo:
-
-"/fontanero/desatascos/marbella/"
-
-Intención:
-
-contratar un servicio de desatascos en Marbella.
-
-La URL no debe representar únicamente una combinación de keywords.
+La URL debe permitir entender qué página está visitando el usuario.
 
 ---
 
-13. CANONICAL
+20. CANONICAL
 
-Cada página indexable debe tener una única URL canónica.
+Cada página indexable tendrá una única URL canónica.
 
-No deben existir múltiples URLs equivalentes para una misma intención.
+Ejemplo:
 
-La canonical debe corresponder con la URL oficial de la página.
+URL:
+
+"/fontanero-marbella/desatascos/"
+
+Canonical:
+
+"/fontanero-marbella/desatascos/"
+
+No deben existir múltiples URLs equivalentes para una misma página.
 
 ---
 
-14. DUPLICACIÓN
+21. DUPLICACIÓN
 
-Antes de crear una URL se debe comprobar:
+Antes de crear una URL se comprobará:
 
-- si ya existe una página equivalente;
-- si existe otra URL para la misma intención;
-- si existe una página superior que resuelve correctamente la intención;
-- si el contenido se solaparía;
-- si la nueva página tendría diferenciación real.
+- si ya existe;
+- si existe una página equivalente;
+- si la intención ya está cubierta;
+- si la página se solapa con otra;
+- si existe suficiente diferenciación.
 
-Cuando exista solapamiento importante:
+Cuando una nueva página no aporta valor suficiente:
 
 "AGRUPAR"
 
-debe considerarse antes de crear una URL adicional.
+o:
+
+"NO CREAR"
 
 ---
 
-15. URGENCIA
+22. LOCALIDAD
 
-Términos como:
-
-- urgente;
-- 24 horas;
-- emergencia;
-
-no generan automáticamente nuevos niveles de URL.
-
-El motor debe determinar si existe una intención suficientemente diferenciada.
-
-Puede decidir:
-
-- crear una página;
-- agrupar;
-- investigar;
-- no crear.
-
----
-
-16. VARIANTES LINGÜÍSTICAS
-
-Sinónimos o variantes no generan automáticamente URLs diferentes.
+La localidad debe formar parte de la identidad de la miniweb.
 
 Ejemplo:
+
+"Fontanero Marbella"
+
+→
+
+"/fontanero-marbella/"
+
+La localidad debe proceder de datos territoriales válidos.
+
+No se crean localidades artificiales.
+
+---
+
+23. SERVICIO
+
+El servicio debe formar parte de la identidad principal de la miniweb.
+
+Ejemplos:
 
 "fontanero"
 
-y
+"electricista"
 
-"fontanería"
+"abogado"
 
-deben analizarse según su intención real.
+"pintor"
 
-No se crean páginas únicamente porque existan dos términos diferentes.
-
----
-
-17. MARCAS Y MODELOS
-
-Las marcas y modelos no generan automáticamente niveles adicionales.
-
-Ejemplo:
-
-"/fontanero/termo/cointra/marbella/"
-
-no debe crearse por defecto.
-
-Para justificar una URL de este tipo deben existir:
-
-- intención propia;
-- demanda suficiente;
-- utilidad;
-- contenido diferenciado;
-- oportunidad;
-- ausencia de duplicación.
+La combinación debe ser semánticamente coherente.
 
 ---
 
-18. COHERENCIA SEMÁNTICA
-
-La jerarquía debe tener sentido.
-
-Ejemplo válido:
-
-"/fontanero/desatascos/marbella/"
-
-si "desatascos" está definido como subservicio de fontanería.
-
-No se deben crear combinaciones semánticamente incoherentes aunque tengan potencial de búsqueda.
-
----
-
-19. LOCALIDADES PEQUEÑAS
-
-Una localidad pequeña no genera automáticamente una URL.
-
-Debe pasar por los mismos criterios de decisión que cualquier otra localidad.
-
-El resultado puede ser:
-
-"CREAR"
-
-"AGRUPAR"
-
-"INVESTIGAR"
-
-"NO_CREAR"
-
----
-
-20. RELACIÓN CON EL MOTOR
+24. RELACIÓN CON EL MOTOR
 
 El motor determina:
 
-1. si existe oportunidad;
-2. si merece una página;
-3. si debe agruparse;
-4. si necesita investigación;
-5. si debe descartarse;
-6. si el subservicio merece independencia.
+- si existe una oportunidad;
+- si merece creación;
+- si debe agruparse;
+- si necesita investigación;
+- si debe descartarse;
+- si un servicio o subservicio merece independencia.
 
-La arquitectura de URLs transforma esa decisión en una estructura URL.
-
----
-
-21. RELACIÓN CON LANDING
-
-La separación es:
-
-MOTOR SEO
-
-decide qué debe existir.
-
-↓
-
-ARQUITECTURA URL
-
-determina dónde existe.
-
-↓
-
-ARQUITECTURA LANDING
-
-determina cómo se estructura.
-
-↓
-
-IA
-
-genera el contenido autorizado.
+La arquitectura transforma esa decisión en una estructura de páginas y URLs.
 
 ---
 
-22. URL COMO DATO
+25. RELACIÓN CON LA MINIWEB
 
-La URL debe formar parte del registro estructurado de la oportunidad.
+La arquitectura de miniweb determina:
+
+qué páginas necesita el sitio.
+
+La arquitectura de URLs determina:
+
+qué URL tendrá cada página.
+
+Por tanto:
+
+MOTOR
+↓
+MINIWEB
+↓
+MAPA DE PÁGINAS
+↓
+URL
+
+---
+
+26. RELACIÓN CON LA IA
+
+La IA recibe una URL ya determinada.
+
+Puede generar contenido para:
+
+"/fontanero-marbella/desatascos/"
+
+pero no puede:
+
+- inventar otra URL;
+- cambiar el slug;
+- cambiar la localidad;
+- crear páginas adicionales;
+- cambiar la jerarquía.
+
+---
+
+27. RELACIÓN CON N8N
+
+N8N podrá utilizar las URLs previamente autorizadas para:
+
+- crear páginas;
+- actualizar páginas;
+- crear menús;
+- crear enlaces;
+- conectar páginas;
+- enviar contenido a WordPress;
+- registrar resultados.
+
+N8N no debe inventar URLs.
+
+---
+
+28. RELACIÓN CON WORDPRESS
+
+WordPress utilizará la arquitectura de URLs para construir la miniweb.
+
+Debe poder existir:
+
+PÁGINA PRINCIPAL
+↓
+PÁGINAS INTERNAS
+↓
+MENÚ
+↓
+ENLACES
+↓
+CONTENIDO
+
+La implementación concreta se definirá en la documentación técnica de WordPress.
+
+---
+
+29. MAPA DE EJEMPLO
+
+/fontanero-marbella/
+│
+├── /servicios/
+├── /desatascos/
+├── /24-horas/
+├── /fugas/
+├── /reparacion-tuberias/
+├── /sobre-nosotros/
+└── /contacto/
+
+Este mapa es únicamente un ejemplo.
+
+La existencia definitiva de cada página deberá justificarse.
+
+---
+
+30. MENÚ
+
+El menú podrá mostrar:
+
+- Inicio;
+- Servicios;
+- Desatascos;
+- 24 horas;
+- Fugas;
+- Contacto.
+
+No tiene que mostrar todas las URLs existentes.
+
+La selección dependerá de:
+
+- importancia;
+- intención;
+- conversión;
+- experiencia de usuario;
+- jerarquía.
+
+---
+
+31. ENLAZADO INTERNO
+
+La miniweb debe conectar sus páginas de forma lógica.
 
 Ejemplo:
 
-opportunity_id: FON-DES-MARB
+INICIO
+↓
+SERVICIOS
+↓
+DESATASCOS
+↓
+CONTACTO
+
+También puede existir:
+
+INICIO
+↓
+24 HORAS
+↓
+CONTACTO
+
+cuando esté justificado.
+
+No se crean enlaces masivos sin utilidad.
+
+---
+
+32. CONTROL DE DUPLICADOS
+
+Antes de crear una página se comprobará:
+
+- mismo servicio;
+- misma intención;
+- misma localidad;
+- misma función;
+- misma URL;
+- página equivalente existente.
+
+Si ya existe:
+
+se reutiliza.
+
+---
+
+33. URL COMO DATO
+
+La URL forma parte de los datos estructurados de cada página.
+
+Ejemplo:
+
+miniweb_id: FONTANERO-MARBELLA
+page_id: FONT-DES-MARB
+tipo_pagina: subservicio_local
 servicio: fontanero
 subservicio: desatascos
 localidad: Marbella
 decision_seo: CREAR
-url: /fontanero/desatascos/marbella/
+url: /fontanero-marbella/desatascos/
 
-La URL no debe construirse improvisadamente durante la generación de contenido.
-
----
-
-23. RESPONSABILIDAD DE N8N
-
-N8N puede utilizar la URL ya validada para:
-
-- generar la página;
-- enviar datos al CMS;
-- crear enlaces;
-- publicar;
-- registrar resultados.
-
-N8N no debe inventar URLs fuera de las reglas establecidas.
+La URL no se construye improvisadamente durante la generación.
 
 ---
 
-24. RESPONSABILIDAD DE LA IA
+34. VALIDACIÓN
 
-La IA recibe una URL previamente determinada.
+Antes de crear una página se comprobará:
 
-Puede generar contenido para:
-
-"/fontanero/desatascos/marbella/"
-
-pero no puede decidir:
-
-- crear la URL;
-- modificar el slug;
-- cambiar la localidad;
-- añadir niveles;
-- crear otra URL;
-- modificar la arquitectura.
-
----
-
-25. REUTILIZACIÓN
-
-La estructura general puede reutilizarse:
-
-Abogados
-
-"/abogado/marbella/"
-
-"/abogado/divorcios/marbella/"
-
-Electricistas
-
-"/electricista/marbella/"
-
-"/electricista/boletin-electrico/marbella/"
-
-Reformas
-
-"/reformas/marbella/"
-
-"/reformas/cocinas/marbella/"
-
-Cada sector debe validar sus propias relaciones entre servicios y subservicios.
-
----
-
-26. CONTROL CONTRA ESCALA INDISCRIMINADA
-
-El sistema no debe utilizar la arquitectura para generar grandes cantidades de páginas casi idénticas.
-
-Cada URL debe tener:
-
-- intención;
-- utilidad;
-- datos;
-- diferenciación;
-- justificación.
-
-El número de URLs no es un objetivo.
-
----
-
-27. VALIDACIÓN PREVIA
-
-Antes de aceptar una URL se debe comprobar:
-
-- servicio válido;
-- subservicio válido cuando exista;
-- localidad válida;
-- decisión "CREAR";
-- intención identificable;
-- ausencia de URL equivalente;
+- miniweb correcta;
+- servicio correcto;
+- localidad correcta;
+- tipo de página correcto;
+- URL correcta;
+- canonical correcta;
+- intención correcta;
 - ausencia de duplicación;
-- estructura correcta;
-- slug correcto;
-- canonical definida.
+- justificación;
+- datos disponibles.
 
-Si falla una condición crítica:
+Si existe un problema crítico:
 
 "REVISAR"
 
-o
-
-"NO_CREAR"
-
-según corresponda.
-
 ---
 
-28. FLUJO DEFINITIVO
-
-INVESTIGACIÓN
-↓
-MATRICES
-↓
-MOTOR DE DECISIÓN
-↓
-CREAR
-↓
-ARQUITECTURA URL
-↓
-LANDING
-↓
-DATOS
-↓
-IA
-↓
-VALIDACIÓN
-↓
-N8N
-↓
-WORDPRESS
-↓
-PUBLICACIÓN
-
----
-
-29. REGLA DE NO IMPROVISACIÓN
-
-La URL debe existir antes de solicitar a la IA la generación de la landing.
-
-Esto garantiza:
-
-- consistencia;
-- trazabilidad;
-- control;
-- automatización;
-- escalabilidad.
-
-Nunca:
-
-KEYWORD
-↓
-IA
-↓
-URL improvisada
-
----
-
-30. FUENTES DE AUTORIDAD
-
-Este documento define la arquitectura de URLs.
-
-No define:
-
-- estado del proyecto;
-- modelo completo de datos;
-- bloques de landing;
-- contenido;
-- implementación WordPress;
-- automatización completa.
-
-Esas funciones pertenecen a sus documentos específicos.
-
-No deben existir estructuras paralelas de URLs.
-
----
-
-31. ESCALABILIDAD
+35. ESCALABILIDAD
 
 La arquitectura debe permitir:
 
-"1"
-
+1 MINIWEB
 ↓
-
-"10"
-
+10 MINIWEBS
 ↓
-
-"100"
-
+100 MINIWEBS
 ↓
+1.000 MINIWEBS
 
-"1.000"
+manteniendo:
 
-↓
-
-"ESCALA MAYOR"
-
-sin perder:
-
-- calidad;
-- utilidad;
-- diferenciación;
+- estructura;
 - trazabilidad;
+- calidad;
+- diferenciación;
 - control.
 
-La automatización debe ampliar un sistema validado, no sustituir la validación.
+La automatización amplía un sistema validado.
+
+No sustituye la validación.
 
 ---
 
-32. PRUEBAS
+36. REGLA CONTRA PÁGINAS MASIVAS
 
-Antes de considerar la arquitectura completamente validada se deben probar casos reales como:
+No se crearán automáticamente cientos de subpáginas simplemente combinando:
 
-- Fontanero × Marbella.
-- Desatascos × Marbella.
-- Reparación de fugas × Marbella.
-- Fontanero urgente × Marbella.
-- Fontanero × localidad pequeña.
+servicio × localidad × keyword
 
-Debe comprobarse:
+Cada página debe tener una función.
 
-- decisión;
-- intención;
-- URL;
-- diferenciación;
-- duplicación;
-- utilidad;
-- escalabilidad.
-
-Los resultados de estas pruebas pueden provocar modificaciones posteriores de esta arquitectura.
+La cantidad de URLs no es un objetivo.
 
 ---
 
-33. CONTROL DE VERSIONES
+37. PRUEBA FONTANERO MARBELLA
 
-Versión: 2.0
+La primera prueba del sistema debe poder representar:
+
+FONTANERO MARBELLA
+│
+├── Inicio
+├── Servicios
+├── Desatascos
+├── 24 horas
+├── Fugas
+├── Reparación de tuberías
+├── Sobre nosotros
+└── Contacto
+
+Posteriormente se validará cuáles de estas páginas deben existir realmente y cuáles deben agruparse.
+
+---
+
+38. REGLA DE NO INVENCIÓN
+
+Está prohibido inventar:
+
+- empresas;
+- profesionales;
+- teléfonos;
+- WhatsApp;
+- emails;
+- direcciones;
+- precios;
+- horarios;
+- disponibilidad;
+- cobertura;
+- garantías;
+- certificaciones;
+- experiencia;
+- testimonios;
+- reseñas;
+- casos;
+- imágenes;
+- datos territoriales;
+- URLs.
+
+---
+
+39. FUENTES DE AUTORIDAD
+
+Este documento define las reglas de URLs.
+
+No define:
+
+- decisiones SEO;
+- modelo completo de datos;
+- bloques;
+- contenido;
+- diseño WordPress;
+- automatización completa.
+
+Esas funciones pertenecen a sus documentos correspondientes.
+
+No deben existir estructuras paralelas.
+
+---
+
+40. CONTROL DE VERSIONES
+
+Versión: 3.0
 
 Fecha: 2026-08-24
 
-Motivo: consolidación posterior a la auditoría documental.
+Motivo:
+
+Adaptación de la arquitectura de URLs al nuevo concepto de miniweb local completa.
 
 Cambios principales:
 
-- separación entre decisión SEO y construcción de URL;
-- alineación con "arquitectura-seo.md";
-- alineación con "arquitectura-landing.md";
-- refuerzo del motor como autoridad de decisión;
-- refuerzo de la URL como dato estructurado;
-- eliminación de decisiones de URL por parte de la IA;
-- refuerzo de canonical y control de duplicación;
-- preparación para N8N → WordPress;
-- eliminación de estructuras paralelas.
+- incorporación de miniweb como unidad principal;
+- incorporación de página principal;
+- incorporación de subpáginas;
+- incorporación de páginas comerciales;
+- incorporación de página de contacto;
+- incorporación de menú y navegación;
+- separación entre páginas SEO y páginas comerciales;
+- alineación con la arquitectura de miniweb;
+- preparación para N8N y WordPress;
+- refuerzo del control de duplicación;
+- eliminación de la dependencia exclusiva de la estructura servicio/subservicio/localidad.
 
 ---
 
