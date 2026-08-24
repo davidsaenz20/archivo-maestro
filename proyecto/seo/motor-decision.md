@@ -1,8 +1,8 @@
 MOTOR DE DECISIÓN SEO
 
-Versión: 3.0
+Versión: 3.1
 Estado: PREPARADO PARA IMPLEMENTACIÓN PILOTO
-Función: determinar qué hacer con cada oportunidad SEO después de analizar sus evidencias.
+Función: determinar qué hacer con cada oportunidad SEO después de analizar sus evidencias, la SERP, la competencia y la viabilidad del activo digital que se pretende construir.
 
 ---
 
@@ -18,6 +18,10 @@ No crea URLs.
 
 No diseña landings.
 
+No selecciona bloques.
+
+No publica.
+
 No decide qué información existe.
 
 Su función es decidir:
@@ -27,6 +31,8 @@ Su función es decidir:
 - INVESTIGAR;
 - NO CREAR.
 
+El motor también determina si la oportunidad tiene suficiente viabilidad para pasar a la siguiente capa del sistema.
+
 Flujo:
 
 EVIDENCIAS
@@ -35,7 +41,13 @@ OPORTUNIDAD
 ↓
 INVESTIGACIÓN
 ↓
+SERP
+↓
+COMPETENCIA
+↓
 EVALUACIÓN
+↓
+VIABILIDAD DEL ACTIVO
 ↓
 MOTOR DE DECISIÓN
 ↓
@@ -64,8 +76,10 @@ El motor debe evaluar conjuntamente:
 - riesgo de duplicación;
 - capacidad de construir una página útil;
 - capacidad de construir una miniweb coherente;
+- capacidad de competir con el activo existente;
 - coste y complejidad de producción;
-- riesgo de crear contenido de bajo valor.
+- riesgo de crear contenido de bajo valor;
+- viabilidad comercial del activo.
 
 La decisión no debe depender de una única métrica.
 
@@ -93,7 +107,7 @@ PENDIENTE
 
 CREAR significa:
 
-Existe evidencia suficiente para justificar la creación de una página o miniweb.
+Existe evidencia suficiente para justificar la construcción de una página o miniweb.
 
 Debe existir:
 
@@ -102,9 +116,11 @@ Debe existir:
 - relevancia territorial;
 - diferenciación posible;
 - información suficiente;
-- arquitectura válida;
+- arquitectura potencialmente válida;
 - riesgo de duplicación aceptable;
-- competencia abordable o una estrategia clara para diferenciarse.
+- competencia abordable o estrategia clara para diferenciarse;
+- capacidad razonable de construir un activo útil;
+- hipótesis razonable de que el activo puede competir.
 
 CREAR no significa:
 
@@ -112,7 +128,7 @@ CREAR no significa:
 
 Significa:
 
-"existe una oportunidad suficientemente justificada para construirla y validarla".
+"existe una oportunidad suficientemente justificada para construirla, validarla y someterla posteriormente a la evaluación competitiva final".
 
 ---
 
@@ -138,11 +154,15 @@ Si:
 
 "fontaneros Marbella"
 
+"fontanería Marbella"
+
 representan la misma intención:
 
-no se crean tres páginas.
+no se crean cuatro páginas.
 
 Se agrupan en una única URL autorizada.
+
+AGRUPAR protege al sistema contra la creación artificial de URLs.
 
 ---
 
@@ -162,7 +182,9 @@ Ejemplos:
 - información local insuficiente;
 - cobertura no confirmada;
 - arquitectura no definida;
-- intención ambigua.
+- intención ambigua;
+- viabilidad del activo desconocida;
+- dificultad competitiva desconocida.
 
 INVESTIGAR no es un rechazo.
 
@@ -172,7 +194,7 @@ Es una decisión provisional.
 
 7. NO CREAR
 
-NO CREAR significa que existe evidencia suficiente para concluir que la creación de una página independiente no está justificada.
+NO CREAR significa que existe evidencia suficiente para concluir que la creación de una página independiente o miniweb no está justificada.
 
 Puede ocurrir cuando:
 
@@ -182,9 +204,11 @@ Puede ocurrir cuando:
 - la intención ya está correctamente cubierta por otra página;
 - no existe diferenciación posible;
 - las SERP muestran una barrera competitiva desproporcionada;
-- la página produciría contenido de bajo valor;
+- el activo produciría contenido de bajo valor;
 - existe alto riesgo de duplicación;
-- la oportunidad no tiene sentido para el modelo de negocio.
+- la oportunidad no tiene sentido para el modelo de negocio;
+- no existe una estrategia razonable para competir;
+- el coste de construir el activo no está justificado por la oportunidad.
 
 ---
 
@@ -198,7 +222,7 @@ No basta con medir:
 
 Hay que estudiar:
 
-"qué tipo de resultados existen y qué calidad tienen".
+"qué tipo de resultados existen, qué calidad tienen y qué dificultad representa competir contra ellos".
 
 Para cada oportunidad se debe analizar, cuando sea posible:
 
@@ -215,7 +239,9 @@ Para cada oportunidad se debe analizar, cuando sea posible:
 - Map Pack;
 - anuncios;
 - contenido generado;
-- calidad general de los resultados.
+- calidad general de los resultados;
+- profundidad de las páginas;
+- adecuación de los resultados a la intención.
 
 ---
 
@@ -242,7 +268,11 @@ Indicadores posibles:
 - calidad técnica;
 - velocidad;
 - experiencia móvil;
-- número y calidad de páginas relacionadas.
+- número y calidad de páginas relacionadas;
+- coherencia del sitio;
+- calidad de conversión;
+- cobertura temática;
+- calidad de la navegación.
 
 No todos los competidores tienen el mismo peso.
 
@@ -260,7 +290,8 @@ Debe comprobarse igualmente:
 
 - intención;
 - valor comercial;
-- diferenciación.
+- diferenciación;
+- capacidad de construir un activo útil.
 
 ---
 
@@ -279,7 +310,8 @@ Ejemplos:
 - mejor información local;
 - mejor cobertura documental;
 - mejor especialización;
-- mejor experiencia de usuario.
+- mejor experiencia de usuario;
+- mejor arquitectura de servicios.
 
 ---
 
@@ -295,11 +327,19 @@ Debe analizarse si existe una estrategia real de diferenciación.
 
 Competencia alta + diferenciación fuerte:
 
-puede permitir CREAR.
+puede permitir:
+
+CREAR
 
 Competencia alta + diferenciación débil:
 
-normalmente requiere INVESTIGAR o AGRUPAR.
+normalmente requiere:
+
+INVESTIGAR
+
+o:
+
+AGRUPAR
 
 ---
 
@@ -314,7 +354,9 @@ Existe una SERP dominada por:
 - empresas consolidadas;
 - páginas muy especializadas;
 - resultados locales con fuerte presencia;
-- múltiples señales de autoridad.
+- múltiples señales de autoridad;
+- páginas con gran profundidad temática;
+- activos digitales claramente trabajados.
 
 En este escenario:
 
@@ -322,19 +364,16 @@ NO CREAR
 
 no debe aplicarse automáticamente.
 
-Primero debe comprobarse si existe un nicho más específico.
+Primero debe comprobarse si existe:
 
-Ejemplo:
+- un subservicio más específico;
+- una intención diferente;
+- un problema concreto;
+- un nicho territorial;
+- un tipo de cliente concreto;
+- una ventaja competitiva real.
 
-"fontanero Marbella"
-
-puede ser mucho más competitivo que:
-
-"desatascos de urgencia Marbella"
-
-o una intención todavía más específica.
-
-La decisión debe analizar la oportunidad concreta, no solo el sector.
+La decisión debe analizar la oportunidad concreta.
 
 ---
 
@@ -344,7 +383,7 @@ La diferenciación es uno de los criterios principales.
 
 Debe responder:
 
-¿Por qué debería existir esta página?
+¿Por qué debería existir esta página o este activo?
 
 Puede proceder de:
 
@@ -359,7 +398,10 @@ Puede proceder de:
 - proceso;
 - especialización;
 - información comercial real;
-- casos documentados.
+- casos documentados;
+- estructura de servicios;
+- experiencia de usuario;
+- arquitectura del activo.
 
 No constituye diferenciación:
 
@@ -376,7 +418,7 @@ No constituye diferenciación:
 
 DIFERENCIACION_FUERTE
 
-Existe información suficientemente específica para construir una página que aporte valor real.
+Existe información suficientemente específica para construir una página o miniweb que aporte valor real.
 
 Ejemplos:
 
@@ -386,7 +428,9 @@ Ejemplos:
 - información de cobertura;
 - datos propios;
 - proceso específico;
-- necesidades locales documentadas.
+- necesidades locales documentadas;
+- estructura de servicios coherente;
+- información comercial verificable.
 
 Favorece:
 
@@ -445,7 +489,9 @@ Si solo disponemos de:
 
 servicio + localidad
 
-la oportunidad todavía no está preparada para CREAR.
+la oportunidad todavía no está preparada para:
+
+CREAR
 
 ---
 
@@ -459,15 +505,19 @@ Cuando el modelo de negocio requiera una miniweb local, el análisis debe compro
 - páginas de intención específica;
 - contacto;
 - navegación;
-- enlazado interno.
+- enlazado interno;
+- estructura coherente;
+- contenido diferenciado.
 
 No es obligatorio crear todas estas páginas.
 
-Pero la arquitectura debe poder justificarlas individualmente.
+Pero cada página propuesta debe poder justificarse individualmente.
 
 Una miniweb no debe ser simplemente:
 
 una landing + muchas páginas vacías.
+
+La miniweb debe funcionar como un activo digital coherente.
 
 ---
 
@@ -479,17 +529,19 @@ Una subpágina solo puede existir cuando:
 - está justificada;
 - dispone de información suficiente;
 - puede diferenciarse;
-- pertenece a la arquitectura autorizada.
+- pertenece a la arquitectura autorizada;
+- aporta valor al usuario;
+- tiene sentido dentro de la miniweb.
 
 Ejemplo:
 
-/fontanero/marbella/
+"/fontanero/marbella/"
 
-/fontanero/marbella/desatascos/
+"/fontanero/marbella/desatascos/"
 
-/fontanero/marbella/24-horas/
+"/fontanero/marbella/24-horas/"
 
-/fontanero/marbella/contacto/
+"/fontanero/marbella/contacto/"
 
 No significa que todas deban crearse siempre.
 
@@ -497,7 +549,97 @@ Cada una debe superar su propia evaluación.
 
 ---
 
-21. DEMANDA
+21. EVALUACIÓN DEL ACTIVO COMPLETO
+
+Cuando la decisión sea construir una miniweb, no se debe analizar únicamente la página principal.
+
+Debe evaluarse también:
+
+- calidad potencial de la página principal;
+- calidad potencial de las subpáginas;
+- diferenciación entre páginas;
+- coherencia temática;
+- arquitectura;
+- enlazado interno;
+- navegación;
+- cobertura de intenciones;
+- profundidad útil;
+- ausencia de páginas vacías;
+- capacidad de aportar señales de confianza;
+- capacidad de aportar información local;
+- capacidad de competir como conjunto.
+
+El activo debe evaluarse como:
+
+MINIWEB
+
+y no únicamente como:
+
+LANDING PRINCIPAL
+
+---
+
+22. VIABILIDAD COMPETITIVA DEL ACTIVO
+
+Debe existir un campo:
+
+"asset_competitive_viability"
+
+Valores:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+DESCONOCIDA
+
+Representa la capacidad estimada del activo completo para competir razonablemente con las páginas existentes.
+
+Debe considerar:
+
+- competencia;
+- SERP;
+- diferenciación;
+- calidad de la arquitectura;
+- profundidad temática;
+- información disponible;
+- páginas complementarias;
+- enlazado;
+- señales de confianza;
+- experiencia de usuario;
+- capacidad de producción.
+
+---
+
+23. REGLA DE VIABILIDAD
+
+No debe aprobarse una miniweb únicamente porque la landing principal parezca viable.
+
+Ejemplo:
+
+Landing principal fuerte
++
+subpáginas débiles
++
+poca diferenciación
++
+contenido insuficiente
+
+puede resultar en:
+
+INVESTIGAR
+
+o:
+
+NO CREAR
+
+La calidad del activo debe ser coherente en su conjunto.
+
+---
+
+24. DEMANDA
 
 Valores:
 
@@ -517,7 +659,7 @@ No se convierten impresiones subjetivas en cifras.
 
 ---
 
-22. POTENCIAL COMERCIAL
+25. POTENCIAL COMERCIAL
 
 Valores:
 
@@ -537,11 +679,12 @@ Debe analizar:
 - frecuencia;
 - posibilidad de contacto;
 - posibilidad de alquiler de la landing;
+- posibilidad de alquiler de la miniweb;
 - valor para un profesional local.
 
 ---
 
-23. RELEVANCIA TERRITORIAL
+26. RELEVANCIA TERRITORIAL
 
 Valores:
 
@@ -555,15 +698,15 @@ Debe existir una relación real entre:
 
 servicio
 
-y
+y:
 
-localidad.
+localidad
 
 El municipio no debe utilizarse únicamente como palabra clave.
 
 ---
 
-24. INFORMACIÓN DISPONIBLE
+27. INFORMACIÓN DISPONIBLE
 
 Valores:
 
@@ -579,7 +722,7 @@ Debe evaluarse si existen datos suficientes para construir contenido real.
 
 ---
 
-25. RIESGO DE DUPLICACIÓN
+28. RIESGO DE DUPLICACIÓN
 
 Valores:
 
@@ -597,15 +740,17 @@ El riesgo aumenta cuando:
 - las páginas comparten estructura y contenido;
 - no existe información local;
 - no existen diferencias de intención;
-- no existen datos específicos.
+- no existen datos específicos;
+- las subpáginas son prácticamente idénticas;
+- la miniweb se genera mediante plantillas sin información diferenciadora.
 
 ---
 
-26. EVALUACIÓN DE CALIDAD COMPETITIVA
+29. EVALUACIÓN DE CALIDAD COMPETITIVA
 
 Debe existir un campo:
 
-competitor_strength
+"competitor_strength"
 
 Valores:
 
@@ -621,7 +766,7 @@ DESCONOCIDA
 
 Y un campo:
 
-serp_quality
+"serp_quality"
 
 Valores:
 
@@ -635,9 +780,23 @@ MUY_ALTA
 
 DESCONOCIDA
 
+Y:
+
+"asset_competitive_viability"
+
+Valores:
+
+ALTA
+
+MEDIA
+
+BAJA
+
+DESCONOCIDA
+
 ---
 
-27. MATRIZ DE DECISIÓN
+30. MATRIZ DE DECISIÓN
 
 Condición| Resultado recomendado
 Evidencia insuficiente| INVESTIGAR
@@ -645,6 +804,7 @@ Intención ambigua| INVESTIGAR
 Demanda desconocida y crítica| INVESTIGAR
 Competencia desconocida| INVESTIGAR
 Diferenciación desconocida| INVESTIGAR
+Viabilidad competitiva desconocida| INVESTIGAR
 Misma intención que otra página| AGRUPAR
 Diferenciación insuficiente| AGRUPAR / INVESTIGAR
 Demanda baja + potencial bajo| NO CREAR
@@ -653,6 +813,10 @@ Competencia muy alta + sin ventaja| NO CREAR
 Competencia alta + diferenciación fuerte| CREAR
 Intención clara + valor comercial alto + información suficiente| CREAR
 Oportunidad claramente útil y diferenciada| CREAR
+Miniweb coherente + diferenciación + viabilidad competitiva razonable| CREAR
+Landing viable pero subpáginas sin justificación| INVESTIGAR
+Miniweb formada por páginas prácticamente idénticas| AGRUPAR / NO CREAR
+Activo completo claramente débil frente a competidores| NO CREAR
 
 Esta tabla es orientativa.
 
@@ -660,7 +824,7 @@ La decisión final debe considerar el conjunto de evidencias.
 
 ---
 
-28. REGLA DE COMPETENCIA
+31. REGLA DE COMPETENCIA
 
 La competencia nunca debe utilizarse de forma aislada.
 
@@ -684,11 +848,12 @@ La competencia debe combinarse con:
 - diferenciación;
 - información;
 - SERP;
-- capacidad de producción.
+- capacidad de producción;
+- viabilidad del activo.
 
 ---
 
-29. REGLA DE CALIDAD DEL RESULTADO
+32. REGLA DE CALIDAD DEL RESULTADO
 
 El objetivo no es:
 
@@ -696,7 +861,7 @@ El objetivo no es:
 
 El objetivo es:
 
-"crear únicamente páginas que tengan posibilidades razonables de aportar valor y competir".
+"crear únicamente páginas y activos que tengan posibilidades razonables de aportar valor y competir".
 
 Por tanto:
 
@@ -706,9 +871,17 @@ es peor que:
 
 20 páginas fuertes.
 
+Y:
+
+20 miniwebs débiles
+
+es peor que:
+
+5 miniwebs sólidas y diferenciadas.
+
 ---
 
-30. REGLA DE ESCALABILIDAD
+33. REGLA DE ESCALABILIDAD
 
 La automatización debe aumentar:
 
@@ -721,7 +894,7 @@ Nunca debe utilizarse para aumentar artificialmente el número de páginas.
 
 ---
 
-31. CASO MANILVA
+34. CASO MANILVA
 
 El caso de Fontanero + Manilva demuestra la necesidad de este criterio.
 
@@ -738,13 +911,20 @@ Significa que el motor debe registrar:
 - calidad de la SERP;
 - nivel de diferenciación posible;
 - oportunidad comercial;
-- dificultad real.
+- dificultad real;
+- calidad potencial del activo completo.
 
 Después debe decidir.
 
+El aprendizaje de Manilva queda incorporado al sistema:
+
+NO SE COMPARA SOLO UNA KEYWORD.
+
+Se compara la oportunidad y el activo que queremos construir frente al entorno competitivo real.
+
 ---
 
-32. CASO MARBELLA
+35. CASO MARBELLA
 
 Marbella presenta un entorno competitivo especialmente trabajado en SEO local, con páginas específicas, contenido local, enlazado y señales de autoridad en determinados sectores.
 
@@ -769,23 +949,24 @@ Debe analizarse si nuestra futura miniweb puede aportar:
 - contenido verificable;
 - navegación útil;
 - señales de confianza disponibles;
-- una estrategia competitiva razonable.
+- estrategia competitiva razonable;
+- subpáginas con intención propia;
+- coherencia temática;
+- calidad suficiente del activo completo.
 
 ---
 
-33. RESULTADO DE LA INVESTIGACIÓN
+36. RESULTADO DE LA INVESTIGACIÓN
 
 Cada oportunidad debe terminar con:
 
-decision_seo
+"decision_seo"
 
-y:
+"decision_reason"
 
-decision_reason
+"decision_confidence"
 
-y:
-
-decision_confidence
+"asset_competitive_viability"
 
 Valores de confidence:
 
@@ -798,14 +979,15 @@ BAJA
 Ejemplo:
 
 {
-"decision_seo": "CREAR",
-"decision_reason": "Intención comercial clara, información suficiente y diferenciación real.",
-"decision_confidence": "ALTA"
+  "decision_seo": "CREAR",
+  "decision_reason": "Intención comercial clara, información suficiente, diferenciación real y viabilidad competitiva razonable.",
+  "decision_confidence": "ALTA",
+  "asset_competitive_viability": "MEDIA"
 }
 
 ---
 
-34. TRAZABILIDAD
+37. TRAZABILIDAD
 
 La decisión debe poder explicar:
 
@@ -819,14 +1001,16 @@ Debe conservar:
 - competencia analizada;
 - SERP analizada;
 - diferenciación;
+- viabilidad del activo;
 - decisión;
-- motivo.
+- motivo;
+- confianza.
 
 Nunca debe existir una decisión sin explicación.
 
 ---
 
-35. CAMBIO DE DECISIÓN
+38. CAMBIO DE DECISIÓN
 
 Una oportunidad puede cambiar de decisión.
 
@@ -854,11 +1038,19 @@ nueva evidencia
 ↓
 NO CREAR
 
+o:
+
+CREAR
+↓
+análisis del activo completo
+↓
+INVESTIGAR
+
 El sistema debe conservar el historial.
 
 ---
 
-36. NO INVENCIÓN
+39. NO INVENCIÓN
 
 Está prohibido inventar:
 
@@ -875,7 +1067,10 @@ Está prohibido inventar:
 - teléfonos;
 - horarios;
 - disponibilidad;
-- datos locales.
+- datos locales;
+- características de competidores;
+- señales de autoridad;
+- datos comerciales.
 
 Cuando no exista evidencia:
 
@@ -883,7 +1078,7 @@ DESCONOCIDO
 
 ---
 
-37. VALIDACIÓN
+40. VALIDACIÓN
 
 Antes de enviar una oportunidad a arquitectura:
 
@@ -900,6 +1095,9 @@ comprobar:
 - diferenciación;
 - información disponible;
 - riesgo duplicación;
+- capacidad de construir página útil;
+- capacidad de construir miniweb cuando proceda;
+- viabilidad competitiva del activo;
 - decisión;
 - motivo;
 - confianza.
@@ -910,11 +1108,11 @@ INVESTIGAR.
 
 ---
 
-38. RELACIÓN CON ARQUITECTURA
+41. RELACIÓN CON ARQUITECTURA
 
 Solo cuando:
 
-decision_seo = CREAR
+"decision_seo = CREAR"
 
 se puede pasar a:
 
@@ -931,9 +1129,11 @@ La arquitectura determinará posteriormente:
 
 El motor no construye la arquitectura.
 
+El motor puede determinar que una miniweb es viable, pero no decide unilateralmente qué subpáginas concretas tendrá.
+
 ---
 
-39. RELACIÓN CON SISTEMA DE BLOQUES
+42. RELACIÓN CON SISTEMA DE BLOQUES
 
 El motor no selecciona bloques.
 
@@ -949,7 +1149,7 @@ SISTEMA DE BLOQUES
 
 ---
 
-40. RELACIÓN CON CONTRATO IA
+43. RELACIÓN CON CONTRATO IA
 
 La IA no recibe una oportunidad sin decisión.
 
@@ -977,7 +1177,7 @@ CREAR.
 
 ---
 
-41. RELACIÓN CON N8N
+44. RELACIÓN CON N8N
 
 N8N debe recibir únicamente oportunidades con decisión compatible con el siguiente paso.
 
@@ -1007,7 +1207,7 @@ NO CREAR
 
 ---
 
-42. REGLA DE PUBLICACIÓN
+45. REGLA DE PUBLICACIÓN
 
 El motor nunca publica.
 
@@ -1035,7 +1235,7 @@ WORDPRESS
 
 ---
 
-43. EJEMPLO OPP-001
+46. EJEMPLO OPP-001
 
 Oportunidad:
 
@@ -1060,7 +1260,8 @@ Evaluación inicial:
 - calidad SERP: DESCONOCIDA;
 - diferenciación: INSUFICIENTEMENTE DOCUMENTADA;
 - información: MEDIA;
-- riesgo duplicación: MEDIO_ALTO.
+- riesgo duplicación: MEDIO_ALTO;
+- viabilidad competitiva del activo: DESCONOCIDA.
 
 Resultado:
 
@@ -1070,7 +1271,7 @@ No se autoriza todavía la creación.
 
 ---
 
-44. EJEMPLO DE PASO A CREAR
+47. EJEMPLO DE PASO A CREAR
 
 Si una investigación posterior demuestra:
 
@@ -1082,16 +1283,19 @@ Si una investigación posterior demuestra:
 - diferenciación fuerte;
 - información local suficiente;
 - riesgo de duplicación aceptable;
+- miniweb coherente;
+- subpáginas justificadas;
+- viabilidad competitiva razonable;
 
 entonces:
 
-decision_seo = CREAR
+"decision_seo = CREAR"
 
 y se puede pasar a arquitectura.
 
 ---
 
-45. EJEMPLO DE PASO A NO CREAR
+48. EJEMPLO DE PASO A NO CREAR
 
 Si se demuestra:
 
@@ -1102,14 +1306,15 @@ Si se demuestra:
 - competidores muy consolidados;
 - ausencia de diferenciación;
 - información insuficiente;
+- activo completo difícil de diferenciar;
 
 entonces:
 
-decision_seo = NO CREAR
+"decision_seo = NO CREAR"
 
 ---
 
-46. EJEMPLO DE AGRUPACIÓN
+49. EJEMPLO DE AGRUPACIÓN
 
 Si:
 
@@ -1131,7 +1336,7 @@ Una página puede cubrir la intención completa.
 
 ---
 
-47. PRINCIPIO DE CALIDAD
+50. PRINCIPIO DE CALIDAD
 
 La pregunta principal del motor no es:
 
@@ -1139,11 +1344,11 @@ La pregunta principal del motor no es:
 
 La pregunta es:
 
-"¿Está suficientemente justificado que exista esta página?"
+"¿Está suficientemente justificado que exista esta página o activo?"
 
 ---
 
-48. PRINCIPIO DE NEGOCIO
+51. PRINCIPIO DE NEGOCIO
 
 Una oportunidad SEO debe poder convertirse potencialmente en:
 
@@ -1161,7 +1366,7 @@ No se inventan ingresos futuros.
 
 ---
 
-49. PRINCIPIO DE REALISMO
+52. PRINCIPIO DE REALISMO
 
 El sistema debe aceptar:
 
@@ -1177,57 +1382,125 @@ terminen en:
 
 CREAR.
 
+Tampoco debe existir presión para construir una miniweb completa cuando las evidencias solo justifican una página.
+
 ---
 
-50. PRINCIPIO FINAL
+53. PRINCIPIO DE APRENDIZAJE COMPETITIVO
 
-El motor protege al proyecto contra:
+Cada prueba real puede generar conocimiento para mejorar el sistema.
 
-- publicación masiva sin criterio;
-- páginas clónicas;
-- contenido artificial;
-- competencia ignorada;
-- inversión en oportunidades débiles;
-- arquitectura innecesaria;
-- generación automática sin validación.
+Cuando una prueba revele que:
 
-La secuencia correcta es:
+- un competidor es mucho más fuerte de lo esperado;
+- una SERP es diferente de lo previsto;
+- una página competidora aporta una ventaja concreta;
+- una localidad tiene una estructura competitiva particular;
+- una miniweb necesita más profundidad;
+- una subpágina no tiene intención suficiente;
+- una estructura propuesta produce contenido repetitivo;
 
-EVIDENCIA
-↓
-ANÁLISIS
-↓
-COMPETENCIA
-↓
-SERP
-↓
-DIFERENCIACIÓN
-↓
-EVALUACIÓN
-↓
+el hallazgo debe registrarse.
+
+El sistema no debe ocultar estos resultados para mantener una decisión previa.
+
+La evidencia nueva puede modificar la decisión.
+
+---
+
+54. PRINCIPIO DE COMPARACIÓN DEL ACTIVO
+
+Cuando exista una prueba de generación, el análisis posterior debe comparar:
+
+ACTIVO GENERADO
+
+frente a:
+
+ACTIVOS COMPETIDORES REALES
+
+La comparación debe considerar, cuando sea posible:
+
+- intención;
+- cobertura;
+- profundidad;
+- estructura;
+- servicios;
+- subservicios;
+- información local;
+- confianza;
+- navegación;
+- enlazado interno;
+- UX;
+- contenido;
+- diferenciación;
+- calidad técnica.
+
+El objetivo no es demostrar que nuestra página es mejor.
+
+El objetivo es determinar:
+
+qué falta para poder competir.
+
+---
+
+55. PRINCIPIO DE PRUEBA
+
+Una decisión CREAR no significa que el activo generado sea automáticamente competitivo.
+
+Después de construir el piloto debe existir una fase de:
+
+VALIDACIÓN COMPETITIVA
+
+El resultado puede ser:
+
+- COMPETITIVO;
+- COMPETITIVIDAD_MEJORABLE;
+- NO_COMPETITIVO;
+- INDETERMINADO.
+
+Este resultado no modifica por sí mismo la decisión histórica, pero debe alimentar el aprendizaje del sistema y futuras decisiones.
+
+---
+
+56. RELACIÓN CON EL PILOTO
+
+El primer piloto debe comprobar:
+
 DECISIÓN
 ↓
 ARQUITECTURA
 ↓
-GENERACIÓN
-
-Nunca:
-
-KEYWORD
+MINIWEB
+↓
+DATOS
+↓
+BLOQUES
 ↓
 IA
 ↓
-LANDING
+VALIDACIÓN
 ↓
-PUBLICACIÓN
+N8N
+↓
+WORDPRESS
+↓
+ACTIVO GENERADO
+↓
+ANÁLISIS COMPETITIVO
+
+La prueba no termina cuando se genera el contenido.
+
+Termina cuando sabemos:
+
+qué hemos construido y cómo se compara con lo que ya existe.
 
 ---
 
-51. ESTADO DEL DOCUMENTO
+57. ESTADO DEL DOCUMENTO
 
 Versión:
 
-3.0
+3.1
 
 Estado:
 
@@ -1239,23 +1512,23 @@ Fecha:
 
 Cambios principales:
 
-- incorporación de análisis competitivo;
-- incorporación de calidad de SERP;
-- incorporación de fortaleza de competidores;
-- incorporación de capacidad real de diferenciación;
-- incorporación de capacidad de construir una miniweb;
+- incorporación de evaluación del activo completo;
+- incorporación de "asset_competitive_viability";
+- diferenciación entre landing y miniweb;
+- incorporación de evaluación de subpáginas;
+- incorporación de comparación competitiva posterior al piloto;
+- incorporación de aprendizaje procedente de pruebas reales;
+- refuerzo del análisis de SERP;
+- refuerzo de la evaluación de competidores;
 - refuerzo de AGRUPAR;
 - refuerzo de INVESTIGAR;
-- separación entre competencia y decisión;
-- incorporación de confianza de decisión;
-- incorporación de trazabilidad;
-- incorporación del aprendizaje de Manilva;
-- adaptación del sistema para oportunidades locales competitivas;
-- protección frente a generación masiva de páginas débiles.
+- separación entre decisión SEO y competitividad real del activo;
+- protección frente a miniwebs con páginas vacías o repetitivas;
+- mantenimiento de la separación entre motor, arquitectura, bloques, IA, N8N y WordPress.
 
 ---
 
-52. REGLA FINAL
+58. REGLA FINAL
 
 El motor decide:
 
@@ -1280,6 +1553,10 @@ N8N decide:
 WordPress decide:
 
 ¿CÓMO SE RENDERIZA Y PUBLICA?
+
+La validación competitiva determina:
+
+¿CÓMO SE COMPARA EL ACTIVO GENERADO CON LO QUE YA EXISTE?
 
 La calidad del sistema depende de que ninguna capa invada las funciones de las demás.
 
