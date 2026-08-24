@@ -1,6 +1,6 @@
 PROTOCOLO DE EJECUCIÓN DEL PROYECTO
 
-Versión: 1.0
+Versión: 2.0
 Estado: OBLIGATORIO
 Propósito: mantener una ejecución secuencial, controlada y orientada a resultados.
 
@@ -10,7 +10,7 @@ Propósito: mantener una ejecución secuencial, controlada y orientada a resulta
 
 Este documento establece las reglas que deben seguirse durante la construcción y evolución del proyecto.
 
-Su finalidad es evitar desviaciones, rediseños innecesarios, retrocesos de fase y trabajo paralelo que no contribuya directamente al hito actual.
+Su finalidad es evitar desviaciones, rediseños innecesarios, retrocesos de fase y trabajo paralelo que no contribuya directamente al paso actual.
 
 El proyecto debe avanzar de forma:
 
@@ -21,6 +21,7 @@ El proyecto debe avanzar de forma:
 - orientada a implementación.
 
 ---
+
 2. FUENTE DE VERDAD DEL ESTADO
 
 El estado y el orden de ejecución del proyecto están determinados por:
@@ -53,11 +54,11 @@ Solo una decisión explícita registrada en el roadmap puede cambiar el orden de
 
 3. REGLA PRINCIPAL: NO RETROCEDER SIN BLOQUEO REAL
 
-NO SE RETROCEDE A UNA FASE ANTERIOR SIN UN BLOQUEO REAL.
+NO SE RETROCEDE A UNA FASE O PASO ANTERIOR SIN UN BLOQUEO REAL.
 
-Mientras exista un hito activo:
+Mientras exista un paso activo:
 
-1. se trabaja sobre ese hito;
+1. se trabaja sobre ese paso;
 2. no se cambia de objetivo por iniciativa propia;
 3. no se rediseña una fase anterior;
 4. no se abre una nueva línea de trabajo porque aparezca una posible mejora.
@@ -78,26 +79,26 @@ Paso 2 — Determinar impacto
 
 Preguntar:
 
-«¿Este problema impide completar el hito actual?»
+«¿Este problema impide completar el paso actual?»
 
 Si NO bloquea
 
 - registrar el problema;
 - dejarlo pendiente;
-- continuar con el hito actual.
+- continuar con el paso actual.
 
 Si SÍ bloquea
 
 - detener temporalmente la ejecución;
 - resolver únicamente el bloqueo;
 - comprobar que el bloqueo queda solucionado;
-- volver inmediatamente al hito original.
+- volver inmediatamente al paso original.
 
 ---
 
 5. DEFINICIÓN DE BLOQUEO REAL
 
-Se considera bloqueo real únicamente un problema que impida materialmente continuar o completar el hito actual.
+Se considera bloqueo real únicamente un problema que impida materialmente continuar o completar el paso actual.
 
 Ejemplos:
 
@@ -113,7 +114,7 @@ No son bloqueos por sí mismos:
 - una optimización;
 - una idea nueva;
 - una posible refactorización;
-- una contradicción que no afecta al hito actual;
+- una contradicción que no afecta al paso actual;
 - una documentación que podría estar mejor;
 - una tecnología alternativa que podría ser mejor.
 
@@ -121,7 +122,7 @@ No son bloqueos por sí mismos:
 
 6. NO REDISEÑAR DURANTE LA IMPLEMENTACIÓN
 
-Cuando un hito está en fase de construcción:
+Cuando un paso está en fase de construcción:
 
 primero se construye; después se evalúa.
 
@@ -151,9 +152,9 @@ VOLVER ATRÁS
 
 7. TRABAJO SECUENCIAL
 
-Cada hito debe tener:
+Cada paso debe tener:
 
-HITO ACTUAL
+PASO ACTUAL
 ↓
 OBJETIVO
 ↓
@@ -165,31 +166,36 @@ VERIFICACIÓN
 ↓
 COMPLETADO
 ↓
-SIGUIENTE HITO
+SIGUIENTE PASO
 
-No se debe trabajar simultáneamente en varios hitos salvo que exista una dependencia técnica justificada.
+No se debe trabajar simultáneamente en varios pasos salvo que exista una dependencia técnica justificada.
 
 ---
 
-8. DEFINICIÓN DEL HITO ANTES DE TRABAJAR
+8. DEFINICIÓN DEL PASO ANTES DE TRABAJAR
 
-Antes de comenzar un hito debe quedar claro:
+Antes de comenzar un paso debe quedar claro:
 
-HITO ACTUAL:
+FASE ACTUAL:
+PASO ACTUAL:
 OBJETIVO:
 ENTREGABLE:
 BLOQUEOS CONOCIDOS:
-SIGUIENTE HITO:
+SIGUIENTE PASO:
 
-Esto permite comprobar en todo momento si el trabajo que se está realizando pertenece realmente al hito.
+Esta información debe recuperarse del:
+
+"proyecto/roadmap-proyecto.md"
+
+Esto permite comprobar en todo momento si el trabajo que se está realizando pertenece realmente al paso actual.
 
 ---
 
-9. CRITERIO PARA DECIDIR SI UNA TAREA PERTENECE AL HITO
+9. CRITERIO PARA DECIDIR SI UNA TAREA PERTENECE AL PASO
 
 Antes de iniciar una tarea nueva se debe preguntar:
 
-«¿Esta tarea contribuye directamente a completar el hito actual?»
+«¿Esta tarea contribuye directamente a completar el paso actual?»
 
 Si la respuesta es:
 
@@ -207,7 +213,7 @@ NO
 
 10. CAMBIOS DE ALCANCE
 
-No se debe ampliar el alcance durante un hito sin una razón objetiva.
+No se debe ampliar el alcance durante un paso sin una razón objetiva.
 
 Si aparece una nueva funcionalidad:
 
@@ -219,7 +225,7 @@ NO INTERRUMPIR
 ↓
 EVALUAR POSTERIORMENTE
 
-Las nuevas funcionalidades pasan a formar parte de futuros hitos si se aprueban.
+Las nuevas funcionalidades pasan a formar parte de futuros pasos si se aprueban.
 
 ---
 
@@ -240,13 +246,15 @@ se implementa.
 
 No se sigue documentando indefinidamente la misma decisión.
 
+La documentación técnica tampoco puede modificar por iniciativa propia el orden del roadmap.
+
 ---
 
 12. RELACIÓN CON LAS PRUEBAS
 
 Las pruebas deben utilizarse para verificar componentes reales.
 
-No se deben crear pruebas artificiales indefinidamente antes de construir el sistema cuando el objetivo del hito sea precisamente construirlo.
+No se deben crear pruebas artificiales indefinidamente antes de construir el sistema cuando el objetivo del paso sea precisamente construirlo.
 
 La secuencia preferente es:
 
@@ -264,13 +272,16 @@ VALIDAR
 
 13. REVISIÓN DEL REPOSITORIO
 
-Antes de comenzar un nuevo hito:
+Antes de comenzar un nuevo paso:
 
 1. revisar "maestro.md";
-2. identificar el hito actual;
-3. revisar únicamente los documentos necesarios para ese hito;
-4. comprobar dependencias;
-5. comenzar la ejecución.
+2. leer "proyecto/roadmap-fabrica-webs.md";
+3. leer "proyecto/roadmap-proyecto.md";
+4. leer "proyecto/checklist-arranque.md";
+5. identificar el paso actual;
+6. revisar únicamente los documentos técnicos necesarios para ese paso;
+7. comprobar dependencias;
+8. comenzar la ejecución.
 
 No es necesario volver a rediseñar todo el proyecto en cada sesión.
 
@@ -278,7 +289,7 @@ Una revisión completa del repositorio debe realizarse cuando:
 
 - comienza una fase importante;
 - existe un bloqueo;
-- se detecta una contradicción que afecta al hito;
+- se detecta una contradicción que afecta al paso actual;
 - se solicita explícitamente una auditoría completa.
 
 ---
@@ -287,7 +298,7 @@ Una revisión completa del repositorio debe realizarse cuando:
 
 El asistente debe evitar especialmente este patrón:
 
-HITO ACTUAL
+PASO ACTUAL
 ↓
 ENCUENTRA PROBLEMA SECUNDARIO
 ↓
@@ -299,37 +310,41 @@ RETROCEDE
 ↓
 REDISEÑA
 ↓
-NO TERMINA EL HITO
+NO TERMINA EL PASO
 
 Debe utilizar:
 
-HITO ACTUAL
+PASO ACTUAL
 ↓
 PROBLEMA
 ↓
 ¿BLOQUEA?
 ├── NO → REGISTRAR → CONTINUAR
-└── SÍ → RESOLVER → VOLVER AL HITO
+└── SÍ → RESOLVER → VOLVER AL PASO
 ↓
 COMPLETAR
 ↓
-ACTUALIZAR MAESTRO
+ACTUALIZAR ESTADO
 ↓
-SIGUIENTE HITO
+SIGUIENTE PASO
 
 ---
 
-15. ACTUALIZACIÓN DEL MAESTRO
+15. ACTUALIZACIÓN DEL ESTADO
 
-Al completar un hito:
+Al completar un paso:
 
-1. marcar el hito como COMPLETADO;
+1. marcar el paso como COMPLETADO;
 2. registrar brevemente qué se ha construido;
 3. registrar problemas pendientes;
-4. establecer el siguiente hito;
+4. establecer el siguiente paso;
 5. actualizar el estado general del proyecto.
 
-No se debe avanzar al siguiente hito sin actualizar el estado cuando dicha actualización sea necesaria para mantener el control del proyecto.
+El estado debe actualizarse en:
+
+"proyecto/roadmap-proyecto.md"
+
+No se debe utilizar "maestro.md" como fuente alternativa del paso actual.
 
 ---
 
@@ -338,12 +353,20 @@ No se debe avanzar al siguiente hito sin actualizar el estado cuando dicha actua
 En cualquier momento, el proyecto debe poder responder claramente:
 
 ¿DÓNDE ESTAMOS?
+
 ¿QUÉ ESTAMOS CONSTRUYENDO?
+
 ¿QUÉ FALTA PARA TERMINARLO?
+
 ¿QUÉ BLOQUEOS EXISTEN?
+
 ¿QUÉ VIENE DESPUÉS?
 
-Si alguna de estas respuestas no está clara, primero se debe recuperar el estado desde "maestro.md".
+La respuesta debe obtenerse del:
+
+"proyecto/roadmap-proyecto.md"
+
+Si alguna de estas respuestas no está clara, primero se debe recuperar el estado persistente antes de continuar.
 
 ---
 
@@ -351,17 +374,17 @@ Si alguna de estas respuestas no está clara, primero se debe recuperar el estad
 
 Antes de actuar sobre el proyecto, aplicar mentalmente estas instrucciones:
 
-«Trabaja siempre sobre el hito actual definido en "maestro.md".
+««Trabaja siempre sobre el paso actual definido en "proyecto/roadmap-proyecto.md".
 
-No cambies de hito por iniciativa propia.
+No cambies de paso por iniciativa propia.
 
-No retrocedas a una fase anterior salvo que exista un bloqueo real que impida completar el hito actual.
+No retrocedas a una fase o paso anterior salvo que exista un bloqueo real que impida completar el paso actual.
 
-Si encuentras un problema, regístralo y determina si bloquea el hito.
+Si encuentras un problema, regístralo y determina si bloquea el paso.
 
 Si no bloquea, continúa.
 
-Si bloquea, detén la ejecución, resuelve únicamente el bloqueo y vuelve al hito original.
+Si bloquea, detén la ejecución, resuelve únicamente el bloqueo y vuelve al paso original.
 
 Una mejora futura no es un bloqueo.
 
@@ -369,9 +392,9 @@ Una duda no es un bloqueo.
 
 Una optimización no es un bloqueo.
 
-Una contradicción que no afecta al hito actual no es un bloqueo.
+Una contradicción que no afecta al paso actual no es un bloqueo.
 
-No rediseñes el sistema mientras estás implementando un hito.
+No rediseñes el sistema mientras estás implementando un paso.
 
 No crees documentación innecesaria.
 
@@ -379,7 +402,7 @@ No cambies la arquitectura por iniciativa propia durante una implementación.
 
 Avanza de forma secuencial, verificable y acumulativa.
 
-Cuando un hito termine, actualiza "maestro.md" y pasa al siguiente hito definido.»
+Cuando un paso termine, actualiza "proyecto/roadmap-proyecto.md" y pasa al siguiente paso definido.»»
 
 ---
 
@@ -390,21 +413,61 @@ Cuando exista conflicto entre:
 - una idea surgida durante la conversación;
 - una mejora potencial;
 - una tarea secundaria;
-- y el hito actual definido en "maestro.md";
+- y el paso actual definido en "proyecto/roadmap-proyecto.md";
 
-el hito actual tiene prioridad, salvo que exista un bloqueo real.
+el paso actual tiene prioridad, salvo que exista un bloqueo real.
 
 ---
 
 19. PRINCIPIO FINAL
 
-CONSTRUIR → VERIFICAR → CORREGIR → COMPLETAR → AVANZAR.
+CONSTRUIR
+↓
+VERIFICAR
+↓
+CORREGIR
+↓
+COMPLETAR
+↓
+ACTUALIZAR ESTADO
+↓
+AVANZAR
 
 No:
 
-DISEÑAR → REDISEÑAR → DOCUMENTAR → REDISEÑAR → VOLVER ATRÁS.
+DISEÑAR
+↓
+REDISEÑAR
+↓
+DOCUMENTAR
+↓
+REDISEÑAR
+↓
+VOLVER ATRÁS
 
 El objetivo del protocolo es que cada sesión produzca progreso real y acumulativo hacia el sistema final.
+
+---
+
+20. REGLA DE REUTILIZACIÓN
+
+Este protocolo forma parte del núcleo reutilizable de la fábrica.
+
+Debe poder utilizarse para:
+
+- webs de servicios;
+- webs locales;
+- directorios;
+- ayudas y subvenciones;
+- otros sistemas de generación automática.
+
+El protocolo no depende de un sector concreto.
+
+El roadmap universal define el método general.
+
+El roadmap del proyecto define el orden específico.
+
+La documentación técnica define cómo construir cada componente.
 
 ---
 
